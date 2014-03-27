@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <!-- Bild erfassen -->
+        <!-- Bild erfassen  -->
 
         <LinearLayout
             android:layout_width="wrap_content"
