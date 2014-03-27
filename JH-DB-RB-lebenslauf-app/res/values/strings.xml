@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Erste Seite -->
+    <string name="txt_startseite">Startseite</string>
+    <string name="app_name">JH-DB-RB-lebenslauf-app</string>
+    <string name="action_settings">Settings</string>
+    <string name="txt_logo">Hier kommt ein Bild hin</string>
+    <string name="txt_anweisung">CV schnell und einfach erfassen</string>
+    <string name="txt_erfassen">CV erfassen</string>
+
+    <!-- Zweite Seite -->
+    <string name="txt_bild">Personalien erfassen</string>
+    <string name="txt_bildLaden">Bild auswählen / Hochladen</string>
+    <string name="title_activity_bild">BildActivity</string>
+    <string name="txt_bild_hochladen">Bild hochladen</string>
+    <string name="txt_kamera">Kamera</string>
+    <string name="txt_name">Name:</string>
+    <string name="txt_adresse">Adresse:</string>
+    <string name="txt_berufserfahrung">Berufserfahrung</string>
+    <string name="txt_zuruck">zurück</string>
+
+    <!-- Dritte Seite -->
+    <string name="title_activity_berufserfahrung">Berufserfahrung</string>
+    <string name="txt_firma">Firma:</string>
+    <string name="txt_dauer">Dauer:</string>
+    <string name="txt_taetigkeit">Tätigkeit:</string>
+    <string name="txt_berufserfahrung_add">Berufserfahrung hinzufügen</string>
+
+    <!-- Vierte Seite -->
+    <string name="txt_bildung">Bildung</string>
+    <string name="title_activity_bildung">BildungActivity</string>
+    <string name="txt_grund">Grundbildung</string>
+    <string name="txt_aus">Ausbildung</string>
+    <string name="txt_weiter">Weiterbildung</string>
+    <string name="txt_schule">Schule:</string>
+    <string name="txt_bildung_add">Bildung hinzufügen</string>
+    <string name="txt_skills">Skills</string>
+    <string name="title_activity_skills">SkillsActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- Fünfte Seite -->
+    <string name="txt_skill_add">Skill hinzufügen</string>
+    <string name="txt_itkenntniss">IT-Kenntnisse:</string>
+    <string name="title_activity_zusammenfassung">ZusammenfassungActivity</string>
+    <string name="txt_zusammenfassung">Zusammenfassung</string>
+
+    <!-- Sechste Seite -->
+    <string name="txt_personalien">Personalien</string>
+    <string name="txt_leer">---------------</string>
+    <string name="txt_schule_art">Art der Schule:</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_start">StartActivity</string>
+    <string name="title_activity_finish">Finish</string>
+    <string name="todo">TODO</string>
+    <string name="_">" "</string>
+
+</resources>

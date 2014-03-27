@@ -1,0 +1,264 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BerufserfahrungActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Bild erfassen -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" 
+            android:background="#3300FF" >
+
+            <ImageView
+                android:id="@+id/obenBild"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher"
+                android:contentDescription="@string/todo"/>
+
+        </LinearLayout>
+        
+        <!-- Berufserfahrung erfassen -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" 
+            android:background="#339900" >
+
+            <ImageView
+                android:id="@+id/obenBerufserfahrung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher"
+                android:contentDescription="@string/todo"/>
+
+        </LinearLayout>
+        
+        <!-- Bildung erfassen -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" 
+			android:background="#3300FF" >
+
+            <ImageView
+                android:id="@+id/obenBildung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher"
+                android:contentDescription="@string/todo" />
+
+        </LinearLayout>
+        
+        <!-- Skills erfassen -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" 
+            android:background="#3300FF" >
+
+            <ImageView
+                android:id="@+id/obenSkills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher"
+                android:contentDescription="@string/todo" />
+
+        </LinearLayout>
+        
+        <!-- Zusammenfassung erfassen -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" 
+            android:background="#3300FF" >
+
+            <ImageView
+                android:id="@+id/obenZusammenfassung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher"
+                android:contentDescription="@string/todo" />
+
+        </LinearLayout>
+        
+        <!-- Finish -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" 
+            android:background="#3300FF" >
+
+            <ImageView
+                android:id="@+id/obenFinish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher"
+                android:contentDescription="@string/todo" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <!-- Hauptteil Titel-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/titelPicPersonalien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ico_beruf"
+                android:contentDescription="@string/todo" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/titelTextPersonalien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_activity_berufserfahrung" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.00"
+        android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_firma" />
+
+        <EditText
+            android:id="@+id/edt_berufserfahrung_firma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords" >
+
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_dauer" />
+
+        <EditText
+            android:id="@+id/edt_berufserfahrung_dauer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_taetigkeit" />
+
+        <EditText
+            android:id="@+id/edt_berufserfahrung_taetigkeit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords" />
+
+    </LinearLayout>
+        
+    </LinearLayout>
+    
+    <!-- Navigation -->
+
+    <Button
+        android:id="@+id/edt_add_berufserfahrung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickAddBerufserfahrung"
+        android:text="@string/txt_berufserfahrung_add" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:background="#3300FF" >
+
+        <!-- Button Navigation -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" 
+            android:background="#3300FF" >
+
+            <ImageButton
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickBild"
+                android:src="@drawable/ic_launcher" 
+                android:contentDescription="@string/todo"/>
+
+        </LinearLayout>
+        
+        <!-- Button Navigation Berufserfahrung-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" 
+            android:background="#3300FF" >
+
+            <ImageButton
+                android:id="@+id/buttonBerufserfahrung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickBildung"
+                android:src="@drawable/ic_launcher" 
+                android:contentDescription="@string/todo"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
