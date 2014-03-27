@@ -13,6 +13,7 @@
         <!-- Bild erfassen  -->
 
         <LinearLayout
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal" 
@@ -22,7 +23,7 @@
                 android:id="@+id/obenBild"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
+                android:src="@drawable/ic_bild_txt"
                 android:contentDescription="@string/todo"/>
 
         </LinearLayout>
@@ -30,6 +31,7 @@
         <!-- Berufserfahrung erfassen -->
 
         <LinearLayout
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal" 
@@ -37,16 +39,17 @@
 
             <ImageView
                 android:id="@+id/obenBerufserfahrung"
-                android:layout_width="wrap_content"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
-                android:contentDescription="@string/todo"/>
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_berufserfahrung_txt" />
 
         </LinearLayout>
         
         <!-- Bildung erfassen -->
 
         <LinearLayout
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" 
@@ -54,16 +57,17 @@
 
             <ImageView
                 android:id="@+id/obenBildung"
-                android:layout_width="wrap_content"
+                android:layout_width="69dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_bildung_txt" />
 
         </LinearLayout>
         
        <!-- Skills erfassen -->
 
         <LinearLayout
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" 
@@ -73,7 +77,7 @@
                 android:id="@+id/obenSkills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
+                android:src="@drawable/ic_skills_txt"
                 android:contentDescription="@string/todo" />
 
         </LinearLayout>
@@ -81,6 +85,7 @@
         <!-- Zusammenfassung erfassen -->
 
         <LinearLayout
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" 
@@ -90,13 +95,14 @@
                 android:id="@+id/obenZusammenfassung"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
+                android:src="@drawable/ic_zusammenfassung_txt"
                 android:contentDescription="@string/todo" />
 
         </LinearLayout>
         <!-- Finish -->
 
         <LinearLayout
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" 
