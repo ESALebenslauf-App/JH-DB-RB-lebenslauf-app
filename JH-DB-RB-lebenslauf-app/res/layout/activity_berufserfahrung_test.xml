@@ -1,64 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BerufserfahrungActivity" >
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="15dp" >
+        android:orientation="horizontal" >
 
         <ImageView
-            android:id="@+id/ImageView05"
+            android:id="@+id/obenBerufserfahrung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
             android:src="@drawable/ic_launcher" />
 
         <ImageView
-            android:id="@+id/ImageView04"
+            android:id="@+id/obenBildung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
             android:src="@drawable/ic_launcher" />
 
         <ImageView
-            android:id="@+id/ImageView03"
+            android:id="@+id/obenBild"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
             android:src="@drawable/ic_launcher" />
 
         <ImageView
-            android:id="@+id/ImageView02"
+            android:id="@+id/obenSkills"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
             android:src="@drawable/ic_launcher" />
 
         <ImageView
-            android:id="@+id/ImageView01"
+            android:id="@+id/obenZusammenfassung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
             android:src="@drawable/ic_launcher" />
 
         <ImageView
-            android:id="@+id/obenBild1"
+            android:id="@+id/obenFinish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
             android:src="@drawable/ic_launcher" />
     </LinearLayout>
 
+    <!-- Hauptteil Titel -->
+
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/linearLayout1" >
+        android:orientation="horizontal" >
 
         <ImageView
             android:id="@+id/titelPicPersonalien"
@@ -74,37 +74,12 @@
             android:text="@string/title_activity_berufserfahrung" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="#3300FF"
-        android:orientation="horizontal" >
-
-        <ImageButton
-            android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:onClick="onClickBild"
-            android:src="@drawable/ic_launcher" />
-
-        <ImageButton
-            android:id="@+id/buttonBerufserfahrung"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:onClick="onClickBildung"
-            android:src="@drawable/ic_launcher" />
-    </LinearLayout>
+    <!-- Start Body -->
 
     <TableLayout
-        android:id="@+id/tabelLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout3" >
+        android:layout_weight="1.00" >
 
         <TableRow
             android:id="@+id/tableRow_txt_firma"
@@ -216,7 +191,7 @@
                 android:text="@string/txt_von" />
 
             <TextView
-                android:id="@+id/txt_dauer_bis_label_platzHalter2"
+                android:id="@+id/txt_dauer_bis_label_platzHalter1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DatePicker" />
@@ -257,21 +232,53 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text" />
+
+            <!-- Navigation -->
         </TableRow>
 
         <TableRow
             android:id="@+id/add_berufserfahrung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/sf_add_berufserfahrung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:onClick="onClickAddBerufserfahrung"
+                android:text="@string/txt_berufserfahrung_add" />
         </TableRow>
     </TableLayout>
 
-    <Button
-        android:id="@+id/sf_add_berufserfahrung"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tabelLayout"
-        android:onClick="onClickAddBerufserfahrung"
-        android:text="@string/txt_berufserfahrung_add" />
+    <!-- Ende Body -->
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3300FF"
+        android:orientation="horizontal" >
+
+        <!-- Button Navigation -->
+
+
+        <!-- Button Navigation Berufserfahrung -->
+
+        <ImageButton
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:onClick="onClickBild"
+            android:src="@drawable/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/buttonBerufserfahrung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:onClick="onClickBildung"
+            android:src="@drawable/ic_launcher" />
+    </LinearLayout>
+
+</LinearLayout>

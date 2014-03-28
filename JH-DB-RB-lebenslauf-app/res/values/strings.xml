@@ -56,5 +56,9 @@
     <string name="_">" "</string>
     <string name="txt_titel">Titel</string>
     <string name="txt_plz_ort">PLZ Ort</string>
+    <string name="txt_ort">Ort:</string>
+    <string name="txt_plz">PLZ:</string>
+    <string name="txt_von">von:</string>
+    <string name="txt_bis">bis:</string>
 
 </resources>
