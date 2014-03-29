@@ -15,9 +15,9 @@ public class Zusammenfassung extends Activity {
 
 	String name;
 	String adresse;
-	public ArrayList<String> berufserfahrungen = new ArrayList<String>();
-	public ArrayList<String> bildungen = new ArrayList<String>();
-	public String skillGrad;
+	ArrayList<String> berufserfahrungen = new ArrayList<String>();
+	ArrayList<String> bildungen = new ArrayList<String>();
+	String skillGrad;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +94,10 @@ public class Zusammenfassung extends Activity {
 
 	}
 
-	public void onClickBildung(View Button) {
-		shortToast("onClickBildung(View Button)");
+	public void onClickFinish(View Button) {
+		final Intent intent = new Intent(this, Finish.class);
+
+		startActivity(intent);
 	}
 	
 	private void shortToast(String text) {

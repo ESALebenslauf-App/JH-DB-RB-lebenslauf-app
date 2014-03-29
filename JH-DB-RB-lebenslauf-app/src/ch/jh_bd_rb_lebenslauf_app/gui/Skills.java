@@ -9,26 +9,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 public class Skills extends Activity {
 
 	String name;
 	String adresse;
-	public static final String NAME = "name";
-	public static final String ADRESSE = "adresse";
-	public ArrayList<String> berufserfahrungen = new ArrayList<String>();
-	public static final String BERUFSERFAHRUNGEN = "berufserfahrungen";
-	public ArrayList<String> bildungen = new ArrayList<String>();
-	public static final String BILDUNGEN = "bildung";
-	public String skillGrad;
-	public static final String SKILL = "skill";
+	static final String NAME = "name";
+	static final String ADRESSE = "adresse";
+	ArrayList<String> berufserfahrungen = new ArrayList<String>();
+	static final String BERUFSERFAHRUNGEN = "berufserfahrungen";
+	ArrayList<String> bildungen = new ArrayList<String>();
+	static final String BILDUNGEN = "bildung";
+	String skillGrad;
+	static final String SKILL = "skill";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_skills);
 
+		
 		final Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			berufserfahrungen = extras
@@ -39,6 +41,8 @@ public class Skills extends Activity {
 		}
 
 	}
+	
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

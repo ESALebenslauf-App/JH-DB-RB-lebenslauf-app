@@ -15,12 +15,12 @@ public class Bildung extends Activity {
 
 	String name;
 	String adresse;
-	public static final String NAME = "name";
-	public static final String ADRESSE = "adresse";
-	public ArrayList<String> berufserfahrungen = new ArrayList<String>();
-	public static final String BERUFSERFAHRUNGEN = "berufserfahrungen";
-	public ArrayList<String> bildungen = new ArrayList<String>();
-	public static final String BILDUNGEN = "bildung";
+	static final String NAME = "name";
+	static final String ADRESSE = "adresse";
+	ArrayList<String> berufserfahrungen = new ArrayList<String>();
+	static final String BERUFSERFAHRUNGEN = "berufserfahrungen";
+	ArrayList<String> bildungen = new ArrayList<String>();
+	static final String BILDUNGEN = "bildung";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

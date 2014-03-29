@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 public class Bild extends Activity {
 
-	public static final String NAME = "name";
-	public static final String ADRESSE = "adresse";
+	static final String NAME = "name";
+	static final String ADRESSE = "adresse";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -16,6 +16,7 @@
     <string name="txt_bild_hochladen">Bild hochladen</string>
     <string name="txt_kamera">Kamera</string>
     <string name="txt_name">Name:</string>
+    <string name="txt_vorname">Vorname:</string>
     <string name="txt_adresse">Adresse:</string>
     <string name="txt_berufserfahrung">Berufserfahrung</string>
     <string name="txt_zuruck">zurück</string>
@@ -40,6 +41,14 @@
     <string name="hello_world">Hello world!</string>
 
     <!-- Fünfte Seite -->
+    <string-array name="sprachen_array">
+        <item>Deutsch</item>
+        <item>Englisch</item>
+        <item>Französisch</item>
+        <item>Italiänisch</item>
+    </string-array>
+    <string name="txt_skill_sprachen">Sprachen</string>
+    <string name="txt_skill_level">Level</string>
     <string name="txt_skill_add">Skill hinzufügen</string>
     <string name="txt_itkenntniss">IT-Kenntnisse:</string>
     <string name="title_activity_zusammenfassung">ZusammenfassungActivity</string>

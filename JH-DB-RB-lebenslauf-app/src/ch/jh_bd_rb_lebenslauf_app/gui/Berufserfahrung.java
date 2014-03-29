@@ -16,10 +16,10 @@ public class Berufserfahrung extends Activity {
 
 	String name;
 	String adresse;
-	public static final String NAME = "name";
-	public static final String ADRESSE = "adresse";
-	public ArrayList<String> berufserfahrungen = new ArrayList<String>();
-	public static final String BERUFSERFAHRUNGEN = "berufserfahrungen";
+	static final String NAME = "name";
+	static final String ADRESSE = "adresse";
+	ArrayList<String> berufserfahrungen = new ArrayList<String>();
+	static final String BERUFSERFAHRUNGEN = "berufserfahrungen";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
