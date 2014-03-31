@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Navigation Oben  -->
+    <string name="naviObenBild">Bild</string>
+    <string name="naviObenBerufserfahrung">Berufserfahrung</string>
+    <string name="naviObenBildung">Bildung</string>
+    <string name="naviObenSkills">Skills</string>
+    <string name="naviObenZusammenfassung">Zusammenfassung</string>
+    <string name="naviObenFinish">Finish</string>
+    
     <!-- Erste Seite -->
     <string name="txt_startseite">Startseite</string>
     <string name="app_name">JH-DB-RB-lebenslauf-app</string>
@@ -69,5 +77,4 @@
     <string name="txt_plz">PLZ:</string>
     <string name="txt_von">von:</string>
     <string name="txt_bis">bis:</string>
-
 </resources>
