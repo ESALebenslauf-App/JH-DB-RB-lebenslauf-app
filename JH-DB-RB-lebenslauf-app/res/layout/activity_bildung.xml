@@ -1,101 +1,196 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".BildungActivity" >
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_bildung"
-        android:textSize="30sp" />
-
-    <RadioGroup
-        android:id="@+id/edt_radiogroup_ausbildung"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-        <RadioButton
-            android:id="@+id/edt_radio_grund"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/txt_grund" />
-
-        <RadioButton
-            android:id="@+id/edt_radio_ausb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_aus" />
-
-        <RadioButton
-            android:id="@+id/edt_radio_weiter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_weiter" />
-    </RadioGroup>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_schule" />
-
-    <EditText
-        android:id="@+id/edt_bildung_schule"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:inputType="text"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_dauer" />
-
-    <EditText
-        android:id="@+id/edt_bildung_dauer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:inputType="text"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_adresse" />
-
-    <EditText
-        android:id="@+id/edt_bildung_adresse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"/>
-
-    <Button
-        android:id="@+id/edt_add_bildung"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClickAddBildung"
-        android:text="@string/txt_bildung_add" />
+    android:layout_height="match_parent" >
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:id="@+id/linearLayoutHeader"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="15dp" >
 
-        <Button
-            android:id="@+id/back_zu_beruf"
-            android:layout_width="fill_parent"
+        <ImageView
+            android:id="@+id/ImageView05"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onClickBerufserfahrung"
-            android:text="@string/txt_zuruck" />
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_launcher" />
 
-        <Button
-            android:id="@+id/berufserfahrung"
-            android:layout_width="fill_parent"
+        <ImageView
+            android:id="@+id/ImageView04"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onClickSkills"
-            android:text="@string/txt_skills" />
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/ImageView03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/ImageView02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/ImageView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/obenBild1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_launcher" />
     </LinearLayout>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/titelTextPersonalien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayoutHeader"
+        android:drawableLeft="@drawable/ico_beruf"
+        android:text="@string/title_activity_berufserfahrung" >
+    </TextView>
+
+    <!-- ..........Hauptteil Titel .......... -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayoutFooter"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/titelTextPersonalien"
+        android:orientation="vertical"
+        tools:ignore="UnknownIdInLayout" >
+
+        <RadioGroup
+            android:id="@+id/edt_radiogroup_ausbildung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/edt_radio_grund"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/txt_grund" />
+
+            <RadioButton
+                android:id="@+id/edt_radio_ausb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_aus" />
+
+            <RadioButton
+                android:id="@+id/edt_radio_weiter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_weiter" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_schule" />
+
+        <EditText
+            android:id="@+id/edt_bildung_schule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_adresse" />
+
+        <EditText
+            android:id="@+id/edt_bildung_adresse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/txt_dauer_von_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/txt_von" />
+
+            <Button
+                android:id="@+id/btnSelectDateVon"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="31.03.2015" />
+
+            <TextView
+                android:id="@+id/txt_dauer_bis_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/txt_bis" />
+
+            <Button
+                android:id="@+id/btnSelectDateBis"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="31.03.2015" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/edt_add_bildung"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickAddBildung"
+            android:text="@string/txt_bildung_add" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="#3300FF"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:onClick="onClickBild"
+            android:src="@drawable/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/buttonBerufserfahrung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:onClick="onClickBildung"
+            android:src="@drawable/ic_launcher" />
+    </LinearLayout>
+
+</RelativeLayout>
