@@ -69,5 +69,7 @@
     <string name="txt_plz">PLZ:</string>
     <string name="txt_von">von:</string>
     <string name="txt_bis">bis:</string>
+    <string name="txt_add">add</string>
+    <string name="txt_zertifikate">Zertifikate:</string>
 
 </resources>
