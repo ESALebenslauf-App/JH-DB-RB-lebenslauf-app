@@ -205,42 +205,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow_txt_dauer_von"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/txt_dauer_von_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_von" />
-
-            <TextView
-                android:id="@+id/txt_dauer_bis_label_platzHalter2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DatePicker" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow_txt_dauer_bis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/txt_dauer_bis_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_bis" />
-
-            <TextView
-                android:id="@+id/txt_dauer_bis_label_platzHalter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DatePicker" />
-        </TableRow>
-
-        <TableRow
             android:id="@+id/tableRow_txt_taetigkeit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -260,18 +224,69 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/tableRow_txt_dauer_von"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txt_dauer_von_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_von" />
+
+                <Button
+                    android:id="@+id/btnSelectDateVon"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="31.03.2014" />
+
+                <TextView
+                    android:id="@+id/txt_dauer_bis_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_bis" />
+
+                <Button
+                    android:id="@+id/btnSelectDateBis"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="31.03.2014" />
+
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
             android:id="@+id/add_berufserfahrung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-        </TableRow>
-    </TableLayout>
 
-    <Button
-        android:id="@+id/sf_add_berufserfahrung"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tabelLayout"
-        android:onClick="onClickAddBerufserfahrung"
-        android:text="@string/txt_berufserfahrung_add" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/sf_add_berufserfahrung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickAddBerufserfahrung"
+                android:text="@string/txt_berufserfahrung_add" />
+
+        </TableRow>
+
+    </TableLayout>
 
 </RelativeLayout>
