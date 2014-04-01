@@ -181,7 +181,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
-            android:onClick="onClickBild"
+            android:onClick="onClickBerufserfahrung"
             android:src="@drawable/ic_launcher" />
 
         <ImageButton
@@ -189,7 +189,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
-            android:onClick="onClickBildung"
+            android:onClick="onClickSkills"
             android:src="@drawable/ic_launcher" />
     </LinearLayout>
 
