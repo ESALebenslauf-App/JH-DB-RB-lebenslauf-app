@@ -9,9 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class Bildung extends Activity {
+	
+	Button btnSelectDateVon, btnSelectDateBis;
 
 	String name;
 	String adresse;
@@ -26,6 +30,27 @@ public class Bildung extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bildung);
+		
+		// Start DatePicker
+		btnSelectDateBis = (Button) findViewById(R.id.btnSelectDateBis);
+		btnSelectDateVon = (Button) findViewById(R.id.btnSelectDateVon);
+		
+		btnSelectDateBis.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				shortToast("btnSelectDateBis.setOnClickListener");
+			}
+		});
+
+		btnSelectDateVon.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				shortToast("btnSelectDateVon.setOnClickListener");
+			}
+		});
+		// End DatePicker
 
 		final Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -70,6 +95,7 @@ public class Bildung extends Activity {
 	}
 
 	public void onClickSkills(View Button) {
+		
 		final Intent intent = new Intent(this, Skills.class);
 		
 		intent.putExtra(NAME, name);
@@ -80,6 +106,7 @@ public class Bildung extends Activity {
 		intent.putStringArrayListExtra(BILDUNGEN, bildungen);
 
 		startActivity(intent);
+	
 	}
 
 	public void onClickAddBildung(View Button) {
