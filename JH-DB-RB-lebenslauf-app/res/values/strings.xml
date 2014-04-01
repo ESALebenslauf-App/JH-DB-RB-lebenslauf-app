@@ -2,15 +2,15 @@
 <resources>
 
     <!-- Navigation Oben  -->
-    <string name="naviObenBild">Bild</string>
-    <string name="naviObenBerufserfahrung">Berufserfahrung</string>
-    <string name="naviObenBildung">Bildung</string>
-    <string name="naviObenSkills">Skills</string>
-    <string name="naviObenZusammenfassung">Zusammenfassung</string>
-    <string name="naviObenFinish">Finish</string>
+    <string name="naviObenBild">Bild |</string>
+    <string name="naviObenBerufserfahrung"> Berufserfahrung |</string>
+    <string name="naviObenBildung"> Bildung |</string>
+    <string name="naviObenSkills"> Skills |</string>
+    <string name="naviObenZusammenfassung"> Zusammenfassung |</string>
+    <string name="naviObenFinish"> Finish</string>
     
     <!-- Erste Seite -->
-    <string name="txt_startseite">Startseite</string>
+    <string name="txt_startseite">Die Lebenslauf App</string>
     <string name="app_name">JH-DB-RB-lebenslauf-app</string>
     <string name="action_settings">Settings</string>
     <string name="txt_logo">Hier kommt ein Bild hin</string>
@@ -23,9 +23,9 @@
     <string name="title_activity_bild">BildActivity</string>
     <string name="txt_bild_hochladen">Bild hochladen</string>
     <string name="txt_kamera">Kamera</string>
-    <string name="txt_name">Name:</string>
-    <string name="txt_vorname">Vorname:</string>
-    <string name="txt_adresse">Adresse:</string>
+    <string name="txt_name">Name</string>
+    <string name="txt_vorname">Vorname</string>
+    <string name="txt_adresse">Adresse</string>
     <string name="txt_berufserfahrung">Berufserfahrung</string>
     <string name="txt_zuruck">zurück</string>
 
@@ -63,6 +63,7 @@
     <string name="txt_zusammenfassung">Zusammenfassung</string>
 
     <!-- Sechste Seite -->
+    <string name="txt_finish">Finish</string>
     <string name="txt_personalien">Personalien</string>
     <string name="txt_leer">---------------</string>
     <string name="txt_schule_art">Art der Schule:</string>
