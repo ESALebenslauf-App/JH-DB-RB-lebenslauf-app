@@ -53,7 +53,7 @@
         <item>Deutsch</item>
         <item>Englisch</item>
         <item>Französisch</item>
-        <item>Italiänisch</item>
+        <item>Italienisch</item>
     </string-array>
     <string name="txt_skill_sprachen">Sprachen</string>
     <string name="txt_skill_level">Level</string>
@@ -78,10 +78,6 @@
     <string name="txt_plz">PLZ:</string>
     <string name="txt_von">von:</string>
     <string name="txt_bis">bis:</string>
-<<<<<<< HEAD
     <string name="txt_add">add</string>
     <string name="txt_zertifikate">Zertifikate:</string>
-
-=======
->>>>>>> 79b3812012e12e0ceb1e53985cfa93ed7ce28151
 </resources>

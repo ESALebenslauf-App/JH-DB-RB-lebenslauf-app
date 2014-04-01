@@ -165,7 +165,7 @@
                 android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/alert_light_frame" />
+                android:src="@drawable/ico_pic" />
 
             <TextView
                 android:layout_width="wrap_content"
