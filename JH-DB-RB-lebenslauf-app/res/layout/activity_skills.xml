@@ -6,140 +6,101 @@
     tools:context=".BerufserfahrungActivity" >
 
     <LinearLayout
-        android:id="@+id/top"
-        android:layout_width="fill_parent"
+        android:id="@+id/linearLayoutNavOben"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
 
-        <!-- Bild erfassen -->
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/naviObenBild"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#3300FF"
-            android:orientation="horizontal" >
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/titelPicPersonalien"
+            android:background="#339900"
+            android:text="@string/naviObenBild"
+            android:textSize="12sp" />
 
-            <ImageView
-                android:id="@+id/obenBild"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/ic_launcher" />
-        </LinearLayout>
-
-        <!-- Berufserfahrung erfassen -->
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/naviObenBerufserfahrung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#3300FF"
-            android:orientation="horizontal" >
+            android:layout_above="@+id/titelPicPersonalien"
+            android:background="#339900"
+            android:text="@string/naviObenBerufserfahrung"
+            android:textSize="12sp" />
 
-            <ImageView
-                android:id="@+id/obenBerufserfahrung"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/ic_launcher" />
-        </LinearLayout>
-
-        <!-- Bildung erfassen -->
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/naviObenBildung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/titelPicPersonalien"
+            android:layout_toRightOf="@+id/naviObenBerufserfahrung"
+            android:background="#339900"
+            android:text="@string/naviObenBildung"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/naviObenSkills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/titelPicPersonalien"
+            android:layout_alignLeft="@+id/picAuswahl"
+            android:layout_toLeftOf="@+id/naviObenFinish"
+            android:layout_weight="0.97"
             android:background="#3300FF"
-            android:orientation="vertical" >
+            android:text="@string/naviObenSkills"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
 
-            <ImageView
-                android:id="@+id/obenBildung"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/ic_launcher" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/naviObenZusammenfassung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/titelPicPersonalien"
+            android:layout_toRightOf="@+id/naviObenBildung"
+            android:background="#339900"
+            android:text="@string/naviObenZusammenfassung"
+            android:textSize="12sp" />
 
-        <!-- Skills erfassen -->
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/naviObenFinish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#339900"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/obenSkills"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/ic_launcher" />
-        </LinearLayout>
-
-        <!-- Zusammenfassung erfassen -->
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#3300FF"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/obenZusammenfassung"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/ic_launcher" />
-        </LinearLayout>
-
-        <!-- Finish -->
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#3300FF"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/obenFinish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/ic_launcher" />
-        </LinearLayout>
+            android:text="@string/naviObenFinish"
+            android:textSize="12sp" />
     </LinearLayout>
-
-    <!-- Hauptteil Titel -->
 
     <LinearLayout
-        android:id="@+id/second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top"
-        android:orientation="horizontal" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearLayoutNavOben"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp" >
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageViewIconSkills"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_skills" />
 
-            <ImageView
-                android:id="@+id/titelPicPersonalien"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/ico_skills" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/textViewSkills"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/titelTextPersonalien"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/title_activity_skills" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:text="@string/txt_skills"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
+    <!-- Hauptteil Titel -->
+
 
     <!-- ....................................................................................................... -->
 
@@ -147,11 +108,10 @@
         android:id="@+id/third"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/second"
         android:orientation="horizontal"
         android:stretchColumns="*" >
 
-        <TableRow android:paddingTop="5dp" >
+        <TableRow android:paddingTop="65dp" >
 
             <TextView android:text="@string/txt_skill_sprachen" />
 
@@ -219,13 +179,15 @@
             android:layout_height="wrap_content"
             android:background="#3300FF" >
 
-            <ImageButton
-                android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/todo"
-                android:onClick="onClickBildung"
-                android:src="@drawable/ic_launcher" />
+       <Button
+         	android:id="@+id/imageView7"
+			android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:onClick="onClickBildung"
+            android:background="#3300FF"
+            android:text="@string/naviUntenBildung" 
+            android:textColor="#ffffff" />
         </LinearLayout>
 
         <LinearLayout
@@ -233,13 +195,17 @@
             android:layout_height="wrap_content"
             android:background="#3300FF" >
 
-            <ImageButton
-                android:id="@+id/buttonBerufserfahrung"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/todo"
-                android:onClick="onClickZusammenfassung"
-                android:src="@drawable/ic_launcher" />
+       	<Button
+       	    android:id="@+id/buttonBerufserfahrung"
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="wrap_content"
+       	    android:background="#3300FF"
+       	    android:contentDescription="@string/todo"
+       	    android:onClick="onClickZusammenfassung"
+       	    android:paddingLeft="100dp"
+       	    android:text="@string/naviUntenZusammenfassung"
+       	    android:textColor="#ffffff" />
+
         </LinearLayout>
     </LinearLayout>
 

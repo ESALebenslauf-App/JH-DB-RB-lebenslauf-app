@@ -28,9 +28,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:background="#0e13e2"
+        android:background="#3300FF"
         android:onClick="onClickErfassen"
-        android:text="@string/txt_startseite"
+        android:text="@string/txt_erfassen"
         android:textColor="#ffffff" />
 
     <TextView

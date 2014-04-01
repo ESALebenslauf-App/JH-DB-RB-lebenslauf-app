@@ -3,66 +3,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+    
+        <LinearLayout
+            android:id="@+id/linearLayoutNavOben"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" >
+
+            <TextView
+                android:id="@+id/naviObenBild"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/titelPicPersonalien"
+                android:background="#339900"
+                android:text="@string/naviObenBild"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/naviObenBerufserfahrung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/titelPicPersonalien"
+                android:background="#339900"
+                android:text="@string/naviObenBerufserfahrung"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/naviObenBildung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/titelPicPersonalien"
+                android:layout_toRightOf="@+id/naviObenBerufserfahrung"
+                android:layout_weight="0.68"
+                android:background="#3300FF"
+                android:text="@string/naviObenBildung"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/naviObenSkills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/titelPicPersonalien"
+                android:layout_alignLeft="@+id/picAuswahl"
+                android:layout_toLeftOf="@+id/naviObenFinish"
+                android:background="#339900"
+                android:text="@string/naviObenSkills"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/naviObenZusammenfassung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/titelPicPersonalien"
+                android:layout_toRightOf="@+id/naviObenBildung"
+                android:background="#339900"
+                android:text="@string/naviObenZusammenfassung"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/naviObenFinish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#339900"
+                android:text="@string/naviObenFinish"
+                android:textSize="12sp" />
+        </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayoutHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="15dp" >
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearLayoutNavOben"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp" >
 
         <ImageView
-            android:id="@+id/ImageView05"
+            android:id="@+id/imageViewIconBildung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ico_bildung" />
 
-        <ImageView
-            android:id="@+id/ImageView04"
+        <TextView
+            android:id="@+id/textViewFinish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_launcher" />
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:text="@string/txt_bildung"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <ImageView
-            android:id="@+id/ImageView03"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_launcher" />
-
-        <ImageView
-            android:id="@+id/ImageView02"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_launcher" />
-
-        <ImageView
-            android:id="@+id/ImageView01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_launcher" />
-
-        <ImageView
-            android:id="@+id/obenBild1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_launcher" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/titelTextPersonalien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/linearLayoutHeader"
-        android:drawableLeft="@drawable/ico_beruf"
-        android:text="@string/title_activity_berufserfahrung" >
-    </TextView>
+    
 
     <!-- ..........Hauptteil Titel .......... -->
 
@@ -72,7 +109,6 @@
         android:layout_above="@+id/linearLayoutFooter"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/titelTextPersonalien"
         android:orientation="vertical"
         tools:ignore="UnknownIdInLayout" >
 
@@ -176,21 +212,25 @@
         android:background="#3300FF"
         android:orientation="horizontal" >
 
-        <ImageButton
-            android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
-            android:onClick="onClickBerufserfahrung"
-            android:src="@drawable/ic_launcher" />
-
-        <ImageButton
+        <Button
             android:id="@+id/buttonBerufserfahrung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
-            android:onClick="onClickSkills"
-            android:src="@drawable/ic_launcher" />
-    </LinearLayout>
+            android:onClick="onClickBerufserfahrung"
+            android:background="#3300FF"
+            android:text="@string/naviUntenBerufserfahrung" 
+            android:textColor="#ffffff" />
 
+        <Button
+            android:id="@+id/buttonSkills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:onClick="onClickSkills"
+            android:background="#3300FF"
+            android:text="@string/naviUntenSkills" 
+            android:textColor="#ffffff" />
+    </LinearLayout>
+    
 </RelativeLayout>

@@ -3,11 +3,19 @@
 
     <!-- Navigation Oben  -->
     <string name="naviObenBild">Bild |</string>
-    <string name="naviObenBerufserfahrung"> Berufserfahrung |</string>
+    <string name="naviObenBerufserfahrung"> Beruf |</string>
     <string name="naviObenBildung"> Bildung |</string>
     <string name="naviObenSkills"> Skills |</string>
     <string name="naviObenZusammenfassung"> Zusammenfassung |</string>
     <string name="naviObenFinish"> Finish</string>
+    
+    <!-- Navigation Unten  -->
+    <string name="naviUntenBild">Bild</string>
+    <string name="naviUntenBerufserfahrung">Berufserfahrung</string>
+    <string name="naviUntenBildung">Bildung</string>
+    <string name="naviUntenSkills">Skills</string>
+    <string name="naviUntenZusammenfassung">Zusammenfassung</string>
+    <string name="naviUntenFinish">Finish</string>
     
     <!-- Erste Seite -->
     <string name="txt_startseite">Die Lebenslauf App</string>
@@ -23,11 +31,17 @@
     <string name="title_activity_bild">BildActivity</string>
     <string name="txt_bild_hochladen">Bild hochladen</string>
     <string name="txt_kamera">Kamera</string>
+    <string name="txt_anrede">Anrede</string>
+    <string-array name="anrede_array">
+        <item>Herr</item>
+        <item>Frau</item>
+        <item>Doktor</item>
+    </string-array>
     <string name="txt_name">Name</string>
     <string name="txt_vorname">Vorname</string>
     <string name="txt_adresse">Adresse</string>
     <string name="txt_berufserfahrung">Berufserfahrung</string>
-    <string name="txt_zuruck">zurück</string>
+    <string name="txt_nav_zuruck">Bild</string>
 
     <!-- Dritte Seite -->
     <string name="title_activity_berufserfahrung">Berufserfahrung</string>
@@ -37,7 +51,7 @@
     <string name="txt_berufserfahrung_add">Berufserfahrung hinzufügen</string>
 
     <!-- Vierte Seite -->
-    <string name="txt_bildung">Bildung</string>
+    <string name="txt_bildung">Schul- und Weiterbildung</string>
     <string name="title_activity_bildung">BildungActivity</string>
     <string name="txt_grund">Grundbildung</string>
     <string name="txt_aus">Ausbildung</string>
