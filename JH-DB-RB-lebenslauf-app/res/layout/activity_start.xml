@@ -1,32 +1,46 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/txt_startseite"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp"
         android:text="@string/txt_startseite"
-        android:textSize="30sp" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
-        android:layout_width="match_parent"
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_send"
-        android:contentDescription="@string/todo"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_anweisung" />
+        android:layout_below="@+id/txt_startseite"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_logo" />
 
     <Button
         android:id="@+id/button_erfassen"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="#0e13e2"
         android:onClick="onClickErfassen"
-        android:text="@string/txt_erfassen" />
+        android:text="@string/txt_startseite"
+        android:textColor="#ffffff" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/txt_anweisung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:text="@string/txt_anweisung"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+</RelativeLayout>

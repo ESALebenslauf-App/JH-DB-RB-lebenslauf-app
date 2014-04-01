@@ -1,16 +1,96 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Finish" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
     <TextView
+        android:id="@+id/naviObenBild"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#339900"
+        android:text="@string/naviObenBild"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/buttonZusammenfassung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#0e13e2"
+        android:onClick="onClickZusammenfassung"
+        android:text="@string/txt_zusammenfassung"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/naviObenBerufserfahrung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/titelPicPersonalien"
+        android:layout_toRightOf="@+id/naviObenBild"
+        android:background="#339900"
+        android:text="@string/naviObenBerufserfahrung"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/naviObenBildung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/titelPicPersonalien"
+        android:layout_toRightOf="@+id/naviObenBerufserfahrung"
+        android:background="#339900"
+        android:text="@string/naviObenBildung"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/naviObenFinish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/titelPicPersonalien"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/naviObenZusammenfassung"
+        android:background="#3300FF"
+        android:text="@string/naviObenFinish"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/naviObenSkills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/titelPicPersonalien"
+        android:layout_toRightOf="@+id/naviObenBildung"
+        android:background="#339900"
+        android:text="@string/naviObenSkills"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/naviObenZusammenfassung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/titelPicPersonalien"
+        android:layout_toRightOf="@+id/naviObenSkills"
+        android:background="#339900"
+        android:text="@string/naviObenZusammenfassung"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/titelTextPersonalien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/titelPicPersonalien"
+        android:layout_toLeftOf="@+id/naviObenBildung"
+        android:text="@string/txt_finish"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/titelPicPersonalien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/naviObenBild"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/naviObenBild"
+        android:src="@drawable/ico_finish" />
 
 </RelativeLayout>
