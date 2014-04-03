@@ -3,7 +3,9 @@ package ch.jh_bd_rb_lebenslauf_app.gui;
 import ch.jh_bd_rb_lebenslauf_app.R;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 
 public class Finish extends Activity {
 
@@ -18,6 +20,12 @@ public class Finish extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.finish, menu);
 		return true;
+	}
+	
+	
+	public void onClickZusammenfassung(View Button) {
+		final Intent intent = new Intent(this, Zusammenfassung.class);
+		startActivity(intent);
 	}
 
 }
