@@ -48,6 +48,7 @@ public class Bild extends Activity {
 		startActivity(intent);
 
 	}
+	
 
 	public void onClickStart(View Button) {
 		final Intent intent = new Intent(this, StartActivity.class);
