@@ -187,7 +187,7 @@
                 android:id="@+id/txt_plz_ort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_plz_ort" />
+                android:text="@string/txt_plz" />
 
             <EditText
                 android:id="@+id/text_edit_plz"
@@ -200,13 +200,6 @@
 
                 <requestFocus />
             </EditText>
-
-            <EditText
-                android:id="@+id/txt_Edit_ort"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text" />
         </TableRow>
 
         <TableRow
@@ -219,6 +212,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_ort" />
+
+            <EditText
+                android:id="@+id/txt_Edit_ort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" />
+
         </TableRow>
 
         <TableRow
@@ -228,16 +229,25 @@
         </TableRow>
     </TableLayout>
 
-    <Button
-        android:id="@+id/buttonBerufserfahrung"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayoutFooter"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:background="#3300FF"
-        android:contentDescription="@string/todo"
-        android:onClick="onClickBerufserfahrung"
-        android:text="@string/naviUntenBerufserfahrung"
-        android:textColor="#ffffff" />
+        android:orientation="horizontal" >
 
+        <Button
+            android:id="@+id/buttonBerufserfahrung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#3300FF"
+            android:contentDescription="@string/todo"
+            android:onClick="onClickBildBerufserfahrung"
+            android:paddingLeft="150dp"
+            android:text="@string/naviUntenBerufserfahrung"
+            android:textColor="#ffffff" />
+    </LinearLayout>
 </RelativeLayout>

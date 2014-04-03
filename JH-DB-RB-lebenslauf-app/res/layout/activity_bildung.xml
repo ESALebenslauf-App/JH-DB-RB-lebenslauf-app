@@ -226,11 +226,13 @@
             android:id="@+id/buttonSkills"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#3300FF"
             android:contentDescription="@string/todo"
             android:onClick="onClickSkills"
-            android:background="#3300FF"
-            android:text="@string/naviUntenSkills" 
+            android:paddingLeft="150dp"
+            android:text="@string/naviUntenSkills"
             android:textColor="#ffffff" />
+
     </LinearLayout>
     
 </RelativeLayout>

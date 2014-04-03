@@ -39,7 +39,7 @@ public class Bild extends Activity {
 	}
 
 
-	public void onClickBerufserfahrung(View Button) {
+	public void onClickBildBerufserfahrung(View Button) {
 		final Intent intent = new Intent(this, Berufserfahrung.class);
 		
 		
