@@ -87,10 +87,10 @@
         android:paddingTop="10dp" >
 
         <ImageView
-            android:id="@+id/imageViewIconBerufserfahrung"
+            android:id="@+id/imageViewIconZusammenfassung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ico_beruf" />
+            android:src="@drawable/ico_zusammenfassung" />
 
         <TextView
             android:id="@+id/textViewFinish"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="15dp"
             android:paddingTop="10dp"
-            android:text="@string/txt_berufserfahrung"
+            android:text="@string/txt_zusammenfassung"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
     <!-- ..........Hauptteil Titel. Zweiter Bereich.......... -->
