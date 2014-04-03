@@ -2,11 +2,11 @@
 <resources>
 
     <!-- Navigation Oben  -->
-    <string name="naviObenBild">Bild |</string>
-    <string name="naviObenBerufserfahrung"> Beruf |</string>
-    <string name="naviObenBildung"> Bildung |</string>
-    <string name="naviObenSkills"> Skills |</string>
-    <string name="naviObenZusammenfassung"> Zusammenfassung |</string>
+    <string name="naviObenBild">Bild </string>
+    <string name="naviObenBerufserfahrung"> Beruf </string>
+    <string name="naviObenBildung"> Bildung </string>
+    <string name="naviObenSkills"> Skills </string>
+    <string name="naviObenZusammenfassung"> Zusammenfassung </string>
     <string name="naviObenFinish"> Finish</string>
     
     <!-- Navigation Unten  -->
