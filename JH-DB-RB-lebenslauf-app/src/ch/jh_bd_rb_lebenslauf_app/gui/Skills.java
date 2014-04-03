@@ -73,9 +73,13 @@ public class Skills extends Activity {
 
 	public void onClickAddSkill(View Button) {
 		shortToast("onClickAddSkill(View Button)");
-	
-
 	}
+	
+	
+	public void onClickAddZertifikat(View Button) {
+		shortToast("onClickAddZertifikat(View Button)");
+	}
+	
 	private void shortToast(String text) {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_SHORT;

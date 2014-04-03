@@ -72,6 +72,8 @@ public class Bild extends Activity {
 		shortToast("onClickHochladen(View Button)");
 	}	
 	
+	
+	
 	private void shortToast(String text) {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_SHORT;

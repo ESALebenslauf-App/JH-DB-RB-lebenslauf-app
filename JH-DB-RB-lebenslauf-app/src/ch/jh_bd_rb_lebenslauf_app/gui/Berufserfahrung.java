@@ -6,9 +6,11 @@ import ch.jh_bd_rb_lebenslauf_app.R;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class Berufserfahrung extends Activity {
@@ -53,10 +55,16 @@ public class Berufserfahrung extends Activity {
 	}
 
 	public void onClickAddBerufserfahrung(View Button) {
-		String berufserfahrung;
+		
+		shortToast("onClickAddBerufserfahrung(View Button)");
+	}
+	
+	private void shortToast(String text) {
+		Context context = getApplicationContext();
+		int duration = Toast.LENGTH_SHORT;
 
-
-
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
 	}
 
 }

@@ -139,6 +139,7 @@
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="onClickAddSkill"
                 android:text="@string/txt_add" />
         </TableRow>
 
@@ -160,6 +161,7 @@
                 android:id="@+id/imageButton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="onClickAddZertifikat"
                 android:src="@android:drawable/ic_input_get" />
         </TableRow>
     </TableLayout>
