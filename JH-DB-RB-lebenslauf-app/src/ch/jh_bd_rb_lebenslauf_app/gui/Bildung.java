@@ -14,8 +14,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class Bildung extends Activity {
-	
-	Button btnSelectDateVon, btnSelectDateBis;
+
+	Button btnSelectDateVon;
+	Button btnSelectDateBis;
+	Button btnAddBildung;
 
 	String name;
 	String adresse;
@@ -30,11 +32,15 @@ public class Bildung extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bildung);
-		
-		// Start DatePicker
+
+		// Initialisieren
 		btnSelectDateBis = (Button) findViewById(R.id.btnSelectDateBis);
 		btnSelectDateVon = (Button) findViewById(R.id.btnSelectDateVon);
-		
+		btnAddBildung = (Button) findViewById(R.id.btn_add_bildung);
+
+		// Add Listener
+		btnAddBildung.setOnClickListener(new AddBildungListener(this));
+
 		btnSelectDateBis.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -86,8 +92,7 @@ public class Bildung extends Activity {
 
 	public void onClickBerufserfahrung(View Button) {
 		final Intent intent = new Intent(this, Berufserfahrung.class);
-		
-		
+
 		intent.putExtra(NAME, "Name");
 		intent.putExtra(ADRESSE, "Adresse");
 		startActivity(intent);
@@ -95,25 +100,20 @@ public class Bildung extends Activity {
 	}
 
 	public void onClickSkills(View Button) {
-		
+
 		final Intent intent = new Intent(this, Skills.class);
-		
+
 		intent.putExtra(NAME, name);
 		intent.putExtra(ADRESSE, adresse);
 
 		intent.putStringArrayListExtra(BERUFSERFAHRUNGEN, berufserfahrungen);
-		
+
 		intent.putStringArrayListExtra(BILDUNGEN, bildungen);
 
 		startActivity(intent);
-	
-	}
-
-	public void onClickAddBildung(View Button) {
-		shortToast("onClickAddBildung(View Button)");
 
 	}
-	
+
 	private void shortToast(String text) {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_SHORT;

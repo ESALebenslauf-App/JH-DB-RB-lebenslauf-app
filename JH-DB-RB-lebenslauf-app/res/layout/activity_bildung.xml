@@ -195,10 +195,9 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/edt_add_bildung"
+            android:id="@+id/btn_add_bildung"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickAddBildung"
             android:text="@string/txt_bildung_add" />
     </LinearLayout>
 
