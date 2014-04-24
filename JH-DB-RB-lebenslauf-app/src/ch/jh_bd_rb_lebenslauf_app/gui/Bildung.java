@@ -91,28 +91,23 @@ public class Bildung extends FragmentActivity {
 			}
 		});
 
-
 		// Start DatePicker
-		btnSelectDateBis.setOnClickListener(new OnClickListener()
-		 {
-
+		btnSelectDateBis.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				DialogFragment newFragment = new BildungDateBisDatePickerFragment();
-			    newFragment.show(getSupportFragmentManager(), "datePickerBis");
+				DialogFragment newFragment = new BildungDatePickerFragment();
+				newFragment.show(getSupportFragmentManager(), "datePickerBis");
 			}
 		});
-		
-		//TODO Richtigen Butten Aktualisieren
+
 		btnSelectDateVon.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				DialogFragment newFragment = new BildungDateBisDatePickerFragment();
-			    newFragment.show(getSupportFragmentManager(), "datePickerVon");
+				DialogFragment newFragment = new BildungDatePickerFragment();
+				newFragment.show(getSupportFragmentManager(), "datePickerVon");
 			}
 		});
-		//End DatePicker
+		// End DatePicker
 	}
 
 	/**
@@ -126,8 +121,6 @@ public class Bildung extends FragmentActivity {
 		btnBerufserfahrung = (Button) findViewById(R.id.btnBerufserfahrung);
 		btnSkills = (Button) findViewById(R.id.btnSkills);
 	}
-
-
 
 	/**
 	 * Öffnet die Berufserfahrung Activity
@@ -157,7 +150,7 @@ public class Bildung extends FragmentActivity {
 		startActivity(intent);
 
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
