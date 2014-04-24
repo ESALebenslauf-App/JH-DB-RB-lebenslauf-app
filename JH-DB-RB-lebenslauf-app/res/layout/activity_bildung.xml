@@ -212,7 +212,7 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/buttonBerufserfahrung"
+            android:id="@+id/btnBerufserfahrung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
@@ -222,7 +222,7 @@
             android:textColor="#ffffff" />
 
         <Button
-            android:id="@+id/buttonSkills"
+            android:id="@+id/btnSkills"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#3300FF"

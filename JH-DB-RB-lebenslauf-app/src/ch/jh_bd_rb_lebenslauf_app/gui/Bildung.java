@@ -3,21 +3,23 @@ package ch.jh_bd_rb_lebenslauf_app.gui;
 import java.util.ArrayList;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.listener.*;
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
-public class Bildung extends Activity {
+public class Bildung extends FragmentActivity {
 
 	Button btnSelectDateVon;
 	Button btnSelectDateBis;
 	Button btnAddBildung;
+	Button btnBerufserfahrung;
+	Button btnSkills;
 
 	String name;
 	String adresse;
@@ -34,30 +36,10 @@ public class Bildung extends Activity {
 		setContentView(R.layout.activity_bildung);
 
 		// Initialisieren
-		btnSelectDateBis = (Button) findViewById(R.id.btnSelectDateBis);
-		btnSelectDateVon = (Button) findViewById(R.id.btnSelectDateVon);
-		btnAddBildung = (Button) findViewById(R.id.btn_add_bildung);
+		initActivityElemente();
+		initActivityListener();
 
-		// Add Listener
-		btnAddBildung.setOnClickListener(new AddBildungListener(this));
-
-		btnSelectDateBis.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				shortToast("btnSelectDateBis.setOnClickListener");
-			}
-		});
-
-		btnSelectDateVon.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				shortToast("btnSelectDateVon.setOnClickListener");
-			}
-		});
-		// End DatePicker
-
+		// TODO wir dieser Code noch benötigt?
 		final Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			berufserfahrungen = extras
@@ -83,23 +65,85 @@ public class Bildung extends Activity {
 		 */
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.bildung, menu);
-		return true;
+	/**
+	 * Initialisiert alle Listener aus der Activity
+	 * 
+	 */
+	private void initActivityListener() {
+		// Add Listener
+		btnAddBildung.setOnClickListener(new BildungAddBildungListener(this));
+
+		// Add Listener mit intent als interne Klassen da sonst die Klasse über
+		// Ihren ganzne Namen mit Packet aufgerufen werden muss und dies nicht
+		// vom Copiler geprüft wird.
+		btnBerufserfahrung.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				clickBerufserfahrung();
+			}
+		});
+		btnSkills.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				clickSkills();
+			}
+		});
+
+
+		// Start DatePicker
+		btnSelectDateBis.setOnClickListener(new OnClickListener()
+		 {
+
+			@Override
+			public void onClick(View v) {
+				DialogFragment newFragment = new BildungDateBisDatePickerFragment();
+			    newFragment.show(getSupportFragmentManager(), "datePickerBis");
+			}
+		});
+		
+		//TODO Richtigen Butten Aktualisieren
+		btnSelectDateVon.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				DialogFragment newFragment = new BildungDateBisDatePickerFragment();
+			    newFragment.show(getSupportFragmentManager(), "datePickerVon");
+			}
+		});
+		//End DatePicker
 	}
 
-	public void onClickBerufserfahrung(View Button) {
+	/**
+	 * Initialisiert alle benötigten Elemente aus der Activity
+	 * 
+	 */
+	private void initActivityElemente() {
+		btnSelectDateBis = (Button) findViewById(R.id.btnSelectDateBis);
+		btnSelectDateVon = (Button) findViewById(R.id.btnSelectDateVon);
+		btnAddBildung = (Button) findViewById(R.id.btn_add_bildung);
+		btnBerufserfahrung = (Button) findViewById(R.id.btnBerufserfahrung);
+		btnSkills = (Button) findViewById(R.id.btnSkills);
+	}
+
+
+
+	/**
+	 * Öffnet die Berufserfahrung Activity
+	 */
+	private void clickBerufserfahrung() {
 		final Intent intent = new Intent(this, Berufserfahrung.class);
 
 		intent.putExtra(NAME, "Name");
 		intent.putExtra(ADRESSE, "Adresse");
 		startActivity(intent);
-
 	}
 
-	public void onClickSkills(View Button) {
+	/**
+	 * Öffnet die Skills Activity
+	 */
+	private void clickSkills() {
 
 		final Intent intent = new Intent(this, Skills.class);
 
@@ -113,13 +157,12 @@ public class Bildung extends Activity {
 		startActivity(intent);
 
 	}
-
-	private void shortToast(String text) {
-		Context context = getApplicationContext();
-		int duration = Toast.LENGTH_SHORT;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.bildung, menu);
+		return true;
 	}
 
 }
