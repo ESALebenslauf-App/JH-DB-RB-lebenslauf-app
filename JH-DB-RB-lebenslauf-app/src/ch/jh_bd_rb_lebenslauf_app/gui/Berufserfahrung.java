@@ -44,7 +44,7 @@ public class Berufserfahrung extends Activity {
 	}
 
 	public void onClickBildung(View Button) {
-		final Intent intent = new Intent(this, Bildung.class);
+		final Intent intent = new Intent(this, BildungActivity.class);
 
 		intent.putExtra(NAME, name);
 		intent.putExtra(ADRESSE, adresse);

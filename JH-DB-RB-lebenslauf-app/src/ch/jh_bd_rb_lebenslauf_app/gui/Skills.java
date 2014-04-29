@@ -34,10 +34,10 @@ public class Skills extends Activity {
 		final Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			berufserfahrungen = extras
-					.getStringArrayList(Bildung.BERUFSERFAHRUNGEN);
-			name = extras.getString(Bildung.NAME);
-			adresse = extras.getString(Bildung.ADRESSE);
-			bildungen = extras.getStringArrayList(Bildung.BILDUNGEN);
+					.getStringArrayList(BildungActivity.BERUFSERFAHRUNGEN);
+			name = extras.getString(BildungActivity.NAME);
+			adresse = extras.getString(BildungActivity.ADRESSE);
+			bildungen = extras.getStringArrayList(BildungActivity.BILDUNGEN);
 		}
 
 	}
@@ -52,7 +52,7 @@ public class Skills extends Activity {
 	}
 
 	public void onClickBildung(View Button) {
-		final Intent intent = new Intent(this, Bildung.class);
+		final Intent intent = new Intent(this, BildungActivity.class);
 		startActivity(intent);
 	}
 

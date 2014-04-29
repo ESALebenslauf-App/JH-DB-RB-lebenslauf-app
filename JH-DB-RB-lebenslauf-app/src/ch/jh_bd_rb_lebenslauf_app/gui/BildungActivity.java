@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class Bildung extends FragmentActivity {
+public class BildungActivity extends FragmentActivity {
 
 	Button btnSelectDateVon;
 	Button btnSelectDateBis;
