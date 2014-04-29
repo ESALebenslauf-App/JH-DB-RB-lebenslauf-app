@@ -1,14 +1,17 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
+import java.util.List;
+
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
 
 /**
  * Listener Klasse für den Butten Bildung hinzufügen
@@ -24,6 +27,12 @@ public class BildungAddBildungListener implements OnClickListener {
 	private RadioButton edt_radio_grund;
 	private RadioButton edt_radio_ausb;
 	private RadioButton edt_radio_weiter;
+	private Button btnSelectDateVon;
+	private Button btnSelectDateBis;
+	private String dateVon;
+	private String dateBis;
+
+	private List<Bildung> bildungen;
 
 	public BildungAddBildungListener(Activity myActivity) {
 		this.bildung = myActivity;
@@ -48,10 +57,22 @@ public class BildungAddBildungListener implements OnClickListener {
 				.findViewById(R.id.edt_radio_grund));
 		setEdt_radio_weiter((RadioButton) bildungActivity
 				.findViewById(R.id.edt_radio_weiter));
+		setBtnSelectDateVon((Button) bildungActivity
+				.findViewById(R.id.btnSelectDateVon));
+		setBtnSelectDateBis((Button) bildungActivity
+				.findViewById(R.id.btnSelectDateBis));
 	}
 
 	@Override
 	public void onClick(View arg0) {
+		//TODO Daten in eine Liste Abspeichern funktioniert noch nicht
+		/*
+		Bildung bildung = new Bildung("ausbildungsart", getEdt_bildung_schule()
+				.getText().toString(), getEdt_bildung_adresse().getText()
+				.toString(), getDateVon(), getDateBis());
+		
+		bildungen.add(bildung);
+		*/
 
 		// TODO Erfasste Daten abspeichern
 		String strToast = "Eingabe im Feld Schule: "
@@ -59,7 +80,8 @@ public class BildungAddBildungListener implements OnClickListener {
 				+ " / Eingabe im Feld Adresse: "
 				+ getEdt_bildung_adresse().getText().toString();
 
-		Toast toast = Toast.makeText(bildung, strToast, Toast.LENGTH_LONG);
+		Toast toast = Toast.makeText(bildungActivity, strToast,
+				Toast.LENGTH_LONG);
 		toast.show();
 	}
 
@@ -104,6 +126,30 @@ public class BildungAddBildungListener implements OnClickListener {
 
 	private void setEdt_radio_weiter(RadioButton edt_radio_weiter) {
 		this.edt_radio_weiter = edt_radio_weiter;
+	}
+
+	private Button getBtnSelectDateVon() {
+		return btnSelectDateVon;
+	}
+
+	private void setBtnSelectDateVon(Button btnSelectDateVon) {
+		this.btnSelectDateVon = btnSelectDateVon;
+	}
+
+	private Button getBtnSelectDateBis() {
+		return btnSelectDateBis;
+	}
+
+	private void setBtnSelectDateBis(Button btnSelectDateBis) {
+		this.btnSelectDateBis = btnSelectDateBis;
+	}
+
+	private String getDateVon() {
+		return btnSelectDateVon.getText().toString();
+	}
+
+	private String getDateBis() {
+		return btnSelectDateBis.getText().toString();
 	}
 
 }
