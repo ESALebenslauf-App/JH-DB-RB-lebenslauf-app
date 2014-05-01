@@ -3,6 +3,9 @@ package ch.jh_bd_rb_lebenslauf_app.gui;
 import java.util.ArrayList;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
+import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
+import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
 import ch.jh_bd_rb_lebenslauf_app.listener.*;
 import android.os.Bundle;
 import android.content.Intent;
@@ -12,7 +15,12 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
+/**
+ * @author j.herzig In dieser Activity können mehrer Ausbildungen hinterlegt
+ *         werden.
+ */
 public class BildungActivity extends FragmentActivity {
 
 	Button btnSelectDateVon;
@@ -29,6 +37,7 @@ public class BildungActivity extends FragmentActivity {
 	static final String BERUFSERFAHRUNGEN = "berufserfahrungen";
 	ArrayList<String> bildungen = new ArrayList<String>();
 	static final String BILDUNGEN = "bildung";
+	private BildungAddBildungListener bildungListener;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,31 +47,6 @@ public class BildungActivity extends FragmentActivity {
 		// Initialisieren
 		initActivityElemente();
 		initActivityListener();
-
-		// TODO wir dieser Code noch benötigt?
-		final Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-			berufserfahrungen = extras
-					.getStringArrayList(Berufserfahrung.BERUFSERFAHRUNGEN);
-			name = extras.getString(Berufserfahrung.NAME);
-			adresse = extras.getString(Berufserfahrung.ADRESSE);
-		}
-		/*
-		 * if (berufserfahrungen.isEmpty() != true) { Log.e("meldung",
-		 * "bevore GET"); berufserfahrung = berufserfahrungen.get(0);
-		 * Log.e("MELDUNG", "Data: " + berufserfahrung); String[] a =
-		 * berufserfahrung.split("/"); final TextView txtSchule = (TextView)
-		 * findViewById(R.id.edt_bildung_schule_x);
-		 * txtSchule.setText(String.valueOf(a[0]));
-		 * 
-		 * final TextView txtDauer = (TextView)
-		 * findViewById(R.id.edt_bildung_dauer_x);
-		 * txtDauer.setText(String.valueOf(a[1]));
-		 * 
-		 * final TextView txtAdresse = (TextView)
-		 * findViewById(R.id.edt_bildung_adresse_x);
-		 * txtAdresse.setText(String.valueOf(a[2])); }
-		 */
 	}
 
 	/**
@@ -71,7 +55,8 @@ public class BildungActivity extends FragmentActivity {
 	 */
 	private void initActivityListener() {
 		// Add Listener
-		btnAddBildung.setOnClickListener(new BildungAddBildungListener(this));
+		bildungListener = new BildungAddBildungListener(this);
+		btnAddBildung.setOnClickListener(bildungListener);
 
 		// Add Listener mit intent als interne Klassen da sonst die Klasse über
 		// Ihren ganzne Namen mit Packet aufgerufen werden muss und dies nicht
@@ -149,6 +134,44 @@ public class BildungActivity extends FragmentActivity {
 
 		startActivity(intent);
 
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		datenSpeichern();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		datenSpeichern();
+	}
+
+	/**
+	 * Daten können Persistent gespeichert werden
+	 */
+	private void datenSpeichern() {
+		// Datenobjekt aus demListener laden
+		BildungenDAO bildungen = bildungListener.getBildungen();
+		if (bildungen.size() > 0) {
+			// TODO Erfasste Daten beim verlassen der Activity abspeichern
+			// TODO Start Demo / Ausbauen
+			String strToast = "";
+			for (LebenslaufDaten current : bildungen) {
+				// LebenslaufDaten in Bildung Casten
+				Bildung bildung = (Bildung) current;
+				strToast = strToast + bildung.getAusbildungsart() + " / "
+						+ bildung.getNameschule() + " / "
+						+ bildung.getAdresseSchule() + " / "
+						+ bildung.getDatumVon() + " / " + bildung.getDatumBis()
+						+ " ENDE ";
+			}
+
+			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
+			toast.show();
+			// ENDE Demo
+		}
 	}
 
 	@Override

@@ -1,26 +1,24 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
-import java.util.List;
-
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
+import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
+import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 /**
- * Listener Klasse für den Butten Bildung hinzufügen
+ * Listener Klasse für den Butten Bildung hinzufügen die daten werden in eine
+ * BidlungenDAO Objekt abgespeichert.
  * 
  * @author j.herzig
  * 
  */
 public class BildungAddBildungListener implements OnClickListener {
-	private final Context bildung;
 	private Activity bildungActivity;
 	private EditText edt_bildung_schule;
 	private EditText edt_bildung_adresse;
@@ -29,14 +27,18 @@ public class BildungAddBildungListener implements OnClickListener {
 	private RadioButton edt_radio_weiter;
 	private Button btnSelectDateVon;
 	private Button btnSelectDateBis;
-	private String dateVon;
-	private String dateBis;
+	private BildungenDAO bildungen;
+	private String ID;
 
-	private List<Bildung> bildungen;
-
+	/**
+	 * Konstruktor Klasse BildungAddBildungListener
+	 * 
+	 * @param myActivity
+	 */
 	public BildungAddBildungListener(Activity myActivity) {
-		this.bildung = myActivity;
 		this.bildungActivity = myActivity;
+		bildungen = new BildungenDAO();
+		bildungen.setID(getID());
 		init();
 	}
 
@@ -65,43 +67,85 @@ public class BildungAddBildungListener implements OnClickListener {
 
 	@Override
 	public void onClick(View arg0) {
-		//TODO Daten in eine Liste Abspeichern funktioniert noch nicht
-		/*
-		Bildung bildung = new Bildung("ausbildungsart", getEdt_bildung_schule()
-				.getText().toString(), getEdt_bildung_adresse().getText()
-				.toString(), getDateVon(), getDateBis());
-		
+
+		LebenslaufDaten bildung = new Bildung(getRadioButten(),
+				getEdt_bildung_schule().getText().toString(),
+				getEdt_bildung_adresse().getText().toString(), getDateVon(),
+				getDateBis());
+
+		// Bidlung wird in ein ArrayList Objekt abgespeichert das beim verlassen
+		// der Activity Persistent gespeichert werden kann.
 		bildungen.add(bildung);
-		*/
 
-		// TODO Erfasste Daten abspeichern
-		String strToast = "Eingabe im Feld Schule: "
-				+ getEdt_bildung_schule().getText().toString()
-				+ " / Eingabe im Feld Adresse: "
-				+ getEdt_bildung_adresse().getText().toString();
-
-		Toast toast = Toast.makeText(bildungActivity, strToast,
-				Toast.LENGTH_LONG);
-		toast.show();
+		getEdt_bildung_schule().setText("");
+		getEdt_bildung_adresse().setText("");
+		// TODO Button auf das Aktuele Datum setzten
 	}
 
-	public EditText getEdt_bildung_schule() {
+	/**
+	 * Ein bestehndes Objekt Bildungen übergeben
+	 * 
+	 * @param bildungen
+	 */
+	public void setBildungen(BildungenDAO bildungen) {
+		this.bildungen = bildungen;
+	}
+
+	/**
+	 * Rückgabe alle gespeicherten Bildungen
+	 * 
+	 * @return Bildungen
+	 */
+	public BildungenDAO getBildungen() {
+		return bildungen;
+	}
+
+	public String getID() {
+		// TODO überarbeiten
+		ID = "ObjektID";
+		return ID;
+
+	}
+
+	// TODO ID in den Konstruktor aufnehmen
+	public void setID(String iD) {
+		this.ID = iD;
+	}
+
+	// TODO überarbeiten und schönere lösung finden
+	private String getRadioButten() {
+		String text = "";
+		if (getEdt_radio_ausb().isChecked()) {
+			text = getEdt_radio_ausb().getText().toString();
+		}
+
+		if (getEdt_radio_grund().isChecked()) {
+			text = getEdt_radio_grund().getText().toString();
+		}
+
+		if (getEdt_radio_weiter().isChecked()) {
+			text = getEdt_radio_weiter().getText().toString();
+		}
+
+		return text;
+	}
+
+	private EditText getEdt_bildung_schule() {
 		return edt_bildung_schule;
 	}
 
-	public void setEdt_bildung_schule(EditText edt_bildung_schule) {
+	private void setEdt_bildung_schule(EditText edt_bildung_schule) {
 		this.edt_bildung_schule = edt_bildung_schule;
 	}
 
-	public EditText getEdt_bildung_adresse() {
+	private EditText getEdt_bildung_adresse() {
 		return edt_bildung_adresse;
 	}
 
-	public void setEdt_bildung_adresse(EditText edt_bildung_adresse) {
+	private void setEdt_bildung_adresse(EditText edt_bildung_adresse) {
 		this.edt_bildung_adresse = edt_bildung_adresse;
 	}
 
-	@SuppressWarnings("unused")
 	private RadioButton getEdt_radio_grund() {
 		return edt_radio_grund;
 	}
@@ -110,7 +154,6 @@ public class BildungAddBildungListener implements OnClickListener {
 		this.edt_radio_grund = edt_radio_grund;
 	}
 
-	@SuppressWarnings("unused")
 	private RadioButton getEdt_radio_ausb() {
 		return edt_radio_ausb;
 	}
@@ -119,7 +162,6 @@ public class BildungAddBildungListener implements OnClickListener {
 		this.edt_radio_ausb = edt_radio_ausb;
 	}
 
-	@SuppressWarnings("unused")
 	private RadioButton getEdt_radio_weiter() {
 		return edt_radio_weiter;
 	}
@@ -128,6 +170,7 @@ public class BildungAddBildungListener implements OnClickListener {
 		this.edt_radio_weiter = edt_radio_weiter;
 	}
 
+	@SuppressWarnings("unused")
 	private Button getBtnSelectDateVon() {
 		return btnSelectDateVon;
 	}
@@ -136,6 +179,7 @@ public class BildungAddBildungListener implements OnClickListener {
 		this.btnSelectDateVon = btnSelectDateVon;
 	}
 
+	@SuppressWarnings("unused")
 	private Button getBtnSelectDateBis() {
 		return btnSelectDateBis;
 	}
@@ -151,5 +195,4 @@ public class BildungAddBildungListener implements OnClickListener {
 	private String getDateBis() {
 		return btnSelectDateBis.getText().toString();
 	}
-
 }

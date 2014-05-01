@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 /**
  * Erstellt einen DatePicker für die Activity Bildung fèrdie Von und Bis Butten.
@@ -61,11 +60,9 @@ public class BildungDatePickerFragment extends DialogFragment implements
 		switch (tag) {
 		case "datePickerVon":
 			updateBttonVon(date);
-			saveDateVon(date);
 			break;
 		case "datePickerBis":
 			updateBttonBis(date);
-			saveDateBis(date);
 			break;
 		default:
 			break;
@@ -84,20 +81,6 @@ public class BildungDatePickerFragment extends DialogFragment implements
 	}
 
 	/**
-	 * Speichert das gewählte Von Datum ab
-	 * 
-	 * @param date
-	 */
-	private void saveDateVon(String date) {
-		// TODO Erfasste Daten abspeichern
-		String strToast = "Das Datum Von wird gespeichert: " + date;
-
-		Toast toast = Toast
-				.makeText(getActivity(), strToast, Toast.LENGTH_LONG);
-		toast.show();
-	}
-
-	/**
 	 * Aktualisiert den den Bis Butten mit dem gewählten datum
 	 * 
 	 * @param date
@@ -108,17 +91,4 @@ public class BildungDatePickerFragment extends DialogFragment implements
 		btnSelectDateBis.setText(date);
 	}
 
-	/**
-	 * Speichert das gewählte bis Datum ab
-	 * 
-	 * @param date
-	 */
-	private void saveDateBis(String date) {
-		// TODO Erfasste Daten abspeichern
-		String strToast = "Das Datum Bis wird gespeichert: " + date;
-
-		Toast toast = Toast
-				.makeText(getActivity(), strToast, Toast.LENGTH_LONG);
-		toast.show();
-	}
 }
