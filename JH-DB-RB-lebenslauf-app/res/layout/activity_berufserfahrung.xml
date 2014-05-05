@@ -19,7 +19,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/titelPicPersonalien"
-            android:background="#339900"
+            android:background="#3300FF"
+            android:textColor="#FFFFFF"
             android:text="@string/naviObenBild"
             android:textSize="12sp" />
 

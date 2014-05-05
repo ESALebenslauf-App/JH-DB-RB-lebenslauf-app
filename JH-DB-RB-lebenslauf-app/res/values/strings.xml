@@ -16,6 +16,8 @@
     <string name="naviUntenSkills">Skills</string>
     <string name="naviUntenZusammenfassung">Zusammenfassung</string>
     <string name="naviUntenFinish">Finish</string>
+    <string name="naviUntenVor"> &lt; </string>
+    <string name="naviUntenBack"> &gt; </string>
     
     <!-- Erste Seite -->
     <string name="txt_startseite">Die Lebenslauf App</string>

@@ -20,7 +20,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/titelPicPersonalien"
-            android:background="#339900"
+            android:background="#3300FF"
+            android:textColor="#FFFFFF"
             android:text="@string/naviObenBild"
             android:textSize="12sp" />
 
@@ -29,7 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/titelPicPersonalien"
-            android:background="#339900"
+            android:background="#3300FF"
+            android:textColor="#FFFFFF"
             android:text="@string/naviObenBerufserfahrung"
             android:textSize="12sp" />
 
@@ -39,7 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/titelPicPersonalien"
             android:layout_toRightOf="@+id/naviObenBerufserfahrung"
-            android:background="#339900"
+            android:background="#3300FF"
+            android:textColor="#FFFFFF"
             android:text="@string/naviObenBildung"
             android:textSize="12sp" />
 
@@ -204,11 +207,11 @@
        	    android:background="#3300FF"
        	    android:contentDescription="@string/todo"
        	    android:onClick="onClickZusammenfassung"
-       	    android:paddingLeft="100dp"
+       	    android:paddingLeft="80dp"
        	    android:text="@string/naviUntenZusammenfassung"
        	    android:textColor="#ffffff" />
-
         </LinearLayout>
+        
     </LinearLayout>
 
 </RelativeLayout>
