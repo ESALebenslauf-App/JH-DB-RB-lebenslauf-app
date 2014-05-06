@@ -15,7 +15,7 @@ import android.widget.RadioButton;
  * Listener Klasse für den Butten Bildung hinzufügen die daten werden in eine
  * BidlungenDAO Objekt abgespeichert.
  * 
- * @author j.herzig
+ * @author bdervishi.jherzig.rbuess
  * 
  */
 public class BildungAddBildungListener implements OnClickListener {

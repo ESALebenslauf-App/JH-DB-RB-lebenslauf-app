@@ -18,8 +18,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 /**
- * @author j.herzig In dieser Activity können mehrer Ausbildungen hinterlegt
- *         werden.
+ * @author bdervishi.jherzig.rbuess
+ * 
+ * In dieser Activity können mehrer Ausbildungen hinterlegt werden.
  */
 public class BildungActivity extends FragmentActivity {
 

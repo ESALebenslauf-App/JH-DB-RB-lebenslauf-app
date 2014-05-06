@@ -248,8 +248,15 @@
             android:background="#3300FF"
             android:contentDescription="@string/todo"
             android:onClick="onClickBildBerufserfahrung"
-            android:paddingLeft="150dp"
+            android:paddingLeft="170dp"
             android:text="@string/naviUntenBerufserfahrung"
             android:textColor="#ffffff" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ico_vor" />
+
     </LinearLayout>
 </RelativeLayout>

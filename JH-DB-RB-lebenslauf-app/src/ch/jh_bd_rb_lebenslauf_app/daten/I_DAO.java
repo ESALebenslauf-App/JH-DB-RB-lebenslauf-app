@@ -3,7 +3,7 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
 import java.util.List;
 
 /**
- * @author j.herzig
+ * @author bdervishi.jherzig.rbuess
  * 
  *         Interface um Daten Persistent abzuspeichern
  */

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author j.herzig
+ * @author bdervishi.jherzig.rbuess
  * 
  *         Daten Objekt mit allen Bildungs Objekten in einer ArrayListe zum
  *         abspeichern und Laden.

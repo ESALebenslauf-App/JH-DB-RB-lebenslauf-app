@@ -12,6 +12,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ *
+ */
 public class Skills extends Activity {
 
 	String name;
@@ -51,11 +56,19 @@ public class Skills extends Activity {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickBildung(View Button) {
 		final Intent intent = new Intent(this, BildungActivity.class);
 		startActivity(intent);
 	}
 
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickZusammenfassung(View Button) {
 		final Intent intent = new Intent(this, Zusammenfassung.class);
 		
@@ -71,15 +84,26 @@ public class Skills extends Activity {
 		startActivity(intent);
 	}
 
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickAddSkill(View Button) {
 		shortToast("onClickAddSkill(View Button)");
 	}
 	
-	
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickAddZertifikat(View Button) {
 		shortToast("onClickAddZertifikat(View Button)");
 	}
 	
+	/**
+	 * 
+	 * @param text
+	 */
 	private void shortToast(String text) {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_SHORT;

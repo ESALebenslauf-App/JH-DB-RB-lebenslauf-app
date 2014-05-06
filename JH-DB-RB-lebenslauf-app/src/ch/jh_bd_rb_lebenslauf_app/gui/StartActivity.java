@@ -7,6 +7,11 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ *
+ */
 public class StartActivity extends Activity {
 
 	@Override
@@ -22,6 +27,10 @@ public class StartActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param button
+	 */
 	public void onClickErfassen(View button) {
 
 		final Intent intent = new Intent(this, Bild.class);

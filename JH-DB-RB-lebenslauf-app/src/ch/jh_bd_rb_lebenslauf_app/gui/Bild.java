@@ -12,6 +12,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+/**
+ * 
+ * @author bdervishi
+ *
+ */
 public class Bild extends Activity {
 
 	static final String NAME = "name";
@@ -39,6 +44,10 @@ public class Bild extends Activity {
 	}
 
 
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickBildBerufserfahrung(View Button) {
 		final Intent intent = new Intent(this, Berufserfahrung.class);
 		
@@ -50,11 +59,19 @@ public class Bild extends Activity {
 	}
 	
 
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickStart(View Button) {
 		final Intent intent = new Intent(this, StartActivity.class);
 		startActivity(intent);
 	}
 	
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickCamera(View Button) {
 		shortToast("onClickCamera(View Button)");
 
@@ -68,12 +85,19 @@ public class Bild extends Activity {
 		}
 	}	
 
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickHochladen(View Button) {
 		shortToast("onClickHochladen(View Button)");
 	}	
 	
 	
-	
+	/**
+	 * 
+	 * @param text
+	 */
 	private void shortToast(String text) {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_SHORT;

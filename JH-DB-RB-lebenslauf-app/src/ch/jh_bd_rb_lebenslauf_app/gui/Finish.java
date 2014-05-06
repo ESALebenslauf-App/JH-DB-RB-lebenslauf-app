@@ -6,7 +6,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ *
+ */
 public class Finish extends Activity {
 
 	@Override
@@ -22,7 +26,10 @@ public class Finish extends Activity {
 		return true;
 	}
 	
-	
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickZusammenfassung(View Button) {
 		final Intent intent = new Intent(this, Zusammenfassung.class);
 		startActivity(intent);

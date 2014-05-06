@@ -17,7 +17,7 @@ import android.widget.DatePicker;
  * dieses ab. Die Fragmente muessen mit den Tags "datePickerVon" und
  * "datePickerBis" versehen sein.
  * 
- * @author j.herzig
+ * @author bdervishi.jherzig.rbuess
  * 
  */
 public class BildungDatePickerFragment extends DialogFragment implements

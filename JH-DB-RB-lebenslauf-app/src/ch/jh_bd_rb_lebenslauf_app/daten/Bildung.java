@@ -3,7 +3,7 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
 /**
  * Klasse zum speichern der Daten aus der Activity Bildung.
  * 
- * @author j.herzig
+ * @author bdervishi.jherzig.rbuess
  * 
  */
 public class Bildung implements LebenslaufDaten {

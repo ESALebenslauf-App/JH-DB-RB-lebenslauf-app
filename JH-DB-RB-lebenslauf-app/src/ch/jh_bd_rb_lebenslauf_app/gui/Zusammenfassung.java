@@ -11,6 +11,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ *
+ */
 public class Zusammenfassung extends Activity {
 
 	String name;
@@ -87,6 +92,10 @@ public class Zusammenfassung extends Activity {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickSkills(View Button) {
 		final Intent intent = new Intent(this, Skills.class);
 
@@ -94,12 +103,20 @@ public class Zusammenfassung extends Activity {
 
 	}
 
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickFinish(View Button) {
 		final Intent intent = new Intent(this, Finish.class);
 
 		startActivity(intent);
 	}
 	
+	/**
+	 * 
+	 * @param text
+	 */
 	private void shortToast(String text) {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_SHORT;

@@ -12,7 +12,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
-
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ *
+ */
 public class Berufserfahrung extends Activity {
 
 	String name;
@@ -38,11 +42,20 @@ public class Berufserfahrung extends Activity {
 		return true;
 	}
 
+
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickBild(View Button) {
 		final Intent intent = new Intent(this, Bild.class);
 		startActivity(intent);
 	}
 
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickBildung(View Button) {
 		final Intent intent = new Intent(this, BildungActivity.class);
 
@@ -54,11 +67,19 @@ public class Berufserfahrung extends Activity {
 		startActivity(intent);
 	}
 
+	/**
+	 * 
+	 * @param Button
+	 */
 	public void onClickAddBerufserfahrung(View Button) {
 		
 		shortToast("onClickAddBerufserfahrung(View Button)");
 	}
 	
+	/**
+	 * 
+	 * @param text
+	 */
 	private void shortToast(String text) {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_SHORT;
