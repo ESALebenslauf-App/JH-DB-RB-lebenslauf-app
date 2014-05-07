@@ -28,7 +28,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:background="#3300FF"
+        android:background="#1DACE9"
         android:onClick="onClickErfassen"
         android:text="@string/txt_erfassen"
         android:textColor="#ffffff" />

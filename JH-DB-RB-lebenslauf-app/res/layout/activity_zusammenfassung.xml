@@ -22,7 +22,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/titelPicPersonalien"
-            android:background="#3300FF"
+            android:background="#1DACE9"
             android:textColor="#FFFFFF"
             android:text="@string/naviObenBild"
             android:textSize="12sp" />
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/titelPicPersonalien"
-            android:background="#3300FF"
+            android:background="#1DACE9"
             android:textColor="#FFFFFF"
             android:text="@string/naviObenBerufserfahrung"
             android:textSize="12sp" />
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/titelPicPersonalien"
             android:layout_toRightOf="@+id/naviObenBerufserfahrung"
-            android:background="#3300FF"
+            android:background="#1DACE9"
             android:textColor="#FFFFFF"
             android:text="@string/naviObenBildung"
             android:textSize="12sp" />
@@ -55,7 +55,7 @@
             android:layout_above="@+id/titelPicPersonalien"
             android:layout_alignLeft="@+id/picAuswahl"
             android:layout_toLeftOf="@+id/naviObenFinish"
-            android:background="#3300FF"
+            android:background="#1DACE9"
             android:textColor="#FFFFFF"
             android:text="@string/naviObenSkills"
             android:textSize="12sp" />
@@ -67,7 +67,7 @@
             android:layout_above="@+id/titelPicPersonalien"
             android:layout_toRightOf="@+id/naviObenBildung"
             android:layout_weight="0.70"
-            android:background="#3300FF"
+            android:background="#1DACE9"
             android:text="@string/naviObenZusammenfassung"
             android:textColor="#FFFFFF"
             android:textSize="12sp" />
@@ -76,7 +76,7 @@
             android:id="@+id/naviObenFinish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#339900"
+            android:background="#1DAC01"
             android:text="@string/naviObenFinish"
             android:textSize="12sp" />
     </LinearLayout>
@@ -319,7 +319,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#3300FF"
+        android:background="#1DACE9"
         android:orientation="horizontal" >
 
         <!-- Button Navigation zurück zu den Skills -->
@@ -327,7 +327,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#3300FF" >
+            android:background="#1DACE9" >
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -341,7 +341,7 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/todo"
                 android:onClick="onClickSkills"
-                android:background="#3300FF"
+                android:background="#1DACE9"
             	android:text="@string/naviUntenSkills" 
             	android:textColor="#ffffff" />
         </LinearLayout>
@@ -351,13 +351,13 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="#3300FF" >
+            android:background="#1DACE9" >
 
             <Button
                 android:id="@+id/buttonFinish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#3300FF"
+                android:background="#1DACE9"
                 android:contentDescription="@string/todo"
                 android:onClick="onClickFinish"
                 android:paddingLeft="140dp"

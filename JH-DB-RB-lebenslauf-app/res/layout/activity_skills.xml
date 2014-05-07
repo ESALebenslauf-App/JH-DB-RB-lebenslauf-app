@@ -20,7 +20,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/titelPicPersonalien"
-            android:background="#3300FF"
+            android:background="#1DACE9"
             android:textColor="#FFFFFF"
             android:text="@string/naviObenBild"
             android:textSize="12sp" />
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/titelPicPersonalien"
-            android:background="#3300FF"
+            android:background="#1DACE9"
             android:textColor="#FFFFFF"
             android:text="@string/naviObenBerufserfahrung"
             android:textSize="12sp" />
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/titelPicPersonalien"
             android:layout_toRightOf="@+id/naviObenBerufserfahrung"
-            android:background="#3300FF"
+            android:background="#1DACE9"
             android:textColor="#FFFFFF"
             android:text="@string/naviObenBildung"
             android:textSize="12sp" />
@@ -54,7 +54,7 @@
             android:layout_alignLeft="@+id/picAuswahl"
             android:layout_toLeftOf="@+id/naviObenFinish"
             android:layout_weight="0.97"
-            android:background="#3300FF"
+            android:background="#1DACE9"
             android:text="@string/naviObenSkills"
             android:textColor="#FFFFFF"
             android:textSize="12sp" />
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/titelPicPersonalien"
             android:layout_toRightOf="@+id/naviObenBildung"
-            android:background="#339900"
+            android:background="#1DAC01"
             android:text="@string/naviObenZusammenfassung"
             android:textSize="12sp" />
 
@@ -73,7 +73,7 @@
             android:id="@+id/naviObenFinish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#339900"
+            android:background="#1DAC01"
             android:text="@string/naviObenFinish"
             android:textSize="12sp" />
     </LinearLayout>
@@ -176,13 +176,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#3300FF"
+        android:background="#1DACE9"
         android:orientation="horizontal" >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#3300FF" >
+            android:background="#1DACE9" >
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -196,7 +196,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
             android:onClick="onClickBildung"
-            android:background="#3300FF"
+            android:background="#1DACE9"
             android:text="@string/naviUntenBildung" 
             android:textColor="#ffffff" />
         </LinearLayout>
@@ -204,13 +204,13 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#3300FF" >
+            android:background="#1DACE9" >
 
        	<Button
        	    android:id="@+id/buttonBerufserfahrung"
        	    android:layout_width="wrap_content"
        	    android:layout_height="wrap_content"
-       	    android:background="#3300FF"
+       	    android:background="#1DACE9"
        	    android:contentDescription="@string/todo"
        	    android:onClick="onClickZusammenfassung"
        	    android:paddingLeft="40dp"
