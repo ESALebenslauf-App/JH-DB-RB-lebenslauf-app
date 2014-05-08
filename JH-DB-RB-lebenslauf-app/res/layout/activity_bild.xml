@@ -113,7 +113,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ico_pic"
-            android:onClick="onClickHochladen"
             android:text="@string/txt_bild_hochladen" />
 
         <ImageButton
@@ -121,7 +120,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="46dp"
-            android:onClick="onClickCamera"
             android:src="@drawable/ico_cam" />
     </LinearLayout>
 
@@ -247,7 +245,6 @@
             android:layout_height="wrap_content"
             android:background="#1DACE9"
             android:contentDescription="@string/todo"
-            android:onClick="onClickBildBerufserfahrung"
             android:paddingLeft="170dp"
             android:text="@string/naviUntenBerufserfahrung"
             android:textColor="#ffffff" />

@@ -115,7 +115,6 @@
         android:layout_alignRight="@+id/tableLayout1"
         android:layout_below="@+id/tableLayout1"
         android:layout_marginTop="14dp"
-        android:onClick="onClickAddBerufserfahrung"
         android:text="@string/txt_berufserfahrung_add" />
 
     <LinearLayout
@@ -137,18 +136,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
-            android:onClick="onClickBild"
             android:background="#1DACE9"
             android:text="@string/naviUntenBild" 
             android:textColor="#ffffff" />
 
         <Button
-            android:id="@+id/buttonBerufserfahrung"
+            android:id="@+id/buttonBildungActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#1DACE9"
             android:contentDescription="@string/todo"
-            android:onClick="onClickBildung"
             android:paddingLeft="140dp"
             android:text="@string/naviUntenBildung"
             android:textColor="#ffffff" />

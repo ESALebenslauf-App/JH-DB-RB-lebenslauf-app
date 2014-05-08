@@ -3,19 +3,20 @@ package ch.jh_bd_rb_lebenslauf_app.gui;
 import java.util.ArrayList;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
-
+import ch.jh_bd_rb_lebenslauf_app.listener.BerufserfahrungListener;
+import ch.jh_bd_rb_lebenslauf_app.listener.BildListener;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 /**
  * 
  * @author bdervishi.jherzig.rbuess
- *
+ * 
  */
 public class Berufserfahrung extends Activity {
 
@@ -25,6 +26,10 @@ public class Berufserfahrung extends Activity {
 	public static final String ADRESSE = "adresse";
 	public ArrayList<String> berufserfahrungen = new ArrayList<String>();
 	public static final String BERUFSERFAHRUNGEN = "berufserfahrungen";
+	private Button btnBildung;
+	private Button btnBild;
+	private Button btnBeruferfahrung;
+	
 
 	@Override
 	protected void onCreate(Bundle icicle) {
@@ -32,7 +37,36 @@ public class Berufserfahrung extends Activity {
 		setContentView(R.layout.activity_berufserfahrung);
 
 		final Bundle extras = getIntent().getExtras();
+		// Initialisieren
+		initActivityElemente();
+		initActivityListener();
 
+	}
+
+	private void initActivityElemente() {
+		btnBeruferfahrung = (Button) findViewById(R.id.sf_add_berufserfahrung);
+		btnBild = (Button) findViewById(R.id.buttonBild);
+		btnBildung = (Button) findViewById(R.id.buttonBildungActivity);	
+	}
+
+	private void initActivityListener() {
+		btnBeruferfahrung.setOnClickListener(new BerufserfahrungListener(this));
+		
+		btnBild.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View button) {
+				clickBild(button);
+			}
+		});
+		
+		btnBildung.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View butten) {
+				clickBildung(butten);
+			}
+		});
 	}
 
 	@Override
@@ -42,12 +76,11 @@ public class Berufserfahrung extends Activity {
 		return true;
 	}
 
-
 	/**
 	 * 
 	 * @param Button
 	 */
-	public void onClickBild(View Button) {
+	public void clickBild(View Button) {
 		final Intent intent = new Intent(this, Bild.class);
 		startActivity(intent);
 	}
@@ -56,7 +89,7 @@ public class Berufserfahrung extends Activity {
 	 * 
 	 * @param Button
 	 */
-	public void onClickBildung(View Button) {
+	public void clickBildung(View Button) {
 		final Intent intent = new Intent(this, BildungActivity.class);
 
 		intent.putExtra(NAME, name);
@@ -67,25 +100,6 @@ public class Berufserfahrung extends Activity {
 		startActivity(intent);
 	}
 
-	/**
-	 * 
-	 * @param Button
-	 */
-	public void onClickAddBerufserfahrung(View Button) {
-		
-		shortToast("onClickAddBerufserfahrung(View Button)");
-	}
-	
-	/**
-	 * 
-	 * @param text
-	 */
-	private void shortToast(String text) {
-		Context context = getApplicationContext();
-		int duration = Toast.LENGTH_SHORT;
 
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
-	}
 
 }
