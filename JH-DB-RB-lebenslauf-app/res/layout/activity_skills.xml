@@ -139,10 +139,9 @@
             <TextView android:layout_width="1dp" />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/btnAddSkill"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onClickAddSkill"
                 android:text="@string/txt_add" />
         </TableRow>
 
@@ -161,10 +160,9 @@
             <TextView android:text="@string/txt_zertifikate" />
 
             <ImageButton
-                android:id="@+id/imageButton1"
+                android:id="@+id/btnImageAddZertifikat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onClickAddZertifikat"
                 android:src="@android:drawable/ic_input_get" />
         </TableRow>
     </TableLayout>
@@ -195,7 +193,6 @@
 			android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
-            android:onClick="onClickBildung"
             android:background="#1DACE9"
             android:text="@string/naviUntenBildung" 
             android:textColor="#ffffff" />
@@ -207,12 +204,11 @@
             android:background="#1DACE9" >
 
        	<Button
-       	    android:id="@+id/buttonBerufserfahrung"
+       	    android:id="@+id/buttonZusammenfassung"
        	    android:layout_width="wrap_content"
        	    android:layout_height="wrap_content"
        	    android:background="#1DACE9"
        	    android:contentDescription="@string/todo"
-       	    android:onClick="onClickZusammenfassung"
        	    android:paddingLeft="40dp"
        	    android:text="@string/naviUntenZusammenfassung"
        	    android:textColor="#ffffff" />

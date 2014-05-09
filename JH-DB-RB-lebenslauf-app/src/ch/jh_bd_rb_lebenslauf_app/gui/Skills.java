@@ -3,14 +3,16 @@ package ch.jh_bd_rb_lebenslauf_app.gui;
 import java.util.ArrayList;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.listener.AddSkillListener;
+import ch.jh_bd_rb_lebenslauf_app.listener.AddZertifikatListener;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * 
@@ -29,6 +31,12 @@ public class Skills extends Activity {
 	static final String BILDUNGEN = "bildung";
 	String skillGrad;
 	static final String SKILL = "skill";
+	
+	private Button btnZusammenfassung;
+	private Button btnBildung;
+	private Button btnAddSkill;
+	private ImageButton btnAddZertifikat;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +52,45 @@ public class Skills extends Activity {
 			adresse = extras.getString(BildungActivity.ADRESSE);
 			bildungen = extras.getStringArrayList(BildungActivity.BILDUNGEN);
 		}
+		
+		initActivityElemente();
+		initActivityListener();
 
 	}
 	
+
+
+	private void initActivityElemente() {
+		btnZusammenfassung = (Button) findViewById(R.id.buttonZusammenfassung);
+		btnBildung = (Button) findViewById(R.id.imageView7);
+		btnAddSkill = (Button) findViewById(R.id.btnAddSkill);
+		btnAddZertifikat = (ImageButton) findViewById(R.id.btnImageAddZertifikat);
+	}
+
+
+
+	private void initActivityListener() {
+		btnZusammenfassung.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View butten) {
+				clickZusammenfassung(butten);
+			}
+		});
+		
+		btnBildung.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View button) {
+				clickBildung(button);
+			}
+		});
+		
+		btnAddSkill.setOnClickListener(new AddSkillListener(this));
+		btnAddZertifikat.setOnClickListener(new AddZertifikatListener(this));
+		
+	}
+
 
 
 	@Override
@@ -60,7 +104,7 @@ public class Skills extends Activity {
 	 * 
 	 * @param Button
 	 */
-	public void onClickBildung(View Button) {
+	public void clickBildung(View Button) {
 		final Intent intent = new Intent(this, BildungActivity.class);
 		startActivity(intent);
 	}
@@ -69,7 +113,7 @@ public class Skills extends Activity {
 	 * 
 	 * @param Button
 	 */
-	public void onClickZusammenfassung(View Button) {
+	public void clickZusammenfassung(View Button) {
 		final Intent intent = new Intent(this, Zusammenfassung.class);
 		
 		intent.putExtra(NAME, name);
@@ -84,32 +128,5 @@ public class Skills extends Activity {
 		startActivity(intent);
 	}
 
-	/**
-	 * 
-	 * @param Button
-	 */
-	public void onClickAddSkill(View Button) {
-		shortToast("onClickAddSkill(View Button)");
-	}
-	
-	/**
-	 * 
-	 * @param Button
-	 */
-	public void onClickAddZertifikat(View Button) {
-		shortToast("onClickAddZertifikat(View Button)");
-	}
-	
-	/**
-	 * 
-	 * @param text
-	 */
-	private void shortToast(String text) {
-		Context context = getApplicationContext();
-		int duration = Toast.LENGTH_SHORT;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
-	}
 
 }

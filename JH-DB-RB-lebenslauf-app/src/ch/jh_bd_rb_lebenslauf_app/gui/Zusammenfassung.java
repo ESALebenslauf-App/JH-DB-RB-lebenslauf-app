@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import ch.jh_bd_rb_lebenslauf_app.R;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 /**
  * 
  * @author bdervishi.jherzig.rbuess
- *
+ * 
  */
 public class Zusammenfassung extends Activity {
 
@@ -23,6 +23,9 @@ public class Zusammenfassung extends Activity {
 	ArrayList<String> berufserfahrungen = new ArrayList<String>();
 	ArrayList<String> bildungen = new ArrayList<String>();
 	String skillGrad;
+
+	private Button btnSkills;
+	private Button btnFinish;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,52 +40,35 @@ public class Zusammenfassung extends Activity {
 			adresse = extras.getString(Skills.ADRESSE);
 			bildungen = extras.getStringArrayList(Skills.BILDUNGEN);
 			skillGrad = extras.getString(Skills.SKILL);
-			
-			/*
-			String[] firmaTeile = berufserfahrungen.get(0).split("/"); 
-			
-			String[] schuleTeile = bildungen.get(0).split("/");
 
-			
-			// Personalien
-
-			final TextView txtName = (TextView) findViewById(R.id.edt_zusammenfassung_person_name);
-			txtName.setText(String.valueOf(name));
-
-			final TextView txtAdresse = (TextView) findViewById(R.id.edt_zusammenfassung_person_adresse);
-			txtAdresse.setText(String.valueOf(adresse));
-
-			//Berufserfahrung
-
-			final TextView txtFirma = (TextView) findViewById(R.id.edt_zusammenfassung_firma);
-			txtFirma.setText(String.valueOf(firmaTeile[0]));
-
-			final TextView txtFirmaDauer = (TextView) findViewById(R.id.edt_zusammenfassung_firma_dauer);
-			txtFirmaDauer.setText(String.valueOf(firmaTeile[1]));
-
-			final TextView txtFirmaTaetigkeit = (TextView) findViewById(R.id.edt_zusammenfassung_firma_taetigkeit);
-			txtFirmaTaetigkeit.setText(String.valueOf(firmaTeile[2]));
-			
-			//Bildung
-			
-			final TextView txtSchuleArt = (TextView) findViewById(R.id.edt_zusammenfassung_schule_art);
-			txtSchuleArt.setText(String.valueOf(schuleTeile[0]));
-			
-			final TextView txtSchule = (TextView) findViewById(R.id.edt_zusammenfassung_schule);
-			 txtSchule.setText(String.valueOf(schuleTeile[1]));
-			
-			final TextView txtSchuleDauer = (TextView) findViewById(R.id.edt_zusammenfassung_schule_dauer);
-			txtSchuleDauer.setText(String.valueOf(schuleTeile[2]));
-			
-			final TextView txtSchuleAdresse = (TextView) findViewById(R.id.edt_zusammenfassung_schule_adresse);
-			txtSchuleAdresse.setText(String.valueOf(schuleTeile[3]));
-			
-			//Skills
-			
-			final TextView txtSkill = (TextView) findViewById(R.id.edt_zusammenfassung_itkenntnisse);
-			txtSkill.setText(String.valueOf(skillGrad));
-			*/
 		}
+
+		initActivityElemente();
+		initActivityListener();
+	}
+
+	private void initActivityElemente() {
+		btnSkills = (Button) findViewById(R.id.buttonSkills);
+		btnFinish = (Button) findViewById(R.id.buttonFinish);
+	}
+
+	private void initActivityListener() {
+		btnFinish.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View button) {
+				clickFinish(button);
+			}
+		});
+
+		btnSkills.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View button) {
+				clickSkills(button);
+			}
+		});
+
 	}
 
 	@Override
@@ -96,7 +82,7 @@ public class Zusammenfassung extends Activity {
 	 * 
 	 * @param Button
 	 */
-	public void onClickSkills(View Button) {
+	public void clickSkills(View Button) {
 		final Intent intent = new Intent(this, Skills.class);
 
 		startActivity(intent);
@@ -107,22 +93,9 @@ public class Zusammenfassung extends Activity {
 	 * 
 	 * @param Button
 	 */
-	public void onClickFinish(View Button) {
+	public void clickFinish(View Button) {
 		final Intent intent = new Intent(this, Finish.class);
 
 		startActivity(intent);
 	}
-	
-	/**
-	 * 
-	 * @param text
-	 */
-	private void shortToast(String text) {
-		Context context = getApplicationContext();
-		int duration = Toast.LENGTH_SHORT;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
-	}
-
 }

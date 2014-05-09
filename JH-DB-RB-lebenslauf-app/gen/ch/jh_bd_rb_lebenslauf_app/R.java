@@ -45,12 +45,13 @@ public final class R {
         public static final int action_settings=0x7f090061;
         public static final int add_berufserfahrung=0x7f09002a;
         public static final int bottom=0x7f09004c;
+        public static final int btnAddSkill=0x7f09004a;
         public static final int btnBerufserfahrung=0x7f090041;
+        public static final int btnImageAddZertifikat=0x7f09004b;
         public static final int btnSelectDateBis=0x7f09003f;
         public static final int btnSelectDateVon=0x7f09003e;
         public static final int btnSkills=0x7f090042;
         public static final int btn_add_bildung=0x7f090040;
-        public static final int button1=0x7f09004a;
         public static final int buttonBerufserfahrung=0x7f090036;
         public static final int buttonBild=0x7f09000e;
         public static final int buttonBildungActivity=0x7f09000f;
@@ -77,7 +78,6 @@ public final class R {
         public static final int edt_zusammenfassung_schule_adresse=0x7f09005c;
         public static final int edt_zusammenfassung_schule_art=0x7f090059;
         public static final int edt_zusammenfassung_schule_dauer=0x7f09005b;
-        public static final int imageButton1=0x7f09004b;
         public static final int imageView1=0x7f090010;
         public static final int imageView2=0x7f09000d;
         public static final int imageView3=0x7f09005e;

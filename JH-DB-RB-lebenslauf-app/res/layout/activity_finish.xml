@@ -109,7 +109,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:background="#1DACE9"
-        android:onClick="onClickZusammenfassung"
         android:text="@string/naviUntenZusammenfassung"
         android:textColor="#ffffff" />
 

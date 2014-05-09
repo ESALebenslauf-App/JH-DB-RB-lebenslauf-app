@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 /**
  * 
- * @author bdervishi
+ * @author bdervishi.jherzig.rbuess
  *
  */
 public class Bild extends Activity {
