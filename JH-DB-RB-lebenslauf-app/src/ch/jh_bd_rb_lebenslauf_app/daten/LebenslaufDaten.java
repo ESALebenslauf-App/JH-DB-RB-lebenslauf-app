@@ -8,16 +8,6 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
  */
 public interface LebenslaufDaten {
 
-	/**
-	 * 
-	 * @param bildung
-	 */
-	public void setBildung(Bildung bildung);
 
-	/**
-	 * 
-	 * @return
-	 */
-	public Bildung getBildung();
 
 }

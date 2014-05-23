@@ -103,13 +103,4 @@ public class Bildung implements LebenslaufDaten {
 		this.datumBis = datumBis;
 	}
 
-	public void setBildung(Bildung bildung) {
-		// TODO Auto-generated method stub
-	}
-
-	public Bildung getBildung() {
-		Bildung bildung = this;
-		return bildung;
-	}
-
 }

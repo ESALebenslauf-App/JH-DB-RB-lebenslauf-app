@@ -1,5 +1,8 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
@@ -77,9 +80,13 @@ public class BildungAddBildungListener implements OnClickListener {
 		// der Activity Persistent gespeichert werden kann.
 		bildungen.add(bildung);
 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",Locale.GERMANY);
+        String datum = dateFormat.format(new java.util.Date());
+        
 		getEdt_bildung_schule().setText("");
 		getEdt_bildung_adresse().setText("");
-		// TODO Button auf das Aktuele Datum setzten
+		getBtnSelectDateBis().setText(datum);
+		getBtnSelectDateVon().setText(datum);
 	}
 
 	/**

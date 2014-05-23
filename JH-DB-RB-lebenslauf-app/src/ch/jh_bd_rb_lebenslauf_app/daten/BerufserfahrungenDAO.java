@@ -4,29 +4,24 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author bdervishi.jherzig.rbuess
- * 
- *         Daten Objekt mit allen Bildungs Objekten in einer ArrayListe zum
- *         abspeichern und Laden.
- */
-public class BildungenDAO extends ArrayList<LebenslaufDaten> implements
-		Serializable, I_DAO {
+public class BerufserfahrungenDAO extends ArrayList<LebenslaufDaten> implements
+Serializable, I_DAO{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8343508447703744400L;
-	private String ID;
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String getID() {
-		return this.ID;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void setID(String id) {
-		this.ID = id;
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -37,7 +32,6 @@ public class BildungenDAO extends ArrayList<LebenslaufDaten> implements
 
 	@Override
 	public LebenslaufDaten load(String id) {
-		
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,7 +39,7 @@ public class BildungenDAO extends ArrayList<LebenslaufDaten> implements
 	@Override
 	public void save(LebenslaufDaten lebenslaufDaten) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -62,7 +56,8 @@ public class BildungenDAO extends ArrayList<LebenslaufDaten> implements
 
 	@Override
 	public List<LebenslaufDaten> getAll() {
-		return this.getAll();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

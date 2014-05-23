@@ -1,6 +1,8 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
@@ -101,8 +103,12 @@ public class BildungActivity extends FragmentActivity {
 	 * 
 	 */
 	private void initActivityElemente() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",Locale.GERMANY);
+        String datum = dateFormat.format(new java.util.Date());
 		btnSelectDateBis = (Button) findViewById(R.id.btnSelectDateBis);
+		btnSelectDateBis.setText(datum);        
 		btnSelectDateVon = (Button) findViewById(R.id.btnSelectDateVon);
+		btnSelectDateVon.setText(datum);
 		btnAddBildung = (Button) findViewById(R.id.btn_add_bildung);
 		btnBerufserfahrung = (Button) findViewById(R.id.btnBerufserfahrung);
 		btnSkills = (Button) findViewById(R.id.btnSkills);

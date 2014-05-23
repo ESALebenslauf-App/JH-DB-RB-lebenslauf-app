@@ -1,8 +1,15 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
+import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungenDAO;
+import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
+import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
+import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
 import ch.jh_bd_rb_lebenslauf_app.listener.BerufserfahrungListener;
 import android.os.Bundle;
 import android.content.Intent;
@@ -12,6 +19,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * 
@@ -31,6 +39,7 @@ public class Berufserfahrung extends FragmentActivity {
 	private Button btnBeruferfahrung;
 	private Button btnSelectDateBis;
 	private Button btnSelectDateVon;
+	private BerufserfahrungListener berufserfahrungListener;
 
 	@Override
 	protected void onCreate(Bundle icicle) {
@@ -45,15 +54,20 @@ public class Berufserfahrung extends FragmentActivity {
 	}
 
 	private void initActivityElemente() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",Locale.GERMANY);
+        String datum = dateFormat.format(new java.util.Date());
 		btnSelectDateBis = (Button) findViewById(R.id.btnSelectDateBis);
+		btnSelectDateBis.setText(datum);        
 		btnSelectDateVon = (Button) findViewById(R.id.btnSelectDateVon);
+		btnSelectDateVon.setText(datum);
 		btnBeruferfahrung = (Button) findViewById(R.id.sf_add_berufserfahrung);
 		btnBild = (Button) findViewById(R.id.buttonBild);
 		btnBildung = (Button) findViewById(R.id.buttonBildungActivity);
 	}
 
 	private void initActivityListener() {
-		btnBeruferfahrung.setOnClickListener(new BerufserfahrungListener(this));
+		berufserfahrungListener = new BerufserfahrungListener(this);
+		btnBeruferfahrung.setOnClickListener(berufserfahrungListener);
 
 		btnBild.setOnClickListener(new OnClickListener() {
 
@@ -119,6 +133,49 @@ public class Berufserfahrung extends FragmentActivity {
 		intent.putStringArrayListExtra(BERUFSERFAHRUNGEN, berufserfahrungen);
 
 		startActivity(intent);
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		datenSpeichern();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		datenSpeichern();
+	}
+
+
+	/**
+	 * Daten können Persistent gespeichert werden
+	 */
+	private void datenSpeichern() {
+		// Datenobjekt aus demListener laden
+		BerufserfahrungenDAO berufserfahrungen = berufserfahrungListener
+				.getBerufserfahrungen();
+		if (berufserfahrungen.size() > 0) {
+			// TODO Erfasste Daten beim verlassen der Activity abspeichern
+			// TODO Start Demo / Ausbauen
+			String strToast = "";
+			for (LebenslaufDaten current : berufserfahrungen) {
+				// LebenslaufDaten in Bildung Casten
+				BerufserfahrungData berufserfahrung = (BerufserfahrungData) current;
+				strToast = strToast + berufserfahrung.getTxt_titel() + " / "
+						+ berufserfahrung.getTxt_firma() + " / "
+						+ berufserfahrung.getTxt_adresse() + " / "
+						+ berufserfahrung.getTxt_plz() + " / "
+						+ berufserfahrung.getTxt_ort() + " / "
+						+ berufserfahrung.getTxt_taetigkeit() + " / "
+						+ berufserfahrung.getBtnSelectDateVon() + " / "
+						+ berufserfahrung.getBtnSelectDateBis() + " ENDE ";
+			}
+
+			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
+			toast.show();
+			// ENDE Demo
+		}
 	}
 
 }
