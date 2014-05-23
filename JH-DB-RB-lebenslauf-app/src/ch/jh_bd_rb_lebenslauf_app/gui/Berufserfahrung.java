@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.listener.BerufserfahrungListener;
-import ch.jh_bd_rb_lebenslauf_app.listener.BildListener;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,7 +18,7 @@ import android.widget.Button;
  * @author bdervishi.jherzig.rbuess
  * 
  */
-public class Berufserfahrung extends Activity {
+public class Berufserfahrung extends FragmentActivity {
 
 	String name;
 	String adresse;
@@ -29,7 +29,8 @@ public class Berufserfahrung extends Activity {
 	private Button btnBildung;
 	private Button btnBild;
 	private Button btnBeruferfahrung;
-	
+	private Button btnSelectDateBis;
+	private Button btnSelectDateVon;
 
 	@Override
 	protected void onCreate(Bundle icicle) {
@@ -44,29 +45,49 @@ public class Berufserfahrung extends Activity {
 	}
 
 	private void initActivityElemente() {
+		btnSelectDateBis = (Button) findViewById(R.id.btnSelectDateBis);
+		btnSelectDateVon = (Button) findViewById(R.id.btnSelectDateVon);
 		btnBeruferfahrung = (Button) findViewById(R.id.sf_add_berufserfahrung);
 		btnBild = (Button) findViewById(R.id.buttonBild);
-		btnBildung = (Button) findViewById(R.id.buttonBildungActivity);	
+		btnBildung = (Button) findViewById(R.id.buttonBildungActivity);
 	}
 
 	private void initActivityListener() {
 		btnBeruferfahrung.setOnClickListener(new BerufserfahrungListener(this));
-		
+
 		btnBild.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View button) {
 				clickBild(button);
 			}
 		});
-		
+
 		btnBildung.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View butten) {
 				clickBildung(butten);
 			}
 		});
+
+		// Start DatePicker
+		btnSelectDateBis.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				DialogFragment newFragment = new DatePickerFragment();
+				newFragment.show(getSupportFragmentManager(), "datePickerBis");
+			}
+		});
+
+		btnSelectDateVon.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				DialogFragment newFragment = new DatePickerFragment();
+				newFragment.show(getSupportFragmentManager(), "datePickerVon");
+			}
+		});
+		// End DatePicker
 	}
 
 	@Override
@@ -99,7 +120,5 @@ public class Berufserfahrung extends Activity {
 
 		startActivity(intent);
 	}
-
-
 
 }

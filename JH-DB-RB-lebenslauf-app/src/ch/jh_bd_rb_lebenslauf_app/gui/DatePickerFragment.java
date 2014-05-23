@@ -20,7 +20,7 @@ import android.widget.DatePicker;
  * @author bdervishi.jherzig.rbuess
  * 
  */
-public class BildungDatePickerFragment extends DialogFragment implements
+public class DatePickerFragment extends DialogFragment implements
 		DatePickerDialog.OnDateSetListener {
 
 	private Calendar cal = Calendar.getInstance();

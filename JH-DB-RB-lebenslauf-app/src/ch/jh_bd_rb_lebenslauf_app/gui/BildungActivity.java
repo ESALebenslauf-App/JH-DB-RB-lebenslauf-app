@@ -81,7 +81,7 @@ public class BildungActivity extends FragmentActivity {
 		btnSelectDateBis.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				DialogFragment newFragment = new BildungDatePickerFragment();
+				DialogFragment newFragment = new DatePickerFragment();
 				newFragment.show(getSupportFragmentManager(), "datePickerBis");
 			}
 		});
@@ -89,7 +89,7 @@ public class BildungActivity extends FragmentActivity {
 		btnSelectDateVon.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				DialogFragment newFragment = new BildungDatePickerFragment();
+				DialogFragment newFragment = new DatePickerFragment();
 				newFragment.show(getSupportFragmentManager(), "datePickerVon");
 			}
 		});
