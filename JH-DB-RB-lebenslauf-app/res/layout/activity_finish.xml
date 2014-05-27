@@ -17,8 +17,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/titelPicPersonalien"
             android:background="#1DACE9"
-            android:textColor="#FFFFFF"
             android:text="@string/naviObenBild"
+            android:textColor="#FFFFFF"
             android:textSize="11sp" />
 
         <TextView
@@ -27,8 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/titelPicPersonalien"
             android:background="#1DACE9"
-            android:textColor="#FFFFFF"
             android:text="@string/naviObenBerufserfahrung"
+            android:textColor="#FFFFFF"
             android:textSize="11sp" />
 
         <TextView
@@ -38,8 +38,8 @@
             android:layout_above="@+id/titelPicPersonalien"
             android:layout_toRightOf="@+id/naviObenBerufserfahrung"
             android:background="#1DACE9"
-            android:textColor="#FFFFFF"
             android:text="@string/naviObenBildung"
+            android:textColor="#FFFFFF"
             android:textSize="11sp" />
 
         <TextView
@@ -50,8 +50,8 @@
             android:layout_alignLeft="@+id/picAuswahl"
             android:layout_toLeftOf="@+id/naviObenFinish"
             android:background="#1DACE9"
-            android:textColor="#FFFFFF"
             android:text="@string/naviObenSkills"
+            android:textColor="#FFFFFF"
             android:textSize="11sp" />
 
         <TextView
@@ -61,8 +61,8 @@
             android:layout_above="@+id/titelPicPersonalien"
             android:layout_toRightOf="@+id/naviObenBildung"
             android:background="#1DACE9"
-            android:textColor="#FFFFFF"
             android:text="@string/naviObenZusammenfassung"
+            android:textColor="#FFFFFF"
             android:textSize="11sp" />
 
         <TextView
@@ -76,6 +76,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -98,7 +99,6 @@
             android:paddingTop="10dp"
             android:text="@string/txt_finish"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
     </LinearLayout>
 
     <Button
@@ -120,5 +120,15 @@
         android:layout_alignTop="@+id/buttonZusammenfassung"
         android:layout_marginTop="18dp"
         android:src="@drawable/ico_back" />
+
+    <Button
+        android:id="@+id/btnCreatePdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="42dp"
+        android:layout_toRightOf="@+id/imageView1"
+        android:text="PDF" />
 
 </RelativeLayout>

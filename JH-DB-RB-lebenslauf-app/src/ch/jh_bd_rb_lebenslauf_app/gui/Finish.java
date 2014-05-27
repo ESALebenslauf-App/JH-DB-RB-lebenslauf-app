@@ -1,6 +1,7 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.listener.CreatePdfListener;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,37 +9,45 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
 /**
  * 
  * @author bdervishi.jherzig.rbuess
- *
+ * 
  */
 public class Finish extends Activity {
 	private Button btnZusammenfassung;
+	private Button btnCreatePdf;
+	private CreatePdfListener createPdfListener;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_finish);
-		
+
 		initActivityElemente();
 		initActivityListener();
 	}
 
 	private void initActivityElemente() {
 		btnZusammenfassung = (Button) findViewById(R.id.buttonZusammenfassung);
-		
+		btnCreatePdf = (Button) findViewById(R.id.btnCreatePdf);
 	}
 
 	private void initActivityListener() {
+		String dir = getFilesDir().toString();
+		createPdfListener = new CreatePdfListener(dir);
+		btnCreatePdf.setOnClickListener(createPdfListener);
+
 		btnZusammenfassung.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View button) {
 				clickZusammenfassung(button);
 			}
+
 		});
-		
+
 	}
 
 	@Override
@@ -47,7 +56,7 @@ public class Finish extends Activity {
 		getMenuInflater().inflate(R.menu.finish, menu);
 		return true;
 	}
-	
+
 	/**
 	 * 
 	 * @param Button
