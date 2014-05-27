@@ -35,8 +35,10 @@ public class Finish extends Activity {
 	}
 
 	private void initActivityListener() {
+		//Listener für das Erstellen eines PDFs
+		//getFilesDir() für die übergabe des Pfades(falls nötig)
 		String dir = getFilesDir().toString();
-		createPdfListener = new CreatePdfListener(dir);
+		createPdfListener = new CreatePdfListener(this, dir);
 		btnCreatePdf.setOnClickListener(createPdfListener);
 
 		btnZusammenfassung.setOnClickListener(new OnClickListener() {
