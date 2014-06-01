@@ -79,12 +79,11 @@ public class LebenslaufDB implements PersonalienTable, BildungTable, BerufTable,
 		
 		
 		// Listet alles auf -> Zusammenfassung
-		/*
 		public Cursor getAllCursor() {
-			return db.query(TABLE_PERSONALIEN, TABLE_BILDUNG, TABLE_BERUFSBSERFAHRUNG, TABLE_SKILLS, new String[]{ 
+			return db.query(TABLE_PERSONALIEN, new String[]{ 
 					FIELD_NAME, FIELD_VORNAME, FIELD_STRASSE, FIELD_PERSONPLZ, FIELD_PERSONORT, FIELD_GEB, FIELD_BILD}
-					, null, null, null, null, null, null, null, null);
-		}*/
+					, null, null, null, null, null);
+		}
 
 		// loescht eine Berufserfahrung in der DB
 		public boolean deleteBerufserfahrung(long id) {

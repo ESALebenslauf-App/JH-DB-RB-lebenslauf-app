@@ -27,6 +27,8 @@ public interface BerufTable {
 			+ "plz INT not null"
 			+ "ort TEXT not null, "
 			+ "von date not null, "
-			+ "bis date not null"
+			+ "bis date not null,"
+			+ "berufserfahrungvon int [FOREIGN KEY] "
+			+ "references PersonalienTable"
 			+ "berufsid INTEGER PRIMARY KEY);";
 }

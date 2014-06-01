@@ -25,6 +25,8 @@ public interface BildungTable {
 			+ "plz INT not null, "
 			+ "ort TEXT not null, "
 			+ "von DATE not null"
-			+ "bis DATE not nuull"
+			+ "bis DATE not null,"
+			+ "bildungvon int [FOREIGN KEY] "
+			+ "references PersonalienTable"
 			+ "bildungsid INTEGER PRIMARY KEY);";
 }

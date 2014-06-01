@@ -20,6 +20,8 @@ public interface SkillsTable {
 	String SQL_DB_CREATE = "CREATE TABLE Personalien ("
 			+ "was not null, "
 			+ "ausmass TEXT not null, "
-			+ "zertifikat TEXT nol null, "
+			+ "zertifikat TEXT nol null"
+			+ "skillsvon int [FOREIGN KEY] "
+			+ "references PersonalienTable"
 			+ "skillsid INTEGER PRIMARY KEY);";
 }
