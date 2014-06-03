@@ -5,7 +5,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.SendItem;
 import ch.jh_bd_rb_lebenslauf_app.gui.Finish;
+import ch.jh_bd_rb_lebenslauf_app.resource.FileConst;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -21,9 +24,12 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class CreatePdfListener implements OnClickListener {
+	private SendItem sendItem;
+	private Button btnSenden;
 
 	private static Font titelF;
 	private static Font ueberschriftF;
@@ -53,27 +59,28 @@ public class CreatePdfListener implements OnClickListener {
 	boolean pdfArt;
 	static int groesse = 11;
 	static FontFamily schrift = Font.FontFamily.TIMES_ROMAN;
-
-	//TEST-Konstruktor mit Aktivity und Directory
-	public CreatePdfListener(Activity finishActivity, String dir) {
+	
+	// TEST-Konstruktor mit Aktivity und Directory
+	public CreatePdfListener(Activity finishActivity, String dir,SendItem sendItem) {
 		this.dir = dir;
 		this.finishActivity = finishActivity;
+		this.sendItem = sendItem;
+		btnSenden = (Button) finishActivity.findViewById(R.id.btnSenden);
 	}
-/*
-    //Konstruktor mit Lebenslaufdaten
-	public CreatePdfListener(String personalien, String bildung,
-			String berufserfahrung, String skills) {
 
-		this.personalien = personalien;
-		this.bildung = bildung;
-		this.berufserfahrung = berufserfahrung;
-		this.skills = skills;
-	}
-	*/
-	//Methode zum erstellen eines PDFs
+
+
+	/*
+	 * //Konstruktor mit Lebenslaufdaten public CreatePdfListener(String
+	 * personalien, String bildung, String berufserfahrung, String skills) {
+	 * 
+	 * this.personalien = personalien; this.bildung = bildung;
+	 * this.berufserfahrung = berufserfahrung; this.skills = skills; }
+	 */
+	// Methode zum erstellen eines PDFs
 	public void createPdf() {
-		
-		//Definition der verschiedenen Schriftarten
+
+		// Definition der verschiedenen Schriftarten
 		titelF = new Font(schrift, 24, Font.BOLD);
 		ueberschriftF = new Font(schrift, 20, Font.BOLD);
 		standardF = new Font(schrift, groesse, Font.NORMAL);
@@ -81,24 +88,29 @@ public class CreatePdfListener implements OnClickListener {
 		try {
 			Document document = new Document();
 			// FileOutputStream fos = new FileOutputStream(dir+"/test.pdf");
-			//Erstellung eines Zeitstempels für die PDF-Bezeichnung
+			// Erstellung eines Zeitstempels für die PDF-Bezeichnung
 			DateFormat formatDate = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
 			Date date = new Date();
 			String datum = formatDate.format(date).toString();
-			//Pfad und Bezeichnung des PDFs(MUSS NOCH ANGEPASST WERDEN)
-			String pfad = "/sdcard/android/obb/Lebenslauf" + datum + ".pdf";
+			// Pfad und Bezeichnung des PDFs(MUSS NOCH ANGEPASST WERDEN)
+			String pfad = FileConst.getPdfPath() + "/Lebenslauf" + datum
+					+ ".pdf";
+			sendItem.setPath(pfad);
 			FileOutputStream fos = new FileOutputStream(pfad);
-			//Übergabe des Dokument und Pfad an den PdfWriter
+			// Übergabe des Dokument und Pfad an den PdfWriter
 			PdfWriter.getInstance(document, fos);
 			document.open();
-			//Methode zum hinzufügen des Textes wird aufgerufen
+			// Methode zum hinzufügen des Textes wird aufgerufen
 			addTitlePage(document);
 			document.close();
+			// 
+			btnSenden.setEnabled(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	//Methode zum hinufügen des Textes
+
+	// Methode zum hinufügen des Textes
 	private static void addTitlePage(Document document)
 
 	throws DocumentException {
@@ -129,35 +141,37 @@ public class CreatePdfListener implements OnClickListener {
 		document.add(preface);
 
 	}
-	//Methode für eine leere Zeile(Absatz)
+
+	// Methode für eine leere Zeile(Absatz)
 	private static void addEmptyLine(Paragraph paragraph, int number) {
 		for (int i = 0; i < number; i++) {
 			paragraph.add(new Paragraph(" "));
 		}
 	}
 
-	
 	public void onClick(View arg0) {
-		//Zugriff auf die Preferenzen via der FinishActivity
+		// Zugriff auf die Preferenzen via der FinishActivity
 		prefs = PreferenceManager.getDefaultSharedPreferences(finishActivity);
-		//Methode zum auslesen der Preferenzen wird ausgeführt
+		// Methode zum auslesen der Preferenzen wird ausgeführt
 		checkPreferences();
-		//Methode zum erstellen eines PDFs wird ausgeführt
+		// Methode zum erstellen eines PDFs wird ausgeführt
 		createPdf();
-		//Toast dass ein PDF erstellt wurde und mit Angaben über Sprache, Schriftgrösse und Schriftart
+		// Toast dass ein PDF erstellt wurde und mit Angaben über Sprache,
+		// Schriftgrösse und Schriftart
 		Toast toast = Toast.makeText(finishActivity, toastText + toastEnglish
 				+ ", " + toastSize + ", " + toastArt + ")", Toast.LENGTH_LONG);
 		toast.show();
 
 	}
-	//Methode die die Preferenzen ausliest
+
+	// Methode die die Preferenzen ausliest
 	public void checkPreferences() {
-		//Die drei CheckBoxen werden geprüft(true or false)
+		// Die drei CheckBoxen werden geprüft(true or false)
 		boolean englisch = prefs.getBoolean("sprache", true);
 		boolean gross = prefs.getBoolean("schriftGr", true);
 		boolean art = prefs.getBoolean("schriftArt", true);
-		
-		//Prüfen CheckBox Englisch oder Deutsch
+
+		// Prüfen CheckBox Englisch oder Deutsch
 		if (englisch) {
 			toastEnglish = "Englisch";
 			titelU = "Curriculum Vitae";
@@ -172,7 +186,7 @@ public class CreatePdfListener implements OnClickListener {
 			berufserfahrungU = "Berufserfahrung";
 			skillsU = "Skills";
 		}
-		//Prüfen CheckBox grosse oder kleine Schrift
+		// Prüfen CheckBox grosse oder kleine Schrift
 		if (gross) {
 			toastSize = "gross";
 			groesse = 16;
@@ -180,8 +194,8 @@ public class CreatePdfListener implements OnClickListener {
 			toastSize = "klein";
 			groesse = 11;
 		}
-		
-		//Prüfen CheckBox Helvetica oder Times_Roman Schrift
+
+		// Prüfen CheckBox Helvetica oder Times_Roman Schrift
 		if (art) {
 			toastArt = "Helvetica";
 			schrift = Font.FontFamily.HELVETICA;

@@ -1,7 +1,9 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.SendItem;
 import ch.jh_bd_rb_lebenslauf_app.listener.CreatePdfListener;
+import ch.jh_bd_rb_lebenslauf_app.listener.SendListener;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -20,7 +22,10 @@ public class Finish extends Activity {
 	private Button btnZusammenfassung;
 	private Button btnCreatePdf;
 	private Button btnPreferences;
+	private Button btnMailsenden;
 	private CreatePdfListener createPdfListener;
+	private SendItem sendItem;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +35,14 @@ public class Finish extends Activity {
 		initActivityElemente();
 		initActivityListener();
 	}
+	
 
 	private void initActivityElemente() {
 		btnZusammenfassung = (Button) findViewById(R.id.buttonZusammenfassung);
 		btnCreatePdf = (Button) findViewById(R.id.btnCreatePdf);
 		btnPreferences = (Button) findViewById(R.id.btnPreferences);
+		btnMailsenden = (Button) findViewById(R.id.btnSenden);
+		btnMailsenden.setEnabled(false);
 	}
 
 	private void initActivityListener() {
@@ -42,8 +50,10 @@ public class Finish extends Activity {
 		// getFilesDir() für die übergabe des Pfades(falls nötig)
 		String dir = getFilesDir().toString();
 
-		createPdfListener = new CreatePdfListener(this, dir);
+		sendItem = new SendItem();
+		createPdfListener = new CreatePdfListener(this, dir, sendItem);
 		btnCreatePdf.setOnClickListener(createPdfListener);
+		btnMailsenden.setOnClickListener(new SendListener(this,sendItem));
 
 		btnPreferences.setOnClickListener(new OnClickListener() {
 
@@ -87,5 +97,5 @@ public class Finish extends Activity {
 		final Intent intent = new Intent(this, Zusammenfassung.class);
 		startActivity(intent);
 	}
-
+	
 }

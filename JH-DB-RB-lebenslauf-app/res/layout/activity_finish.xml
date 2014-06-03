@@ -140,4 +140,12 @@
         android:layout_marginTop="16dp"
         android:text="PDF Einstellungen" />
 
+    <Button
+        android:id="@+id/btnSenden"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnCreatePdf"
+        android:layout_centerVertical="true"
+        android:text="PDF Veröffentlichen" />
+
 </RelativeLayout>
