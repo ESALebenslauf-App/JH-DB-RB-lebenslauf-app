@@ -1,5 +1,7 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
+
+
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.SendItem;
 import ch.jh_bd_rb_lebenslauf_app.listener.CreatePdfListener;
@@ -7,7 +9,6 @@ import ch.jh_bd_rb_lebenslauf_app.listener.SendListener;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,10 +23,10 @@ public class Finish extends Activity {
 	private Button btnZusammenfassung;
 	private Button btnCreatePdf;
 	private Button btnPreferences;
-	private Button btnMailsenden;
+	private Button btnSenden;
+	private Button btnPdfList;
 	private CreatePdfListener createPdfListener;
 	private SendItem sendItem;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +36,14 @@ public class Finish extends Activity {
 		initActivityElemente();
 		initActivityListener();
 	}
-	
 
 	private void initActivityElemente() {
 		btnZusammenfassung = (Button) findViewById(R.id.buttonZusammenfassung);
 		btnCreatePdf = (Button) findViewById(R.id.btnCreatePdf);
 		btnPreferences = (Button) findViewById(R.id.btnPreferences);
-		btnMailsenden = (Button) findViewById(R.id.btnSenden);
-		btnMailsenden.setEnabled(false);
+		btnSenden = (Button) findViewById(R.id.btnSenden);
+		btnSenden.setEnabled(false);
+		btnPdfList = (Button) findViewById(R.id.btnPdfListAnzeigen);
 	}
 
 	private void initActivityListener() {
@@ -53,7 +54,7 @@ public class Finish extends Activity {
 		sendItem = new SendItem();
 		createPdfListener = new CreatePdfListener(this, dir, sendItem);
 		btnCreatePdf.setOnClickListener(createPdfListener);
-		btnMailsenden.setOnClickListener(new SendListener(this,sendItem));
+		btnSenden.setOnClickListener(new SendListener(this, sendItem));
 
 		btnPreferences.setOnClickListener(new OnClickListener() {
 
@@ -75,6 +76,15 @@ public class Finish extends Activity {
 
 		});
 
+		btnPdfList.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				clickPdfList();
+			}
+
+		});
+
 	}
 
 	@Override
@@ -82,6 +92,11 @@ public class Finish extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.finish, menu);
 		return true;
+	}
+
+	private void clickPdfList() {
+		final Intent intent = new Intent(this, ListPDFLebenslauf.class);
+		this.startActivity(intent);
 	}
 
 	/**
@@ -92,10 +107,10 @@ public class Finish extends Activity {
 		final Intent intent = new Intent(this, PreferencesActivity.class);
 		startActivity(intent);
 	}
-	
+
 	public void clickZusammenfassung(View Button) {
 		final Intent intent = new Intent(this, Zusammenfassung.class);
 		startActivity(intent);
 	}
-	
+
 }

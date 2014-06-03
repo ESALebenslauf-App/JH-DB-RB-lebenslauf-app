@@ -52,10 +52,11 @@
             android:name="ch.jh_bd_rb_lebenslauf_app.gui.Finish"
             android:label="@string/title_activity_finish" >
         </activity>
-                <activity
+        <activity
             android:name="ch.jh_bd_rb_lebenslauf_app.gui.PreferencesActivity"
             android:label="@string/title_activity_finish" >
         </activity>
+        <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListPDFLebenslauf"></activity>
     </application>
 
 </manifest>
