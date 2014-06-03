@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="sprachPrefs"
+        android:title="Spracheinstellung für PDF" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="sprache"
+            android:persistent="true"
+            android:title="PDF in Englisch" >
+        </CheckBoxPreference>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="designPrefs"
+        android:title="Designeinstellungen für PDF" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="schriftGr"
+            android:persistent="true"
+            android:title="Grosse Schrift" >
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="schriftArt"
+            android:persistent="true"
+            android:title="Schriftart Helvetica" >
+        </CheckBoxPreference>
+    </PreferenceCategory>
+
+</PreferenceScreen>
