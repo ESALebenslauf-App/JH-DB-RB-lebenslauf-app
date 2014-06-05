@@ -1,6 +1,7 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.AddPersonalien;
 import ch.jh_bd_rb_lebenslauf_app.listener.BildListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.HochladenListener;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * 
@@ -20,8 +22,15 @@ import android.widget.ImageView;
  */
 public class Bild extends Activity {
 
-	static final String NAME = "name";
-	static final String ADRESSE = "adresse";
+	private AddPersonalien db;
+	private String anrede;
+	private String name;
+	private String vorname;
+	private String strasse;
+	private int plz;
+	private String ort;
+	private String geb;
+	private String bild;
 	private Button btnBerufserfahrung;
 	private ImageButton btnCamera;
 	private ImageButton btnHochladen;
@@ -34,7 +43,9 @@ public class Bild extends Activity {
 		setContentView(R.layout.activity_bild);
 		initActivityElemente();
 		initActivityListener();
+		db = new AddPersonalien(this);
 	}
+
 
 	private void initActivityElemente() {
 		btnBerufserfahrung = (Button) findViewById(R.id.buttonBerufserfahrung);
@@ -65,11 +76,21 @@ public class Bild extends Activity {
 	 * @param Button
 	 */
 	public void clickBildBerufserfahrung(View Button) {
+		
+		try{
+			db.open();
+			db.createPersonalien(anrede, name, vorname, strasse, plz, ort, geb, bild);
+			db.close();
+			}
+			catch (Exception ex){
+				Toast.makeText(this, ex.toString(), Toast.LENGTH_LONG).show();
+			}
+		
 		final Intent intent = new Intent(this, Berufserfahrung.class);
 		
 		
-		intent.putExtra(NAME, "Name");
-		intent.putExtra(ADRESSE, "Adresse");
+		intent.putExtra(name, "Name");
+		intent.putExtra(strasse, "Strasse");
 		startActivity(intent);
 
 	}

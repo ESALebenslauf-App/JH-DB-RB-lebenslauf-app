@@ -32,4 +32,73 @@ public class BildListener implements OnClickListener {
 		toast.show();
 	}
 
+	
+	private long persid;
+	private String anrede;
+	private String name;
+	private String vorname;
+	private String strasse;
+	private int plz;
+	private String ort;
+	private String geb;
+	private String bild;
+	
+	
+	public long getPersId(){return persid;}
+	public void setPersId(long persid){
+		this.persid = persid;
+	}
+	
+	
+	public String getAnrede() {return anrede;}
+	public void setAnrede(String anrede){
+		this.anrede = anrede;
+	}
+	
+	
+	public String getName() {return name;}
+	public void setName(String anrede){
+		this.anrede = anrede;
+	}
+	
+	
+	
+	public String getVorname() {return vorname;}
+	public void setVornme(String vorname){
+		this.vorname = vorname;
+	}
+
+
+
+	public String getStrasse() {return strasse;}
+	public void setStrasse(String strasse){
+		this.strasse = strasse;
+	}
+	
+	
+	public int getPLZ() {return plz;}
+	public void setPlz(int plz){
+		this.plz = plz;
+	}
+	
+	
+	public String getort() {return ort;}
+	public void setort(String ort){
+		this.ort = ort;
+	}
+	
+	
+	public String getGeb() {return geb;}
+	public void setGeb(String geb){
+		this.geb = geb;
+	}
+	
+	
+	
+	public String getBild() {return bild;}
+	public void setBild(String bild){
+		this.bild = bild;
+	}
+	
+	
 }
