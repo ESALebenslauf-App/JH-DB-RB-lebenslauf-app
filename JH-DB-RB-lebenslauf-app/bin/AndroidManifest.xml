@@ -21,7 +21,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="ch.jh_bd_rb_lebenslauf_app.gui.StartActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,32 +31,40 @@
         </activity>
         <activity
             android:name="ch.jh_bd_rb_lebenslauf_app.gui.Berufserfahrung"
-            android:label="@string/title_activity_berufserfahrung" >
+            android:label="@string/title_activity_berufserfahrung"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="ch.jh_bd_rb_lebenslauf_app.gui.Bild"
-            android:label="@string/title_activity_bild" >
+            android:label="@string/title_activity_bild"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="ch.jh_bd_rb_lebenslauf_app.gui.BildungActivity"
-            android:label="@string/title_activity_bildung" >
+            android:label="@string/title_activity_bildung"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="ch.jh_bd_rb_lebenslauf_app.gui.Skills"
-            android:label="@string/title_activity_skills" >
+            android:label="@string/title_activity_skills"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="ch.jh_bd_rb_lebenslauf_app.gui.Zusammenfassung"
-            android:label="@string/title_activity_zusammenfassung" >
+            android:label="@string/title_activity_zusammenfassung"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="ch.jh_bd_rb_lebenslauf_app.gui.Finish"
-            android:label="@string/title_activity_finish" >
+            android:label="@string/title_activity_finish"
+            android:screenOrientation="portrait" >
         </activity>
-                <activity
+        <activity
             android:name="ch.jh_bd_rb_lebenslauf_app.gui.PreferencesActivity"
-            android:label="@string/title_activity_finish" >
+            android:label="@string/title_activity_finish"
+            android:screenOrientation="portrait" >
         </activity>
+        <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListPDFLebenslauf"></activity>
     </application>
 
 </manifest>

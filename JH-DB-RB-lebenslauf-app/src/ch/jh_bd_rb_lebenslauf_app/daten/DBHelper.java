@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
-public class DbHelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
 	
 	private static final String DATABASE_NAME = "lebenslaufApp.db";
 	private static final int DATABASE_VERSION =1;
@@ -58,7 +58,7 @@ public class DbHelper extends SQLiteOpenHelper {
 			+ "SKILLSVON int [FOREIGN KEY] references PERSONALIEN)";	
 
 	
-	public DbHelper(Context context) {
+	public DBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 	
@@ -76,7 +76,7 @@ public class DbHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// transform db from old to new version
-		Log.w(DbHelper.class.getName(),
+		Log.w(DBHelper.class.getName(),
 				"Upgrading database from version " + oldVersion + " to "
 						+ newVersion + ", which will destroy all old data");
 		db.execSQL("DROP TABLE IF EXISTS SCANITEM");
