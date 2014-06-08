@@ -44,6 +44,7 @@
     <string name="txt_adresse">Adresse</string>
     <string name="txt_berufserfahrung">Berufserfahrung</string>
     <string name="txt_nav_zuruck">Bild</string>
+    <string name="txt_geb">Geburtsdatum</string>
 
     <!-- Dritte Seite -->
     <string name="title_activity_berufserfahrung">Berufserfahrung</string>

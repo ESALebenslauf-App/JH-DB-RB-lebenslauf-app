@@ -93,53 +93,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="15dp"
-            android:text="@string/txt_bildLaden"
+            android:text="@string/txt_bild"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayoutFooter"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayoutTitel"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:background="#000000"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp" >
-
-        <ImageButton
-            android:id="@+id/picAuswahl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ico_pic"
-            android:text="@string/txt_bild_hochladen" />
-
-        <ImageButton
-            android:id="@+id/kamAuswahl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="46dp"
-            android:src="@drawable/ico_cam" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtPersonalien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="22dp"
-        android:text="@string/txt_personalien"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignParentRight="true"
+        android:background="#1DACE9"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/buttonBerufserfahrung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#1DACE9"
+            android:contentDescription="@string/todo"
+            android:paddingLeft="170dp"
+            android:text="@string/naviUntenBerufserfahrung"
+            android:textColor="#ffffff" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ico_vor" />
+
+    </LinearLayout>
 
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtPersonalien"
-        android:layout_below="@+id/txtPersonalien"
-        android:layout_marginTop="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayoutTitel"
+        android:layout_marginTop="14dp"
         android:layout_weight="1.00" >
 
         <TableRow
@@ -157,6 +149,44 @@
                 android:id="@+id/spinnerAnrede"
                 android:layout_width="match_parent"
                 android:entries="@array/anrede_array" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow_txt_vorname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/txt_vorname_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_vorname" />
+
+            <EditText
+                android:id="@+id/txt_vorname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow_txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/txt_name_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_name" />
+
+            <EditText
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
@@ -196,10 +226,7 @@
                 android:ems="4"
                 android:inputType="number"
                 android:maxWidth="20dp"
-                android:width="20dp" >
-
-                <requestFocus />
-            </EditText>
+                android:width="20dp" />
         </TableRow>
 
         <TableRow
@@ -219,41 +246,46 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text" />
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow_txt_geb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
+            <TextView
+                android:id="@+id/txt_geb_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_geb" />
+
+            <EditText
+                android:id="@+id/txt_Edit_geb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
             android:id="@+id/add_berufserfahrung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
+
+            <ImageButton
+            android:id="@+id/picAuswahl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ico_pic"
+            android:text="@string/txt_bild_hochladen" />
+
+        <ImageButton
+            android:id="@+id/kamAuswahl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="46dp"
+            android:src="@drawable/ico_cam" />
         </TableRow>
     </TableLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayoutFooter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:background="#1DACE9"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/buttonBerufserfahrung"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#1DACE9"
-            android:contentDescription="@string/todo"
-            android:paddingLeft="170dp"
-            android:text="@string/naviUntenBerufserfahrung"
-            android:textColor="#ffffff" />
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/ico_vor" />
-
-    </LinearLayout>
 </RelativeLayout>
