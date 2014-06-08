@@ -1,7 +1,7 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
+
 import ch.jh_bd_rb_lebenslauf_app.R;
-import ch.jh_bd_rb_lebenslauf_app.daten.AddPersonalien;
 import ch.jh_bd_rb_lebenslauf_app.listener.BildListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.HochladenListener;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import android.widget.Toast;
  */
 public class Bild extends Activity {
 
-	private AddPersonalien db;
+
 	private String anrede;
 	private String name;
 	private String vorname;
@@ -43,8 +43,12 @@ public class Bild extends Activity {
 		setContentView(R.layout.activity_bild);
 		initActivityElemente();
 		initActivityListener();
-		db = new AddPersonalien(this);
 	}
+	
+	@Override
+    protected void onResume() {
+    	super.onResume();
+    }
 
 
 	private void initActivityElemente() {
@@ -59,8 +63,7 @@ public class Bild extends Activity {
 			
 			@Override
 			public void onClick(View button) {
-				clickBildBerufserfahrung(button);
-				
+				clickBildBerufserfahrung(button);				
 			}
 		});
 		
@@ -77,14 +80,6 @@ public class Bild extends Activity {
 	 */
 	public void clickBildBerufserfahrung(View Button) {
 		
-		try{
-			db.open();
-			db.createPersonalien(anrede, name, vorname, strasse, plz, ort, geb, bild);
-			db.close();
-			}
-			catch (Exception ex){
-				Toast.makeText(this, ex.toString(), Toast.LENGTH_LONG).show();
-			}
 		
 		final Intent intent = new Intent(this, Berufserfahrung.class);
 		
