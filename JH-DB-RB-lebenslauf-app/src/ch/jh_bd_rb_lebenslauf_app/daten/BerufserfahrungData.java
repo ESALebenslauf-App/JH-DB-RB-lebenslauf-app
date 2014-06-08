@@ -2,7 +2,9 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
 
 public class BerufserfahrungData implements LebenslaufDaten{
 
+	private long berufserfahrungID;
 	private String txt_firma;
+
 	private String txt_titel;
 	private String txt_adresse;
 	private String txt_plz;
@@ -24,6 +26,10 @@ public class BerufserfahrungData implements LebenslaufDaten{
 		this.txt_taetigkeit = txt_taetigkeit;
 		this.btnSelectDateVon = btnSelectDateVon;
 		this.btnSelectDateBis = btnSelectDateBis;
+	}
+
+	public BerufserfahrungData() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getTxt_firma() {
@@ -90,6 +96,12 @@ public class BerufserfahrungData implements LebenslaufDaten{
 		this.btnSelectDateBis = btnSelectDateBis;
 	}
 
+	public long getBerufserfahrungID() {
+		return berufserfahrungID;
+	}
 
+	public void setBerufserfahrungID(long berufserfahrungID) {
+		this.berufserfahrungID = berufserfahrungID;
+	}
 
 }

@@ -1,11 +1,11 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
-import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungenDAO;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
 import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
 import ch.jh_bd_rb_lebenslauf_app.gui.Berufserfahrung;
@@ -29,13 +29,12 @@ public class BerufserfahrungListener implements OnClickListener {
 	private EditText txt_taetigkeit;
 	private Button btnSelectDateVon;
 	private Button btnSelectDateBis;
-	private BerufserfahrungenDAO berufserfahrungen;
+	private ArrayList<BerufserfahrungData> berufserfahrungen;
 	private String ID;
 
 	public BerufserfahrungListener(Activity myActivity) {
 		this.berufserfahrungenActivity = myActivity;
-		berufserfahrungen = new BerufserfahrungenDAO();
-		berufserfahrungen.setID(getID());
+		berufserfahrungen = new ArrayList<BerufserfahrungData>();
 		init();
 	}
 
@@ -49,7 +48,7 @@ public class BerufserfahrungListener implements OnClickListener {
 				getBtnSelectDateVon().getText().toString(),
 				getBtnSelectDateBis().getText().toString());
 		
-		berufserfahrungen.add(berufserfahrungData);
+		berufserfahrungen.add((BerufserfahrungData) berufserfahrungData);
 		
 		getTxt_firma().setText("");
 		getTxt_titel().setText("");
@@ -159,14 +158,6 @@ public class BerufserfahrungListener implements OnClickListener {
 		this.btnSelectDateBis = btnSelectDateBis;
 	}
 
-	public BerufserfahrungenDAO getBerufserfahrungen() {
-		return berufserfahrungen;
-	}
-
-	public void setBerufserfahrungen(BerufserfahrungenDAO berufserfahrungen) {
-		this.berufserfahrungen = berufserfahrungen;
-	}
-
 	public void setID(String iD) {
 		ID = iD;
 	}
@@ -181,6 +172,10 @@ public class BerufserfahrungListener implements OnClickListener {
 
 		Toast toast = Toast.makeText(context, text, duration);
 		toast.show();
+	}
+
+	public ArrayList<BerufserfahrungData> getBerufserfahrungen() {
+		return berufserfahrungen;
 	}
 
 }

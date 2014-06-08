@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
-import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungenDAO;
-import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
-import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
 import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
 import ch.jh_bd_rb_lebenslauf_app.listener.BerufserfahrungListener;
 import android.os.Bundle;
@@ -54,10 +52,11 @@ public class Berufserfahrung extends FragmentActivity {
 	}
 
 	private void initActivityElemente() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",Locale.GERMANY);
-        String datum = dateFormat.format(new java.util.Date());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",
+				Locale.GERMANY);
+		String datum = dateFormat.format(new java.util.Date());
 		btnSelectDateBis = (Button) findViewById(R.id.btnSelectDateBis);
-		btnSelectDateBis.setText(datum);        
+		btnSelectDateBis.setText(datum);
 		btnSelectDateVon = (Button) findViewById(R.id.btnSelectDateVon);
 		btnSelectDateVon.setText(datum);
 		btnBeruferfahrung = (Button) findViewById(R.id.sf_add_berufserfahrung);
@@ -134,7 +133,7 @@ public class Berufserfahrung extends FragmentActivity {
 
 		startActivity(intent);
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -147,14 +146,13 @@ public class Berufserfahrung extends FragmentActivity {
 		datenSpeichern();
 	}
 
-
 	/**
 	 * Daten können Persistent gespeichert werden
 	 */
 	private void datenSpeichern() {
 		// Datenobjekt aus demListener laden
-		BerufserfahrungenDAO berufserfahrungen = berufserfahrungListener
-				.getBerufserfahrungen();
+		long dbID = 0;
+		ArrayList<BerufserfahrungData> berufserfahrungen = berufserfahrungListener.getBerufserfahrungen();
 		if (berufserfahrungen.size() > 0) {
 			// TODO Erfasste Daten beim verlassen der Activity abspeichern
 			// TODO Start Demo / Ausbauen
@@ -170,8 +168,21 @@ public class Berufserfahrung extends FragmentActivity {
 						+ berufserfahrung.getTxt_taetigkeit() + " / "
 						+ berufserfahrung.getBtnSelectDateVon() + " / "
 						+ berufserfahrung.getBtnSelectDateBis() + " ENDE ";
-			}
 
+				// TODO Datenbank
+				BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(this);
+				beruferfahrungDB.open();
+				dbID = beruferfahrungDB.insertPersonalien(
+						berufserfahrung.getTxt_firma(),
+						berufserfahrung.getTxt_taetigkeit(),
+						berufserfahrung.getTxt_titel(), 4624,
+						berufserfahrung.getTxt_ort(),
+						berufserfahrung.getBtnSelectDateVon(),
+						berufserfahrung.getBtnSelectDateBis());
+
+				beruferfahrungDB.close();
+				strToast = strToast + "DATENBANK ID: " + dbID;
+			}
 			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
 			toast.show();
 			// ENDE Demo

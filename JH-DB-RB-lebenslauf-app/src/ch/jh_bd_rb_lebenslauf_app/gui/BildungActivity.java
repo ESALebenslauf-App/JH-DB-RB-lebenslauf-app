@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
+import ch.jh_bd_rb_lebenslauf_app.daten.BildungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
 import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
 import ch.jh_bd_rb_lebenslauf_app.listener.*;
@@ -22,7 +23,7 @@ import android.widget.Toast;
 /**
  * @author bdervishi.jherzig.rbuess
  * 
- * In dieser Activity können mehrer Ausbildungen hinterlegt werden.
+ *         In dieser Activity können mehrer Ausbildungen hinterlegt werden.
  */
 public class BildungActivity extends FragmentActivity {
 
@@ -103,10 +104,11 @@ public class BildungActivity extends FragmentActivity {
 	 * 
 	 */
 	private void initActivityElemente() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",Locale.GERMANY);
-        String datum = dateFormat.format(new java.util.Date());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",
+				Locale.GERMANY);
+		String datum = dateFormat.format(new java.util.Date());
 		btnSelectDateBis = (Button) findViewById(R.id.btnSelectDateBis);
-		btnSelectDateBis.setText(datum);        
+		btnSelectDateBis.setText(datum);
 		btnSelectDateVon = (Button) findViewById(R.id.btnSelectDateVon);
 		btnSelectDateVon.setText(datum);
 		btnAddBildung = (Button) findViewById(R.id.btn_add_bildung);
@@ -159,6 +161,7 @@ public class BildungActivity extends FragmentActivity {
 	 * Daten können Persistent gespeichert werden
 	 */
 	private void datenSpeichern() {
+		long dbID;
 		// Datenobjekt aus demListener laden
 		BildungenDAO bildungen = bildungListener.getBildungen();
 		if (bildungen.size() > 0) {
@@ -173,6 +176,16 @@ public class BildungActivity extends FragmentActivity {
 						+ bildung.getAdresseSchule() + " / "
 						+ bildung.getDatumVon() + " / " + bildung.getDatumBis()
 						+ " ENDE ";
+
+				// TODO Datenbank
+				BildungDB bildungDB = new BildungDB(this);
+				bildungDB.open();
+				dbID = bildungDB.insertBildung("anrede",
+						bildung.getAusbildungsart(), bildung.getNameschule(),
+						4624, bildung.getAdresseSchule(),
+						bildung.getDatumVon(), bildung.getDatumBis());
+				bildungDB.close();
+				strToast = strToast + " DATENBANK ID: " + dbID;
 			}
 
 			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
