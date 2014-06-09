@@ -26,8 +26,13 @@ public class BildungDB implements LebenslaufDB{
 
 	
 	// Bildung ausgeben
-	public Cursor getBildung(long id) {
-		Cursor result = db.query(TABLE_BILDUNG, LebenslaufDB.PROJECTION_BILDUNG, BILDUNG_ID + "=" + id, null, null, null, null);
+	public Cursor getBildung(String id) {
+		String [] dbID = new String [1];
+		dbID[0] = id;
+		
+	    Cursor result = db.query(false,"Bildung", new String []{"_id", "bildungsart"}, "_id=?", dbID, null, null, null,null);
+
+		//Cursor result = db.rawQuery("SELECT * FROM Bildung WHERE _id = 35;", null);
 		boolean found = result.moveToFirst();
 		if (found) {
 			return result;
@@ -39,7 +44,8 @@ public class BildungDB implements LebenslaufDB{
 	}
 	
 	public Cursor getAllCursor() {
-		return db.query(TABLE_BILDUNG, new String[] { BILDUNG_ID, BILDUNG_BILDUNGSART, BILDUNG_SCHULNAME, BILDUNG_PLZ, BILDUNG_ORT, BILDUNG_VON, BILDUNG_BIS}, null, null, null, null, null);
+		//return db.query(TABLE_BILDUNG, new String[] { BILDUNG_ID, BILDUNG_BILDUNGSART, BILDUNG_SCHULNAME, BILDUNG_PLZ, BILDUNG_ORT, BILDUNG_VON, BILDUNG_BIS}, null, null, null, null, null);
+		return db.rawQuery("SELECT * FROM Bildung", null);
 	}
 	
 	// loescht einen Eintrag in der Tabelle Bildung
