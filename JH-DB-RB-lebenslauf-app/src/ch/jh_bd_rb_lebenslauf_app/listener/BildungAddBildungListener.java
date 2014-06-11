@@ -6,7 +6,6 @@ import java.util.Locale;
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
-import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
 import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -180,7 +179,6 @@ public class BildungAddBildungListener implements OnClickListener {
 		this.edt_radio_weiter = edt_radio_weiter;
 	}
 
-	@SuppressWarnings("unused")
 	private Button getBtnSelectDateVon() {
 		return btnSelectDateVon;
 	}
@@ -189,7 +187,6 @@ public class BildungAddBildungListener implements OnClickListener {
 		this.btnSelectDateVon = btnSelectDateVon;
 	}
 
-	@SuppressWarnings("unused")
 	private Button getBtnSelectDateBis() {
 		return btnSelectDateBis;
 	}
