@@ -8,6 +8,8 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
  */
 public class Bildung implements LebenslaufDaten {
 
+	private Long id;
+	private Long persID;
 	private String ausbildungsart;
 	private String nameschule;
 	private String plz;
@@ -33,6 +35,26 @@ public class Bildung implements LebenslaufDaten {
 		this.adresseSchule = adresseSchule;
 		this.datumVon = datumVon;
 		this.datumBis = datumBis;
+	}
+
+	public Bildung(Long id) {
+		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getPersID() {
+		return persID;
+	}
+
+	public void setPersID(Long persID) {
+		this.persID = persID;
 	}
 
 	/**

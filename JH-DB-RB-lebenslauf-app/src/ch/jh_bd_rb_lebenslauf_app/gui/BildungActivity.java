@@ -161,7 +161,7 @@ public class BildungActivity extends FragmentActivity {
 	 * Daten können Persistent gespeichert werden
 	 */
 	private void datenSpeichern() {
-		long dbID;
+
 		// Datenobjekt aus demListener laden
 		BildungenDAO bildungen = bildungListener.getBildungen();
 		if (bildungen.size() > 0) {
@@ -180,12 +180,9 @@ public class BildungActivity extends FragmentActivity {
 				// TODO Datenbank
 				BildungDB bildungDB = new BildungDB(this);
 				bildungDB.open();
-				dbID = bildungDB.insertBildung("anrede",
-						bildung.getAusbildungsart(), bildung.getNameschule(),
-						4624, bildung.getAdresseSchule(),
-						bildung.getDatumVon(), bildung.getDatumBis());
+				bildung = bildungDB.insertBildung(bildung);
 				bildungDB.close();
-				strToast = strToast + " DATENBANK ID: " + dbID;
+				strToast = strToast + " DATENBANK ID: " + bildung.getId();
 			}
 
 			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
