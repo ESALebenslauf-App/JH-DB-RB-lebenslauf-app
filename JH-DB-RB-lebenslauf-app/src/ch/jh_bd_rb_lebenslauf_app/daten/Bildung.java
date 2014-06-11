@@ -10,6 +10,7 @@ public class Bildung implements LebenslaufDaten {
 
 	private String ausbildungsart;
 	private String nameschule;
+	private String plz;
 	private String adresseSchule;
 	private String datumVon;
 	private String datumBis;
@@ -23,11 +24,12 @@ public class Bildung implements LebenslaufDaten {
 	 * @param datumVon
 	 * @param datumBis
 	 */
-	public Bildung(String ausbildungsart, String nameschule,
+	public Bildung(String ausbildungsart, String nameschule,String plz,
 			String adresseSchule, String datumVon, String datumBis) {
 		super();
 		this.ausbildungsart = ausbildungsart;
 		this.nameschule = nameschule;
+		this.plz = plz;
 		this.adresseSchule = adresseSchule;
 		this.datumVon = datumVon;
 		this.datumBis = datumBis;
@@ -59,6 +61,14 @@ public class Bildung implements LebenslaufDaten {
 	 */
 	public void setNameschule(String nameschule) {
 		this.nameschule = nameschule;
+	}
+	
+	public String getPlz() {
+		return plz;
+	}
+
+	public void setPlz(String plz) {
+		this.plz = plz;
 	}
 
 	/**
@@ -102,5 +112,6 @@ public class Bildung implements LebenslaufDaten {
 	public void setDatumBis(String datumBis) {
 		this.datumBis = datumBis;
 	}
+	
 
 }

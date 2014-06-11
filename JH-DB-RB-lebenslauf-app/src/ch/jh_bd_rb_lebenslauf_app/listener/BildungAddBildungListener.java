@@ -25,6 +25,7 @@ public class BildungAddBildungListener implements OnClickListener {
 	private Activity bildungActivity;
 	private EditText edt_bildung_schule;
 	private EditText edt_bildung_adresse;
+	private EditText edt_bildung_plz;
 	private RadioButton edt_radio_grund;
 	private RadioButton edt_radio_ausb;
 	private RadioButton edt_radio_weiter;
@@ -54,8 +55,9 @@ public class BildungAddBildungListener implements OnClickListener {
 		setEdt_bildung_schule((EditText) bildungActivity
 				.findViewById(R.id.edt_bildung_schule));
 		setEdt_bildung_adresse((EditText) bildungActivity
-				.findViewById(R.id.edt_bildung_adresse));
-
+				.findViewById(R.id.edt_bildung_ort));
+		setEdt_bildung_plz((EditText) bildungActivity
+				.findViewById(R.id.edt_bildung_plz));
 		setEdt_radio_ausb((RadioButton) bildungActivity
 				.findViewById(R.id.edt_radio_ausb));
 		setEdt_radio_grund((RadioButton) bildungActivity
@@ -71,8 +73,8 @@ public class BildungAddBildungListener implements OnClickListener {
 	@Override
 	public void onClick(View arg0) {
 
-		LebenslaufDaten bildung = new Bildung(getRadioButten(),
-				getEdt_bildung_schule().getText().toString(),
+		Bildung bildung = new Bildung(getRadioButten(),
+				getEdt_bildung_schule().getText().toString(),getEdt_bildung_plz().getText().toString(),
 				getEdt_bildung_adresse().getText().toString(), getDateVon(),
 				getDateBis());
 
@@ -80,9 +82,10 @@ public class BildungAddBildungListener implements OnClickListener {
 		// der Activity Persistent gespeichert werden kann.
 		bildungen.add(bildung);
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",Locale.GERMANY);
-        String datum = dateFormat.format(new java.util.Date());
-        
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",
+				Locale.GERMANY);
+		String datum = dateFormat.format(new java.util.Date());
+
 		getEdt_bildung_schule().setText("");
 		getEdt_bildung_adresse().setText("");
 		getBtnSelectDateBis().setText(datum);
@@ -201,5 +204,13 @@ public class BildungAddBildungListener implements OnClickListener {
 
 	private String getDateBis() {
 		return btnSelectDateBis.getText().toString();
+	}
+
+	private EditText getEdt_bildung_plz() {
+		return edt_bildung_plz;
+	}
+
+	private void setEdt_bildung_plz(EditText edt_bildung_plz) {
+		this.edt_bildung_plz = edt_bildung_plz;
 	}
 }
