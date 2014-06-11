@@ -139,27 +139,62 @@
                 android:text="@string/txt_weiter" />
         </RadioGroup>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_schule" />
+        <TableRow
+            android:id="@+id/tableRow_bildung_txt_schule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
-        <EditText
-            android:id="@+id/edt_bildung_schule"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
+            <TextView
+                android:id="@+id/txt_bildung_schule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_name" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_adresse" />
+            <EditText
+                android:id="@+id/edt_bildung_schule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" />
+        </TableRow>
 
-        <EditText
-            android:id="@+id/edt_bildung_adresse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
+        <TableRow
+            android:id="@+id/tableRow_bildung_txt_plz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/txt_bildung_plz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_plz" />
+
+            <EditText
+                android:id="@+id/edt_bildung_plz"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow_txt_ort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/txt_ort_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_ort" />
+
+            <EditText
+                android:id="@+id/edt_bildung_ort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" />
+        </TableRow>
 
         <LinearLayout
             android:layout_width="match_parent"
