@@ -5,11 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class BildungDB implements LebenslaufDB{
-	
+public class BildungDB implements LebenslaufDB {
+
 	private final DBHelper dbHelper;
 	private SQLiteDatabase db;
-	
+
 	public BildungDB(Context context) {
 		dbHelper = new DBHelper(context);
 	}
@@ -24,50 +24,58 @@ public class BildungDB implements LebenslaufDB{
 		dbHelper.close();
 	}
 
-	
 	// Bildung ausgeben
-	public Cursor getBildung(String id) {
-		String [] dbID = new String [1];
-		dbID[0] = id;
-		
-	    Cursor result = db.query(false,"Bildung", new String []{"_id", "bildungsart"}, "_id=?", dbID, null, null, null,null);
+	public Bildung getBildung(Bildung bildung) {
+		String[] dbID = new String[1];
+		dbID[0] = bildung.getId().toString();
 
-		//Cursor result = db.rawQuery("SELECT * FROM Bildung WHERE _id = 35;", null);
+		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG,
+				BILDUNG_ID + "=?", dbID, null, null, null, null);
 		boolean found = result.moveToFirst();
 		if (found) {
-			return result;
-		}
-		else {
+			bildung.setAusbildungsart(result.getString(0));
+			bildung.setNameschule(result.getString(1));
+			bildung.setPlz(result.getString(2));
+			bildung.setAdresseSchule(result.getString(3));
+			bildung.setDatumVon(result.getString(4));
+			bildung.setDatumBis(result.getString(5));
+			
+			return bildung;
+		} else {
 			result.close();
 			return null;
 		}
 	}
-	
+
+	//TODO umschreiben auf Bildung Objekt
 	public Cursor getAllCursor() {
-		//return db.query(TABLE_BILDUNG, new String[] { BILDUNG_ID, BILDUNG_BILDUNGSART, BILDUNG_SCHULNAME, BILDUNG_PLZ, BILDUNG_ORT, BILDUNG_VON, BILDUNG_BIS}, null, null, null, null, null);
-		return db.rawQuery("SELECT * FROM Bildung", null);
-	}
-	
-	// loescht einen Eintrag in der Tabelle Bildung
-		public boolean deleteBildung(long id) {
-			return db.delete(TABLE_BILDUNG, BILDUNG_ID + "=" + id, null) > 0;
-	}
-		
-	
-	// erzeugt einen Eintrag in der Tabelle Bildung
-	public long insertBildung(String anrede, String bildungsart, String schulname, int plz, String ort, String von, String bis) {
-		ContentValues values = new ContentValues();
-		values.put(BILDUNG_BILDUNGSART, bildungsart);
-		values.put(BILDUNG_SCHULNAME, schulname);
-		values.put(BILDUNG_PLZ, plz);
-		values.put(BILDUNG_ORT, ort);
-		values.put(BILDUNG_VON, von);
-		values.put(BILDUNG_BIS, bis);
-		
-		long id = db.insert(TABLE_BILDUNG, null, values);
-		return id;
+		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG,
+				null, null, null, null, null, null);
+		return result;
 	}
 
+	// loescht einen Eintrag in der Tabelle Bildung
+	public boolean deleteBildung(Bildung bildung) {
+		String[] dbID = new String[1];
+		dbID[0] = bildung.getId().toString();
+		return db.delete(TABLE_BILDUNG, BILDUNG_ID + "=?", dbID) > 0;
+	}
+
+	// erzeugt einen Eintrag in der Tabelle Bildung
+	public Bildung insertBildung(Bildung bildung) {
+		ContentValues values = new ContentValues();
+		values.put(BILDUNG_BILDUNGSART, bildung.getAusbildungsart());
+		values.put(BILDUNG_SCHULNAME, bildung.getNameschule());
+		values.put(BILDUNG_PLZ, bildung.getPlz());
+		values.put(BILDUNG_ORT, bildung.getAdresseSchule());
+		values.put(BILDUNG_VON, bildung.getDatumVon());
+		values.put(BILDUNG_BIS, bildung.getDatumBis());
+
+		bildung.setId(db.insert(TABLE_BILDUNG, null, values));
+		return bildung;
+	}
+
+	//TODO Testen und überarbeiten
 	// aktualisiert einen Eintrag in der Tabelle Bildung
 	public boolean updateBildung(long id, ContentValues updates) {
 		return db.update(TABLE_BILDUNG, updates, BILDUNG_ID + "=" + id, null) > 0;
