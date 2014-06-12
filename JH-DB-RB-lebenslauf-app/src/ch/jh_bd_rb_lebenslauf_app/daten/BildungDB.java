@@ -2,7 +2,6 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
 
 import java.util.ArrayList;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -31,7 +30,13 @@ public class BildungDB implements LebenslaufDB {
 		dbHelper.close();
 	}
 
-	// Bildung ausgeben
+	/**
+	 * Läd anhand der ID im Objekt bildung die dazugehörigen Daten aus der DB
+	 * und füllt diese ins OBjekt ab.
+	 * 
+	 * @param bildung
+	 * @return Bildung mit Daten aus DB
+	 */
 	public Bildung getBildung(Bildung bildung) {
 		String[] dbID = new String[1];
 		dbID[0] = bildung.getId().toString();
@@ -47,7 +52,16 @@ public class BildungDB implements LebenslaufDB {
 		}
 	}
 
-	// Bildung ausgeben
+	/**
+	 * Es werden alle Bildungen aus der DB geladen bei denen die where bedingen
+	 * erfühlt sind. Die Spallte der Bedingen muss mitangeben werden und der
+	 * wert der Bedingen im Bildung Objekt.
+	 * 
+	 * @param bildung
+	 * @param columWhere
+	 *            Colum Name der where abfrage
+	 * @return ArrayList<Bildung> alle treffer
+	 */
 	public ArrayList<Bildung> getBildungRows(Bildung bildung, String columWhere) {
 		String[] dbWhere = new String[1];
 		String dbColWhere = BILDUNG_ID;
@@ -105,6 +119,8 @@ public class BildungDB implements LebenslaufDB {
 	}
 
 	/**
+	 * Giebt alle Zeilen in der DB zurück.
+	 * 
 	 * @return ArrayList<Bildung>
 	 */
 	public ArrayList<Bildung> getAllBildungen() {
@@ -125,7 +141,7 @@ public class BildungDB implements LebenslaufDB {
 	}
 
 	/**
-	 * loescht einen Eintrag in der Tabelle Bildung
+	 * loescht einen Eintrag in der Tabelle Bildung anhand der ID
 	 * 
 	 * @param bildung
 	 * @return boolean konnte der Eintrag geloescht werden
@@ -164,9 +180,9 @@ public class BildungDB implements LebenslaufDB {
 		values = putContentValues(bildung, values);
 
 		if (bildung.getId() > 0) {
-			db.update(TABLE_BILDUNG, values, "_id=?",
-					new String[] { bildung.getId().toString() });
-			
+			db.update(TABLE_BILDUNG, values, "_id=?", new String[] { bildung
+					.getId().toString() });
+
 			return getBildung(bildung);
 		} else {
 			return bildung;
@@ -191,6 +207,11 @@ public class BildungDB implements LebenslaufDB {
 		return bildung;
 	}
 
+	/**
+	 * @param bildung
+	 * @param values
+	 * @return ContentValues mit Daten aus bildung
+	 */
 	private ContentValues putContentValues(Bildung bildung, ContentValues values) {
 		values.put(BILDUNG_BILDUNGSART, bildung.getAusbildungsart());
 		values.put(BILDUNG_SCHULNAME, bildung.getNameschule());
