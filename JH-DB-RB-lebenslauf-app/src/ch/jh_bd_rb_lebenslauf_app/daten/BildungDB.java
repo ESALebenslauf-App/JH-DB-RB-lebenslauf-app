@@ -2,6 +2,7 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
 
 import java.util.ArrayList;
 
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -87,7 +88,7 @@ public class BildungDB implements LebenslaufDB {
 
 		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG,
 				dbColWhere + "=?", dbWhere, null, null, null, null);
-		
+
 		if (result.moveToFirst()) {
 			ArrayList<Bildung> bildungen = new ArrayList<Bildung>();
 			result.moveToFirst();
@@ -143,22 +144,33 @@ public class BildungDB implements LebenslaufDB {
 	 */
 	public Bildung insertBildung(Bildung bildung) {
 		ContentValues values = new ContentValues();
-		values.put(BILDUNG_BILDUNGSART, bildung.getAusbildungsart());
-		values.put(BILDUNG_SCHULNAME, bildung.getNameschule());
-		values.put(BILDUNG_PLZ, bildung.getPlz());
-		values.put(BILDUNG_ORT, bildung.getAdresseSchule());
-		values.put(BILDUNG_VON, bildung.getDatumVon());
-		values.put(BILDUNG_BIS, bildung.getDatumBis());
-		values.put(BILDUNG_PERS_ID, bildung.getPersID());
+
+		values = putContentValues(bildung, values);
 
 		bildung.setId(db.insert(TABLE_BILDUNG, null, values));
 		return bildung;
 	}
 
-	// TODO Testen und überarbeiten
-	// aktualisiert einen Eintrag in der Tabelle Bildung
-	public boolean updateBildung(long id, ContentValues updates) {
-		return db.update(TABLE_BILDUNG, updates, BILDUNG_ID + "=" + id, null) > 0;
+	/**
+	 * Das übergebene Bildungs Objekt wird anhand der ID Aktualisiert es werden
+	 * alle einträge des Objekts Aktualisiert.
+	 * 
+	 * @param bildung
+	 * @return
+	 */
+	public Bildung updateBildung(Bildung bildung) {
+
+		ContentValues values = new ContentValues();
+		values = putContentValues(bildung, values);
+
+		if (bildung.getId() > 0) {
+			db.update(TABLE_BILDUNG, values, "_id=?",
+					new String[] { bildung.getId().toString() });
+			
+			return getBildung(bildung);
+		} else {
+			return bildung;
+		}
 	}
 
 	/**
@@ -177,5 +189,17 @@ public class BildungDB implements LebenslaufDB {
 		bildung.setPersID(result.getLong(7));
 
 		return bildung;
+	}
+
+	private ContentValues putContentValues(Bildung bildung, ContentValues values) {
+		values.put(BILDUNG_BILDUNGSART, bildung.getAusbildungsart());
+		values.put(BILDUNG_SCHULNAME, bildung.getNameschule());
+		values.put(BILDUNG_PLZ, bildung.getPlz());
+		values.put(BILDUNG_ORT, bildung.getAdresseSchule());
+		values.put(BILDUNG_VON, bildung.getDatumVon());
+		values.put(BILDUNG_BIS, bildung.getDatumBis());
+		values.put(BILDUNG_PERS_ID, bildung.getPersID());
+
+		return values;
 	}
 }
