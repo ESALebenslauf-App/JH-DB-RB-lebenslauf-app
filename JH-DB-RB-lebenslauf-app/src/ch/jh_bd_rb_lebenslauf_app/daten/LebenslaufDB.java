@@ -62,16 +62,17 @@ public interface LebenslaufDB {
 	
 	
 	// Tabelle Personalien erstellen
-	static String SQL_CREATE_TABLE_PERS = "CREATE TABLE PERSONALIEN("
-			+ "PERSID INTEGER PRIMARY key autoincrement, "
-			+ "ANREDE TEXT NOT NULL, "
-			+ "NAME TEXT NOT NULL, "
-			+ "VORNAME TEXT NOT NULL,"
-			+ "STRASSE TEXT NOT NULL,"
-			+ "PLZ INT NOT NULL,"
-			+ "ORT TEXT NOT NULL,"
-			+ "GEB INT NOT NULL,"
-			+ "BILD TEXT NOT NULL)";
+	static String SQL_CREATE_TABLE_PERS = "CREATE TABLE " + TABLE_PERS + "("
+			+ PERS_ID + " INTEGER PRIMARY key autoincrement, "
+			+ PERS_ANREDE + " TEXT NOT NULL,"
+			+ PERS_NAME + " TEXT NOT NULL,"
+			+ PERS_VORNAME + " TEXT NOT NULL,"
+			+ PERS_STRASSE + " TEXT NOT NULL,"
+			+ PERS_PLZ + " TEXT NOT NULL,"
+			+ PERS_ORT + " TEXT NOT NULL,"
+			+ PERS_DATE + " TEXT NOT NULL,"
+			+ PERS_BILD + " TEXT NOT NULL)";
+			
 	
 	
 	// Tabelle Berufserfahrung erstellen

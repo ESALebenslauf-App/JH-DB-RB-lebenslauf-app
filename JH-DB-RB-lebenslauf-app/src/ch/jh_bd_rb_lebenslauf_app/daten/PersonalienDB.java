@@ -1,16 +1,17 @@
 package ch.jh_bd_rb_lebenslauf_app.daten;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+public class PersonalienDB implements LebenslaufDB {
 
-public class PersonalienDB implements LebenslaufDB{
-	
 	private final DBHelper dbHelper;
 	private SQLiteDatabase db;
-	
+
 	public PersonalienDB(Context context) {
 		dbHelper = new DBHelper(context);
 	}
@@ -25,48 +26,197 @@ public class PersonalienDB implements LebenslaufDB{
 		dbHelper.close();
 	}
 
-	
-	// Personalien ausgeben
-	public Cursor getPersonalien(long id) {
-		Cursor result = db.query(TABLE_PERS, LebenslaufDB.PROJECTION_PERS, PERS_ID + "=" + id, null, null, null, null);
-		boolean found = result.moveToFirst();
-		if (found) {
-			return result;
+	/**
+	 * erzeugt einen Eintrag in der Tabelle Personalien
+	 * 
+	 * @param personalien
+	 * @return Personalien mit Daten aus DB abgefuehlt
+	 */
+	public Personalien insertPersonalieng(Personalien personalien) {
+		ContentValues values = new ContentValues();
+
+		values = putContentValues(personalien, values);
+
+		personalien.setID(db.insert(TABLE_PERS, null, values));
+		return personalien;
+	}
+
+	/**
+	 * Das übergebene Personalien Objekt wird anhand der ID Aktualisiert es
+	 * werden alle einträge des Objekts Aktualisiert.
+	 * 
+	 * @param personalien
+	 * @return
+	 */
+	public Personalien updatePersonalien(Personalien personalien) {
+
+		ContentValues values = new ContentValues();
+		values = putContentValues(personalien, values);
+
+		if (personalien.getID() > 0) {
+			db.update(TABLE_PERS, values, "_id=?", new String[] { personalien
+					.getID().toString() });
+
+			return getPersonalien(personalien);
+		} else {
+			return personalien;
 		}
-		else {
+	}
+
+	/**
+	 * loescht einen Eintrag in der Tabelle Personalien anhand der ID
+	 * 
+	 * @param personalien
+	 * @return boolean konnte der Eintrag geloescht werden
+	 */
+	public boolean deletePersonalien(Personalien personalien) {
+		String[] dbID = new String[1];
+		dbID[0] = personalien.getID().toString();
+		return db.delete(TABLE_PERS, PERS_ID + "=?", dbID) > 0;
+	}
+
+	/**
+	 * Läd anhand der ID im Objekt bildung die dazugehörigen Daten aus der DB
+	 * und füllt diese ins OBjekt ab.
+	 * 
+	 * @param personalien
+	 * @return Personalien mit Daten aus DB
+	 */
+	public Personalien getPersonalien(Personalien personalien) {
+		String[] dbID = new String[1];
+		dbID[0] = personalien.getID().toString();
+
+		Cursor result = db.query(false, TABLE_PERS, PROJECTION_PERS, PERS_ID
+				+ "=?", dbID, null, null, null, null);
+
+		if (result.moveToFirst()) {
+			return setPersonalien(personalien, result);
+		} else {
 			result.close();
 			return null;
 		}
 	}
-	
-	public Cursor getAllCursor() {
-		return db.query(TABLE_PERS, new String[] { PERS_ID, PERS_ANREDE, PERS_NAME, PERS_VORNAME, PERS_STRASSE, PERS_PLZ, PERS_ORT, PERS_DATE, PERS_BILD}, null, null, null, null, null);
-	}
-	
-	// loescht einen Eintrag in der Tabelle Personalien
-		public boolean deletePersonalien(long id) {
-			return db.delete(TABLE_PERS, PERS_ID + "=" + id, null) > 0;
-	}
-		
-	
-	// erzeugt einen Eintrag in der Tabelle Personalien
-	public long insertPersonalien(String anrede, String name, String vorname, String strasse, int plz, String ort, String date, String bild) {
-		ContentValues values = new ContentValues();
-		values.put(PERS_ANREDE, anrede);
-		values.put(PERS_NAME, name);
-		values.put(PERS_VORNAME, vorname);
-		values.put(PERS_STRASSE, strasse);
-		values.put(PERS_PLZ, plz);
-		values.put(PERS_ORT, ort);
-		values.put(PERS_DATE, date);
-		values.put(PERS_BILD, bild);
-		
-		long id = db.insert(TABLE_PERS, null, values);
-		return id;
+
+	/**
+	 * Giebt alle Zeilen in der DB zurück.
+	 * 
+	 * @return ArrayList<Personalien>
+	 */
+	public ArrayList<Personalien> getAllPersonalien() {
+		ArrayList<Personalien> personalien = new ArrayList<Personalien>();
+
+		Cursor result = db.query(false, TABLE_PERS, PROJECTION_PERS, null,
+				null, null, null, null, null);
+
+		if (result.moveToFirst()) {
+			while (!result.isAfterLast()) {
+				Personalien personalie = new Personalien(result.getLong(0));
+				personalien.add(setPersonalien(personalie, result));
+				result.moveToNext();
+			}
+		}
+
+		return personalien;
 	}
 
-	// aktualisiert einen Eintrag in der Tabelle Personalien
-	public boolean updatePersonalien(long id, ContentValues updates) {
-		return db.update(TABLE_PERS, updates, PERS_ID + "=" + id, null) > 0;
+	/**
+	 * Es werden alle Bildungen aus der DB geladen bei denen die where bedingen
+	 * erfühlt sind. Die Spallte der Bedingen muss mitangeben werden und der
+	 * wert der Bedingen im Bildung Objekt.
+	 * 
+	 * @param bildung
+	 * @param columWhere
+	 *            Colum Name der where abfrage
+	 * @return ArrayList<Bildung> alle treffer
+	 */
+	public ArrayList<Personalien> getPersonalienRows(Personalien personalie,
+			String columWhere) {
+		String[] dbWhere = new String[1];
+		String dbColWhere = PERS_ID;
+
+		switch (columWhere) {
+		case PERS_ID:
+			dbWhere[0] = personalie.getID().toString();
+			dbColWhere = PERS_ID;
+			break;
+		case PERS_ANREDE:
+			dbWhere[0] = personalie.getAnrede().toString();
+			dbColWhere = PERS_ANREDE;
+			break;
+		case PERS_NAME:
+			dbWhere[0] = personalie.getName().toString();
+			dbColWhere = PERS_NAME;
+			break;
+		case PERS_VORNAME:
+			dbWhere[0] = personalie.getVorname().toString();
+			dbColWhere = PERS_VORNAME;
+			break;
+		case PERS_STRASSE:
+			dbWhere[0] = personalie.getStrasse().toString();
+			dbColWhere = PERS_STRASSE;
+			break;
+		case PERS_PLZ:
+			dbWhere[0] = personalie.getPlz().toString();
+			dbColWhere = PERS_PLZ;
+			break;
+		case PERS_ORT:
+			dbWhere[0] = personalie.getOrt().toString();
+			dbColWhere = PERS_ORT;
+			break;
+		case PERS_DATE:
+			dbWhere[0] = personalie.getDate().toString();
+			dbColWhere = PERS_DATE;
+			break;
+		case PERS_BILD:
+			dbWhere[0] = personalie.getBild().toString();
+			dbColWhere = PERS_BILD;
+			break;
+
+		default:
+			break;
+		}
+
+		ArrayList<Personalien> personalien = new ArrayList<Personalien>();
+
+		Cursor result = db.query(false, TABLE_PERS, PROJECTION_PERS, dbColWhere
+				+ "=?", dbWhere, null, null, null, null);
+
+		if (result.moveToFirst()) {
+			while (!result.isAfterLast()) {
+				Personalien pers = new Personalien(result.getLong(0));
+				personalien.add(setPersonalien(pers, result));
+				result.moveToNext();
+			}
+		}
+
+		return personalien;
+	}
+
+	private Personalien setPersonalien(Personalien personalien, Cursor result) {
+
+		personalien.setAnrede(result.getString(1));
+		personalien.setName(result.getString(2));
+		personalien.setVorname(result.getString(3));
+		personalien.setStrasse(result.getString(4));
+		personalien.setPlz(result.getString(5));
+		personalien.setOrt(result.getString(6));
+		personalien.setDate(result.getString(7));
+		personalien.setBild(result.getString(8));
+
+		return personalien;
+	}
+
+	private ContentValues putContentValues(Personalien personalien,
+			ContentValues values) {
+		values.put(PERS_ANREDE, personalien.getAnrede());
+		values.put(PERS_NAME, personalien.getName());
+		values.put(PERS_VORNAME, personalien.getVorname());
+		values.put(PERS_STRASSE, personalien.getStrasse());
+		values.put(PERS_PLZ, personalien.getPlz());
+		values.put(PERS_ORT, personalien.getOrt());
+		values.put(PERS_DATE, personalien.getDate());
+		values.put(PERS_BILD, personalien.getBild());
+
+		return values;
 	}
 }
