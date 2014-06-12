@@ -7,7 +7,6 @@ import java.util.Locale;
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
-import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
 import ch.jh_bd_rb_lebenslauf_app.listener.BerufserfahrungListener;
 import android.os.Bundle;
 import android.content.Intent;
@@ -156,7 +155,7 @@ public class Berufserfahrung extends FragmentActivity {
 			// TODO Erfasste Daten beim verlassen der Activity abspeichern
 			// TODO Start Demo / Ausbauen
 			String strToast = "";
-			for (LebenslaufDaten current : berufserfahrungen) {
+			for (BerufserfahrungData current : berufserfahrungen) {
 				// LebenslaufDaten in Bildung Casten
 				BerufserfahrungData berufserfahrung = (BerufserfahrungData) current;
 				strToast = strToast + berufserfahrung.getTxt_titel() + " / "

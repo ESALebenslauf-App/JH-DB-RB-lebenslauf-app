@@ -1,11 +1,11 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
-import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
 import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,8 +30,8 @@ public class BildungAddBildungListener implements OnClickListener {
 	private RadioButton edt_radio_weiter;
 	private Button btnSelectDateVon;
 	private Button btnSelectDateBis;
-	private BildungenDAO bildungen;
 	private String ID;
+	private ArrayList<Bildung> bildungen;
 
 	/**
 	 * Konstruktor Klasse BildungAddBildungListener
@@ -40,8 +40,7 @@ public class BildungAddBildungListener implements OnClickListener {
 	 */
 	public BildungAddBildungListener(Activity myActivity) {
 		this.bildungActivity = myActivity;
-		bildungen = new BildungenDAO();
-		bildungen.setID(getID());
+		bildungen = new ArrayList<Bildung>();
 		init();
 	}
 
@@ -89,24 +88,6 @@ public class BildungAddBildungListener implements OnClickListener {
 		getEdt_bildung_adresse().setText("");
 		getBtnSelectDateBis().setText(datum);
 		getBtnSelectDateVon().setText(datum);
-	}
-
-	/**
-	 * Ein bestehndes Objekt Bildungen übergeben
-	 * 
-	 * @param bildungen
-	 */
-	public void setBildungen(BildungenDAO bildungen) {
-		this.bildungen = bildungen;
-	}
-
-	/**
-	 * Rückgabe alle gespeicherten Bildungen
-	 * 
-	 * @return Bildungen
-	 */
-	public BildungenDAO getBildungen() {
-		return bildungen;
 	}
 
 	public String getID() {
@@ -209,5 +190,9 @@ public class BildungAddBildungListener implements OnClickListener {
 
 	private void setEdt_bildung_plz(EditText edt_bildung_plz) {
 		this.edt_bildung_plz = edt_bildung_plz;
+	}
+	
+	public ArrayList<Bildung> getBildungen() {
+		return bildungen;
 	}
 }

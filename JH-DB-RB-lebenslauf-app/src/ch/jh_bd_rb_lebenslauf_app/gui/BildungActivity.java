@@ -7,8 +7,6 @@ import java.util.Locale;
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungDB;
-import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
-import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
 import ch.jh_bd_rb_lebenslauf_app.listener.*;
 import android.os.Bundle;
 import android.content.Intent;
@@ -163,12 +161,13 @@ public class BildungActivity extends FragmentActivity {
 	private void datenSpeichern() {
 
 		// Datenobjekt aus demListener laden
-		BildungenDAO bildungen = bildungListener.getBildungen();
+
+		 ArrayList<Bildung> bildungen = bildungListener.getBildungen();
 		if (bildungen.size() > 0) {
 			// TODO Erfasste Daten beim verlassen der Activity abspeichern
 			// TODO Start Demo / Ausbauen
 			String strToast = "";
-			for (LebenslaufDaten current : bildungen) {
+			for (Bildung current : bildungen) {
 				// LebenslaufDaten in Bildung Casten
 				Bildung bildung = (Bildung) current;
 				strToast = strToast + bildung.getAusbildungsart() + " / "

@@ -6,7 +6,6 @@ import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
-import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
@@ -37,7 +36,7 @@ public class BerufserfahrungListener implements OnClickListener {
 
 	@Override
 	public void onClick(View arg0) {
-		LebenslaufDaten berufserfahrungData = new BerufserfahrungData(
+		BerufserfahrungData berufserfahrungData = new BerufserfahrungData(
 				getTxt_firma().getText().toString(), getTxt_titel().getText()
 						.toString(), getTxt_adresse().getText().toString(),
 				getTxt_plz().getText().toString(), getTxt_ort().getText()

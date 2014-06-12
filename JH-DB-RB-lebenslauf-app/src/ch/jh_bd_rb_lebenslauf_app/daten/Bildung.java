@@ -6,7 +6,7 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
  * @author bdervishi.jherzig.rbuess
  * 
  */
-public class Bildung implements LebenslaufDaten, Cloneable {
+public class Bildung implements Cloneable {
 
 	private Long id;
 	private Long persID;
