@@ -103,7 +103,7 @@ public interface LebenslaufDB {
 			
 			//+ "FOREIGN KEY(BILDUNGSID) REFERENCES PERSONALIEN(PERSID))";
 	
-	
+	//TODO Anpassen
 	// Tabelle Skills erstellen
 	static String SQL_CREATE_TABLE_SKILLS = "CREATE TABLE SKILLS("
 			+ "SKILLSID INTEGER PRIMARY key autoincrement,"

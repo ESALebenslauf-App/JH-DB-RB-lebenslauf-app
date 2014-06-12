@@ -167,13 +167,13 @@ public class Berufserfahrung extends FragmentActivity {
 						+ berufserfahrung.getBtnSelectDateVon() + " / "
 						+ berufserfahrung.getBtnSelectDateBis() + " ENDE ";
 
-				// TODO Datenbank
-				
+				//Datenbank
 				BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(this);
 				beruferfahrungDB.open();
 				beruferfahrungDB.insertBerufserfahrung(berufserfahrung);
-
 				beruferfahrungDB.close();
+				
+				//TODO Ausbauen
 				strToast = strToast + "DATENBANK ID: " + dbID;
 				
 			}
