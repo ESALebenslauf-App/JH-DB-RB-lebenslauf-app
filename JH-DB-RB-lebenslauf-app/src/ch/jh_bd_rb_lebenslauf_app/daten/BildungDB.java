@@ -39,6 +39,7 @@ public class BildungDB implements LebenslaufDB {
 			bildung.setAdresseSchule(result.getString(3));
 			bildung.setDatumVon(result.getString(4));
 			bildung.setDatumBis(result.getString(5));
+			bildung.setPersID(result.getLong(6));
 			
 			return bildung;
 		} else {
@@ -70,6 +71,7 @@ public class BildungDB implements LebenslaufDB {
 		values.put(BILDUNG_ORT, bildung.getAdresseSchule());
 		values.put(BILDUNG_VON, bildung.getDatumVon());
 		values.put(BILDUNG_BIS, bildung.getDatumBis());
+		values.put(BILDUNG_PERS_ID, bildung.getPersID());
 
 		bildung.setId(db.insert(TABLE_BILDUNG, null, values));
 		return bildung;
