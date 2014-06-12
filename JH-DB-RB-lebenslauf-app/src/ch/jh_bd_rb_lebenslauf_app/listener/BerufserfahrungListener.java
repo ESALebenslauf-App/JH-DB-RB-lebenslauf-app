@@ -36,11 +36,12 @@ public class BerufserfahrungListener implements OnClickListener {
 
 	@Override
 	public void onClick(View arg0) {
+		//TODO "beruf Beschreibung" durch ein richtiges Feld ersetzten
 		BerufserfahrungData berufserfahrungData = new BerufserfahrungData(
 				getTxt_firma().getText().toString(), getTxt_titel().getText()
-						.toString(), getTxt_adresse().getText().toString(),
+						.toString(),  getTxt_taetigkeit().getText().toString(), "beruf Beschreibung",getTxt_adresse().getText().toString(),
 				getTxt_plz().getText().toString(), getTxt_ort().getText()
-						.toString(), getTxt_taetigkeit().getText().toString(),
+						.toString(),
 				getBtnSelectDateVon().getText().toString(),
 				getBtnSelectDateBis().getText().toString());
 		

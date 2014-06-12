@@ -168,18 +168,14 @@ public class Berufserfahrung extends FragmentActivity {
 						+ berufserfahrung.getBtnSelectDateBis() + " ENDE ";
 
 				// TODO Datenbank
+				
 				BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(this);
 				beruferfahrungDB.open();
-				dbID = beruferfahrungDB.insertPersonalien(
-						berufserfahrung.getTxt_firma(),
-						berufserfahrung.getTxt_taetigkeit(),
-						berufserfahrung.getTxt_titel(), 4624,
-						berufserfahrung.getTxt_ort(),
-						berufserfahrung.getBtnSelectDateVon(),
-						berufserfahrung.getBtnSelectDateBis());
+				beruferfahrungDB.insertBerufserfahrung(berufserfahrung);
 
 				beruferfahrungDB.close();
 				strToast = strToast + "DATENBANK ID: " + dbID;
+				
 			}
 			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
 			toast.show();

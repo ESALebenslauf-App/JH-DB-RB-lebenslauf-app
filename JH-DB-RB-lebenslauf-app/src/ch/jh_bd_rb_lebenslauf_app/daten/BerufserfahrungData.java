@@ -1,6 +1,6 @@
 package ch.jh_bd_rb_lebenslauf_app.daten;
 
-public class BerufserfahrungData implements Cloneable{
+public class BerufserfahrungData implements Cloneable {
 
 	private Long ID;
 	private Long persID;
@@ -12,18 +12,20 @@ public class BerufserfahrungData implements Cloneable{
 	private String txt_taetigkeit;
 	private String btnSelectDateVon;
 	private String btnSelectDateBis;
+	private String txt_beschreibung;
 
 	public BerufserfahrungData(String txt_firma, String txt_titel,
-			String txt_adresse, String txt_plz, String txt_ort,
-			String txt_taetigkeit, String btnSelectDateVon,
+			String txt_taetigkeit, String txt_beschreibung, String txt_adresse,
+			String txt_plz, String txt_ort, String btnSelectDateVon,
 			String btnSelectDateBis) {
 		super();
 		this.txt_firma = txt_firma;
 		this.txt_titel = txt_titel;
+		this.txt_taetigkeit = txt_taetigkeit;
+		this.txt_beschreibung = txt_beschreibung;
 		this.txt_adresse = txt_adresse;
 		this.txt_plz = txt_plz;
 		this.txt_ort = txt_ort;
-		this.txt_taetigkeit = txt_taetigkeit;
 		this.btnSelectDateVon = btnSelectDateVon;
 		this.btnSelectDateBis = btnSelectDateBis;
 	}
@@ -31,7 +33,11 @@ public class BerufserfahrungData implements Cloneable{
 	public BerufserfahrungData() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	public BerufserfahrungData(Long id) {
+		this.ID = id;
+	}
+
 	public BerufserfahrungData clone() {
 		BerufserfahrungData theClone = null;
 		try {
@@ -89,6 +95,14 @@ public class BerufserfahrungData implements Cloneable{
 		this.txt_taetigkeit = txt_taetigkeit;
 	}
 
+	public String getTxt_beschreibung() {
+		return txt_beschreibung;
+	}
+
+	public void setTxt_beschreibung(String txt_beschreibung) {
+		this.txt_beschreibung = txt_beschreibung;
+	}
+
 	public String getBtnSelectDateVon() {
 		return btnSelectDateVon;
 	}
@@ -120,6 +134,5 @@ public class BerufserfahrungData implements Cloneable{
 	public void setPersID(Long perID) {
 		this.persID = perID;
 	}
-
 
 }
