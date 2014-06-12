@@ -6,10 +6,7 @@ import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
-import ch.jh_bd_rb_lebenslauf_app.daten.BildungenDAO;
 import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDaten;
-import ch.jh_bd_rb_lebenslauf_app.gui.Berufserfahrung;
-import android.R.raw;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
@@ -30,7 +27,7 @@ public class BerufserfahrungListener implements OnClickListener {
 	private Button btnSelectDateVon;
 	private Button btnSelectDateBis;
 	private ArrayList<BerufserfahrungData> berufserfahrungen;
-	private String ID;
+
 
 	public BerufserfahrungListener(Activity myActivity) {
 		this.berufserfahrungenActivity = myActivity;
@@ -86,12 +83,6 @@ public class BerufserfahrungListener implements OnClickListener {
 		setBtnSelectDateBis((Button) berufserfahrungenActivity
 				.findViewById(R.id.btnSelectDateBis));
 
-	}
-
-	private String getID() {
-		// TODO überarbeiten
-		ID = "ObjektIDBerufserfahrungen";
-		return ID;
 	}
 
 	public EditText getTxt_firma() {
@@ -156,10 +147,6 @@ public class BerufserfahrungListener implements OnClickListener {
 
 	public void setBtnSelectDateBis(Button btnSelectDateBis) {
 		this.btnSelectDateBis = btnSelectDateBis;
-	}
-
-	public void setID(String iD) {
-		ID = iD;
 	}
 
 	/**

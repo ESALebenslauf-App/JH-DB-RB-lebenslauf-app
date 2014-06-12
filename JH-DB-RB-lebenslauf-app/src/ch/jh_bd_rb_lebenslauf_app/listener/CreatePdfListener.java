@@ -4,24 +4,19 @@ import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.SendItem;
-import ch.jh_bd_rb_lebenslauf_app.gui.Finish;
 import ch.jh_bd_rb_lebenslauf_app.resource.FileConst;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -78,6 +73,7 @@ public class CreatePdfListener implements OnClickListener {
 	 * this.berufserfahrung = berufserfahrung; this.skills = skills; }
 	 */
 	// Methode zum erstellen eines PDFs
+	@SuppressLint("SimpleDateFormat")
 	public void createPdf() {
 
 		// Definition der verschiedenen Schriftarten
