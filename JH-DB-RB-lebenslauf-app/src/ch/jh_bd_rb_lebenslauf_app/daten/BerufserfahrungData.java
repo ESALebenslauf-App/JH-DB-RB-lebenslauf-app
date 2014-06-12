@@ -1,6 +1,6 @@
 package ch.jh_bd_rb_lebenslauf_app.daten;
 
-public class BerufserfahrungData implements LebenslaufDaten{
+public class BerufserfahrungData implements Cloneable{
 
 	private long berufserfahrungID;
 	private String txt_firma;
@@ -30,6 +30,15 @@ public class BerufserfahrungData implements LebenslaufDaten{
 
 	public BerufserfahrungData() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public BerufserfahrungData clone() {
+		BerufserfahrungData theClone = null;
+		try {
+			theClone = (BerufserfahrungData) super.clone();
+		} catch (CloneNotSupportedException e) {
+		}
+		return theClone;
 	}
 
 	public String getTxt_firma() {
