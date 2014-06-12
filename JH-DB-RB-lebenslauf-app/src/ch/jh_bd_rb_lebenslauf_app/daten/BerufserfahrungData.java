@@ -2,9 +2,9 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
 
 public class BerufserfahrungData implements Cloneable{
 
-	private long berufserfahrungID;
+	private Long ID;
+	private Long persID;
 	private String txt_firma;
-
 	private String txt_titel;
 	private String txt_adresse;
 	private String txt_plz;
@@ -105,12 +105,21 @@ public class BerufserfahrungData implements Cloneable{
 		this.btnSelectDateBis = btnSelectDateBis;
 	}
 
-	public long getBerufserfahrungID() {
-		return berufserfahrungID;
+	public Long getID() {
+		return ID;
 	}
 
-	public void setBerufserfahrungID(long berufserfahrungID) {
-		this.berufserfahrungID = berufserfahrungID;
+	public void setID(Long berufserfahrungID) {
+		this.ID = berufserfahrungID;
 	}
+
+	public Long getPersID() {
+		return persID;
+	}
+
+	public void setPersID(Long perID) {
+		this.persID = perID;
+	}
+
 
 }
