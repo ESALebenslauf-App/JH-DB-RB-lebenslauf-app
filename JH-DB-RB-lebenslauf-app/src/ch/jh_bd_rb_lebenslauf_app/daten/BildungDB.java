@@ -95,6 +95,11 @@ public class BildungDB implements LebenslaufDB {
 			dbWhere[0] = bildung.getDatumBis().toString();
 			dbColWhere = BILDUNG_BIS;
 			break;
+		case BILDUNG_PERS_ID:
+			dbWhere[0] = bildung.getPersID().toString();
+			dbColWhere = BILDUNG_PERS_ID;
+			break;
+
 
 		default:
 			break;
