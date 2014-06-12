@@ -44,7 +44,6 @@ public class Berufserfahrung extends FragmentActivity {
 		super.onCreate(icicle);
 		setContentView(R.layout.activity_berufserfahrung);
 
-		final Bundle extras = getIntent().getExtras();
 		// Initialisieren
 		initActivityElemente();
 		initActivityListener();

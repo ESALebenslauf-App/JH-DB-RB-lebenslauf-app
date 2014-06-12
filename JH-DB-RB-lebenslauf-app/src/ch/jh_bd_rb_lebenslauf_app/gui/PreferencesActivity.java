@@ -4,7 +4,6 @@ import ch.jh_bd_rb_lebenslauf_app.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.util.Log;
 
 /**
  * @author kvg

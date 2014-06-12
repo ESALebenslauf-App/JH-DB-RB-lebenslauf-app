@@ -7,13 +7,11 @@ import ch.jh_bd_rb_lebenslauf_app.listener.HochladenListener;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 /**
  * 
@@ -22,15 +20,15 @@ import android.widget.Toast;
  */
 public class Bild extends Activity {
 
-
-	private String anrede;
+//TODO überarbeiten und mit eigenem Objekt arbeiten
+	//private String anrede;
 	private String name;
-	private String vorname;
+	//private String vorname;
 	private String strasse;
-	private int plz;
-	private String ort;
-	private String geb;
-	private String bild;
+	//private int plz;
+	//private String ort;
+	//private String geb;
+	//private String bild;
 	private Button btnBerufserfahrung;
 	private ImageButton btnCamera;
 	private ImageButton btnHochladen;
@@ -95,7 +93,8 @@ public class Bild extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		if(requestCode == 0){
-			Bitmap theImage = (Bitmap) data.getExtras().get("data");
+			//TODO wird dieser Code  beötigt wenn ja für was?
+			//Bitmap theImage = (Bitmap) data.getExtras().get("data");
 			
 		}
 	}	
