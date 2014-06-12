@@ -89,8 +89,8 @@ public class BildungDB implements LebenslaufDB {
 		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG,
 				dbColWhere + "=?", dbWhere, null, null, null, null);
 
+		ArrayList<Bildung> bildungen = new ArrayList<Bildung>();
 		if (result.moveToFirst()) {
-			ArrayList<Bildung> bildungen = new ArrayList<Bildung>();
 			result.moveToFirst();
 			while (!result.isAfterLast()) {
 				Bildung resultbildung = new Bildung(result.getLong(0));
@@ -100,7 +100,7 @@ public class BildungDB implements LebenslaufDB {
 			return bildungen;
 		} else {
 			result.close();
-			return null;
+			return bildungen;
 		}
 	}
 
