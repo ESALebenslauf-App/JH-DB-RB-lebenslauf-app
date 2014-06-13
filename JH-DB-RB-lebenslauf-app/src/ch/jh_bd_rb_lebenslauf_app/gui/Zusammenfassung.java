@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -133,11 +134,32 @@ public class Zusammenfassung extends Activity {
 		personalienDB.close();
 
 		berufserfahrungDB.open();
+		// TESTDATEN
+		BerufserfahrungData BE = new BerufserfahrungData("Luftwaffe",
+				"Appliaktionsmanager", "Schaffä", "So lala",
+				"Flugsicherungsstrasse 1-5", "8602", "Wangen", "Heute",
+				"Morgen");
+		BE.setPersID(new Long(1000));
+		berufserfahrungDB.insertBerufserfahrung(BE);
+		berufserfahrungDB.insertBerufserfahrung(BE);
+		berufserfahrungDB.insertBerufserfahrung(BE);
+		// TEST DATEN BIS HIER
+
 		ArrayList<BerufserfahrungData> berufserfahrungArray = berufserfahrungDB
 				.getAllBerufserfahrung();
+
 		berufserfahrungDB.close();
 
 		bildungDB.open();
+		
+		// TESTDATEN
+		Bildung BI = new Bildung("Weiterbildung", "FFHS", "8000", "Schulstrasse", "heute", "morgen");
+		BI.setPersID(new Long(1000));
+		bildungDB.insertBildung(BI);
+		bildungDB.insertBildung(BI);
+		bildungDB.insertBildung(BI);
+		// TEST DATEN BIS HIER
+		
 		ArrayList<Bildung> bildungArray = bildungDB.getAllBildungen();
 		bildungDB.close();
 
@@ -233,7 +255,7 @@ public class Zusammenfassung extends Activity {
 			Spanned addBildungText = Html.fromHtml("<b>Ausbildungsart: </b>"
 					+ ausbildungsart + "<br />" + "<b>" + "Name der Schule: "
 					+ "</b>" + nameSchule + "<br />" + "<b>Adresse: </b><br />"
-					+ plzSchule + adresse + "<br />" + "<b>Dauer: </b>"
+					+ plzSchule + " " + adresse + "<br />" + "<b>Dauer: </b>"
 					+ vonSchule + " bis " + bisSchule
 					+ "<br />----------------<br />");
 
@@ -261,12 +283,12 @@ public class Zusammenfassung extends Activity {
 					+ "<br />----------------<br />");
 
 			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.
-			textSkills = (Spanned) TextUtils.concat(textSkills,
-					addSkillsText);
+			textSkills = (Spanned) TextUtils.concat(textSkills, addSkillsText);
 
 		}
-		
+
 		edtSkills.setText(textSkills);
 
 	}
+
 }
