@@ -118,9 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/third"
         android:layout_below="@+id/linearLayout1"
-        android:paddingTop="60dp" >
-
-        <LinearLayout
+        android:paddingTop="60dp" ><LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
@@ -140,37 +138,7 @@
                 android:textSize="22sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_name"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_person_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_leer" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_vorname"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_person_vorname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_leer" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_adresse"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_person_adresse"
+                android:id="@+id/edt_zusammenfassung_personalien"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_leer" />
@@ -184,7 +152,7 @@
                 android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/edt_berufserfahrung"
+                android:id="@+id/edt_zusammenfassung_berufserfahrung"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_leer" />
@@ -198,7 +166,7 @@
                 android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/edt_bildung"
+                android:id="@+id/edt_zusammenfassung_bildung"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_leer" />
@@ -212,11 +180,12 @@
                 android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/edt_skills"
+                android:id="@+id/edt_zusammenfassung_skills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_leer" />
         </LinearLayout>
+
     </ScrollView>
 
     <!-- ................................................................................................... -->
