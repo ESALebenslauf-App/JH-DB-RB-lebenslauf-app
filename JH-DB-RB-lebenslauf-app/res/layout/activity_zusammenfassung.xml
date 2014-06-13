@@ -23,8 +23,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/titelPicPersonalien"
             android:background="#1DACE9"
-            android:textColor="#FFFFFF"
             android:text="@string/naviObenBild"
+            android:textColor="#FFFFFF"
             android:textSize="12sp" />
 
         <TextView
@@ -33,8 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/titelPicPersonalien"
             android:background="#1DACE9"
-            android:textColor="#FFFFFF"
             android:text="@string/naviObenBerufserfahrung"
+            android:textColor="#FFFFFF"
             android:textSize="12sp" />
 
         <TextView
@@ -44,8 +44,8 @@
             android:layout_above="@+id/titelPicPersonalien"
             android:layout_toRightOf="@+id/naviObenBerufserfahrung"
             android:background="#1DACE9"
-            android:textColor="#FFFFFF"
             android:text="@string/naviObenBildung"
+            android:textColor="#FFFFFF"
             android:textSize="12sp" />
 
         <TextView
@@ -56,8 +56,8 @@
             android:layout_alignLeft="@+id/picAuswahl"
             android:layout_toLeftOf="@+id/naviObenFinish"
             android:background="#1DACE9"
-            android:textColor="#FFFFFF"
             android:text="@string/naviObenSkills"
+            android:textColor="#FFFFFF"
             android:textSize="12sp" />
 
         <TextView
@@ -184,49 +184,7 @@
                 android:textSize="22sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_firma"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_firma"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_leer" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_dauer"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_firma_dauer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_leer" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_taetigkeit"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_firma_taetigkeit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_leer" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_adresse"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_firma_adresse"
+                android:id="@+id/edt_berufserfahrung"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_leer" />
@@ -240,49 +198,7 @@
                 android:textSize="22sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_schule_art"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_schule_art"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_leer" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_schule"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_schule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_leer" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_dauer"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_schule_dauer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_leer" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_adresse"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_schule_adresse"
+                android:id="@+id/edt_bildung"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_leer" />
@@ -296,13 +212,7 @@
                 android:textSize="22sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_itkenntniss"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/edt_zusammenfassung_itkenntnisse"
+                android:id="@+id/edt_skills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_leer" />
@@ -339,11 +249,11 @@
                 android:id="@+id/buttonSkills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#1DACE9"
                 android:contentDescription="@string/todo"
                 android:onClick="onClickSkills"
-                android:background="#1DACE9"
-            	android:text="@string/naviUntenSkills" 
-            	android:textColor="#ffffff" />
+                android:text="@string/naviUntenSkills"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
         <!-- Button Navigation zum Finish -->
@@ -363,7 +273,6 @@
                 android:paddingLeft="140dp"
                 android:text="@string/naviUntenFinish"
                 android:textColor="#ffffff" />
-
         </LinearLayout>
 
         <ImageView
@@ -371,7 +280,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ico_vor" />
-
     </LinearLayout>
 
 </RelativeLayout>
