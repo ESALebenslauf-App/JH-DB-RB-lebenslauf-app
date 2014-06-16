@@ -37,7 +37,7 @@ public class BildungDB implements LebenslaufDB {
 	 * @param bildung
 	 * @return Bildung mit Daten aus DB
 	 */
-	public Bildung getBildung(Bildung bildung) {
+	public BildungData getBildung(BildungData bildung) {
 		String[] dbID = new String[1];
 		dbID[0] = bildung.getId().toString();
 
@@ -62,7 +62,7 @@ public class BildungDB implements LebenslaufDB {
 	 *            Colum Name der where abfrage
 	 * @return ArrayList<Bildung> alle treffer
 	 */
-	public ArrayList<Bildung> getBildungRows(Bildung bildung, String columWhere) {
+	public ArrayList<BildungData> getBildungRows(BildungData bildung, String columWhere) {
 		String[] dbWhere = new String[1];
 		String dbColWhere = BILDUNG_ID;
 
@@ -108,11 +108,11 @@ public class BildungDB implements LebenslaufDB {
 		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG,
 				dbColWhere + "=?", dbWhere, null, null, null, null);
 
-		ArrayList<Bildung> bildungen = new ArrayList<Bildung>();
+		ArrayList<BildungData> bildungen = new ArrayList<BildungData>();
 		if (result.moveToFirst()) {
 			result.moveToFirst();
 			while (!result.isAfterLast()) {
-				Bildung resultbildung = new Bildung(result.getLong(0));
+				BildungData resultbildung = new BildungData(result.getLong(0));
 				bildungen.add(setBildung(resultbildung, result));
 				result.moveToNext();
 			}
@@ -128,15 +128,15 @@ public class BildungDB implements LebenslaufDB {
 	 * 
 	 * @return ArrayList<Bildung>
 	 */
-	public ArrayList<Bildung> getAllBildungen() {
-		ArrayList<Bildung> bildungen = new ArrayList<Bildung>();
+	public ArrayList<BildungData> getAllBildungen() {
+		ArrayList<BildungData> bildungen = new ArrayList<BildungData>();
 
 		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG,
 				null, null, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			while (!result.isAfterLast()) {
-				Bildung bildung = new Bildung(result.getLong(0));
+				BildungData bildung = new BildungData(result.getLong(0));
 				bildungen.add(setBildung(bildung, result));
 				result.moveToNext();
 			}
@@ -151,7 +151,7 @@ public class BildungDB implements LebenslaufDB {
 	 * @param bildung
 	 * @return boolean konnte der Eintrag geloescht werden
 	 */
-	public boolean deleteBildung(Bildung bildung) {
+	public boolean deleteBildung(BildungData bildung) {
 		String[] dbID = new String[1];
 		dbID[0] = bildung.getId().toString();
 		return db.delete(TABLE_BILDUNG, BILDUNG_ID + "=?", dbID) > 0;
@@ -163,7 +163,7 @@ public class BildungDB implements LebenslaufDB {
 	 * @param bildung
 	 * @return Bildung mit Daten aus DB abgefuehlt
 	 */
-	public Bildung insertBildung(Bildung bildung) {
+	public BildungData insertBildung(BildungData bildung) {
 		ContentValues values = new ContentValues();
 
 		values = putContentValues(bildung, values);
@@ -179,7 +179,7 @@ public class BildungDB implements LebenslaufDB {
 	 * @param bildung
 	 * @return
 	 */
-	public Bildung updateBildung(Bildung bildung) {
+	public BildungData updateBildung(BildungData bildung) {
 
 		ContentValues values = new ContentValues();
 		values = putContentValues(bildung, values);
@@ -199,7 +199,7 @@ public class BildungDB implements LebenslaufDB {
 	 * @param result
 	 * @return Bildung mit Daten aus dem result
 	 */
-	private Bildung setBildung(Bildung bildung, Cursor result) {
+	private BildungData setBildung(BildungData bildung, Cursor result) {
 		bildung.setId(result.getLong(0));
 		bildung.setAusbildungsart(result.getString(1));
 		bildung.setNameschule(result.getString(2));
@@ -217,7 +217,7 @@ public class BildungDB implements LebenslaufDB {
 	 * @param values
 	 * @return ContentValues mit Daten aus bildung
 	 */
-	private ContentValues putContentValues(Bildung bildung, ContentValues values) {
+	private ContentValues putContentValues(BildungData bildung, ContentValues values) {
 		values.put(BILDUNG_BILDUNGSART, bildung.getAusbildungsart());
 		values.put(BILDUNG_SCHULNAME, bildung.getNameschule());
 		values.put(BILDUNG_PLZ, bildung.getPlz());

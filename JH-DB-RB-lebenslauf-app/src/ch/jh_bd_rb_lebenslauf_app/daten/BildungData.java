@@ -6,7 +6,7 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
  * @author bdervishi.jherzig.rbuess
  * 
  */
-public class Bildung implements Cloneable {
+public class BildungData implements Cloneable {
 
 	private Long id;
 	private Long persID;
@@ -26,7 +26,7 @@ public class Bildung implements Cloneable {
 	 * @param datumVon
 	 * @param datumBis
 	 */
-	public Bildung(String ausbildungsart, String nameschule, String plz,
+	public BildungData(String ausbildungsart, String nameschule, String plz,
 			String adresseSchule, String datumVon, String datumBis) {
 		super();
 		this.ausbildungsart = ausbildungsart;
@@ -37,16 +37,16 @@ public class Bildung implements Cloneable {
 		this.datumBis = datumBis;
 	}
 
-	public Bildung clone() {
-		Bildung theClone = null;
+	public BildungData clone() {
+		BildungData theClone = null;
 		try {
-			theClone = (Bildung) super.clone();
+			theClone = (BildungData) super.clone();
 		} catch (CloneNotSupportedException e) {
 		}
 		return theClone;
 	}
 
-	public Bildung(Long id) {
+	public BildungData(Long id) {
 		this.id = id;
 	}
 

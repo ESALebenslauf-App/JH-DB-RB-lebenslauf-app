@@ -32,7 +32,7 @@ public class PersonalienDB implements LebenslaufDB {
 	 * @param personalien
 	 * @return Personalien mit Daten aus DB abgefuehlt
 	 */
-	public Personalien insertPersonalieng(Personalien personalien) {
+	public PersonalienData insertPersonalieng(PersonalienData personalien) {
 		ContentValues values = new ContentValues();
 
 		values = putContentValues(personalien, values);
@@ -48,7 +48,7 @@ public class PersonalienDB implements LebenslaufDB {
 	 * @param personalien
 	 * @return
 	 */
-	public Personalien updatePersonalien(Personalien personalien) {
+	public PersonalienData updatePersonalien(PersonalienData personalien) {
 
 		ContentValues values = new ContentValues();
 		values = putContentValues(personalien, values);
@@ -69,7 +69,7 @@ public class PersonalienDB implements LebenslaufDB {
 	 * @param personalien
 	 * @return boolean konnte der Eintrag geloescht werden
 	 */
-	public boolean deletePersonalien(Personalien personalien) {
+	public boolean deletePersonalien(PersonalienData personalien) {
 		String[] dbID = new String[1];
 		dbID[0] = personalien.getID().toString();
 		return db.delete(TABLE_PERS, PERS_ID + "=?", dbID) > 0;
@@ -82,7 +82,7 @@ public class PersonalienDB implements LebenslaufDB {
 	 * @param personalien
 	 * @return Personalien mit Daten aus DB
 	 */
-	public Personalien getPersonalien(Personalien personalien) {
+	public PersonalienData getPersonalien(PersonalienData personalien) {
 		String[] dbID = new String[1];
 		dbID[0] = personalien.getID().toString();
 
@@ -102,15 +102,15 @@ public class PersonalienDB implements LebenslaufDB {
 	 * 
 	 * @return ArrayList<Personalien>
 	 */
-	public ArrayList<Personalien> getAllPersonalien() {
-		ArrayList<Personalien> personalien = new ArrayList<Personalien>();
+	public ArrayList<PersonalienData> getAllPersonalien() {
+		ArrayList<PersonalienData> personalien = new ArrayList<PersonalienData>();
 
 		Cursor result = db.query(false, TABLE_PERS, PROJECTION_PERS, null,
 				null, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			while (!result.isAfterLast()) {
-				Personalien personalie = new Personalien(result.getLong(0));
+				PersonalienData personalie = new PersonalienData(result.getLong(0));
 				personalien.add(setPersonalien(personalie, result));
 				result.moveToNext();
 			}
@@ -129,7 +129,7 @@ public class PersonalienDB implements LebenslaufDB {
 	 *            Colum Name der where abfrage
 	 * @return ArrayList<Bildung> alle treffer
 	 */
-	public ArrayList<Personalien> getPersonalienRows(Personalien personalie,
+	public ArrayList<PersonalienData> getPersonalienRows(PersonalienData personalie,
 			String columWhere) {
 		String[] dbWhere = new String[1];
 		String dbColWhere = PERS_ID;
@@ -176,14 +176,14 @@ public class PersonalienDB implements LebenslaufDB {
 			break;
 		}
 
-		ArrayList<Personalien> personalien = new ArrayList<Personalien>();
+		ArrayList<PersonalienData> personalien = new ArrayList<PersonalienData>();
 
 		Cursor result = db.query(false, TABLE_PERS, PROJECTION_PERS, dbColWhere
 				+ "=?", dbWhere, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			while (!result.isAfterLast()) {
-				Personalien pers = new Personalien(result.getLong(0));
+				PersonalienData pers = new PersonalienData(result.getLong(0));
 				personalien.add(setPersonalien(pers, result));
 				result.moveToNext();
 			}
@@ -192,7 +192,7 @@ public class PersonalienDB implements LebenslaufDB {
 		return personalien;
 	}
 
-	private Personalien setPersonalien(Personalien personalien, Cursor result) {
+	private PersonalienData setPersonalien(PersonalienData personalien, Cursor result) {
 
 		personalien.setAnrede(result.getString(1));
 		personalien.setName(result.getString(2));
@@ -206,7 +206,7 @@ public class PersonalienDB implements LebenslaufDB {
 		return personalien;
 	}
 
-	private ContentValues putContentValues(Personalien personalien,
+	private ContentValues putContentValues(PersonalienData personalien,
 			ContentValues values) {
 		values.put(PERS_ANREDE, personalien.getAnrede());
 		values.put(PERS_NAME, personalien.getName());

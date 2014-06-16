@@ -1,6 +1,6 @@
 package ch.jh_bd_rb_lebenslauf_app.daten;
 
-public class Personalien implements Cloneable {
+public class PersonalienData implements Cloneable {
 	private Long ID;
 	private String anrede;
 	private String name;
@@ -11,7 +11,7 @@ public class Personalien implements Cloneable {
 	private String date;
 	private String bild;
 
-	public Personalien(String anrede, String name, String vorname,
+	public PersonalienData(String anrede, String name, String vorname,
 			String strasse, String plz, String ort, String date, String bild) {
 		super();
 		this.anrede = anrede;
@@ -24,15 +24,15 @@ public class Personalien implements Cloneable {
 		this.bild = bild;
 	}
 
-	public Personalien(Long iD) {
+	public PersonalienData(Long iD) {
 		super();
 		ID = iD;
 	}
 	
-	public Personalien clone() {
-		Personalien theClone = null;
+	public PersonalienData clone() {
+		PersonalienData theClone = null;
 		try {
-			theClone = (Personalien) super.clone();
+			theClone = (PersonalienData) super.clone();
 		} catch (CloneNotSupportedException e) {
 		}
 		return theClone;

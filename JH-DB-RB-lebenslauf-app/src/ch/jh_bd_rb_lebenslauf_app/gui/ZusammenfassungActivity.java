@@ -7,10 +7,10 @@ import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsDB;
-import ch.jh_bd_rb_lebenslauf_app.daten.Personalien;
+import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienData;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
-import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
+import ch.jh_bd_rb_lebenslauf_app.daten.BildungData;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -125,7 +125,7 @@ public class ZusammenfassungActivity extends Activity {
 		// TODO Muss noch angepasst werden! Laden der Personalien und
 		// dazugehörigen Daten.
 		personalienDB.open();
-		ArrayList<Personalien> personalienArray = personalienDB
+		ArrayList<PersonalienData> personalienArray = personalienDB
 				.getAllPersonalien();
 		personalienDB.close();
 
@@ -149,7 +149,7 @@ public class ZusammenfassungActivity extends Activity {
 		bildungDB.open();
 
 		// TESTDATEN
-		Bildung BI = new Bildung("Weiterbildung", "FFHS", "8000",
+		BildungData BI = new BildungData("Weiterbildung", "FFHS", "8000",
 				"Schulstrasse", "heute", "morgen");
 		BI.setPersID(new Long(1000));
 		bildungDB.insertBildung(BI);
@@ -157,7 +157,7 @@ public class ZusammenfassungActivity extends Activity {
 		bildungDB.insertBildung(BI);
 		// TEST DATEN BIS HIER
 
-		ArrayList<Bildung> bildungArray = bildungDB.getAllBildungen();
+		ArrayList<BildungData> bildungArray = bildungDB.getAllBildungen();
 		bildungDB.close();
 
 		skillsDB.open();
@@ -186,7 +186,7 @@ public class ZusammenfassungActivity extends Activity {
 
 		if (personalienArray.size() > 0) {
 
-			Personalien personalien = personalienArray.get(0);
+			PersonalienData personalien = personalienArray.get(0);
 			anrede = personalien.getAnrede();
 			name = personalien.getName();
 			vorname = personalien.getVorname();
@@ -245,8 +245,8 @@ public class ZusammenfassungActivity extends Activity {
 		// Die Berufserfahrungen laden und als Text an das htmlBerufserfahrung
 		// übergeben.
 		Spanned textBildung = Html.fromHtml("");
-		for (Bildung current : bildungArray) {
-			Bildung bildung = (Bildung) current;
+		for (BildungData current : bildungArray) {
+			BildungData bildung = (BildungData) current;
 
 			// TODO Test Daten können gelöscht werden.
 

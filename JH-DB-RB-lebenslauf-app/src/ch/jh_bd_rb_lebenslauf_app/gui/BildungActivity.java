@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
-import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
+import ch.jh_bd_rb_lebenslauf_app.daten.BildungData;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungDB;
 import ch.jh_bd_rb_lebenslauf_app.listener.*;
 import android.os.Bundle;
@@ -162,14 +162,14 @@ public class BildungActivity extends FragmentActivity {
 
 		// Datenobjekt aus demListener laden
 
-		 ArrayList<Bildung> bildungen = bildungListener.getBildungen();
+		 ArrayList<BildungData> bildungen = bildungListener.getBildungen();
 		if (bildungen.size() > 0) {
 			// TODO Erfasste Daten beim verlassen der Activity abspeichern
 			// TODO Start Demo / Ausbauen
 			String strToast = "";
-			for (Bildung current : bildungen) {
+			for (BildungData current : bildungen) {
 				// LebenslaufDaten in Bildung Casten
-				Bildung bildung = (Bildung) current;
+				BildungData bildung = (BildungData) current;
 				strToast = strToast + bildung.getAusbildungsart() + " / "
 						+ bildung.getNameschule() + " / "
 						+ bildung.getAdresseSchule() + " / "

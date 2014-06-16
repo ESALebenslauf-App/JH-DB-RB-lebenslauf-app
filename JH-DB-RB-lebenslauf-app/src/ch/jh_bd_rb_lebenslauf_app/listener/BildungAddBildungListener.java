@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
-import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
+import ch.jh_bd_rb_lebenslauf_app.daten.BildungData;
 import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,7 +31,7 @@ public class BildungAddBildungListener implements OnClickListener {
 	private Button btnSelectDateVon;
 	private Button btnSelectDateBis;
 	private String ID;
-	private ArrayList<Bildung> bildungen;
+	private ArrayList<BildungData> bildungen;
 
 	/**
 	 * Konstruktor Klasse BildungAddBildungListener
@@ -40,7 +40,7 @@ public class BildungAddBildungListener implements OnClickListener {
 	 */
 	public BildungAddBildungListener(Activity myActivity) {
 		this.bildungActivity = myActivity;
-		bildungen = new ArrayList<Bildung>();
+		bildungen = new ArrayList<BildungData>();
 		init();
 	}
 
@@ -71,7 +71,7 @@ public class BildungAddBildungListener implements OnClickListener {
 	@Override
 	public void onClick(View arg0) {
 
-		Bildung bildung = new Bildung(getRadioButten(),
+		BildungData bildung = new BildungData(getRadioButten(),
 				getEdt_bildung_schule().getText().toString(),getEdt_bildung_plz().getText().toString(),
 				getEdt_bildung_adresse().getText().toString(), getDateVon(),
 				getDateBis());
@@ -192,7 +192,7 @@ public class BildungAddBildungListener implements OnClickListener {
 		this.edt_bildung_plz = edt_bildung_plz;
 	}
 	
-	public ArrayList<Bildung> getBildungen() {
+	public ArrayList<BildungData> getBildungen() {
 		return bildungen;
 	}
 }

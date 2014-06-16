@@ -9,9 +9,9 @@ import java.util.Date;
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
-import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
+import ch.jh_bd_rb_lebenslauf_app.daten.BildungData;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungDB;
-import ch.jh_bd_rb_lebenslauf_app.daten.Personalien;
+import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienData;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.SendItem;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsDB;
@@ -92,7 +92,7 @@ public class CreatePdfListener implements OnClickListener {
 		// TODO Muss noch angepasst werden! Laden der Personalien und
 		// dazugehörigen Daten.
 		personalienDB.open();
-		ArrayList<Personalien> personalienArray = personalienDB
+		ArrayList<PersonalienData> personalienArray = personalienDB
 				.getAllPersonalien();
 		personalienDB.close();
 
@@ -105,7 +105,7 @@ public class CreatePdfListener implements OnClickListener {
 
 		bildungDB.open();
 
-		ArrayList<Bildung> bildungArray = bildungDB.getAllBildungen();
+		ArrayList<BildungData> bildungArray = bildungDB.getAllBildungen();
 		bildungDB.close();
 
 		skillsDB.open();
@@ -126,7 +126,7 @@ public class CreatePdfListener implements OnClickListener {
 
 		if (personalienArray.size() > 0) {
 
-			Personalien personalien = personalienArray.get(0);
+			PersonalienData personalien = personalienArray.get(0);
 			anrede = personalien.getAnrede();
 			name = personalien.getName();
 			vorname = personalien.getVorname();
@@ -185,8 +185,8 @@ public class CreatePdfListener implements OnClickListener {
 		// Die Berufserfahrungen laden und als Text an das htmlBerufserfahrung
 		// übergeben.
 		Spanned textBildung = Html.fromHtml("");
-		for (Bildung current : bildungArray) {
-			Bildung bildung = (Bildung) current;
+		for (BildungData current : bildungArray) {
+			BildungData bildung = (BildungData) current;
 
 			// TODO Test Daten können gelöscht werden.
 
