@@ -3,20 +3,35 @@ package ch.jh_bd_rb_lebenslauf_app.listener;
 import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
+import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
+import ch.jh_bd_rb_lebenslauf_app.daten.Bildung;
+import ch.jh_bd_rb_lebenslauf_app.daten.BildungDB;
+import ch.jh_bd_rb_lebenslauf_app.daten.Personalien;
+import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.SendItem;
+import ch.jh_bd_rb_lebenslauf_app.daten.SkillsDB;
+import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
 import ch.jh_bd_rb_lebenslauf_app.resource.FileConst;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -61,17 +76,169 @@ public class CreatePdfListener implements OnClickListener {
 		this.finishActivity = finishActivity;
 		this.sendItem = sendItem;
 		btnSenden = (Button) finishActivity.findViewById(R.id.btnSenden);
+		getShowData();
+	}
+	
+	// Lädt die Daten aus der DB und stellt sie als Text dar.
+	public void getShowData() {
+
+		Spanned txtPersonalien;
+
+		PersonalienDB personalienDB = new PersonalienDB(finishActivity);
+		BerufserfahrungDB berufserfahrungDB = new BerufserfahrungDB(finishActivity);
+		BildungDB bildungDB = new BildungDB(finishActivity);
+		SkillsDB skillsDB = new SkillsDB(finishActivity);
+
+		// TODO Muss noch angepasst werden! Laden der Personalien und
+		// dazugehörigen Daten.
+		personalienDB.open();
+		ArrayList<Personalien> personalienArray = personalienDB
+				.getAllPersonalien();
+		personalienDB.close();
+
+		berufserfahrungDB.open();
+
+		ArrayList<BerufserfahrungData> berufserfahrungArray = berufserfahrungDB
+				.getAllBerufserfahrung();
+
+		berufserfahrungDB.close();
+
+		bildungDB.open();
+
+		ArrayList<Bildung> bildungArray = bildungDB.getAllBildungen();
+		bildungDB.close();
+
+		skillsDB.open();
+		
+		ArrayList<SkillsData> skillsArray = skillsDB.getAllSkills();
+		skillsDB.close();
+
+		// ////////////////////// PERSONALIEN
+		// Die Personalien laden und als Text an das htmlPersonalien übergeben.
+		// TODO Test Daten können gelöscht werden:
+		String anrede = "Herr";
+		String name = "Buess";
+		String vorname = "Reto";
+		String strasse = "Gumpisbüelstrasse 19";
+		String plz = "8600";
+		String ort = "Dübendorf";
+		String date = "05.09.1985";
+
+		if (personalienArray.size() > 0) {
+
+			Personalien personalien = personalienArray.get(0);
+			anrede = personalien.getAnrede();
+			name = personalien.getName();
+			vorname = personalien.getVorname();
+			strasse = personalien.getStrasse();
+			plz = personalien.getPlz();
+			ort = personalien.getOrt();
+			date = personalien.getDate();
+			// String bild = personalien.getBild();
+		}
+		// Übergibt die Daten als Text an ein Spanned.
+		txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " " + name
+				+ "<br />" + strasse + "<br />" + plz + " " + ort + "<br />"
+				+ date);
+		// Spanned www = Html.fromHtml("TEXT");
+		// CharSequence xxx = TextUtils.concat(txtPersonalien, www);
+		// Übergibt den Spanned an den TextView.
+		personalien = txtPersonalien.toString();
+
+		// ///////////////////////// BERUFSERFAHRUNG
+		// Die Berufserfahrungen laden und als Text an die TextView übergeben.
+		Spanned textBerufserfahrung = Html.fromHtml("");
+
+		for (BerufserfahrungData current : berufserfahrungArray) {
+			BerufserfahrungData berufserfahrung = (BerufserfahrungData) current;
+
+			// TODO Test Daten können gelöscht werden.
+
+			String firma = berufserfahrung.getTxt_firma();
+			String titel = berufserfahrung.getTxt_titel();
+			String adresse = berufserfahrung.getTxt_adresse();
+			String plzFirma = berufserfahrung.getTxt_plz();
+			String ortFirma = berufserfahrung.getTxt_ort();
+			String taetigkeit = berufserfahrung.getTxt_taetigkeit();
+			String vonFirma = berufserfahrung.getBtnSelectDateVon();
+			String bisFirma = berufserfahrung.getBtnSelectDateBis();
+			String beschreibung = berufserfahrung.getTxt_beschreibung();
+
+			// Schreibt die Berufserfahrung Daten mit HTML in ein Spanned.
+			Spanned addBerufserfahrungText = Html.fromHtml("<b>Firma: </b>"
+					+ firma + "<br />" + "<b>" + "Titel: " + "</b>" + titel
+					+ "<br />" + "<b>Adresse: </b><br />" + adresse + "<br />"
+					+ plzFirma + ortFirma + "<br />" + "<b>Tätigkeit: </b>"
+					+ taetigkeit + "<br />" + "<b>Dauer: </b>" + vonFirma
+					+ " bis " + bisFirma + "<br />" + "<b>Beschreibung: </b>"
+					+ beschreibung + "<br />----------------<br />");
+
+			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.
+			textBerufserfahrung = (Spanned) TextUtils.concat(
+					textBerufserfahrung, addBerufserfahrungText);
+
+		}
+
+		berufserfahrung = textBerufserfahrung.toString();
+
+		// //////////////////////////////// BILDUNG
+		// Die Berufserfahrungen laden und als Text an das htmlBerufserfahrung
+		// übergeben.
+		Spanned textBildung = Html.fromHtml("");
+		for (Bildung current : bildungArray) {
+			Bildung bildung = (Bildung) current;
+
+			// TODO Test Daten können gelöscht werden.
+
+			String ausbildungsart = bildung.getAusbildungsart();
+			String nameSchule = bildung.getNameschule();
+			String plzSchule = bildung.getPlz();
+			String adresse = bildung.getAdresseSchule();
+			String vonSchule = bildung.getDatumVon();
+			String bisSchule = bildung.getDatumBis();
+
+			// Schreibt die Berufserfahrung Daten mit HTML in ein Spanned.
+			Spanned addBildungText = Html.fromHtml("<b>Ausbildungsart: </b>"
+					+ ausbildungsart + "<br />" + "<b>" + "Name der Schule: "
+					+ "</b>" + nameSchule + "<br />" + "<b>Adresse: </b><br />"
+					+ plzSchule + " " + adresse + "<br />" + "<b>Dauer: </b>"
+					+ vonSchule + " bis " + bisSchule
+					+ "<br />----------------<br />");
+
+			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.
+			textBildung = (Spanned) TextUtils.concat(textBildung,
+					addBildungText);
+
+		}
+
+		bildung = textBildung.toString();
+
+		// SKILLS
+		// Die Berufserfahrungen laden und als Text an das htmlBerufserfahrung
+		// übergeben.
+		Spanned textSkills = Html.fromHtml("");
+		for (SkillsData current : skillsArray) {
+			SkillsData skills = (SkillsData) current;
+
+			String was = skills.getWas();
+			String ausmass = skills.getAusmass();
+			String zertifikat = skills.getZertifikat();
+
+			// Schreibt die Skills Daten mit HTML in ein Spanned.
+			Spanned addSkillsText = Html.fromHtml("<b>Was: </b>" + was
+					+ "<br />" + "<b>" + "Ausmass: " + "</b>" + ausmass
+					+ "<br />" + "<b>" + "Zertifikat: " + "</b>" + zertifikat
+					+ "<br />----------------<br />");
+
+			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.
+			textSkills = (Spanned) TextUtils.concat(textSkills, addSkillsText);
+
+		}
+
+		skills = textSkills.toString();
+
 	}
 
-
-
-	/*
-	 * //Konstruktor mit Lebenslaufdaten public CreatePdfListener(String
-	 * personalien, String bildung, String berufserfahrung, String skills) {
-	 * 
-	 * this.personalien = personalien; this.bildung = bildung;
-	 * this.berufserfahrung = berufserfahrung; this.skills = skills; }
-	 */
 	// Methode zum erstellen eines PDFs
 	@SuppressLint("SimpleDateFormat")
 	public void createPdf() {
@@ -119,15 +286,15 @@ public class CreatePdfListener implements OnClickListener {
 		addEmptyLine(preface, 1);
 		preface.add(new Paragraph(personalien, standardF));
 		addEmptyLine(preface, 2);
-		// Bildung
-		preface.add(new Paragraph(bildungU, ueberschriftF));
-		addEmptyLine(preface, 1);
-		preface.add(new Paragraph(bildung, standardF));
-		addEmptyLine(preface, 2);
 		// Berufserfahrung
 		preface.add(new Paragraph(berufserfahrungU, ueberschriftF));
 		addEmptyLine(preface, 1);
 		preface.add(new Paragraph(berufserfahrung, standardF));
+		addEmptyLine(preface, 2);
+		// Bildung
+		preface.add(new Paragraph(bildungU, ueberschriftF));
+		addEmptyLine(preface, 1);
+		preface.add(new Paragraph(bildung, standardF));
 		addEmptyLine(preface, 2);
 		// Skills
 		preface.add(new Paragraph(skillsU, ueberschriftF));
@@ -173,7 +340,7 @@ public class CreatePdfListener implements OnClickListener {
 			titelU = "Curriculum Vitae";
 			personalienU = "Personal Data";
 			bildungU = "Education";
-			berufserfahrungU = "professional experience";
+			berufserfahrungU = "Professional Experience";
 		} else {
 			toastEnglish = "Deutsch";
 			titelU = "Lebenslauf";
@@ -202,5 +369,7 @@ public class CreatePdfListener implements OnClickListener {
 
 		}
 	}
+	
+
 
 }

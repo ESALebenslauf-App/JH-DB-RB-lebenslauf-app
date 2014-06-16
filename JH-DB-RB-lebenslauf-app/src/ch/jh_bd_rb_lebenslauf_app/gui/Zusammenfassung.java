@@ -1,7 +1,6 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
@@ -113,13 +112,10 @@ public class Zusammenfassung extends Activity {
 		startActivity(intent);
 	}
 
-	// Lädt die Daten aus der DB und stell sie als Text dar.
+	// Lädt die Daten aus der DB und stellt sie als Text dar.
 	public void getShowData() {
 
 		Spanned txtPersonalien;
-		Spanned txtBerufserfahrung;
-		Spanned txtBildung;
-		Spanned txtlSkills;
 
 		PersonalienDB personalienDB = new PersonalienDB(this);
 		BerufserfahrungDB berufserfahrungDB = new BerufserfahrungDB(this);
@@ -151,19 +147,29 @@ public class Zusammenfassung extends Activity {
 		berufserfahrungDB.close();
 
 		bildungDB.open();
-		
+
 		// TESTDATEN
-		Bildung BI = new Bildung("Weiterbildung", "FFHS", "8000", "Schulstrasse", "heute", "morgen");
+		Bildung BI = new Bildung("Weiterbildung", "FFHS", "8000",
+				"Schulstrasse", "heute", "morgen");
 		BI.setPersID(new Long(1000));
 		bildungDB.insertBildung(BI);
 		bildungDB.insertBildung(BI);
 		bildungDB.insertBildung(BI);
 		// TEST DATEN BIS HIER
-		
+
 		ArrayList<Bildung> bildungArray = bildungDB.getAllBildungen();
 		bildungDB.close();
 
 		skillsDB.open();
+		
+		//TESTDATEN
+		SkillsData SK = new SkillsData("Englisch", "fliessend", "First");
+		SK.setPers_id(new Long(1000));
+		skillsDB.insertSkills(SK);
+		skillsDB.insertSkills(SK);
+		skillsDB.insertSkills(SK);
+		//TEST DATEN BIS HIER
+		
 		ArrayList<SkillsData> skillsArray = skillsDB.getAllSkills();
 		skillsDB.close();
 
@@ -276,10 +282,12 @@ public class Zusammenfassung extends Activity {
 
 			String was = skills.getWas();
 			String ausmass = skills.getAusmass();
+			String zertifikat = skills.getZertifikat();
 
 			// Schreibt die Skills Daten mit HTML in ein Spanned.
 			Spanned addSkillsText = Html.fromHtml("<b>Was: </b>" + was
 					+ "<br />" + "<b>" + "Ausmass: " + "</b>" + ausmass
+					+ "<br />" + "<b>" + "Zertifikat: " + "</b>" + zertifikat
 					+ "<br />----------------<br />");
 
 			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.
