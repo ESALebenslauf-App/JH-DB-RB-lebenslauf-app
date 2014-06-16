@@ -19,7 +19,7 @@ import android.widget.Button;
  * @author bdervishi.jherzig.rbuess
  * 
  */
-public class Finish extends Activity {
+public class FinishActivity extends Activity {
 	private Button btnZusammenfassung;
 	private Button btnCreatePdf;
 	private Button btnPreferences;
@@ -109,7 +109,7 @@ public class Finish extends Activity {
 	}
 
 	public void clickZusammenfassung(View Button) {
-		final Intent intent = new Intent(this, Zusammenfassung.class);
+		final Intent intent = new Intent(this, ZusammenfassungActivity.class);
 		startActivity(intent);
 	}
 

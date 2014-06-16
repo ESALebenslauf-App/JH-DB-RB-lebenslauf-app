@@ -1,6 +1,6 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
-import ch.jh_bd_rb_lebenslauf_app.gui.Skills;
+import ch.jh_bd_rb_lebenslauf_app.gui.SkillsActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 public class AddSkillListener implements OnClickListener {
 	private Activity bildActivity;
 
-	public AddSkillListener(Skills skills) {
+	public AddSkillListener(SkillsActivity skills) {
 		this.bildActivity = skills;
 	}
 

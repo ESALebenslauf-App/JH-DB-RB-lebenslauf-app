@@ -30,12 +30,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ch.jh_bd_rb_lebenslauf_app.gui.Berufserfahrung"
+            android:name="ch.jh_bd_rb_lebenslauf_app.gui.BerufserfahrungActivity"
             android:label="@string/title_activity_berufserfahrung"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="ch.jh_bd_rb_lebenslauf_app.gui.Bild"
+            android:name="ch.jh_bd_rb_lebenslauf_app.gui.BildActivity"
             android:label="@string/title_activity_bild"
             android:screenOrientation="portrait" >
         </activity>
@@ -45,17 +45,17 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="ch.jh_bd_rb_lebenslauf_app.gui.Skills"
+            android:name="ch.jh_bd_rb_lebenslauf_app.gui.SkillsActivity"
             android:label="@string/title_activity_skills"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="ch.jh_bd_rb_lebenslauf_app.gui.Zusammenfassung"
+            android:name="ch.jh_bd_rb_lebenslauf_app.gui.ZusammenfassungActivity"
             android:label="@string/title_activity_zusammenfassung"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="ch.jh_bd_rb_lebenslauf_app.gui.Finish"
+            android:name="ch.jh_bd_rb_lebenslauf_app.gui.FinishActivity"
             android:label="@string/title_activity_finish"
             android:screenOrientation="portrait" >
         </activity>

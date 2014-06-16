@@ -111,4 +111,9 @@ public interface LebenslaufDB {
 			+ SKILLS_AUSMASS + " TEXT NOT NULL,"
 			+ SKILLS_ZERTIFIKAT + " TEXT NOT NULL,"
 			+ SKILLS_PERS_ID + " TEXT NOT NULL)";
+	
+	
+	
+	
+	
 }

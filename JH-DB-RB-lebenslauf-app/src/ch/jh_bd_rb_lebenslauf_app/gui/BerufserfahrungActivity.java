@@ -23,7 +23,7 @@ import android.widget.Toast;
  * @author bdervishi.jherzig.rbuess
  * 
  */
-public class Berufserfahrung extends FragmentActivity {
+public class BerufserfahrungActivity extends FragmentActivity {
 
 	String name;
 	String adresse;
@@ -113,7 +113,7 @@ public class Berufserfahrung extends FragmentActivity {
 	 * @param Button
 	 */
 	public void clickBild(View Button) {
-		final Intent intent = new Intent(this, Bild.class);
+		final Intent intent = new Intent(this, BildActivity.class);
 		startActivity(intent);
 	}
 

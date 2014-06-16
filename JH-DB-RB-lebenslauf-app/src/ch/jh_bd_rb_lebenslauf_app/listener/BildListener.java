@@ -2,7 +2,7 @@ package ch.jh_bd_rb_lebenslauf_app.listener;
 
 
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienDB;
-import ch.jh_bd_rb_lebenslauf_app.gui.Bild;
+import ch.jh_bd_rb_lebenslauf_app.gui.BildActivity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +13,7 @@ public class BildListener extends Activity implements OnClickListener {
 	private Activity bildActivity;
 	private PersonalienDB db;
 
-	public BildListener(Bild bild) {
+	public BildListener(BildActivity bild) {
 		this.bildActivity = bild;
 	}
 

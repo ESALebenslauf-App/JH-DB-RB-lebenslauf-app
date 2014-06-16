@@ -19,7 +19,7 @@ import android.widget.ImageButton;
  * @author bdervishi.jherzig.rbuess
  *
  */
-public class Skills extends Activity {
+public class SkillsActivity extends Activity {
 
 	String name;
 	String adresse;
@@ -114,7 +114,7 @@ public class Skills extends Activity {
 	 * @param Button
 	 */
 	public void clickZusammenfassung(View Button) {
-		final Intent intent = new Intent(this, Zusammenfassung.class);
+		final Intent intent = new Intent(this, ZusammenfassungActivity.class);
 		
 		intent.putExtra(NAME, name);
 		intent.putExtra(ADRESSE, adresse);

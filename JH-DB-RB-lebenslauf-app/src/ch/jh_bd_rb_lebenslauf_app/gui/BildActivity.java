@@ -18,7 +18,7 @@ import android.widget.ImageView;
  * @author bdervishi.jherzig.rbuess
  *
  */
-public class Bild extends Activity {
+public class BildActivity extends Activity {
 
 //TODO überarbeiten und mit eigenem Objekt arbeiten
 	//private String anrede;
@@ -79,7 +79,7 @@ public class Bild extends Activity {
 	public void clickBildBerufserfahrung(View Button) {
 		
 		
-		final Intent intent = new Intent(this, Berufserfahrung.class);
+		final Intent intent = new Intent(this, BerufserfahrungActivity.class);
 		
 		
 		intent.putExtra(name, "Name");

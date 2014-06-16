@@ -118,7 +118,7 @@ public class BildungActivity extends FragmentActivity {
 	 * Öffnet die Berufserfahrung Activity
 	 */
 	private void clickBerufserfahrung() {
-		final Intent intent = new Intent(this, Berufserfahrung.class);
+		final Intent intent = new Intent(this, BerufserfahrungActivity.class);
 
 		intent.putExtra(NAME, "Name");
 		intent.putExtra(ADRESSE, "Adresse");
@@ -130,7 +130,7 @@ public class BildungActivity extends FragmentActivity {
 	 */
 	private void clickSkills() {
 
-		final Intent intent = new Intent(this, Skills.class);
+		final Intent intent = new Intent(this, SkillsActivity.class);
 
 		intent.putExtra(NAME, name);
 		intent.putExtra(ADRESSE, adresse);

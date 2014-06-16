@@ -29,7 +29,7 @@ import android.widget.TextView;
  * @author bdervishi.jherzig.rbuess
  * 
  */
-public class Zusammenfassung extends Activity {
+public class ZusammenfassungActivity extends Activity {
 
 	private Button btnSkills;
 	private Button btnFinish;
@@ -96,7 +96,7 @@ public class Zusammenfassung extends Activity {
 	 * @param Button
 	 */
 	public void clickSkills(View Button) {
-		final Intent intent = new Intent(this, Skills.class);
+		final Intent intent = new Intent(this, SkillsActivity.class);
 
 		startActivity(intent);
 
@@ -107,7 +107,7 @@ public class Zusammenfassung extends Activity {
 	 * @param Button
 	 */
 	public void clickFinish(View Button) {
-		final Intent intent = new Intent(this, Finish.class);
+		final Intent intent = new Intent(this, FinishActivity.class);
 
 		startActivity(intent);
 	}

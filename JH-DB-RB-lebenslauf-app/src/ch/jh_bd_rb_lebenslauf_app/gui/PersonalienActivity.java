@@ -1,5 +1,5 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
-public class Personalien {
+public class PersonalienActivity {
 
 }

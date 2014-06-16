@@ -64,7 +64,7 @@ public class StartActivity extends Activity {
 	 */
 	public void clickErfassen(View button) {
 
-		final Intent intent = new Intent(this, Bild.class);
+		final Intent intent = new Intent(this, BildActivity.class);
 		
 		startActivity(intent);
 	}
