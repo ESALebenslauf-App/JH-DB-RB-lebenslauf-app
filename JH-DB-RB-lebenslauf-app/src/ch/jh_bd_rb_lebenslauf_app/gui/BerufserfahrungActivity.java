@@ -150,14 +150,25 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	private void datenSpeichern() {
 		// Datenobjekt aus demListener laden
 		long dbID = 0;
+		boolean save = false;
 		ArrayList<BerufserfahrungData> berufserfahrungen = berufserfahrungListener.getBerufserfahrungen();
 		if (berufserfahrungen.size() > 0) {
-			// TODO Erfasste Daten beim verlassen der Activity abspeichern
-			// TODO Start Demo / Ausbauen
+
 			String strToast = "";
 			for (BerufserfahrungData current : berufserfahrungen) {
-				// LebenslaufDaten in Bildung Casten
+
 				BerufserfahrungData berufserfahrung = (BerufserfahrungData) current;
+		
+				//Datenbank
+				BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(this);
+				beruferfahrungDB.open();
+				berufserfahrung = beruferfahrungDB.insertBerufserfahrung(berufserfahrung);
+				beruferfahrungDB.close();
+				if (berufserfahrung.getID() > 1) {
+					save = true;
+				}
+				
+				//TODO Ausbauen
 				strToast = strToast + berufserfahrung.getTxt_titel() + " / "
 						+ berufserfahrung.getTxt_firma() + " / "
 						+ berufserfahrung.getTxt_adresse() + " / "
@@ -166,20 +177,17 @@ public class BerufserfahrungActivity extends FragmentActivity {
 						+ berufserfahrung.getTxt_taetigkeit() + " / "
 						+ berufserfahrung.getBtnSelectDateVon() + " / "
 						+ berufserfahrung.getBtnSelectDateBis() + " ENDE ";
-
-				//Datenbank
-				BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(this);
-				beruferfahrungDB.open();
-				berufserfahrung = beruferfahrungDB.insertBerufserfahrung(berufserfahrung);
-				beruferfahrungDB.close();
-				
-				//TODO Ausbauen
-				strToast = strToast + "DATENBANK ID: " + berufserfahrung.getID();
 				
 			}
+			//TODO Ausbauen
 			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
 			toast.show();
-			// ENDE Demo
+			
+			if (save) {
+				strToast = "Daten wurden gespeichert.";
+
+			}
+			
 		}
 	}
 
