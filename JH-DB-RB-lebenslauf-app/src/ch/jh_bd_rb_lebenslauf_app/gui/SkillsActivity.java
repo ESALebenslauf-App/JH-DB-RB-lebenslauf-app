@@ -8,6 +8,7 @@ import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
 import ch.jh_bd_rb_lebenslauf_app.daten.Zertifikat;
 import ch.jh_bd_rb_lebenslauf_app.listener.AddSkillListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.AddZertifikatListener;
+import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -25,38 +26,22 @@ import android.widget.Toast;
  */
 public class SkillsActivity extends Activity {
 
-	String name;
-	String adresse;
-	static final String NAME = "name";
-	static final String ADRESSE = "adresse";
-	ArrayList<String> berufserfahrungen = new ArrayList<String>();
-	static final String BERUFSERFAHRUNGEN = "berufserfahrungen";
-	ArrayList<String> bildungen = new ArrayList<String>();
-	static final String BILDUNGEN = "bildung";
-	String skillGrad;
-	static final String SKILL = "skill";
-
 	private Button btnZusammenfassung;
 	private Button btnBildung;
 	private Button btnAddSkill;
 	private ImageButton btnAddZertifikat;
+
 	private AddZertifikatListener zertifikatListener;
 	private AddSkillListener addSkillListener;
 	private Zertifikat zertifikat = new Zertifikat();
+	private Long persID;
+	private boolean save = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_skills);
-
-		final Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-			berufserfahrungen = extras
-					.getStringArrayList(BildungActivity.BERUFSERFAHRUNGEN);
-			name = extras.getString(BildungActivity.NAME);
-			adresse = extras.getString(BildungActivity.ADRESSE);
-			bildungen = extras.getStringArrayList(BildungActivity.BILDUNGEN);
-		}
+		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
 
 		initActivityElemente();
 		initActivityListener();
@@ -119,6 +104,8 @@ public class SkillsActivity extends Activity {
 	 */
 	public void clickBildung(View Button) {
 		final Intent intent = new Intent(this, BildungActivity.class);
+		intent.putExtra(StringConst.getPesrid(), getPersID());
+
 		startActivity(intent);
 	}
 
@@ -128,15 +115,7 @@ public class SkillsActivity extends Activity {
 	 */
 	public void clickZusammenfassung(View Button) {
 		final Intent intent = new Intent(this, ZusammenfassungActivity.class);
-
-		intent.putExtra(NAME, name);
-		intent.putExtra(ADRESSE, adresse);
-
-		intent.putStringArrayListExtra(BERUFSERFAHRUNGEN, berufserfahrungen);
-
-		intent.putStringArrayListExtra(BILDUNGEN, bildungen);
-
-		intent.putExtra(SKILL, skillGrad);
+		intent.putExtra(StringConst.getPesrid(), getPersID());
 
 		startActivity(intent);
 	}
@@ -144,13 +123,17 @@ public class SkillsActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		datenSpeichern();
+		if (!save) {
+			datenSpeichern();
+		}
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		datenSpeichern();
+		if (!save) {
+			datenSpeichern();
+		}
 	}
 
 	public Zertifikat getZertifikat() {
@@ -162,32 +145,43 @@ public class SkillsActivity extends Activity {
 	 */
 	private void datenSpeichern() {
 
-		boolean save = false;
 		ArrayList<SkillsData> killsList = addSkillListener.getSkillsList();
-		if (killsList.size() > 0) {
+		boolean save = false;
 
-			for (SkillsData current : killsList) {
+		if (getPersID() > 0) {
+			if (killsList.size() > 0) {
+				for (SkillsData current : killsList) {
+					SkillsData skills = (SkillsData) current;
+					skills.setPers_id(getPersID());
 
-				SkillsData skills = (SkillsData) current;
-
-				// Datenbank
-				SkillsDB skillsDB = new SkillsDB(this);
-				skillsDB.open();
-				skills = skillsDB.insertSkills(skills);
-				skillsDB.close();
-				if (skills.getID() > 1) {
-					save = true;
+					// Datenbank
+					SkillsDB skillsDB = new SkillsDB(this);
+					skillsDB.open();
+					skills = skillsDB.insertSkills(skills);
+					skillsDB.close();
+					if (skills.getID() > 1) {
+						save = true;
+					}
 				}
+
+				if (save) {
+					Toast toast = Toast.makeText(this,
+							"Daten wurden gespeichert.", Toast.LENGTH_LONG);
+					toast.show();
+
+				}
+
 			}
-
-			if (save) {
-				Toast toast = Toast.makeText(this, "Daten wurden gespeichert.",
-						Toast.LENGTH_LONG);
-				toast.show();
-
-			}
-
+		} else {
+			Toast toast = Toast.makeText(this,
+					StringConst.getDatenWurdenNichtGespeichert(),
+					Toast.LENGTH_LONG);
+			toast.show();
 		}
+	}
+
+	public Long getPersID() {
+		return persID;
 	}
 
 }

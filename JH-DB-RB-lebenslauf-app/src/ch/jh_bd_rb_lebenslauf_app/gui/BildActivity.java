@@ -5,7 +5,9 @@ import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienData;
 import ch.jh_bd_rb_lebenslauf_app.listener.BildListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.HochladenListener;
+import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
@@ -24,15 +26,6 @@ import android.widget.Toast;
  */
 public class BildActivity extends Activity {
 
-	// TODO überarbeiten und mit eigenem Objekt arbeiten
-	// private String anrede;
-	private String name;
-	// private String vorname;
-	private String strasse;
-	// private int plz;
-	// private String ort;
-	// private String geb;
-	// private String bild;
 	private Button btnBerufserfahrung;
 	private ImageButton btnCamera;
 	private ImageButton btnHochladen;
@@ -44,6 +37,7 @@ public class BildActivity extends Activity {
 	private EditText text_edit_plz;
 	private EditText txt_Edit_ort;
 	private EditText txt_Edit_geb;
+	private boolean save = false;
 	ImageView iv;
 
 	@Override
@@ -94,60 +88,68 @@ public class BildActivity extends Activity {
 
 		final Intent intent = new Intent(this, BerufserfahrungActivity.class);
 
-		intent.putExtra(name, "Name");
-		intent.putExtra(strasse, "Strasse");
+		intent.putExtra(StringConst.getPesrid(), datenSpeichern());
 		startActivity(intent);
 
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == 0) {
-			// TODO wird dieser Code beötigt wenn ja für was?
-			// Bitmap theImage = (Bitmap) data.getExtras().get("data");
-
-		}
-	}
-
-	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		datenSpeichern();
+		if (!save) {
+			datenSpeichern();
+		}
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		datenSpeichern();
+		if (!save) {
+			datenSpeichern();
+		}
 	}
 
 	/**
 	 * Daten können Persistent gespeichert werden
 	 */
-	private void datenSpeichern() {
+	@SuppressLint("UseValueOf")
+	private Long datenSpeichern() {
 
-		boolean save = false;
 		PersonalienData pers = new PersonalienData(getSpinnerAnrede()
-				.getSelectedItem().toString(), getTxt_name().getText().toString(), getTxt_vorname()
-				.getText().toString(), getTxt_adresse().getText().toString(), getText_edit_plz()
-				.getText().toString(), getTxt_Edit_ort().getText().toString(), getTxt_Edit_geb()
-				.getText().toString(), "bild");
+				.getSelectedItem().toString(), getTxt_name().getText()
+				.toString(), getTxt_vorname().getText().toString(),
+				getTxt_adresse().getText().toString(), getText_edit_plz()
+						.getText().toString(), getTxt_Edit_ort().getText()
+						.toString(), getTxt_Edit_geb().getText().toString(),
+				"bild");
 
 		// Datenbank
-		PersonalienDB personalienDB = new PersonalienDB(this);
-		personalienDB.open();
-		pers = personalienDB.insertPersonalieng(pers);
-		personalienDB.close();
-		if (pers.getID() > 0) {
-			save = true;
-		}
+		if (!pers.getName().equals("") || !pers.getVorname().equals("")) {
+			PersonalienDB personalienDB = new PersonalienDB(this);
+			personalienDB.open();
+			pers = personalienDB.insertPersonalieng(pers);
+			personalienDB.close();
+			if (pers.getID() > 0) {
+				save = true;
+			}
 
-		if (save) {
-			Toast toast = Toast.makeText(this, "Daten wurden gespeichert.",
+			if (save) {
+				Toast toast = Toast.makeText(
+						this,
+						StringConst.getDatenWurdenGespeichert()
+								+ StringConst.getIhrePresid() + pers.getID(),
+						Toast.LENGTH_LONG);
+				toast.show();
+			}
+		} else {
+			pers.setID(new Long(0));
+			Toast toast = Toast.makeText(this,
+					StringConst.getDatenWurdenNichtGespeichert(),
 					Toast.LENGTH_LONG);
 			toast.show();
 		}
 
+		return pers.getID();
 	}
 
 	public EditText getTxt_vorname() {

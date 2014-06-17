@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungDB;
+import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienData;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungData;
+import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -38,16 +40,13 @@ public class ZusammenfassungActivity extends Activity {
 	private TextView edtBerufserfahrung;
 	private TextView edtBildung;
 	private TextView edtSkills;
+	private Long persID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zusammenfassung);
-
-		final Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-
-		}
+		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
 
 		initActivityElemente();
 		initActivityListener();
@@ -125,8 +124,9 @@ public class ZusammenfassungActivity extends Activity {
 		// TODO Muss noch angepasst werden! Laden der Personalien und
 		// dazugehörigen Daten.
 		personalienDB.open();
+		PersonalienData personalienData = new PersonalienData(getPersID());
 		ArrayList<PersonalienData> personalienArray = personalienDB
-				.getAllPersonalien();
+				.getPersonalienRows(personalienData, LebenslaufDB.PERS_ID);
 		personalienDB.close();
 
 		berufserfahrungDB.open();
@@ -139,8 +139,11 @@ public class ZusammenfassungActivity extends Activity {
 		 * berufserfahrungDB.insertBerufserfahrung(BE);
 		 * berufserfahrungDB.insertBerufserfahrung(BE); // TEST DATEN BIS HIER
 		 */
+		BerufserfahrungData berufserfahrungData = new BerufserfahrungData();
+		berufserfahrungData.setPersID(getPersID());
 		ArrayList<BerufserfahrungData> berufserfahrungArray = berufserfahrungDB
-				.getAllBerufserfahrung();
+				.getBerufserfarungRows(berufserfahrungData,
+						LebenslaufDB.BERUF_PERS_ID);
 
 		berufserfahrungDB.close();
 
@@ -170,41 +173,38 @@ public class ZusammenfassungActivity extends Activity {
 		ArrayList<SkillsData> skillsArray = skillsDB.getAllSkills();
 		skillsDB.close();
 
-		
-		
 		// ////////////////////// PERSONALIEN
 		// Die Personalien laden und als Text an das htmlPersonalien übergeben.
 		// TODO Test Daten können gelöscht werden:
-		PersonalienData pers = personalienArray.get(0);
-		String anrede = pers.getAnrede();
-		String name = pers.getName();
-		String vorname = pers.getVorname();
-		String strasse = pers.getStrasse();
-		String plz = pers.getPlz();
-		String ort = pers.getOrt();
-		String date = pers.getDate();
+		/*
+		 * PersonalienData pers = personalienArray.get(0); String anrede =
+		 * pers.getAnrede(); String name = pers.getName(); String vorname =
+		 * pers.getVorname(); String strasse = pers.getStrasse(); String plz =
+		 * pers.getPlz(); String ort = pers.getOrt(); String date =
+		 * pers.getDate();
+		 */
 
 		if (personalienArray.size() > 0) {
-
 			PersonalienData personalien = personalienArray.get(0);
-			anrede = personalien.getAnrede();
-			name = personalien.getName();
-			vorname = personalien.getVorname();
-			strasse = personalien.getStrasse();
-			plz = personalien.getPlz();
-			ort = personalien.getOrt();
-			date = personalien.getDate();
+			String anrede = personalien.getAnrede();
+			String name = personalien.getName();
+			String vorname = personalien.getVorname();
+			String strasse = personalien.getStrasse();
+			String plz = personalien.getPlz();
+			String ort = personalien.getOrt();
+			String date = personalien.getDate();
 			// String bild = personalien.getBild();
-		}
+		
 		// Übergibt die Daten als Text an ein Spanned.
 		txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " " + name
 				+ "<br />" + strasse + "<br />" + plz + " " + ort + "<br />"
 				+ date);
+		
 		// Spanned www = Html.fromHtml("TEXT");
 		// CharSequence xxx = TextUtils.concat(txtPersonalien, www);
 		// Übergibt den Spanned an den TextView.
 		edtPersonalien.setText(txtPersonalien);
-
+		}
 		// ///////////////////////// BERUFSERFAHRUNG
 		// Die Berufserfahrungen laden und als Text an die TextView übergeben.
 		Spanned textBerufserfahrung = Html.fromHtml("");
@@ -297,6 +297,10 @@ public class ZusammenfassungActivity extends Activity {
 
 		edtSkills.setText(textSkills);
 
+	}
+
+	public Long getPersID() {
+		return persID;
 	}
 
 }

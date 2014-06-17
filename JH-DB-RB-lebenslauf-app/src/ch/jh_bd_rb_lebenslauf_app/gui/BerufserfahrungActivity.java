@@ -8,6 +8,7 @@ import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
 import ch.jh_bd_rb_lebenslauf_app.listener.BerufserfahrungListener;
+import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v4.app.DialogFragment;
@@ -25,23 +26,20 @@ import android.widget.Toast;
  */
 public class BerufserfahrungActivity extends FragmentActivity {
 
-	String name;
-	String adresse;
-	public static final String NAME = "name";
-	public static final String ADRESSE = "adresse";
-	public ArrayList<String> berufserfahrungen = new ArrayList<String>();
-	public static final String BERUFSERFAHRUNGEN = "berufserfahrungen";
 	private Button btnBildung;
 	private Button btnBild;
 	private Button btnBeruferfahrung;
 	private Button btnSelectDateBis;
 	private Button btnSelectDateVon;
 	private BerufserfahrungListener berufserfahrungListener;
+	private Long persID;
+	private boolean save = false;
 
 	@Override
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.activity_berufserfahrung);
+		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
 
 		// Initialisieren
 		initActivityElemente();
@@ -114,6 +112,8 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	 */
 	public void clickBild(View Button) {
 		final Intent intent = new Intent(this, BildActivity.class);
+		intent.putExtra(StringConst.getPesrid(), getPersID());
+
 		startActivity(intent);
 	}
 
@@ -123,11 +123,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	 */
 	public void clickBildung(View Button) {
 		final Intent intent = new Intent(this, BildungActivity.class);
-
-		intent.putExtra(NAME, name);
-		intent.putExtra(ADRESSE, adresse);
-
-		intent.putStringArrayListExtra(BERUFSERFAHRUNGEN, berufserfahrungen);
+		intent.putExtra(StringConst.getPesrid(), getPersID());
 
 		startActivity(intent);
 	}
@@ -135,13 +131,17 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		datenSpeichern();
+		if (!save) {
+			datenSpeichern();
+		}
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		datenSpeichern();
+		if (!save) {
+			datenSpeichern();
+		}
 	}
 
 	/**
@@ -149,47 +149,51 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	 */
 	private void datenSpeichern() {
 
-		boolean save = false;
 		ArrayList<BerufserfahrungData> berufserfahrungen = berufserfahrungListener
 				.getBerufserfahrungen();
-		if (berufserfahrungen.size() > 0) {
 
-			String strToast = "";
-			for (BerufserfahrungData current : berufserfahrungen) {
+		if (getPersID() > 0) {
+			if (berufserfahrungen.size() > 0) {
+				for (BerufserfahrungData current : berufserfahrungen) {
 
-				BerufserfahrungData berufserfahrung = (BerufserfahrungData) current;
+					BerufserfahrungData berufserfahrung = (BerufserfahrungData) current;
+					berufserfahrung.setPersID(getPersID());
 
-				// Datenbank
-				BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(this);
-				beruferfahrungDB.open();
-				berufserfahrung = beruferfahrungDB
-						.insertBerufserfahrung(berufserfahrung);
-				beruferfahrungDB.close();
-				if (berufserfahrung.getID() > 0) {
-					save = true;
+					// Datenbank
+					BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(
+							this);
+					beruferfahrungDB.open();
+					berufserfahrung = beruferfahrungDB
+							.insertBerufserfahrung(berufserfahrung);
+					beruferfahrungDB.close();
+
+					Toast toast = Toast.makeText(this,
+							berufserfahrung.getID().toString() + "PersID= "
+									+ berufserfahrung.getPersID(),
+							Toast.LENGTH_SHORT);
+					toast.show();
+
+					if (berufserfahrung.getID() > 0) {
+						save = true;
+					}
 				}
-
-				// TODO Ausbauen
-				strToast = strToast + berufserfahrung.getTxt_titel() + " / "
-						+ berufserfahrung.getTxt_firma() + " / "
-						+ berufserfahrung.getTxt_adresse() + " / "
-						+ berufserfahrung.getTxt_plz() + " / "
-						+ berufserfahrung.getTxt_ort() + " / "
-						+ berufserfahrung.getTxt_taetigkeit() + " / "
-						+ berufserfahrung.getBtnSelectDateVon() + " / "
-						+ berufserfahrung.getBtnSelectDateBis() + " ENDE ";
-
+				if (save) {
+					Toast toast = Toast.makeText(this,
+							StringConst.getDatenWurdenGespeichert(),
+							Toast.LENGTH_SHORT);
+					toast.show();
+				}
 			}
-			// TODO Ausbauen
-			Toast toastTest = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
-			toastTest.show();
-
-			if (save) {
-				Toast toast = Toast.makeText(this, "Daten wurden gespeichert.", Toast.LENGTH_LONG);
-				toast.show();
-			}
-
+		} else {
+			Toast toast = Toast.makeText(this,
+					StringConst.getDatenWurdenNichtGespeichert(),
+					Toast.LENGTH_LONG);
+			toast.show();
 		}
+	}
+
+	public Long getPersID() {
+		return persID;
 	}
 
 }
