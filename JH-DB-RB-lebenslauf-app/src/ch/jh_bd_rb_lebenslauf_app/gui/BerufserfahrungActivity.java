@@ -148,27 +148,28 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	 * Daten können Persistent gespeichert werden
 	 */
 	private void datenSpeichern() {
-		// Datenobjekt aus demListener laden
-		long dbID = 0;
+
 		boolean save = false;
-		ArrayList<BerufserfahrungData> berufserfahrungen = berufserfahrungListener.getBerufserfahrungen();
+		ArrayList<BerufserfahrungData> berufserfahrungen = berufserfahrungListener
+				.getBerufserfahrungen();
 		if (berufserfahrungen.size() > 0) {
 
 			String strToast = "";
 			for (BerufserfahrungData current : berufserfahrungen) {
 
 				BerufserfahrungData berufserfahrung = (BerufserfahrungData) current;
-		
-				//Datenbank
+
+				// Datenbank
 				BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(this);
 				beruferfahrungDB.open();
-				berufserfahrung = beruferfahrungDB.insertBerufserfahrung(berufserfahrung);
+				berufserfahrung = beruferfahrungDB
+						.insertBerufserfahrung(berufserfahrung);
 				beruferfahrungDB.close();
 				if (berufserfahrung.getID() > 1) {
 					save = true;
 				}
-				
-				//TODO Ausbauen
+
+				// TODO Ausbauen
 				strToast = strToast + berufserfahrung.getTxt_titel() + " / "
 						+ berufserfahrung.getTxt_firma() + " / "
 						+ berufserfahrung.getTxt_adresse() + " / "
@@ -177,17 +178,17 @@ public class BerufserfahrungActivity extends FragmentActivity {
 						+ berufserfahrung.getTxt_taetigkeit() + " / "
 						+ berufserfahrung.getBtnSelectDateVon() + " / "
 						+ berufserfahrung.getBtnSelectDateBis() + " ENDE ";
-				
+
 			}
-			//TODO Ausbauen
+			// TODO Ausbauen
 			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
 			toast.show();
-			
+
 			if (save) {
 				strToast = "Daten wurden gespeichert.";
 
 			}
-			
+
 		}
 	}
 
