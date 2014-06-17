@@ -39,7 +39,7 @@ public class BildungDB implements LebenslaufDB {
 	 */
 	public BildungData getBildung(BildungData bildung) {
 		String[] dbID = new String[1];
-		dbID[0] = bildung.getId().toString();
+		dbID[0] = bildung.getID().toString();
 
 		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG,
 				BILDUNG_ID + "=?", dbID, null, null, null, null);
@@ -68,7 +68,7 @@ public class BildungDB implements LebenslaufDB {
 
 		switch (columWhere) {
 		case BILDUNG_ID:
-			dbWhere[0] = bildung.getId().toString();
+			dbWhere[0] = bildung.getID().toString();
 			dbColWhere = BILDUNG_ID;
 			break;
 		case BILDUNG_BILDUNGSART:
@@ -153,7 +153,7 @@ public class BildungDB implements LebenslaufDB {
 	 */
 	public boolean deleteBildung(BildungData bildung) {
 		String[] dbID = new String[1];
-		dbID[0] = bildung.getId().toString();
+		dbID[0] = bildung.getID().toString();
 		return db.delete(TABLE_BILDUNG, BILDUNG_ID + "=?", dbID) > 0;
 	}
 
@@ -168,7 +168,7 @@ public class BildungDB implements LebenslaufDB {
 
 		values = putContentValues(bildung, values);
 
-		bildung.setId(db.insert(TABLE_BILDUNG, null, values));
+		bildung.setID(db.insert(TABLE_BILDUNG, null, values));
 		return bildung;
 	}
 
@@ -184,9 +184,9 @@ public class BildungDB implements LebenslaufDB {
 		ContentValues values = new ContentValues();
 		values = putContentValues(bildung, values);
 
-		if (bildung.getId() > 0) {
+		if (bildung.getID() > 0) {
 			db.update(TABLE_BILDUNG, values, "_id=?", new String[] { bildung
-					.getId().toString() });
+					.getID().toString() });
 
 			return getBildung(bildung);
 		} else {
@@ -200,7 +200,7 @@ public class BildungDB implements LebenslaufDB {
 	 * @return Bildung mit Daten aus dem result
 	 */
 	private BildungData setBildung(BildungData bildung, Cursor result) {
-		bildung.setId(result.getLong(0));
+		bildung.setID(result.getLong(0));
 		bildung.setAusbildungsart(result.getString(1));
 		bildung.setNameschule(result.getString(2));
 		bildung.setPlz(result.getString(3));

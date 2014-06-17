@@ -160,33 +160,40 @@ public class BildungActivity extends FragmentActivity {
 	 */
 	private void datenSpeichern() {
 
-		// Datenobjekt aus demListener laden
-
-		 ArrayList<BildungData> bildungen = bildungListener.getBildungen();
-		if (bildungen.size() > 0) {
-			// TODO Erfasste Daten beim verlassen der Activity abspeichern
-			// TODO Start Demo / Ausbauen
+		ArrayList<BildungData> bildungen = bildungListener.getBildungen();
+		boolean save = false;
+		
+		if (bildungen.size() > 0) {			
 			String strToast = "";
 			for (BildungData current : bildungen) {
-				// LebenslaufDaten in Bildung Casten
 				BildungData bildung = (BildungData) current;
+
+				if (bildung.getID() > 1) {
+					save = true;
+				}
+				
+				// Datenbank
+				BildungDB bildungDB = new BildungDB(this);
+				bildungDB.open();
+				bildung = bildungDB.insertBildung(bildung);
+				bildungDB.close();
+				
+				// TODO Ausbauen
 				strToast = strToast + bildung.getAusbildungsart() + " / "
 						+ bildung.getNameschule() + " / "
 						+ bildung.getAdresseSchule() + " / "
 						+ bildung.getDatumVon() + " / " + bildung.getDatumBis()
 						+ " ENDE ";
 
-				// TODO Datenbank
-				BildungDB bildungDB = new BildungDB(this);
-				bildungDB.open();
-				bildung = bildungDB.insertBildung(bildung);
-				bildungDB.close();
-				strToast = strToast + " DATENBANK ID: " + bildung.getId();
 			}
-
+			// TODO Ausbauen
 			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
 			toast.show();
-			// ENDE Demo
+			
+			if (save) {
+				strToast = "Daten wurden gespeichert.";
+
+			}
 		}
 	}
 
