@@ -130,17 +130,15 @@ public class ZusammenfassungActivity extends Activity {
 		personalienDB.close();
 
 		berufserfahrungDB.open();
-		// TESTDATEN
-		BerufserfahrungData BE = new BerufserfahrungData("Luftwaffe",
-				"Appliaktionsmanager", "Schaffä", "So lala",
-				"Flugsicherungsstrasse 1-5", "8602", "Wangen", "Heute",
-				"Morgen");
-		BE.setPersID(new Long(1000));
-		berufserfahrungDB.insertBerufserfahrung(BE);
-		berufserfahrungDB.insertBerufserfahrung(BE);
-		berufserfahrungDB.insertBerufserfahrung(BE);
-		// TEST DATEN BIS HIER
-
+		/*
+		 * TESTDATEN BerufserfahrungData BE = new
+		 * BerufserfahrungData("Luftwaffe", "Appliaktionsmanager", "Schaffä",
+		 * "So lala", "Flugsicherungsstrasse 1-5", "8602", "Wangen", "Heute",
+		 * "Morgen"); BE.setPersID(new Long(1000));
+		 * berufserfahrungDB.insertBerufserfahrung(BE);
+		 * berufserfahrungDB.insertBerufserfahrung(BE);
+		 * berufserfahrungDB.insertBerufserfahrung(BE); // TEST DATEN BIS HIER
+		 */
 		ArrayList<BerufserfahrungData> berufserfahrungArray = berufserfahrungDB
 				.getAllBerufserfahrung();
 
@@ -161,15 +159,15 @@ public class ZusammenfassungActivity extends Activity {
 		bildungDB.close();
 
 		skillsDB.open();
-		
-		//TESTDATEN
+
+		// TESTDATEN
 		SkillsData SK = new SkillsData("Englisch", "fliessend", "First");
 		SK.setPers_id(new Long(1000));
 		skillsDB.insertSkills(SK);
 		skillsDB.insertSkills(SK);
 		skillsDB.insertSkills(SK);
-		//TEST DATEN BIS HIER
-		
+		// TEST DATEN BIS HIER
+
 		ArrayList<SkillsData> skillsArray = skillsDB.getAllSkills();
 		skillsDB.close();
 
