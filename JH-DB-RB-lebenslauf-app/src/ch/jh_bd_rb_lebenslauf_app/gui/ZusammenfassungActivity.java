@@ -160,14 +160,13 @@ public class ZusammenfassungActivity extends Activity {
 
 		skillsDB.open();
 
-		// TESTDATEN
-		SkillsData SK = new SkillsData("Englisch", "fliessend", "First");
-		SK.setPers_id(new Long(1000));
-		skillsDB.insertSkills(SK);
-		skillsDB.insertSkills(SK);
-		skillsDB.insertSkills(SK);
-		// TEST DATEN BIS HIER
-
+		/*
+		 * // TESTDATEN SkillsData SK = new SkillsData("Englisch", "fliessend",
+		 * "First"); SK.setPers_id(new Long(1000)); skillsDB.insertSkills(SK);
+		 * skillsDB.insertSkills(SK); skillsDB.insertSkills(SK); // TEST DATEN
+		 * BIS HIER
+		 */
+		// TODO nich alle Daten lad nur die zur Person
 		ArrayList<SkillsData> skillsArray = skillsDB.getAllSkills();
 		skillsDB.close();
 
