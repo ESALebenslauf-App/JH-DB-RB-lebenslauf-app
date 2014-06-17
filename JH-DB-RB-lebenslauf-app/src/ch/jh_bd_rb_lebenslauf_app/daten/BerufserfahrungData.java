@@ -127,8 +127,8 @@ public class BerufserfahrungData implements Cloneable {
 		this.ID = berufserfahrungID;
 	}
 
-	public Long getPersID() {
-		return persID;
+	public String getPersID() {
+		return persID.toString();
 	}
 
 	public void setPersID(Long perID) {

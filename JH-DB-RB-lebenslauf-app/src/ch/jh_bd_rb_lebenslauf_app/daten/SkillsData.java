@@ -37,8 +37,8 @@ public class SkillsData implements Cloneable{
 		ID = iD;
 	}
 
-	public Long getPers_id() {
-		return pers_id;
+	public String getPers_id() {
+		return pers_id.toString();
 	}
 
 	public void setPers_id(Long pers_id) {

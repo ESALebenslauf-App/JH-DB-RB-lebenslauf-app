@@ -58,8 +58,8 @@ public class BildungData implements Cloneable {
 		this.id = id;
 	}
 
-	public Long getPersID() {
-		return persID;
+	public String getPersID() {
+		return persID.toString();
 	}
 
 	public void setPersID(Long persID) {
