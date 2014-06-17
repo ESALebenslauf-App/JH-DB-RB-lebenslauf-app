@@ -1,35 +1,78 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
+import java.util.ArrayList;
+
+import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
+import ch.jh_bd_rb_lebenslauf_app.daten.Zertifikat;
 import ch.jh_bd_rb_lebenslauf_app.gui.SkillsActivity;
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Toast;
+import android.widget.SeekBar;
+import android.widget.Spinner;
 
 public class AddSkillListener implements OnClickListener {
-	private Activity bildActivity;
+
+	private Activity skillsActivity;
+	private Zertifikat zert;
+	private String zertifikat;
+	private Spinner skillSpinner;
+	private SeekBar skillSeekBar;
+	private ArrayList<SkillsData> skillsList;
 
 	public AddSkillListener(SkillsActivity skills) {
-		this.bildActivity = skills;
+		this.skillsActivity = skills;
+		this.zert = skills.getZertifikat();
+		skillsList = new ArrayList<SkillsData>();
+		init();
+	}
+
+	private void init() {
+		setSkillSpinner((Spinner) skillsActivity
+				.findViewById(R.id.spinnersprachen));
+		setSkillSeekBar((SeekBar) skillsActivity
+				.findViewById(R.id.edt_skills_sprachen));
 	}
 
 	@Override
 	public void onClick(View arg0) {
-		// TODO Klasse ausarbeiten
-		shortToast("Neuer Skill wird hinzugefügt");
+		SkillsData skillsData = new SkillsData(getSkillSpinner()
+				.getSelectedItem().toString(), String.valueOf(getSkillSeekBar()
+				.getProgress()), zert.getPath());
+		skillsList.add(skillsData);
+		
+		getSkillSpinner().setSelection(0);
+		getSkillSeekBar().setProgress(0);
 
 	}
-	
-	/**
-	 * 
-	 * @param text
-	 */
-	private void shortToast(String text) {
-		Context context = bildActivity;
-		int duration = Toast.LENGTH_SHORT;
 
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
+	public String getZertifikat() {
+		return zertifikat;
 	}
+
+	public void setZertifikat(String zertifikat) {
+		this.zertifikat = zertifikat;
+	}
+
+	public Spinner getSkillSpinner() {
+		return skillSpinner;
+	}
+
+	public void setSkillSpinner(Spinner skillSpinner) {
+		this.skillSpinner = skillSpinner;
+	}
+
+	public SeekBar getSkillSeekBar() {
+		return skillSeekBar;
+	}
+
+	public void setSkillSeekBar(SeekBar skillSeekBar) {
+		this.skillSeekBar = skillSeekBar;
+	}
+
+	public ArrayList<SkillsData> getSkillsList() {
+		return skillsList;
+	}
+
 }
