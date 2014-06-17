@@ -65,55 +65,50 @@ public interface LebenslaufDB {
 	// Tabelle Personalien erstellen
 	static String SQL_CREATE_TABLE_PERS = "CREATE TABLE " + TABLE_PERS + "("
 			+ PERS_ID + " INTEGER PRIMARY key autoincrement, "
-			+ PERS_ANREDE + " TEXT NOT NULL,"
-			+ PERS_NAME + " TEXT NOT NULL,"
-			+ PERS_VORNAME + " TEXT NOT NULL,"
-			+ PERS_STRASSE + " TEXT NOT NULL,"
-			+ PERS_PLZ + " TEXT NOT NULL,"
-			+ PERS_ORT + " TEXT NOT NULL,"
-			+ PERS_DATE + " TEXT NOT NULL,"
-			+ PERS_BILD + " TEXT NOT NULL)";
+			+ PERS_ANREDE + ","
+			+ PERS_NAME + ","
+			+ PERS_VORNAME + ","
+			+ PERS_STRASSE + ","
+			+ PERS_PLZ + ","
+			+ PERS_ORT + ","
+			+ PERS_DATE + ","
+			+ PERS_BILD + ")";
 			
 	
 	
 	// Tabelle Berufserfahrung erstellen
 	static String SQL_CREATE_TABLE_BERUF = "CREATE TABLE " + TABLE_BERUF + "("
 			+ BERUF_ID + " INTEGER PRIMARY key autoincrement,"
-			+ BERUF_FIRMA + " TEXT NOT NULL,"
-			+ BERUF_TITEL + " TEXT NOT NULL,"
-			+ BERUF_TAETIGKEIT + " TEXT NOT NULL,"
-			+ BERUF_BESCHREIBUNG + " TEXT NOT NULL,"
-			+ BERUF_ADRESSE + " TEXT NOT NULL,"
-			+ BERUF_PLZ + " TEXT NOT NULL,"
-			+ BERUF_ORT + " TEXT NOT NULL,"
-			+ BERUF_VON + " TEXT NOT NULL,"
-			+ BERUF_BIS + " TEXT NOT NULL,"
-			+ BERUF_PERS_ID + " TEXT NOT NULL)";
+			+ BERUF_FIRMA + ","
+			+ BERUF_TITEL + ","
+			+ BERUF_TAETIGKEIT + ","
+			+ BERUF_BESCHREIBUNG + ","
+			+ BERUF_ADRESSE + ","
+			+ BERUF_PLZ + ","
+			+ BERUF_ORT + ","
+			+ BERUF_VON + ","
+			+ BERUF_BIS + ","
+			+ BERUF_PERS_ID + ")";
 	
 	
 	// Tabelle Bildung erstellen
 	static String SQL_CREATE_TABLE_BILDUNG = "CREATE TABLE " + TABLE_BILDUNG + "("
 			+ BILDUNG_ID + " INTEGER PRIMARY key autoincrement,"
-			+ BILDUNG_BILDUNGSART + " TEXT NOT NULL,"
-			+ BILDUNG_SCHULNAME + " TEXT NOT NULL,"
-			+ BILDUNG_PLZ + " INT NOT NULL,"
-			+ BILDUNG_ORT + " TEXT NOT NULL,"
-			+ BILDUNG_VON + " TEXT NOT NULL,"
-			+ BILDUNG_BIS + " TEXT NOT NULL,"
-			+ BILDUNG_PERS_ID + " TEXT NOT NULL)";
+			+ BILDUNG_BILDUNGSART + ","
+			+ BILDUNG_SCHULNAME + ","
+			+ BILDUNG_PLZ + ","
+			+ BILDUNG_ORT + ","
+			+ BILDUNG_VON + ","
+			+ BILDUNG_BIS + ","
+			+ BILDUNG_PERS_ID + ")";
 
 	
 
 	// Tabelle Skills erstellen
 	static String SQL_CREATE_TABLE_SKILLS = "CREATE TABLE " + TABLE_SKILLS + "("
 			+ SKILLS_ID + " INTEGER PRIMARY key autoincrement,"
-			+ SKILLS_WAS + " TEXT NOT NULL,"
-			+ SKILLS_AUSMASS + " TEXT NOT NULL,"
-			+ SKILLS_ZERTIFIKAT + " TEXT NOT NULL,"
-			+ SKILLS_PERS_ID + " TEXT NOT NULL)";
-	
-	
-	
-	
-	
+			+ SKILLS_WAS + ","
+			+ SKILLS_AUSMASS + ","
+			+ SKILLS_ZERTIFIKAT + ","
+			+ SKILLS_PERS_ID + ")";
 }

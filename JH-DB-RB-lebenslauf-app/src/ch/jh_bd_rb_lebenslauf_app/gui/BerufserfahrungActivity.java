@@ -170,11 +170,11 @@ public class BerufserfahrungActivity extends FragmentActivity {
 				//Datenbank
 				BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(this);
 				beruferfahrungDB.open();
-				beruferfahrungDB.insertBerufserfahrung(berufserfahrung);
+				berufserfahrung = beruferfahrungDB.insertBerufserfahrung(berufserfahrung);
 				beruferfahrungDB.close();
 				
 				//TODO Ausbauen
-				strToast = strToast + "DATENBANK ID: " + dbID;
+				strToast = strToast + "DATENBANK ID: " + berufserfahrung.getID();
 				
 			}
 			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
