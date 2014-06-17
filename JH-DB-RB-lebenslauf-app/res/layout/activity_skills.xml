@@ -112,6 +112,9 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:stretchColumns="*" >
 
         <TableRow android:paddingTop="65dp" >

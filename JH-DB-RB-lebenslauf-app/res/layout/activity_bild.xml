@@ -132,7 +132,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayoutTitel"
         android:layout_marginTop="14dp"
-        android:layout_weight="1.00" >
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp" >
 
         <TableRow
             android:id="@+id/tableRow_txt_titel"

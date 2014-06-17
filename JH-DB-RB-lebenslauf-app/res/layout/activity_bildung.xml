@@ -3,80 +3,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
-        <LinearLayout
-            android:id="@+id/linearLayoutNavOben"
+
+    <LinearLayout
+        android:id="@+id/linearLayoutNavOben"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <TextView
+            android:id="@+id/naviObenBild"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true" >
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/titelPicPersonalien"
+            android:background="#1DACE9"
+            android:text="@string/naviObenBild"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/naviObenBild"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignRight="@+id/titelPicPersonalien"
-                android:background="#1DACE9"
-                android:textColor="#FFFFFF"
-                android:text="@string/naviObenBild"
-                android:textSize="12sp" />
+        <TextView
+            android:id="@+id/naviObenBerufserfahrung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/titelPicPersonalien"
+            android:background="#1DACE9"
+            android:text="@string/naviObenBerufserfahrung"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/naviObenBerufserfahrung"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/titelPicPersonalien"
-                android:background="#1DACE9"
-                android:textColor="#FFFFFF"
-                android:text="@string/naviObenBerufserfahrung"
-                android:textSize="12sp" />
+        <TextView
+            android:id="@+id/naviObenBildung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/titelPicPersonalien"
+            android:layout_toRightOf="@+id/naviObenBerufserfahrung"
+            android:layout_weight="0.68"
+            android:background="#1DACE9"
+            android:text="@string/naviObenBildung"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/naviObenBildung"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/titelPicPersonalien"
-                android:layout_toRightOf="@+id/naviObenBerufserfahrung"
-                android:layout_weight="0.68"
-                android:background="#1DACE9"
-                android:text="@string/naviObenBildung"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+        <TextView
+            android:id="@+id/naviObenSkills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/titelPicPersonalien"
+            android:layout_alignLeft="@+id/picAuswahl"
+            android:layout_toLeftOf="@+id/naviObenFinish"
+            android:background="#1DAC01"
+            android:text="@string/naviObenSkills"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/naviObenSkills"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/titelPicPersonalien"
-                android:layout_alignLeft="@+id/picAuswahl"
-                android:layout_toLeftOf="@+id/naviObenFinish"
-                android:background="#1DAC01"
-                android:text="@string/naviObenSkills"
-                android:textSize="12sp" />
+        <TextView
+            android:id="@+id/naviObenZusammenfassung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/titelPicPersonalien"
+            android:layout_toRightOf="@+id/naviObenBildung"
+            android:background="#1DAC01"
+            android:text="@string/naviObenZusammenfassung"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/naviObenZusammenfassung"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/titelPicPersonalien"
-                android:layout_toRightOf="@+id/naviObenBildung"
-                android:background="#1DAC01"
-                android:text="@string/naviObenZusammenfassung"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/naviObenFinish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#1DAC01"
-                android:text="@string/naviObenFinish"
-                android:textSize="12sp" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/naviObenFinish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#1DAC01"
+            android:text="@string/naviObenFinish"
+            android:textSize="12sp" />
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayoutTitel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -99,20 +100,22 @@
             android:paddingTop="10dp"
             android:text="@string/txt_bildung"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
     </LinearLayout>
-    
 
     <!-- ..........Hauptteil Titel .......... -->
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayoutFooter"
+        android:layout_below="@+id/linearLayoutTitel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         tools:ignore="UnknownIdInLayout" >
+        
 
         <RadioGroup
             android:id="@+id/edt_radiogroup_ausbildung"
@@ -171,7 +174,7 @@
 
             <EditText
                 android:id="@+id/edt_bildung_plz"
-                android:layout_width="20dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
@@ -204,7 +207,7 @@
                 android:id="@+id/txt_dauer_von_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.40"
                 android:text="@string/txt_von" />
 
             <Button
@@ -218,7 +221,7 @@
                 android:id="@+id/txt_dauer_bis_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.40"
                 android:text="@string/txt_bis" />
 
             <Button
@@ -234,7 +237,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/txt_bildung_add" />
-    </LinearLayout>
+    </TableLayout>
 
     <LinearLayout
         android:id="@+id/linearLayoutFooter"
@@ -256,10 +259,10 @@
             android:id="@+id/btnBerufserfahrung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#1DACE9"
             android:contentDescription="@string/todo"
             android:onClick="onClickBerufserfahrung"
-            android:background="#1DACE9"
-            android:text="@string/naviUntenBerufserfahrung" 
+            android:text="@string/naviUntenBerufserfahrung"
             android:textColor="#ffffff" />
 
         <Button
@@ -278,7 +281,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ico_vor" />
-
     </LinearLayout>
-    
+
 </RelativeLayout>

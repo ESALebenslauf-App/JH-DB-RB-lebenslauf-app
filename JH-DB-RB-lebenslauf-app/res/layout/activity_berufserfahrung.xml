@@ -20,8 +20,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/titelPicPersonalien"
             android:background="#1DACE9"
-            android:textColor="#FFFFFF"
             android:text="@string/naviObenBild"
+            android:textColor="#FFFFFF"
             android:textSize="12sp" />
 
         <TextView
@@ -105,7 +105,6 @@
     <!-- Start Body -->
 
 
-
     <!-- Ende Body -->
 
     <Button
@@ -118,6 +117,7 @@
         android:text="@string/txt_berufserfahrung_add" />
 
     <LinearLayout
+        android:id="@+id/linearLayoutTitel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -135,9 +135,9 @@
             android:id="@+id/buttonBild"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/todo"
             android:background="#1DACE9"
-            android:text="@string/naviUntenBild" 
+            android:contentDescription="@string/todo"
+            android:text="@string/naviUntenBild"
             android:textColor="#ffffff" />
 
         <Button
@@ -155,17 +155,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ico_vor" />
-
     </LinearLayout>
 
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout1"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearLayoutNavOben"
+        android:orientation="vertical"
         android:layout_marginTop="60dp"
-        android:layout_weight="1.00" >
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp" >
 
         <TableRow
             android:id="@+id/tableRow_txt_firma"
@@ -274,38 +276,37 @@
             </LinearLayout>
 
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/txt_dauer_von_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/txt_von" />
+                <TextView
+                    android:id="@+id/txt_dauer_von_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/txt_von" />
 
-            <Button
-                android:id="@+id/btnSelectDateVon"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                <Button
+                    android:id="@+id/btnSelectDateVon"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/txt_dauer_bis_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/txt_bis" />
+                <TextView
+                    android:id="@+id/txt_dauer_bis_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/txt_bis" />
 
-            <Button
-                android:id="@+id/btnSelectDateBis"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
+                <Button
+                    android:id="@+id/btnSelectDateBis"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
         </TableRow>
 
         <TableRow
