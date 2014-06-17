@@ -84,6 +84,10 @@ public class SkillsDB implements LebenslaufDB {
 			dbWhere[0] = skills.getZertifikat().toString();
 			dbColWhere = SKILLS_ZERTIFIKAT;
 			break;
+		case SKILLS_PERS_ID:
+			dbWhere[0] = skills.getPers_id().toString();
+			dbColWhere = SKILLS_PERS_ID;
+			break;
 
 		default:
 			break;
