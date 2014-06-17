@@ -71,8 +71,10 @@
         <item>Englisch</item>
         <item>Französisch</item>
         <item>Italienisch</item>
+        <item>ERP Kenntnisse</item>
+        <item>Office Kenntnisse</item>
     </string-array>
-    <string name="txt_skill_sprachen">Sprachen</string>
+    <string name="txt_skill">Skills</string>
     <string name="txt_skill_level">Level</string>
     <string name="txt_skill_add">Skill hinzufügen</string>
     <string name="txt_itkenntniss">IT-Kenntnisse:</string>
@@ -95,6 +97,6 @@
     <string name="txt_plz">PLZ:</string>
     <string name="txt_von">von:</string>
     <string name="txt_bis">bis:</string>
-    <string name="txt_add">add</string>
+    <string name="txt_add">Skill hinzufügen</string>
     <string name="txt_zertifikate">Zertifikate:</string>
 </resources>

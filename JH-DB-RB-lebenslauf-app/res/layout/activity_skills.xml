@@ -119,12 +119,12 @@
 
         <TableRow android:paddingTop="65dp" >
 
-            <TextView android:text="@string/txt_skill_sprachen" />
+            <TextView android:text="@string/txt_skill" />
 
             <TextView android:text="@string/txt_skill_level" />
         </TableRow>
 
-        <TableRow android:paddingTop="5dp" >
+        <TableRow android:paddingTop="20dp" >
 
             <Spinner
                 android:id="@+id/spinnersprachen"
@@ -137,28 +137,7 @@
                 android:max="100" />
         </TableRow>
 
-        <TableRow android:paddingTop="5dp" >
-
-            <TextView android:layout_width="1dp" />
-
-            <Button
-                android:id="@+id/btnAddSkill"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_add" />
-        </TableRow>
-
-        <TableRow android:paddingTop="5dp" >
-
-            <TextView android:text="@string/txt_itkenntniss" />
-
-            <SeekBar
-                android:id="@+id/edt_skills_sprachen"
-                android:layout_width="fill_parent"
-                android:max="100" />
-        </TableRow>
-
-        <TableRow android:paddingTop="5dp" >
+        <TableRow android:paddingTop="20dp" >
 
             <TextView android:text="@string/txt_zertifikate" />
 
@@ -168,6 +147,15 @@
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_input_get" />
         </TableRow>
+
+
+        
+         <Button
+                android:id="@+id/btnAddSkill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_add" />
+
     </TableLayout>
 
     <!-- ......................................................................................................... -->
