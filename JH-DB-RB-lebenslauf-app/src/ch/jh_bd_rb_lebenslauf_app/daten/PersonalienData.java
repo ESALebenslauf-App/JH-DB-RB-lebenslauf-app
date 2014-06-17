@@ -24,9 +24,9 @@ public class PersonalienData implements Cloneable {
 		this.bild = bild;
 	}
 
-	public PersonalienData(Long iD) {
+	public PersonalienData(Long ID) {
 		super();
-		ID = iD;
+		this.ID = ID;
 	}
 	
 	public PersonalienData clone() {
