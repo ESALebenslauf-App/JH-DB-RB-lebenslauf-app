@@ -165,7 +165,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 				berufserfahrung = beruferfahrungDB
 						.insertBerufserfahrung(berufserfahrung);
 				beruferfahrungDB.close();
-				if (berufserfahrung.getID() > 1) {
+				if (berufserfahrung.getID() > 0) {
 					save = true;
 				}
 
@@ -181,12 +181,12 @@ public class BerufserfahrungActivity extends FragmentActivity {
 
 			}
 			// TODO Ausbauen
-			Toast toast = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
-			toast.show();
+			Toast toastTest = Toast.makeText(this, strToast, Toast.LENGTH_LONG);
+			toastTest.show();
 
 			if (save) {
-				strToast = "Daten wurden gespeichert.";
-
+				Toast toast = Toast.makeText(this, "Daten wurden gespeichert.", Toast.LENGTH_LONG);
+				toast.show();
 			}
 
 		}
