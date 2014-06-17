@@ -170,16 +170,19 @@ public class ZusammenfassungActivity extends Activity {
 		ArrayList<SkillsData> skillsArray = skillsDB.getAllSkills();
 		skillsDB.close();
 
+		
+		
 		// ////////////////////// PERSONALIEN
 		// Die Personalien laden und als Text an das htmlPersonalien übergeben.
 		// TODO Test Daten können gelöscht werden:
-		String anrede = "Herr";
-		String name = "Buess";
-		String vorname = "Reto";
-		String strasse = "Gumpisbüelstrasse 19";
-		String plz = "8600";
-		String ort = "Dübendorf";
-		String date = "05.09.1985";
+		PersonalienData pers = personalienArray.get(0);
+		String anrede = pers.getAnrede();
+		String name = pers.getName();
+		String vorname = pers.getVorname();
+		String strasse = pers.getStrasse();
+		String plz = pers.getPlz();
+		String ort = pers.getOrt();
+		String date = pers.getDate();
 
 		if (personalienArray.size() > 0) {
 
