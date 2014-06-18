@@ -13,8 +13,6 @@ public class BildListener extends Activity implements OnClickListener {
 	@SuppressWarnings("unused")
 	private Activity bildActivity;
 	private PersonalienDB db;
-	
-	final static int PIC = 1;
 
 	public BildListener(BildActivity bild) {
 		this.bildActivity = bild;
@@ -35,7 +33,7 @@ public class BildListener extends Activity implements OnClickListener {
 		final Intent cameraInt = new Intent(
 				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 
-		bildActivity.startActivityForResult(cameraInt, PIC);
+		bildActivity.startActivityForResult(cameraInt, 1);
 	}
 	
 	

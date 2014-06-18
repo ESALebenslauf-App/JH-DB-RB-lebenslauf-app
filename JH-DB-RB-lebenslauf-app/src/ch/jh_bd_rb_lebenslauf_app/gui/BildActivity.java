@@ -33,7 +33,7 @@ import android.widget.Toast;
  */
 public class BildActivity extends Activity {
 
-	private Bitmap image;
+	private Bitmap image = null;
 
 	private String imageString = "";
 
@@ -141,7 +141,9 @@ public class BildActivity extends Activity {
 			pers = personalienDB.insertPersonalieng(pers);
 			// Hier wird die Speicherung des Fotos ausgelöst und die Personen ID
 			// als eindeutige Bezeichnung mitgegeben.
-			pers.setBild(pers.getID() + saveImage(pers.getID()));
+			if (image != null) {
+				pers.setBild(pers.getID() + saveImage(pers.getID()));
+			}
 
 			personalienDB.close();
 			if (pers.getID() > 0) {
@@ -228,7 +230,9 @@ public class BildActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		image = (Bitmap) data.getExtras().get("data");
+		if (requestCode == 1 && resultCode == RESULT_OK) {
+			image = (Bitmap) data.getExtras().get("data");
+		}
 
 	}
 
