@@ -1,15 +1,21 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienData;
 import ch.jh_bd_rb_lebenslauf_app.listener.BildListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.HochladenListener;
+import ch.jh_bd_rb_lebenslauf_app.resource.FileConst;
 import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,6 +31,8 @@ import android.widget.Toast;
  * 
  */
 public class BildActivity extends Activity {
+	
+	Bitmap image;
 
 	private Button btnBerufserfahrung;
 	private ImageButton btnCamera;
@@ -207,5 +215,33 @@ public class BildActivity extends Activity {
 	public void setSpinnerAnrede(Spinner spinnerAnrede) {
 		this.spinnerAnrede = spinnerAnrede;
 	}
+	
+	// Diese Methode handelt das geschossene Foto vom BildListener
+		// Der BildListener sendet das Ergebnis zurück an die BildActivity.
+		@Override
+		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+			image = (Bitmap) data.getExtras().get("data");
+
+			String fotoName = "Foto.jpg";
+
+			String pfad = FileConst.getPdfPath();
+
+			String fileName = pfad + "/" + fotoName;
+
+			File fotoFile = new File(fileName);
+
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			image.compress(Bitmap.CompressFormat.PNG, 100, stream);
+			byte[] byteArray = stream.toByteArray();
+
+			try {
+				FileOutputStream fos = new FileOutputStream(fotoFile);
+				fos.write(byteArray);
+				fos.close();
+			} catch (Exception error) {
+			}
+		}
+	
 
 }
