@@ -12,10 +12,13 @@ import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienData;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungData;
+import ch.jh_bd_rb_lebenslauf_app.resource.FileConst;
 import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -24,6 +27,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -41,6 +45,9 @@ public class ZusammenfassungActivity extends Activity {
 	private TextView edtBildung;
 	private TextView edtSkills;
 	private Long persID;
+	
+	Bitmap image;
+	ImageView bild;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +68,9 @@ public class ZusammenfassungActivity extends Activity {
 		edtBerufserfahrung = (TextView) findViewById(R.id.edt_zusammenfassung_berufserfahrung);
 		edtBildung = (TextView) findViewById(R.id.edt_zusammenfassung_bildung);
 		edtSkills = (TextView) findViewById(R.id.edt_zusammenfassung_skills);
-
+		bild = (ImageView) findViewById(R.id.imageView1);
+		image = BitmapFactory.decodeFile(FileConst.getPdfPath()+"/Foto.jpg");
+		bild.setImageBitmap(image);
 	}
 
 	private void initActivityListener() {

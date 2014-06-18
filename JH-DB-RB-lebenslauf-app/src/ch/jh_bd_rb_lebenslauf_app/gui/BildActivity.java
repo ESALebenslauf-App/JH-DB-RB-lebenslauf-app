@@ -232,7 +232,7 @@ public class BildActivity extends Activity {
 			File fotoFile = new File(fileName);
 
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			image.compress(Bitmap.CompressFormat.PNG, 100, stream);
+			image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 			byte[] byteArray = stream.toByteArray();
 
 			try {
