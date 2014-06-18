@@ -16,6 +16,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -31,8 +32,10 @@ import android.widget.Toast;
  * 
  */
 public class BildActivity extends Activity {
-	
-	Bitmap image;
+
+	private Bitmap image;
+
+	private String imageString = "";
 
 	private Button btnBerufserfahrung;
 	private ImageButton btnCamera;
@@ -136,6 +139,10 @@ public class BildActivity extends Activity {
 			PersonalienDB personalienDB = new PersonalienDB(this);
 			personalienDB.open();
 			pers = personalienDB.insertPersonalieng(pers);
+			// Hier wird die Speicherung des Fotos ausgelöst und die Personen ID
+			// als eindeutige Bezeichnung mitgegeben.
+			pers.setBild(pers.getID() + saveImage(pers.getID()));
+
 			personalienDB.close();
 			if (pers.getID() > 0) {
 				save = true;
@@ -215,33 +222,43 @@ public class BildActivity extends Activity {
 	public void setSpinnerAnrede(Spinner spinnerAnrede) {
 		this.spinnerAnrede = spinnerAnrede;
 	}
-	
+
 	// Diese Methode handelt das geschossene Foto vom BildListener
-		// Der BildListener sendet das Ergebnis zurück an die BildActivity.
-		@Override
-		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	// Der BildListener sendet das Ergebnis zurück an die BildActivity.
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-			image = (Bitmap) data.getExtras().get("data");
+		image = (Bitmap) data.getExtras().get("data");
 
-			String fotoName = "Foto.jpg";
+	}
 
-			String pfad = FileConst.getPdfPath();
+	// Diese Methode Speichert das Foto und gibt die Personen ID zu der
+	// Bezeichnung hinzu
+	public String saveImage(Long id) {
 
-			String fileName = pfad + "/" + fotoName;
+		String ID = id.toString();
 
-			File fotoFile = new File(fileName);
+		String fotoName = "Foto.jpg";
 
-			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-			byte[] byteArray = stream.toByteArray();
+		String pfad = FileConst.getPdfPath();
 
-			try {
-				FileOutputStream fos = new FileOutputStream(fotoFile);
-				fos.write(byteArray);
-				fos.close();
-			} catch (Exception error) {
-			}
+		String fileName = pfad + "/" + ID + fotoName;
+
+		File fotoFile = new File(fileName);
+
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+		byte[] byteArray = stream.toByteArray();
+		try {
+			FileOutputStream fos = new FileOutputStream(fotoFile);
+			fos.write(byteArray);
+			fos.close();
+		} catch (Exception error) {
 		}
-	
+
+		imageString = fotoName;
+		return imageString;
+
+	}
 
 }

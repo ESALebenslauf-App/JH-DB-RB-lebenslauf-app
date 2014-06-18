@@ -45,7 +45,7 @@ public class ZusammenfassungActivity extends Activity {
 	private TextView edtBildung;
 	private TextView edtSkills;
 	private Long persID;
-	
+
 	Bitmap image;
 	ImageView bild;
 
@@ -68,9 +68,15 @@ public class ZusammenfassungActivity extends Activity {
 		edtBerufserfahrung = (TextView) findViewById(R.id.edt_zusammenfassung_berufserfahrung);
 		edtBildung = (TextView) findViewById(R.id.edt_zusammenfassung_bildung);
 		edtSkills = (TextView) findViewById(R.id.edt_zusammenfassung_skills);
+
+		// Hier wird der Pfad auf das gespeicherte Foto zusammengestellt.
+		// und das Foto geladen.
+		String filePath = FileConst.getPdfPath() + "/" + persID.toString()
+				+ "Foto.jpg";
+		image = BitmapFactory.decodeFile(filePath);
 		bild = (ImageView) findViewById(R.id.imageView1);
-		image = BitmapFactory.decodeFile(FileConst.getPdfPath()+"/Foto.jpg");
 		bild.setImageBitmap(image);
+
 	}
 
 	private void initActivityListener() {
@@ -169,7 +175,6 @@ public class ZusammenfassungActivity extends Activity {
 			String plz = personalien.getPlz();
 			String ort = personalien.getOrt();
 			String date = personalien.getDate();
-			// String bild = personalien.getBild();
 
 			// Übergibt die Daten als Text an ein Spanned.
 			txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " "
