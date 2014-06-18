@@ -11,6 +11,7 @@ import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungData;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungDB;
+import ch.jh_bd_rb_lebenslauf_app.daten.LebenslaufDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienData;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.SendItem;
@@ -50,11 +51,13 @@ public class CreatePdfListener implements OnClickListener {
 	static String bildungU = "Bildung";
 	static String berufserfahrungU = "Berufserfahrung";
 	static String skillsU = "Skills";
-	static String personalien = "Hier kommen die Personalien hin";
+	static String personalienText = "Hier kommen die Personalien hin";
 	static String bildung = "Hier kommt die Bildung hin";
 	static String berufserfahrung = "Hier kommt die Berufserfahrung hin";
 	static String skills = "Hier kommen die Skills hin";
 
+	private Long persID;
+	
 	String dir;
 	Activity finishActivity;
 	SharedPreferences prefs;
@@ -71,8 +74,8 @@ public class CreatePdfListener implements OnClickListener {
 	static FontFamily schrift = Font.FontFamily.TIMES_ROMAN;
 	
 	// TEST-Konstruktor mit Aktivity und Directory
-	public CreatePdfListener(Activity finishActivity, String dir,SendItem sendItem) {
-		this.dir = dir;
+	public CreatePdfListener(Activity finishActivity, Long id,SendItem sendItem) {
+		this.persID = id;
 		this.finishActivity = finishActivity;
 		this.sendItem = sendItem;
 		btnSenden = (Button) finishActivity.findViewById(R.id.btnSenden);
@@ -89,53 +92,49 @@ public class CreatePdfListener implements OnClickListener {
 		BildungDB bildungDB = new BildungDB(finishActivity);
 		SkillsDB skillsDB = new SkillsDB(finishActivity);
 
-		// TODO Muss noch angepasst werden! Laden der Personalien und
-		// dazugehörigen Daten.
 		personalienDB.open();
+		PersonalienData personalienData = new PersonalienData(getPersID());
 		ArrayList<PersonalienData> personalienArray = personalienDB
-				.getAllPersonalien();
+				.getPersonalienRows(personalienData, LebenslaufDB.PERS_ID);
 		personalienDB.close();
 
 		berufserfahrungDB.open();
-
+		BerufserfahrungData berufserfahrungData = new BerufserfahrungData();
+		berufserfahrungData.setPersID(getPersID());
 		ArrayList<BerufserfahrungData> berufserfahrungArray = berufserfahrungDB
-				.getAllBerufserfahrung();
-
+				.getBerufserfarungRows(berufserfahrungData,
+						LebenslaufDB.BERUF_PERS_ID);
 		berufserfahrungDB.close();
 
 		bildungDB.open();
-
-		ArrayList<BildungData> bildungArray = bildungDB.getAllBildungen();
+		BildungData bildungData = new BildungData();
+		bildungData.setPersID(getPersID());
+		ArrayList<BildungData> bildungArray = bildungDB.getBildungRows(
+				bildungData, LebenslaufDB.BILDUNG_PERS_ID);
 		bildungDB.close();
 
 		skillsDB.open();
-		
-		ArrayList<SkillsData> skillsArray = skillsDB.getAllSkills();
+		SkillsData skillsData = new SkillsData();
+		skillsData.setPers_id(getPersID());
+		ArrayList<SkillsData> skillsArray = skillsDB.getSkillsRows(skillsData,
+				LebenslaufDB.SKILLS_PERS_ID);
 		skillsDB.close();
 
 		// ////////////////////// PERSONALIEN
 		// Die Personalien laden und als Text an das htmlPersonalien übergeben.
-		// TODO Test Daten können gelöscht werden:
-		String anrede = "Herr";
-		String name = "Buess";
-		String vorname = "Reto";
-		String strasse = "Gumpisbüelstrasse 19";
-		String plz = "8600";
-		String ort = "Dübendorf";
-		String date = "05.09.1985";
 
 		if (personalienArray.size() > 0) {
 
 			PersonalienData personalien = personalienArray.get(0);
-			anrede = personalien.getAnrede();
-			name = personalien.getName();
-			vorname = personalien.getVorname();
-			strasse = personalien.getStrasse();
-			plz = personalien.getPlz();
-			ort = personalien.getOrt();
-			date = personalien.getDate();
+			String anrede = personalien.getAnrede();
+			String name = personalien.getName();
+			String vorname = personalien.getVorname();
+			String strasse = personalien.getStrasse();
+			String plz = personalien.getPlz();
+			String ort = personalien.getOrt();
+			String date = personalien.getDate();
 			// String bild = personalien.getBild();
-		}
+		
 		// Übergibt die Daten als Text an ein Spanned.
 		txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " " + name
 				+ "<br />" + strasse + "<br />" + plz + " " + ort + "<br />"
@@ -143,8 +142,8 @@ public class CreatePdfListener implements OnClickListener {
 		// Spanned www = Html.fromHtml("TEXT");
 		// CharSequence xxx = TextUtils.concat(txtPersonalien, www);
 		// Übergibt den Spanned an den TextView.
-		personalien = txtPersonalien.toString();
-
+		personalienText = txtPersonalien.toString();
+		}
 		// ///////////////////////// BERUFSERFAHRUNG
 		// Die Berufserfahrungen laden und als Text an die TextView übergeben.
 		Spanned textBerufserfahrung = Html.fromHtml("");
@@ -284,7 +283,7 @@ public class CreatePdfListener implements OnClickListener {
 		// Personalien
 		preface.add(new Paragraph(personalienU, ueberschriftF));
 		addEmptyLine(preface, 1);
-		preface.add(new Paragraph(personalien, standardF));
+		preface.add(new Paragraph(personalienText, standardF));
 		addEmptyLine(preface, 2);
 		// Berufserfahrung
 		preface.add(new Paragraph(berufserfahrungU, ueberschriftF));
@@ -368,6 +367,10 @@ public class CreatePdfListener implements OnClickListener {
 			schrift = Font.FontFamily.TIMES_ROMAN;
 
 		}
+	}
+	
+	public Long getPersID() {
+		return persID;
 	}
 	
 

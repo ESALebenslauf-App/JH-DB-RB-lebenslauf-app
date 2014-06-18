@@ -122,7 +122,7 @@ public class ZusammenfassungActivity extends Activity {
 	 */
 	public void clickFinish(View Button) {
 		final Intent intent = new Intent(this, FinishActivity.class);
-
+		intent.putExtra(StringConst.getPesrid(), getPersID());
 		startActivity(intent);
 	}
 

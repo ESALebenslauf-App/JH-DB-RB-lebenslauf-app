@@ -6,6 +6,7 @@ import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.SendItem;
 import ch.jh_bd_rb_lebenslauf_app.listener.CreatePdfListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.SendListener;
+import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -27,11 +28,14 @@ public class FinishActivity extends Activity {
 	private Button btnPdfList;
 	private CreatePdfListener createPdfListener;
 	private SendItem sendItem;
+	
+	private Long persID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_finish);
+		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
 
 		initActivityElemente();
 		initActivityListener();
@@ -52,7 +56,7 @@ public class FinishActivity extends Activity {
 		String dir = getFilesDir().toString();
 
 		sendItem = new SendItem();
-		createPdfListener = new CreatePdfListener(this, dir, sendItem);
+		createPdfListener = new CreatePdfListener(this, persID, sendItem);
 		btnCreatePdf.setOnClickListener(createPdfListener);
 		btnSenden.setOnClickListener(new SendListener(this, sendItem));
 
