@@ -36,6 +36,10 @@ public class BildungData implements Cloneable {
 		this.datumVon = datumVon;
 		this.datumBis = datumBis;
 	}
+	
+	public BildungData(){
+		
+	}
 
 	public BildungData clone() {
 		BildungData theClone = null;

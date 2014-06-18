@@ -14,6 +14,10 @@ public class SkillsData implements Cloneable{
 		this.ausmass = ausmass;
 		this.zertifikat = zertifikat;
 	}
+	
+	public SkillsData(){
+		
+	}
 
 	public SkillsData(Long iD) {
 		super();

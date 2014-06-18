@@ -121,8 +121,6 @@ public class ZusammenfassungActivity extends Activity {
 		BildungDB bildungDB = new BildungDB(this);
 		SkillsDB skillsDB = new SkillsDB(this);
 
-		// TODO Muss noch angepasst werden! Laden der Personalien und
-		// dazugehörigen Daten.
 		personalienDB.open();
 		PersonalienData personalienData = new PersonalienData(getPersID());
 		ArrayList<PersonalienData> personalienArray = personalienDB
@@ -130,59 +128,28 @@ public class ZusammenfassungActivity extends Activity {
 		personalienDB.close();
 
 		berufserfahrungDB.open();
-		/*
-		 * TESTDATEN BerufserfahrungData BE = new
-		 * BerufserfahrungData("Luftwaffe", "Appliaktionsmanager", "Schaffä",
-		 * "So lala", "Flugsicherungsstrasse 1-5", "8602", "Wangen", "Heute",
-		 * "Morgen"); BE.setPersID(new Long(1000));
-		 * berufserfahrungDB.insertBerufserfahrung(BE);
-		 * berufserfahrungDB.insertBerufserfahrung(BE);
-		 * berufserfahrungDB.insertBerufserfahrung(BE); // TEST DATEN BIS HIER
-		 */
 		BerufserfahrungData berufserfahrungData = new BerufserfahrungData();
 		berufserfahrungData.setPersID(getPersID());
 		ArrayList<BerufserfahrungData> berufserfahrungArray = berufserfahrungDB
 				.getBerufserfarungRows(berufserfahrungData,
 						LebenslaufDB.BERUF_PERS_ID);
-
 		berufserfahrungDB.close();
 
 		bildungDB.open();
-
-		// TESTDATEN
-		BildungData BI = new BildungData("Weiterbildung", "FFHS", "8000",
-				"Schulstrasse", "heute", "morgen");
-		BI.setPersID(new Long(1000));
-		bildungDB.insertBildung(BI);
-		bildungDB.insertBildung(BI);
-		bildungDB.insertBildung(BI);
-		// TEST DATEN BIS HIER
-
-		ArrayList<BildungData> bildungArray = bildungDB.getAllBildungen();
+		BildungData bildungData = new BildungData();
+		bildungData.setPersID(getPersID());
+		ArrayList<BildungData> bildungArray = bildungDB.getBildungRows(
+				bildungData, LebenslaufDB.BILDUNG_PERS_ID);
 		bildungDB.close();
 
 		skillsDB.open();
-
-		/*
-		 * // TESTDATEN SkillsData SK = new SkillsData("Englisch", "fliessend",
-		 * "First"); SK.setPers_id(new Long(1000)); skillsDB.insertSkills(SK);
-		 * skillsDB.insertSkills(SK); skillsDB.insertSkills(SK); // TEST DATEN
-		 * BIS HIER
-		 */
-		// TODO nich alle Daten lad nur die zur Person
-		ArrayList<SkillsData> skillsArray = skillsDB.getAllSkills();
+		SkillsData skillsData = new SkillsData();
+		skillsData.setPers_id(getPersID());
+		ArrayList<SkillsData> skillsArray = skillsDB.getSkillsRows(skillsData,
+				LebenslaufDB.SKILLS_PERS_ID);
 		skillsDB.close();
 
 		// ////////////////////// PERSONALIEN
-		// Die Personalien laden und als Text an das htmlPersonalien übergeben.
-		// TODO Test Daten können gelöscht werden:
-		/*
-		 * PersonalienData pers = personalienArray.get(0); String anrede =
-		 * pers.getAnrede(); String name = pers.getName(); String vorname =
-		 * pers.getVorname(); String strasse = pers.getStrasse(); String plz =
-		 * pers.getPlz(); String ort = pers.getOrt(); String date =
-		 * pers.getDate();
-		 */
 
 		if (personalienArray.size() > 0) {
 			PersonalienData personalien = personalienArray.get(0);
@@ -194,16 +161,16 @@ public class ZusammenfassungActivity extends Activity {
 			String ort = personalien.getOrt();
 			String date = personalien.getDate();
 			// String bild = personalien.getBild();
-		
-		// Übergibt die Daten als Text an ein Spanned.
-		txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " " + name
-				+ "<br />" + strasse + "<br />" + plz + " " + ort + "<br />"
-				+ date);
-		
-		// Spanned www = Html.fromHtml("TEXT");
-		// CharSequence xxx = TextUtils.concat(txtPersonalien, www);
-		// Übergibt den Spanned an den TextView.
-		edtPersonalien.setText(txtPersonalien);
+
+			// Übergibt die Daten als Text an ein Spanned.
+			txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " "
+					+ name + "<br />" + strasse + "<br />" + plz + " " + ort
+					+ "<br />" + date);
+
+			// Spanned www = Html.fromHtml("TEXT");
+			// CharSequence xxx = TextUtils.concat(txtPersonalien, www);
+			// Übergibt den Spanned an den TextView.
+			edtPersonalien.setText(txtPersonalien);
 		}
 		// ///////////////////////// BERUFSERFAHRUNG
 		// Die Berufserfahrungen laden und als Text an die TextView übergeben.
