@@ -22,7 +22,6 @@ import android.graphics.BitmapFactory;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -102,6 +101,7 @@ public class ZusammenfassungActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.zusammenfassung, menu);
+		
 		return true;
 	}
 
@@ -111,6 +111,7 @@ public class ZusammenfassungActivity extends Activity {
 	 */
 	public void clickSkills(View Button) {
 		final Intent intent = new Intent(this, SkillsActivity.class);
+		intent.putExtra(StringConst.getPesrid(), getPersID());
 
 		startActivity(intent);
 

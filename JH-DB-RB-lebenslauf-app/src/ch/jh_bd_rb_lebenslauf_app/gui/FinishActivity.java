@@ -28,9 +28,9 @@ public class FinishActivity extends Activity {
 	private Button btnPdfList;
 	private CreatePdfListener createPdfListener;
 	private SendItem sendItem;
-	
 	private Long persID;
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -112,7 +112,18 @@ public class FinishActivity extends Activity {
 
 	public void clickZusammenfassung(View Button) {
 		final Intent intent = new Intent(this, ZusammenfassungActivity.class);
+		intent.putExtra(StringConst.getPesrid(), getPersID());
 		startActivity(intent);
 	}
+	
+
+	public Long getPersID() {
+		return persID;
+	}
+
+	public void setPersID(Long persID) {
+		this.persID = persID;
+	}
+
 
 }
