@@ -52,10 +52,11 @@ public class PersonalienDB implements LebenslaufDB {
 
 		ContentValues values = new ContentValues();
 		values = putContentValues(personalien, values);
+		String[] dbID = new String[1];
+		dbID[0] = personalien.getID().toString();
 
 		if (personalien.getID() > 0) {
-			db.update(TABLE_PERS, values, "_id=?", new String[] { personalien
-					.getID().toString() });
+			db.update(TABLE_PERS, values, PERS_ID + "=?", dbID);
 
 			return getPersonalien(personalien);
 		} else {
@@ -110,7 +111,8 @@ public class PersonalienDB implements LebenslaufDB {
 
 		if (result.moveToFirst()) {
 			while (!result.isAfterLast()) {
-				PersonalienData personalie = new PersonalienData(result.getLong(0));
+				PersonalienData personalie = new PersonalienData(
+						result.getLong(0));
 				personalien.add(setPersonalien(personalie, result));
 				result.moveToNext();
 			}
@@ -129,8 +131,8 @@ public class PersonalienDB implements LebenslaufDB {
 	 *            Colum Name der where abfrage
 	 * @return ArrayList<Bildung> alle treffer
 	 */
-	public ArrayList<PersonalienData> getPersonalienRows(PersonalienData personalie,
-			String columWhere) {
+	public ArrayList<PersonalienData> getPersonalienRows(
+			PersonalienData personalie, String columWhere) {
 		String[] dbWhere = new String[1];
 		String dbColWhere = PERS_ID;
 
@@ -192,7 +194,8 @@ public class PersonalienDB implements LebenslaufDB {
 		return personalien;
 	}
 
-	private PersonalienData setPersonalien(PersonalienData personalien, Cursor result) {
+	private PersonalienData setPersonalien(PersonalienData personalien,
+			Cursor result) {
 
 		personalien.setAnrede(result.getString(1));
 		personalien.setName(result.getString(2));
