@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -52,14 +53,46 @@ public class BildActivity extends Activity {
 	private EditText text_edit_plz;
 	private EditText txt_Edit_ort;
 	private EditText txt_Edit_geb;
+	private Long persID;
 	private boolean save = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bild);
+		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
 		initActivityElemente();
 		initActivityListener();
+		loadData();
+	}
+
+	private void loadData() {
+		if (persID > 0) {
+			PersonalienData pers = new PersonalienData(persID);
+			PersonalienDB persDB = new PersonalienDB(this);
+			persDB.open();
+			pers = persDB.getPersonalien(pers);
+			getTxt_name().setText(pers.getName());
+			getTxt_vorname().setText(pers.getVorname());
+			getTxt_adresse().setText(pers.getStrasse());
+			getText_edit_plz().setText(pers.getPlz());
+			getTxt_Edit_ort().setText(pers.getOrt());
+			getTxt_Edit_geb().setText(pers.getDate());
+
+			Resources res = getResources();
+			String[] anrede = res.getStringArray(R.array.anrede_array);
+
+			if (anrede[0].equals(pers.getAnrede())) {
+				getSpinnerAnrede().setSelection(0);
+			}
+			if (anrede[1].equals(pers.getAnrede())) {
+				getSpinnerAnrede().setSelection(1);
+			}
+			if (anrede[2].equals(pers.getAnrede())) {
+				getSpinnerAnrede().setSelection(2);
+			}
+
+		}
 	}
 
 	@Override
@@ -118,8 +151,23 @@ public class BildActivity extends Activity {
 	/**
 	 * Daten können Persistent gespeichert werden
 	 */
-	@SuppressLint("UseValueOf")
 	private Long datenSpeichern() {
+		PersonalienData pers;
+
+		if (persID > 0) {
+
+			pers = saveData(StringConst.UPDATE);
+		} else {
+			pers = saveData(StringConst.INSERT);
+
+			this.persID = pers.getID();
+		}
+
+		return persID;
+	}
+
+	@SuppressLint("UseValueOf")
+	private PersonalienData saveData(String saveDB) {
 
 		PersonalienData pers = new PersonalienData(getSpinnerAnrede()
 				.getSelectedItem().toString(), getTxt_name().getText()
@@ -133,7 +181,17 @@ public class BildActivity extends Activity {
 		if (!pers.getName().equals("") || !pers.getVorname().equals("")) {
 			PersonalienDB personalienDB = new PersonalienDB(this);
 			personalienDB.open();
-			pers = personalienDB.insertPersonalieng(pers);
+			switch (saveDB) {
+			case StringConst.UPDATE:
+				pers.setID(persID);
+				pers = personalienDB.updatePersonalien(pers);
+				break;
+			case StringConst.INSERT:
+				pers = personalienDB.insertPersonalieng(pers);
+				break;
+			default:
+				break;
+			}
 			// Hier wird die Speicherung des Fotos ausgelöst und die Personen ID
 			// als eindeutige Bezeichnung mitgegeben.
 			if (image != null) {
@@ -160,8 +218,7 @@ public class BildActivity extends Activity {
 					Toast.LENGTH_LONG);
 			toast.show();
 		}
-
-		return pers.getID();
+		return pers;
 	}
 
 	public EditText getTxt_vorname() {
