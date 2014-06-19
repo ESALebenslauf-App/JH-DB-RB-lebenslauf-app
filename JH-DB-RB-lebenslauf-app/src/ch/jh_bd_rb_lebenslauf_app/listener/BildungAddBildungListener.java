@@ -86,6 +86,7 @@ public class BildungAddBildungListener implements OnClickListener {
 
 		getEdt_bildung_schule().setText("");
 		getEdt_bildung_adresse().setText("");
+		getEdt_bildung_plz().setText("");
 		getBtnSelectDateBis().setText(datum);
 		getBtnSelectDateVon().setText(datum);
 	}
