@@ -283,9 +283,9 @@ public class CreatePdfListener implements OnClickListener {
 			addTitel(document);
 
 			// Bild hinzufügen
-			if(image != null){
+			
 			document.add(addImage());
-			}
+			
 
 			// Methode zum hinzufügen des Textes wird aufgerufen
 			addText(document);
@@ -416,7 +416,6 @@ public class CreatePdfListener implements OnClickListener {
 		String filePath = FileConst.getPdfPath() + "/" + persID.toString()
 				+ "Foto.jpg";
 
-		Log.e("MESSAGE", filePath);
 		bitmap = BitmapFactory.decodeFile(filePath);
 		bitmapResized = Bitmap.createScaledBitmap(bitmap, 190, 250, false);
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
