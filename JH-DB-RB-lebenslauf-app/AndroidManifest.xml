@@ -65,6 +65,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListPDFLebenslauf"></activity>
+        <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListPersonen"></activity>
     </application>
 
 </manifest>
