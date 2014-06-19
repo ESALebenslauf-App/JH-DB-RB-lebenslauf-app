@@ -11,11 +11,15 @@ import ch.jh_bd_rb_lebenslauf_app.listener.BildListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.HochladenListener;
 import ch.jh_bd_rb_lebenslauf_app.resource.FileConst;
 import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,7 +53,6 @@ public class BildActivity extends Activity {
 	private EditText txt_Edit_ort;
 	private EditText txt_Edit_geb;
 	private boolean save = false;
-	ImageView iv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -105,22 +108,12 @@ public class BildActivity extends Activity {
 	}
 
 	/*
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		if (!save) {
-			datenSpeichern();
-		}
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		if (!save) {
-			datenSpeichern();
-		}
-	}
-	*/
+	 * @Override protected void onDestroy() { super.onDestroy(); if (!save) {
+	 * datenSpeichern(); } }
+	 * 
+	 * @Override protected void onStop() { super.onStop(); if (!save) {
+	 * datenSpeichern(); } }
+	 */
 
 	/**
 	 * Daten können Persistent gespeichert werden
@@ -227,15 +220,38 @@ public class BildActivity extends Activity {
 		this.spinnerAnrede = spinnerAnrede;
 	}
 
-	// Diese Methode handelt das geschossene Foto vom BildListener
+	// Diese Methode handelt das geschossene(oder aus der Galry gewählte) Foto
+	// vom BildListener
 	// Der BildListener sendet das Ergebnis zurück an die BildActivity.
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+		// Wenn ein Foto neu geschossen wurde
 		if (requestCode == 1 && resultCode == RESULT_OK) {
 			image = (Bitmap) data.getExtras().get("data");
+			Toast toast = Toast.makeText(this, "Foto gespeichert",
+					Toast.LENGTH_LONG);
+			toast.show();
 		}
+		// Wenn ein Foto aus der Galery ausgewählt wurde
+		if (requestCode == 2 && resultCode == RESULT_OK) {
+			Uri selectedImage = data.getData();
+			String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
+			Cursor cursor = getContentResolver().query(selectedImage,
+					filePathColumn, null, null, null);
+			cursor.moveToFirst();
+
+			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+			String filePath = cursor.getString(columnIndex);
+			cursor.close();
+
+			image = BitmapFactory.decodeFile(filePath);
+
+			Toast toast = Toast.makeText(this, "Foto gespeichert",
+					Toast.LENGTH_LONG);
+			toast.show();
+		}
 	}
 
 	// Diese Methode Speichert das Foto und gibt die Personen ID zu der

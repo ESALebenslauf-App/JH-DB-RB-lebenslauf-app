@@ -71,7 +71,8 @@ public class CreatePdfListener implements OnClickListener {
 	static Long persID;
 	static String fotoName;
 	static Bitmap bitmap;
-	static Image image;
+	static Bitmap bitmapResized;
+	static Image image = null;
 
 	String dir;
 	Activity finishActivity;
@@ -149,7 +150,7 @@ public class CreatePdfListener implements OnClickListener {
 			String plz = personalien.getPlz();
 			String ort = personalien.getOrt();
 			String date = personalien.getDate();
-			//fotoName = personalien.getBild();
+			// fotoName = personalien.getBild();
 
 			// Übergibt die Daten als Text an ein Spanned.
 			txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " "
@@ -278,12 +279,16 @@ public class CreatePdfListener implements OnClickListener {
 			// Übergabe des Dokument und Pfad an den PdfWriter
 			PdfWriter.getInstance(document, fos);
 			document.open();
-			
-			//Bild hinzufügen
+			// Methode zum aufrufen des Titels wird aufgerufen
+			addTitel(document);
+
+			// Bild hinzufügen
+			if(image != null){
 			document.add(addImage());
-			
+			}
+
 			// Methode zum hinzufügen des Textes wird aufgerufen
-			addTitlePage(document);
+			addText(document);
 			document.close();
 			//
 			btnSenden.setEnabled(true);
@@ -292,14 +297,26 @@ public class CreatePdfListener implements OnClickListener {
 		}
 	}
 
-	// Methode zum hinufügen des Textes
-	private static void addTitlePage(Document document)
-
-	throws DocumentException {
+	// Methode zum hinzufügen des Titels
+	private static void addTitel(Document document) {
 		Paragraph preface = new Paragraph();
 		// Titel
 		preface.add(new Paragraph(titelU, titelF));
 		addEmptyLine(preface, 3);
+		try {
+			document.add(preface);
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	// Methode zum hinufügen des Textes
+	private static void addText(Document document)
+
+	throws DocumentException {
+		Paragraph preface = new Paragraph();
 		// Personalien
 		preface.add(new Paragraph(personalienU, ueberschriftF));
 		addEmptyLine(preface, 1);
@@ -393,18 +410,19 @@ public class CreatePdfListener implements OnClickListener {
 		return persID;
 	}
 
-	private static Image addImage() throws BadElementException, MalformedURLException, IOException {
+	private static Image addImage() throws BadElementException,
+			MalformedURLException, IOException {
 
 		String filePath = FileConst.getPdfPath() + "/" + persID.toString()
 				+ "Foto.jpg";
-		
-		Log.e("MESSAGE",filePath);
+
+		Log.e("MESSAGE", filePath);
 		bitmap = BitmapFactory.decodeFile(filePath);
+		bitmapResized = Bitmap.createScaledBitmap(bitmap, 190, 250, false);
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+		bitmapResized.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 		byte[] byteArray = stream.toByteArray();
 		image = Image.getInstance(byteArray);
-		
 		return image;
 
 	}
