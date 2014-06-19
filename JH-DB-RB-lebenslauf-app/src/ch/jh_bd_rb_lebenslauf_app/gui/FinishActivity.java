@@ -52,8 +52,6 @@ public class FinishActivity extends Activity {
 
 	private void initActivityListener() {
 		// Listener für das Erstellen eines PDFs
-		// getFilesDir() für die übergabe des Pfades(falls nötig)
-		String dir = getFilesDir().toString();
 
 		sendItem = new SendItem();
 		createPdfListener = new CreatePdfListener(this, persID, sendItem);

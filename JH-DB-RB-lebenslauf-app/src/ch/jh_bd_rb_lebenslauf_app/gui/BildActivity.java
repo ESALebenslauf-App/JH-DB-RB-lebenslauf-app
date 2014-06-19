@@ -104,6 +104,7 @@ public class BildActivity extends Activity {
 
 	}
 
+	/*
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -119,6 +120,7 @@ public class BildActivity extends Activity {
 			datenSpeichern();
 		}
 	}
+	*/
 
 	/**
 	 * Daten können Persistent gespeichert werden
