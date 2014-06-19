@@ -21,7 +21,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +28,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -106,10 +104,10 @@ public class BildActivity extends Activity {
 		btnBerufserfahrung = (Button) findViewById(R.id.buttonBerufserfahrung);
 		btnCamera = (ImageButton) findViewById(R.id.kamAuswahl);
 		btnHochladen = (ImageButton) findViewById(R.id.picAuswahl);
-		setText_edit_plz((EditText) findViewById(R.id.txt_Edit_ort));
+		setText_edit_plz((EditText) findViewById(R.id.text_edit_plz));
 		setTxt_adresse((EditText) findViewById(R.id.txt_adresse));
 		setTxt_Edit_geb((EditText) findViewById(R.id.txt_Edit_geb));
-		setTxt_Edit_ort((EditText) findViewById(R.id.txt_adresse));
+		setTxt_Edit_ort((EditText) findViewById(R.id.txt_Edit_ort));
 		setTxt_name((EditText) findViewById(R.id.txt_name));
 		setTxt_vorname((EditText) findViewById(R.id.txt_vorname));
 		setSpinnerAnrede((Spinner) findViewById(R.id.spinnerAnrede));
@@ -141,14 +139,14 @@ public class BildActivity extends Activity {
 		startActivity(intent);
 
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.start, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
