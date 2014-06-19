@@ -1,6 +1,11 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,20 +24,27 @@ import ch.jh_bd_rb_lebenslauf_app.daten.SkillsDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
 import ch.jh_bd_rb_lebenslauf_app.resource.FileConst;
 
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.pdf.PdfDocument.Page;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -56,8 +68,11 @@ public class CreatePdfListener implements OnClickListener {
 	static String berufserfahrung = "Hier kommt die Berufserfahrung hin";
 	static String skills = "Hier kommen die Skills hin";
 
-	private Long persID;
-	
+	static Long persID;
+	static String fotoName;
+	static Bitmap bitmap;
+	static Image image;
+
 	String dir;
 	Activity finishActivity;
 	SharedPreferences prefs;
@@ -72,23 +87,24 @@ public class CreatePdfListener implements OnClickListener {
 	boolean pdfArt;
 	static int groesse = 11;
 	static FontFamily schrift = Font.FontFamily.TIMES_ROMAN;
-	
+
 	// TEST-Konstruktor mit Aktivity und Directory
-	public CreatePdfListener(Activity finishActivity, Long id,SendItem sendItem) {
+	public CreatePdfListener(Activity finishActivity, Long id, SendItem sendItem) {
 		this.persID = id;
 		this.finishActivity = finishActivity;
 		this.sendItem = sendItem;
 		btnSenden = (Button) finishActivity.findViewById(R.id.btnSenden);
 		getShowData();
 	}
-	
+
 	// Lädt die Daten aus der DB und stellt sie als Text dar.
 	public void getShowData() {
 
 		Spanned txtPersonalien;
 
 		PersonalienDB personalienDB = new PersonalienDB(finishActivity);
-		BerufserfahrungDB berufserfahrungDB = new BerufserfahrungDB(finishActivity);
+		BerufserfahrungDB berufserfahrungDB = new BerufserfahrungDB(
+				finishActivity);
 		BildungDB bildungDB = new BildungDB(finishActivity);
 		SkillsDB skillsDB = new SkillsDB(finishActivity);
 
@@ -133,16 +149,16 @@ public class CreatePdfListener implements OnClickListener {
 			String plz = personalien.getPlz();
 			String ort = personalien.getOrt();
 			String date = personalien.getDate();
-			// String bild = personalien.getBild();
-		
-		// Übergibt die Daten als Text an ein Spanned.
-		txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " " + name
-				+ "<br />" + strasse + "<br />" + plz + " " + ort + "<br />"
-				+ date);
-		// Spanned www = Html.fromHtml("TEXT");
-		// CharSequence xxx = TextUtils.concat(txtPersonalien, www);
-		// Übergibt den Spanned an den TextView.
-		personalienText = txtPersonalien.toString();
+			//fotoName = personalien.getBild();
+
+			// Übergibt die Daten als Text an ein Spanned.
+			txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " "
+					+ name + "<br />" + strasse + "<br />" + plz + " " + ort
+					+ "<br />" + date);
+			// Spanned www = Html.fromHtml("TEXT");
+			// CharSequence xxx = TextUtils.concat(txtPersonalien, www);
+			// Übergibt den Spanned an den TextView.
+			personalienText = txtPersonalien.toString();
 		}
 		// ///////////////////////// BERUFSERFAHRUNG
 		// Die Berufserfahrungen laden und als Text an die TextView übergeben.
@@ -262,10 +278,14 @@ public class CreatePdfListener implements OnClickListener {
 			// Übergabe des Dokument und Pfad an den PdfWriter
 			PdfWriter.getInstance(document, fos);
 			document.open();
+			
+			//Bild hinzufügen
+			document.add(addImage());
+			
 			// Methode zum hinzufügen des Textes wird aufgerufen
 			addTitlePage(document);
 			document.close();
-			// 
+			//
 			btnSenden.setEnabled(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -368,11 +388,25 @@ public class CreatePdfListener implements OnClickListener {
 
 		}
 	}
-	
+
 	public Long getPersID() {
 		return persID;
 	}
-	
 
+	private static Image addImage() throws BadElementException, MalformedURLException, IOException {
+
+		String filePath = FileConst.getPdfPath() + "/" + persID.toString()
+				+ "Foto.jpg";
+		
+		Log.e("MESSAGE",filePath);
+		bitmap = BitmapFactory.decodeFile(filePath);
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+		byte[] byteArray = stream.toByteArray();
+		image = Image.getInstance(byteArray);
+		
+		return image;
+
+	}
 
 }
