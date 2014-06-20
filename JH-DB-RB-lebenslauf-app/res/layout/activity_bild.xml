@@ -260,12 +260,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/txt_geb" />
 
-            <EditText
-                android:id="@+id/txt_Edit_geb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text" />
+            <Button
+                    android:id="@+id/btn_Bild_Geburtsdatum"
+                    style="?android:attr/buttonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
         </TableRow>
 
         <TableRow

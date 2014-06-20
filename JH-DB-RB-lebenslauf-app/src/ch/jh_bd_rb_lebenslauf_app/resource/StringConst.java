@@ -10,8 +10,24 @@ public class StringConst {
 	public static final String INSERT = "insert";
 	public static final String DATEPICKERVON = "datePickerVon";
 	public static final String DATEPICKERBIS = "datePickerBis";
+	public static final String DATEPICKERGEBURTSDATUM = "datePickerGeburtsdatum";
+	public static final String GEBURTSDATUM = "Geburtsdatum";
 	
 	
+
+	
+
+	public static String getDatepickergeburtsdatum() {
+		return DATEPICKERGEBURTSDATUM;
+	}
+
+	public static String getDatepickervon() {
+		return DATEPICKERVON;
+	}
+
+	public static String getDatepickerbis() {
+		return DATEPICKERBIS;
+	}
 
 	public static String getUpdate() {
 		return UPDATE;

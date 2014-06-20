@@ -14,6 +14,8 @@ import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -36,7 +38,7 @@ import android.widget.Toast;
  * @author bdervishi.jherzig.rbuess
  * 
  */
-public class BildActivity extends Activity {
+public class BildActivity extends FragmentActivity {
 
 	private Bitmap image = null;
 
@@ -52,7 +54,15 @@ public class BildActivity extends Activity {
 	private EditText txt_adresse;
 	private EditText text_edit_plz;
 	private EditText txt_Edit_ort;
-	private EditText txt_Edit_geb;
+	private Button btnGeburtsdatum;
+	public Button getBtnGeburtsdatum() {
+		return btnGeburtsdatum;
+	}
+
+	public void setBtnGeburtsdatum(Button btnGeburtsdatum) {
+		this.btnGeburtsdatum = btnGeburtsdatum;
+	}
+
 	private Long persID;
 	private boolean save = false;
 
@@ -77,7 +87,8 @@ public class BildActivity extends Activity {
 			getTxt_adresse().setText(pers.getStrasse());
 			getText_edit_plz().setText(pers.getPlz());
 			getTxt_Edit_ort().setText(pers.getOrt());
-			getTxt_Edit_geb().setText(pers.getDate());
+			getBtnGeburtsdatum().setText(pers.getDate());
+
 
 			Resources res = getResources();
 			String[] anrede = res.getStringArray(R.array.anrede_array);
@@ -106,11 +117,20 @@ public class BildActivity extends Activity {
 		btnHochladen = (ImageButton) findViewById(R.id.picAuswahl);
 		setText_edit_plz((EditText) findViewById(R.id.text_edit_plz));
 		setTxt_adresse((EditText) findViewById(R.id.txt_adresse));
-		setTxt_Edit_geb((EditText) findViewById(R.id.txt_Edit_geb));
+		setBtnGeburtsdatum((Button) findViewById(R.id.btn_Bild_Geburtsdatum));
+		getBtnGeburtsdatum().setText(StringConst.GEBURTSDATUM);
 		setTxt_Edit_ort((EditText) findViewById(R.id.txt_Edit_ort));
 		setTxt_name((EditText) findViewById(R.id.txt_name));
 		setTxt_vorname((EditText) findViewById(R.id.txt_vorname));
 		setSpinnerAnrede((Spinner) findViewById(R.id.spinnerAnrede));
+	}
+
+	public Button getBtnBerufserfahrung() {
+		return btnBerufserfahrung;
+	}
+
+	public void setBtnBerufserfahrung(Button btnBerufserfahrung) {
+		this.btnBerufserfahrung = btnBerufserfahrung;
 	}
 
 	private void initActivityListener() {
@@ -122,6 +142,15 @@ public class BildActivity extends Activity {
 			}
 		});
 
+		btnGeburtsdatum.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				DialogFragment newFragment = new DatePickerFragment();
+				newFragment.show(getSupportFragmentManager(), StringConst.DATEPICKERGEBURTSDATUM);
+			}
+		});
+		
 		btnCamera.setOnClickListener(new BildListener(this));
 		btnHochladen.setOnClickListener(new HochladenListener(this));
 
@@ -196,7 +225,7 @@ public class BildActivity extends Activity {
 				.toString(), getTxt_vorname().getText().toString(),
 				getTxt_adresse().getText().toString(), getText_edit_plz()
 						.getText().toString(), getTxt_Edit_ort().getText()
-						.toString(), getTxt_Edit_geb().getText().toString(),
+						.toString(), getBtnGeburtsdatum().getText().toString(),
 				"bild");
 
 		// Datenbank
@@ -283,13 +312,6 @@ public class BildActivity extends Activity {
 		this.txt_Edit_ort = txt_Edit_ort;
 	}
 
-	public EditText getTxt_Edit_geb() {
-		return txt_Edit_geb;
-	}
-
-	public void setTxt_Edit_geb(EditText txt_Edit_geb) {
-		this.txt_Edit_geb = txt_Edit_geb;
-	}
 
 	public Spinner getSpinnerAnrede() {
 		return spinnerAnrede;

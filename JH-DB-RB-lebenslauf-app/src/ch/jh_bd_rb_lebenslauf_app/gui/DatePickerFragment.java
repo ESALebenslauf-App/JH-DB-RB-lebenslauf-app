@@ -66,9 +66,17 @@ public class DatePickerFragment extends DialogFragment implements
 		case StringConst.DATEPICKERBIS:
 			updateBttonBis(date);
 			break;
+		case StringConst.DATEPICKERGEBURTSDATUM:
+			updateBttonGeburtsdatum(date);
+			break;
 		default:
 			break;
 		}
+	}
+
+	private void updateBttonGeburtsdatum(String date) {
+		Button btnGeburtsdatum = (Button) getActivity().findViewById(R.id.btn_Bild_Geburtsdatum);
+		btnGeburtsdatum.setText(date);
 	}
 
 	/**
