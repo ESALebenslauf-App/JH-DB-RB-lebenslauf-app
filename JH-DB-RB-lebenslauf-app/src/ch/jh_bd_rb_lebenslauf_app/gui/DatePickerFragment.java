@@ -2,7 +2,9 @@ package ch.jh_bd_rb_lebenslauf_app.gui;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -58,10 +60,10 @@ public class DatePickerFragment extends DialogFragment implements
 		String tag = this.getTag();
 
 		switch (tag) {
-		case "datePickerVon":
+		case StringConst.DATEPICKERVON:
 			updateBttonVon(date);
 			break;
-		case "datePickerBis":
+		case StringConst.DATEPICKERBIS:
 			updateBttonBis(date);
 			break;
 		default:

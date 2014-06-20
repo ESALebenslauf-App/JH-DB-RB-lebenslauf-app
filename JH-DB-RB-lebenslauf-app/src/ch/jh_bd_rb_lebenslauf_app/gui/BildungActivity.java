@@ -79,7 +79,7 @@ public class BildungActivity extends FragmentActivity {
 			@Override
 			public void onClick(View v) {
 				DialogFragment newFragment = new DatePickerFragment();
-				newFragment.show(getSupportFragmentManager(), "datePickerBis");
+				newFragment.show(getSupportFragmentManager(), StringConst.DATEPICKERBIS);
 			}
 		});
 
@@ -87,7 +87,7 @@ public class BildungActivity extends FragmentActivity {
 			@Override
 			public void onClick(View v) {
 				DialogFragment newFragment = new DatePickerFragment();
-				newFragment.show(getSupportFragmentManager(), "datePickerVon");
+				newFragment.show(getSupportFragmentManager(), StringConst.DATEPICKERVON);
 			}
 		});
 		// End DatePicker

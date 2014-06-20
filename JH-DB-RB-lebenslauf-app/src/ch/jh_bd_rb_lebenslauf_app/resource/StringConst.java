@@ -8,6 +8,8 @@ public class StringConst {
 	public static final String IHRE_PRESID = " Ihre Personen ID lautat: ";
 	public static final String UPDATE = "update";
 	public static final String INSERT = "insert";
+	public static final String DATEPICKERVON = "datePickerVon";
+	public static final String DATEPICKERBIS = "datePickerBis";
 	
 	
 
