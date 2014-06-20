@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Navigation Oben  -->
+    <!-- Navigation Oben -->
     <string name="naviObenBild">Bild </string>
     <string name="naviObenBerufserfahrung"> Beruf </string>
     <string name="naviObenBildung"> Bildung </string>
     <string name="naviObenSkills"> Skills </string>
     <string name="naviObenZusammenfassung"> Zusammenfassung </string>
     <string name="naviObenFinish"> Finish</string>
-    
-    <!-- Navigation Unten  -->
+
+    <!-- Navigation Unten -->
     <string name="naviUntenBild">Bild</string>
     <string name="naviUntenBerufserfahrung">Berufserfahrung</string>
     <string name="naviUntenBildung">Bildung</string>
@@ -18,7 +18,7 @@
     <string name="naviUntenFinish">Finish</string>
     <string name="naviUntenVor"> &lt; </string>
     <string name="naviUntenBack"> &gt; </string>
-    
+
     <!-- Erste Seite -->
     <string name="txt_startseite">Die Lebenslauf App</string>
     <string name="app_name">JH-DB-RB-lebenslauf-app</string>
@@ -35,11 +35,13 @@
     <string name="txt_bild_hochladen">Bild hochladen</string>
     <string name="txt_kamera">Kamera</string>
     <string name="txt_anrede">Anrede</string>
+
     <string-array name="anrede_array">
         <item>Herr</item>
         <item>Frau</item>
         <item>Doktor</item>
     </string-array>
+
     <string name="txt_name">Name</string>
     <string name="txt_vorname">Vorname</string>
     <string name="txt_adresse">Adresse</string>
@@ -52,6 +54,7 @@
     <string name="txt_firma">Firma:</string>
     <string name="txt_dauer">Dauer:</string>
     <string name="txt_taetigkeit">Tätigkeit:</string>
+    <string name="txt_berufserfahrung_beschreibung">Beschreibung</string>
     <string name="txt_berufserfahrung_add">Berufserfahrung hinzufügen</string>
 
     <!-- Vierte Seite -->
@@ -76,6 +79,7 @@
         <item>ERP Kenntnisse</item>
         <item>Office Kenntnisse</item>
     </string-array>
+
     <string name="txt_skill">Skills</string>
     <string name="txt_skill_level">Level</string>
     <string name="txt_skill_add">Skill hinzufügen</string>
@@ -101,10 +105,11 @@
     <string name="txt_bis">bis:</string>
     <string name="txt_add">Skill hinzufügen</string>
     <string name="txt_zertifikate">Zertifikate:</string>
-    
+
     <!-- Menue -->
     <string-array name="listdialog_array">
         <item>Übernehmen</item>
         <item>Löschen</item>
     </string-array>
+
 </resources>

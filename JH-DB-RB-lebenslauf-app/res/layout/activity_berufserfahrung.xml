@@ -159,20 +159,20 @@
 
     <TableLayout
         android:id="@+id/tableLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/linearLayoutNavOben"
-        android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="60dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp" >
+        android:orientation="vertical" >
 
         <TableRow
             android:id="@+id/tableRow_txt_firma"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
             <TextView
                 android:id="@+id/txt_firma_label"
@@ -182,8 +182,9 @@
 
             <EditText
                 android:id="@+id/txt_firma"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text" />
         </TableRow>
@@ -203,6 +204,7 @@
                 android:id="@+id/txt_titel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text" />
         </TableRow>
@@ -222,6 +224,7 @@
                 android:id="@+id/txt_adresse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text" />
         </TableRow>
@@ -241,6 +244,7 @@
                 android:id="@+id/txt_plz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="number" />
         </TableRow>
@@ -260,53 +264,55 @@
                 android:id="@+id/txt_ort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text" />
         </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow_txt_dauer_von"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+        <TableRow>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <!-- Column 1 -->
+
+            <TextView
+                android:id="@+id/txt_dauer_von_label"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-            </LinearLayout>
+                android:layout_margin="4dip"
+                android:layout_weight="1"
+                android:padding="10dip"
+                android:text="@string/txt_von" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+            <!-- Column 2 -->
 
-                <TextView
-                    android:id="@+id/txt_dauer_von_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/txt_von" />
+            <Button
+                android:id="@+id/btnSelectDateVon"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dip"
+                android:layout_weight="2"
+                android:padding="10dip" />
 
-                <Button
-                    android:id="@+id/btnSelectDateVon"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+            <!-- Column 3 -->
 
-                <TextView
-                    android:id="@+id/txt_dauer_bis_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/txt_bis" />
+            <TextView
+                android:id="@+id/txt_dauer_bis_label"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dip"
+                android:layout_weight="1"
+                android:padding="10dip"
+                android:text="@string/txt_bis" />
+            <!-- Column 4 -->
 
-                <Button
-                    android:id="@+id/btnSelectDateBis"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/btnSelectDateBis"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dip"
+                android:layout_weight="2"
+                android:padding="10dip" />
         </TableRow>
 
         <TableRow
@@ -324,6 +330,7 @@
                 android:id="@+id/txt_taetigkeit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text" />
         </TableRow>
@@ -332,6 +339,20 @@
             android:id="@+id/add_berufserfahrung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/txt_add_berufserfahrung_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+            
+            <Button
+                android:id="@+id/sf_add_berufserfahrung"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_weight="1"
+                android:text="@string/txt_berufserfahrung_add" />
         </TableRow>
     </TableLayout>
 
