@@ -13,6 +13,7 @@ public class StringConst {
 	public static final String DATEPICKERGEBURTSDATUM = "datePickerGeburtsdatum";
 	public static final String GEBURTSDATUM = "Geburtsdatum";
 	public static final String BESCHREIBUNG = "beschreibung";
+	public static final String ID = "id";
 	
 	
 	

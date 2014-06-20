@@ -13,9 +13,12 @@ import android.widget.TextView;
 public class Berufserfahrung_beschreibungActivity extends Activity {
 
 	private long persID;
+	private Long ID;
 	private Button btnSave;
 	private TextView txtBeschreibung;
 	private String text;
+
+
 
 	@Override
 	protected void onCreate(Bundle icicle) {
@@ -24,7 +27,7 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 		setContentView(R.layout.activity_berufserfahrung_beschreibung);
 		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
 		setText(getIntent().getStringExtra(StringConst.BESCHREIBUNG));
-
+		setID(getIntent().getLongExtra(StringConst.ID, 0));
 
 		initActivityElemente();
 		initActivityListener();
@@ -44,6 +47,7 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 
 				intent.putExtra(StringConst.getPesrid(), persID);
 				intent.putExtra(StringConst.BESCHREIBUNG, getText() );
+				intent.putExtra(StringConst.ID, getID());
 				startActivity(intent);
 			}
 		});
@@ -51,6 +55,7 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 
 	private void initActivityElemente() {
 		txtBeschreibung = (TextView) findViewById(R.id.txt_Edit_berufserfahrung_beschreibung);
+		getTxtBeschreibung().setText(getText());
 	}
 	public TextView getTxtBeschreibung() {
 		return txtBeschreibung;
@@ -67,5 +72,12 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 	public void setText(String text) {
 		this.text = text;
 	}	
+	private Long getID() {
+		return ID;
+	}
+
+	private void setID(Long iD) {
+		ID = iD;
+	}
 	
 }

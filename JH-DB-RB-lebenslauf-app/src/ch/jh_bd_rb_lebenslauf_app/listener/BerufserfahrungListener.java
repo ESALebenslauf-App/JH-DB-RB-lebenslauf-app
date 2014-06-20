@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
 import android.app.Activity;
 import android.content.Context;
@@ -26,18 +27,32 @@ public class BerufserfahrungListener implements OnClickListener {
 	private Button btnSelectDateVon;
 	private Button btnSelectDateBis;
 	private String beschreibungText;
+	private Long persID;
+	private Long ID;
+
+
+
 	private ArrayList<BerufserfahrungData> berufserfahrungen;
 
 
-	public BerufserfahrungListener(Activity myActivity) {
+	public BerufserfahrungListener(Activity myActivity, Long persId, Long id) {
 		this.berufserfahrungenActivity = myActivity;
 		berufserfahrungen = new ArrayList<BerufserfahrungData>();
+		setPersID(persId);
+		setID(id);
 		init();
 	}
 
 	@Override
 	public void onClick(View arg0) {
-		//TODO "beruf Beschreibung" durch ein richtiges Feld ersetzten
+		saveData();
+		setID(new Long(0));
+
+
+	}
+
+	public BerufserfahrungData saveData() {
+		
 		BerufserfahrungData berufserfahrungData = new BerufserfahrungData(
 				getTxt_firma().getText().toString(), getTxt_titel().getText()
 						.toString(),  getTxt_taetigkeit().getText().toString(), getBeschreibungText(),getTxt_adresse().getText().toString(),
@@ -46,7 +61,27 @@ public class BerufserfahrungListener implements OnClickListener {
 				getBtnSelectDateVon().getText().toString(),
 				getBtnSelectDateBis().getText().toString());
 		
-		berufserfahrungen.add((BerufserfahrungData) berufserfahrungData);
+		berufserfahrungData.setID(getID());
+		berufserfahrungData.setPersID(getPersID());
+		// Datenbank
+		BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(
+				berufserfahrungenActivity);
+		beruferfahrungDB.open();
+		
+		if (berufserfahrungData.getID()> 0) {
+			berufserfahrungData = beruferfahrungDB
+					.updateBerufserfarung(berufserfahrungData);
+		}
+		else {
+			berufserfahrungData = beruferfahrungDB
+					.insertBerufserfahrung(berufserfahrungData);
+		}
+		
+		beruferfahrungDB.close();
+		setID(berufserfahrungData.getID());
+		
+		
+		//berufserfahrungen.add((BerufserfahrungData) berufserfahrungData);
 		
 		getTxt_firma().setText("");
 		getTxt_titel().setText("");
@@ -63,7 +98,9 @@ public class BerufserfahrungListener implements OnClickListener {
 		getBtnSelectDateVon().setText(datum);
 		
 		shortToast("Eine Berufserfahrung hinzufügen");
-
+		berufserfahrungData.setTxt_beschreibung("");
+		
+		return berufserfahrungData;
 	}
 
 	private void init() {
@@ -171,5 +208,21 @@ public class BerufserfahrungListener implements OnClickListener {
 
 	public void setBeschreibungText(String beschreibungText) {
 		this.beschreibungText = beschreibungText;
+	}
+	
+	private Long getPersID() {
+		return persID;
+	}
+
+	private void setPersID(Long persID) {
+		this.persID = persID;
+	}
+
+	private Long getID() {
+		return ID;
+	}
+
+	private void setID(Long iD) {
+		ID = iD;
 	}
 }
