@@ -31,21 +31,26 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	private Button btnBeruferfahrung;
 	private Button btnSelectDateBis;
 	private Button btnSelectDateVon;
+	private Button btnBeschreibung;
 	private BerufserfahrungListener berufserfahrungListener;
 	private Long persID;
 	private boolean save = false;
+	private String beschreibungText;
 
 	@Override
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.activity_berufserfahrung);
 		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
-
+		this.beschreibungText = getIntent().getStringExtra(StringConst.BESCHREIBUNG);
+		
 		// Initialisieren
 		initActivityElemente();
 		initActivityListener();
 
 	}
+
+
 
 	private void initActivityElemente() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",
@@ -58,10 +63,12 @@ public class BerufserfahrungActivity extends FragmentActivity {
 		btnBeruferfahrung = (Button) findViewById(R.id.sf_add_berufserfahrung);
 		btnBild = (Button) findViewById(R.id.buttonBild);
 		btnBildung = (Button) findViewById(R.id.buttonBildungActivity);
+		btnBeschreibung = (Button) findViewById(R.id.btn_berufserfahrung_beschreibung);
 	}
 
 	private void initActivityListener() {
 		berufserfahrungListener = new BerufserfahrungListener(this);
+		berufserfahrungListener.setBeschreibungText(beschreibungText);
 		btnBeruferfahrung.setOnClickListener(berufserfahrungListener);
 
 		btnBild.setOnClickListener(new OnClickListener() {
@@ -97,6 +104,26 @@ public class BerufserfahrungActivity extends FragmentActivity {
 			}
 		});
 		// End DatePicker
+		
+		btnBeschreibung.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View butten) {
+				clickBeschreibung(butten);
+				
+			}
+
+			
+		});
+	}
+	
+	private void clickBeschreibung(View butten) {
+		final Intent intent = new Intent(this, Berufserfahrung_beschreibungActivity.class);
+		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.BESCHREIBUNG, getBeschreibungText());
+
+		startActivity(intent);
+		
 	}
 
 	@Override
@@ -169,7 +196,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 
 					Toast toast = Toast.makeText(this,
 							berufserfahrung.getID().toString() + "PersID= "
-									+ berufserfahrung.getPersID(),
+									+ berufserfahrung.getPersID() + "TEST Beschreibung: " + beschreibungText,
 							Toast.LENGTH_SHORT);
 					toast.show();
 
@@ -194,6 +221,14 @@ public class BerufserfahrungActivity extends FragmentActivity {
 
 	public Long getPersID() {
 		return persID;
+	}
+	
+	public String getBeschreibungText() {
+		return beschreibungText;
+	}
+
+	public void setBeschreibungText(String beschreibungText) {
+		this.beschreibungText = beschreibungText;
 	}
 
 }

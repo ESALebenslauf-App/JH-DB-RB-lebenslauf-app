@@ -12,9 +12,10 @@ public class StringConst {
 	public static final String DATEPICKERBIS = "datePickerBis";
 	public static final String DATEPICKERGEBURTSDATUM = "datePickerGeburtsdatum";
 	public static final String GEBURTSDATUM = "Geburtsdatum";
+	public static final String BESCHREIBUNG = "beschreibung";
 	
 	
-
+	
 	
 
 	public static String getDatepickergeburtsdatum() {
@@ -51,6 +52,10 @@ public class StringConst {
 
 	public static String getDatenWurdenGespeichert() {
 		return DATEN_WURDEN_GESPEICHERT;
+	}
+
+	public static String getBeschreibung() {
+		return BESCHREIBUNG;
 	}
 
 }

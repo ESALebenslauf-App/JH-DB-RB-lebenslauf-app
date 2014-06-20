@@ -25,6 +25,7 @@ public class BerufserfahrungListener implements OnClickListener {
 	private EditText txt_taetigkeit;
 	private Button btnSelectDateVon;
 	private Button btnSelectDateBis;
+	private String beschreibungText;
 	private ArrayList<BerufserfahrungData> berufserfahrungen;
 
 
@@ -39,7 +40,7 @@ public class BerufserfahrungListener implements OnClickListener {
 		//TODO "beruf Beschreibung" durch ein richtiges Feld ersetzten
 		BerufserfahrungData berufserfahrungData = new BerufserfahrungData(
 				getTxt_firma().getText().toString(), getTxt_titel().getText()
-						.toString(),  getTxt_taetigkeit().getText().toString(), "beruf Beschreibung",getTxt_adresse().getText().toString(),
+						.toString(),  getTxt_taetigkeit().getText().toString(), getBeschreibungText(),getTxt_adresse().getText().toString(),
 				getTxt_plz().getText().toString(), getTxt_ort().getText()
 						.toString(),
 				getBtnSelectDateVon().getText().toString(),
@@ -164,5 +165,11 @@ public class BerufserfahrungListener implements OnClickListener {
 	public ArrayList<BerufserfahrungData> getBerufserfahrungen() {
 		return berufserfahrungen;
 	}
+	public String getBeschreibungText() {
+		return beschreibungText;
+	}
 
+	public void setBeschreibungText(String beschreibungText) {
+		this.beschreibungText = beschreibungText;
+	}
 }

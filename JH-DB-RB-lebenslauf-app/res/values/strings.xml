@@ -111,5 +111,6 @@
         <item>Übernehmen</item>
         <item>Löschen</item>
     </string-array>
+        <string name="speichern">Speichern</string>
 
 </resources>
