@@ -64,8 +64,8 @@
             android:label="@string/title_activity_finish"
             android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListPDFLebenslauf"></activity>
-        <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListPersonen"></activity>
+        <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListPDFLebenslaufActivity"></activity>
+        <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListPersonenActivity"></activity>
         <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.Berufserfahrung_beschreibungActivity"></activity>
     </application>
 
