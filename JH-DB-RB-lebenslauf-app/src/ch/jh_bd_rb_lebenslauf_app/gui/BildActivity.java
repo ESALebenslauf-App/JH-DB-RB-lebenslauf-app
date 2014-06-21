@@ -180,7 +180,7 @@ public class BildActivity extends FragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_pers_list:
-			final Intent intent = new Intent(this, ListPersonen.class);
+			final Intent intent = new Intent(this, ListPersonenActivity.class);
 			this.startActivity(intent);
 			break;
 

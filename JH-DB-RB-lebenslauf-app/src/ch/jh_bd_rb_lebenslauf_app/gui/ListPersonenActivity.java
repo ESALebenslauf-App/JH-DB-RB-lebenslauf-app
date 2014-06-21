@@ -26,7 +26,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ListPersonen extends ListActivity {
+public class ListPersonenActivity extends ListActivity {
 	private int listID;
 	private ArrayList<PersonalienData> listData;
 	private ArrayAdapter<String> mPdfAdapter;
@@ -56,7 +56,7 @@ public class ListPersonen extends ListActivity {
 		super.onListItemClick(l, v, position, id);
 
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-				ListPersonen.this);
+				ListPersonenActivity.this);
 
 		alertDialogBuilder.setTitle(this.getTitle() + "Personen Daten");
 		alertDialogBuilder.setMessage("Bitte wählen Sie eine Option aus.");
@@ -65,7 +65,7 @@ public class ListPersonen extends ListActivity {
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						
-						final Intent intent = new Intent(ListPersonen.this, BildActivity.class);
+						final Intent intent = new Intent(ListPersonenActivity.this, BildActivity.class);
 						intent.putExtra(StringConst.getPesrid(), listData.get(listID).getID());
 
 						startActivity(intent);
@@ -82,7 +82,7 @@ public class ListPersonen extends ListActivity {
 					public void onClick(DialogInterface dialog, int idDialog) {
 
 						PersonalienData pers = listData.get(listID);
-						PersonalienDB persDB = new PersonalienDB(ListPersonen.this);
+						PersonalienDB persDB = new PersonalienDB(ListPersonenActivity.this);
 						persDB.open();
 						persDB.deletePersonalien(pers);
 						

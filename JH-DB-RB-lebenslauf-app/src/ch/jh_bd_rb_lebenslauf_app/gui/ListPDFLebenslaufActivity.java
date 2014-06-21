@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ListPDFLebenslauf extends ListActivity {
+public class ListPDFLebenslaufActivity extends ListActivity {
 	private File[] files;
 	private ListView lv;
 

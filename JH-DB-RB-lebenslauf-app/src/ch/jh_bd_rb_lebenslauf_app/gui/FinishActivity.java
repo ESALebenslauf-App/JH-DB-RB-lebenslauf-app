@@ -97,7 +97,7 @@ public class FinishActivity extends Activity {
 	}
 
 	private void clickPdfList() {
-		final Intent intent = new Intent(this, ListPDFLebenslauf.class);
+		final Intent intent = new Intent(this, ListPDFLebenslaufActivity.class);
 		this.startActivity(intent);
 	}
 
