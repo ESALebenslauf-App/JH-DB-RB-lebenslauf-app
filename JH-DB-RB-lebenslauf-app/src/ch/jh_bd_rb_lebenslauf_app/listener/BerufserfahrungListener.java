@@ -1,12 +1,11 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Locale;
-
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
@@ -30,59 +29,58 @@ public class BerufserfahrungListener implements OnClickListener {
 	private Long persID;
 	private Long ID;
 
-
-
-	private ArrayList<BerufserfahrungData> berufserfahrungen;
-
-
 	public BerufserfahrungListener(Activity myActivity, Long persId, Long id) {
 		this.berufserfahrungenActivity = myActivity;
-		berufserfahrungen = new ArrayList<BerufserfahrungData>();
 		setPersID(persId);
 		setID(id);
 		init();
 	}
 
+	@SuppressLint("UseValueOf")
 	@Override
 	public void onClick(View arg0) {
 		saveData();
 		setID(new Long(0));
-
-
 	}
 
 	public BerufserfahrungData saveData() {
-		
+
 		BerufserfahrungData berufserfahrungData = new BerufserfahrungData(
 				getTxt_firma().getText().toString(), getTxt_titel().getText()
-						.toString(),  getTxt_taetigkeit().getText().toString(), getBeschreibungText(),getTxt_adresse().getText().toString(),
+						.toString(), getTxt_taetigkeit().getText().toString(),
+				getBeschreibungText(), getTxt_adresse().getText().toString(),
 				getTxt_plz().getText().toString(), getTxt_ort().getText()
 						.toString(),
 				getBtnSelectDateVon().getText().toString(),
 				getBtnSelectDateBis().getText().toString());
-		
+
 		berufserfahrungData.setID(getID());
 		berufserfahrungData.setPersID(getPersID());
 		// Datenbank
 		BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(
 				berufserfahrungenActivity);
 		beruferfahrungDB.open();
-		
-		if (berufserfahrungData.getID()> 0) {
+
+		if (berufserfahrungData.getID() > 0) {
 			berufserfahrungData = beruferfahrungDB
 					.updateBerufserfarung(berufserfahrungData);
-		}
-		else {
+		} else {
+			berufserfahrungData.setTxt_beschreibung("");
 			berufserfahrungData = beruferfahrungDB
 					.insertBerufserfahrung(berufserfahrungData);
 		}
-		
+
 		beruferfahrungDB.close();
 		setID(berufserfahrungData.getID());
-		
-		
-		//berufserfahrungen.add((BerufserfahrungData) berufserfahrungData);
-		
+
+		activityBereinigen();
+
+		shortToast("Eine Berufserfahrung hinzufügen");
+
+		return berufserfahrungData;
+	}
+
+	public void activityBereinigen() {
 		getTxt_firma().setText("");
 		getTxt_titel().setText("");
 		getTxt_adresse().setText("");
@@ -91,16 +89,13 @@ public class BerufserfahrungListener implements OnClickListener {
 		getTxt_taetigkeit().setText("");
 		getBtnSelectDateVon().setText("");
 		getBtnSelectDateBis().setText("");
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",
+				Locale.GERMANY);
+		String datum = dateFormat.format(new java.util.Date());
+		getBtnSelectDateBis().setText(datum);
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",Locale.GERMANY);
-        String datum = dateFormat.format(new java.util.Date());
-		getBtnSelectDateBis().setText(datum);;
 		getBtnSelectDateVon().setText(datum);
-		
-		shortToast("Eine Berufserfahrung hinzufügen");
-		berufserfahrungData.setTxt_beschreibung("");
-		
-		return berufserfahrungData;
 	}
 
 	private void init() {
@@ -120,7 +115,6 @@ public class BerufserfahrungListener implements OnClickListener {
 				.findViewById(R.id.btnSelectDateVon));
 		setBtnSelectDateBis((Button) berufserfahrungenActivity
 				.findViewById(R.id.btnSelectDateBis));
-
 	}
 
 	public EditText getTxt_firma() {
@@ -199,9 +193,6 @@ public class BerufserfahrungListener implements OnClickListener {
 		toast.show();
 	}
 
-	public ArrayList<BerufserfahrungData> getBerufserfahrungen() {
-		return berufserfahrungen;
-	}
 	public String getBeschreibungText() {
 		return beschreibungText;
 	}
@@ -209,7 +200,7 @@ public class BerufserfahrungListener implements OnClickListener {
 	public void setBeschreibungText(String beschreibungText) {
 		this.beschreibungText = beschreibungText;
 	}
-	
+
 	private Long getPersID() {
 		return persID;
 	}
@@ -218,11 +209,11 @@ public class BerufserfahrungListener implements OnClickListener {
 		this.persID = persID;
 	}
 
-	private Long getID() {
+	public Long getID() {
 		return ID;
 	}
 
-	private void setID(Long iD) {
+	public void setID(Long iD) {
 		ID = iD;
 	}
 }

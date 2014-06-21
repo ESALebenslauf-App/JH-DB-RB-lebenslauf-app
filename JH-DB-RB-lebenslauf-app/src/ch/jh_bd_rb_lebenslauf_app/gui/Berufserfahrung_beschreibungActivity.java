@@ -1,6 +1,8 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
+import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
 import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.app.Activity;
 import android.content.Intent;
@@ -31,6 +33,19 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 
 		initActivityElemente();
 		initActivityListener();
+		loadData();
+	}
+	
+	private void loadData() {
+		BerufserfahrungData beruferfahrung = new BerufserfahrungData(
+				getID());
+		if (getID() > 0) {
+			BerufserfahrungDB db = new BerufserfahrungDB(this);
+			db.open();
+			beruferfahrung = db.getBerufserfahrung(beruferfahrung);
+
+			getTxtBeschreibung().setText(beruferfahrung.getTxt_beschreibung());
+		}
 	}
 
 	private void initActivityListener() {

@@ -35,7 +35,6 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	private Button btnBeschreibung;
 	private BerufserfahrungListener berufserfahrungListener;
 	private Long persID;
-	private boolean save = false;
 	private EditText txt_firma;
 	private EditText txt_titel;
 	private EditText txt_adresse;
@@ -44,8 +43,6 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	private EditText txt_taetigkeit;
 	private String beschreibungText;
 	private Long ID;
-	// TODO Geter und Seter
-	private BerufserfahrungData beruferfahrung;
 
 	@Override
 	protected void onCreate(Bundle icicle) {
@@ -64,7 +61,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	}
 
 	private void loadData() {
-		beruferfahrung = new BerufserfahrungData(
+		BerufserfahrungData beruferfahrung = new BerufserfahrungData(
 				getID());
 		if (getID() > 0) {
 			BerufserfahrungDB db = new BerufserfahrungDB(this);
@@ -161,8 +158,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 				Berufserfahrung_beschreibungActivity.class);
 		datenSpeichern();
 		intent.putExtra(StringConst.getPesrid(), getPersID());
-		intent.putExtra(StringConst.BESCHREIBUNG, beruferfahrung.getTxt_beschreibung());
-		intent.putExtra(StringConst.ID, getID());
+		intent.putExtra(StringConst.ID, berufserfahrungListener.getID());
 
 		startActivity(intent);
 
@@ -204,33 +200,6 @@ public class BerufserfahrungActivity extends FragmentActivity {
 
 		BerufserfahrungData data = berufserfahrungListener.saveData();
 		setID(data.getID());
-		//setBeschreibungText("");
-
-		/*
-		 * ArrayList<BerufserfahrungData> berufserfahrungen =
-		 * berufserfahrungListener .getBerufserfahrungen();
-		 * 
-		 * if (getPersID() > 0) { if (berufserfahrungen.size() > 0) { for
-		 * (BerufserfahrungData current : berufserfahrungen) {
-		 * 
-		 * BerufserfahrungData berufserfahrung = (BerufserfahrungData) current;
-		 * berufserfahrung.setPersID(getPersID());
-		 * 
-		 * // Datenbank BerufserfahrungDB beruferfahrungDB = new
-		 * BerufserfahrungDB( this); beruferfahrungDB.open(); berufserfahrung =
-		 * beruferfahrungDB .insertBerufserfahrung(berufserfahrung);
-		 * beruferfahrungDB.close(); setID(berufserfahrung.getID());
-		 * 
-		 * Toast toast = Toast.makeText(this, berufserfahrung.getID().toString()
-		 * + "PersID= " + berufserfahrung.getPersID() + "TEST Beschreibung: " +
-		 * beschreibungText, Toast.LENGTH_SHORT); toast.show();
-		 * 
-		 * if (berufserfahrung.getID() > 0) { save = true; } } if (save) { Toast
-		 * toast = Toast.makeText(this, StringConst.getDatenWurdenGespeichert(),
-		 * Toast.LENGTH_SHORT); toast.show(); } } } else { Toast toast =
-		 * Toast.makeText(this, StringConst.getDatenWurdenNichtGespeichert(),
-		 * Toast.LENGTH_LONG); toast.show(); }
-		 */
 	}
 
 	private Long getPersID() {
