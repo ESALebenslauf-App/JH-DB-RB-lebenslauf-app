@@ -44,6 +44,9 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	private String beschreibungText;
 	private Long ID;
 
+	
+
+
 	@Override
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
@@ -74,6 +77,8 @@ public class BerufserfahrungActivity extends FragmentActivity {
 			getTxt_plz().setText(beruferfahrung.getTxt_plz());
 			getTxt_ort().setText(beruferfahrung.getTxt_ort());
 			getTxt_taetigkeit().setText(beruferfahrung.getTxt_taetigkeit());
+			getBtnSelectDateBis().setText(beruferfahrung.getBtnSelectDateBis());
+			getBtnSelectDateVon().setText(beruferfahrung.getBtnSelectDateVon());
 
 			beruferfahrung.setTxt_beschreibung(getBeschreibungText());
 		}
@@ -83,15 +88,16 @@ public class BerufserfahrungActivity extends FragmentActivity {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",
 				Locale.GERMANY);
 		String datum = dateFormat.format(new java.util.Date());
-		btnSelectDateBis = (Button) findViewById(R.id.btnSelectDateBis);
-		btnSelectDateBis.setText(datum);
-		btnSelectDateVon = (Button) findViewById(R.id.btnSelectDateVon);
-		btnSelectDateVon.setText(datum);
+		
 		btnBeruferfahrung = (Button) findViewById(R.id.sf_add_berufserfahrung);
 		btnBild = (Button) findViewById(R.id.buttonBild);
 		btnBildung = (Button) findViewById(R.id.buttonBildungActivity);
 		btnBeschreibung = (Button) findViewById(R.id.btn_berufserfahrung_beschreibung);
 
+		setBtnSelectDateBis((Button) findViewById(R.id.btnSelectDateBis));
+		getBtnSelectDateBis().setText(datum);
+		setBtnSelectDateVon((Button) findViewById(R.id.btnSelectDateVon));
+		getBtnSelectDateVon().setText(datum);
 		setTxt_firma((EditText) findViewById(R.id.txt_firma));
 		setTxt_titel((EditText) findViewById(R.id.txt_titel));
 		setTxt_adresse((EditText) findViewById(R.id.txt_adresse));
@@ -268,6 +274,22 @@ public class BerufserfahrungActivity extends FragmentActivity {
 
 	private void setID(Long iD) {
 		ID = iD;
+	}
+	
+	private Button getBtnSelectDateBis() {
+		return btnSelectDateBis;
+	}
+
+	private void setBtnSelectDateBis(Button btnSelectDateBis) {
+		this.btnSelectDateBis = btnSelectDateBis;
+	}
+
+	private Button getBtnSelectDateVon() {
+		return btnSelectDateVon;
+	}
+
+	private void setBtnSelectDateVon(Button btnSelectDateVon) {
+		this.btnSelectDateVon = btnSelectDateVon;
 	}
 
 }
