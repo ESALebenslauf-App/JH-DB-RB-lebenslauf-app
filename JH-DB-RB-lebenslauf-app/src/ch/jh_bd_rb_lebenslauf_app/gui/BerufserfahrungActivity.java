@@ -2,6 +2,7 @@ package ch.jh_bd_rb_lebenslauf_app.gui;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
@@ -12,11 +13,11 @@ import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-
 
 /**
  * 
@@ -73,8 +74,13 @@ public class BerufserfahrungActivity extends FragmentActivity {
 			getTxt_taetigkeit().setText(beruferfahrung.getTxt_taetigkeit());
 			getBtnSelectDateBis().setText(beruferfahrung.getBtnSelectDateBis());
 			getBtnSelectDateVon().setText(beruferfahrung.getBtnSelectDateVon());
-
-			beruferfahrung.setTxt_beschreibung(getBeschreibungText());
+			if (getBeschreibungText() != null) {
+				beruferfahrung.setTxt_beschreibung(getBeschreibungText());
+			}
+			else {
+				setBeschreibungText(beruferfahrung.getTxt_beschreibung());
+			}
+			
 		}
 	}
 
@@ -168,7 +174,24 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.berufserfahrung, menu);
-		return true;
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_berufserfahrung_list:
+			final Intent intent = new Intent(this,
+					ListBerufserfahrungenActivity.class);
+			intent.putExtra(StringConst.getPesrid(), getPersID());
+			this.startActivity(intent);
+			break;
+
+		default:
+			break;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 
 	/**
@@ -198,9 +221,11 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	 */
 	private void datenSpeichern() {
 
+		berufserfahrungListener.setBeschreibungText(getBeschreibungText());
 		BerufserfahrungData data = berufserfahrungListener.saveData();
 		setID(data.getID());
 	}
+	
 
 	private Long getPersID() {
 		return persID;
