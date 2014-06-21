@@ -1,9 +1,7 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Locale;
-
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
@@ -18,7 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
 
 /**
  * 
@@ -44,9 +42,6 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	private String beschreibungText;
 	private Long ID;
 
-	
-
-
 	@Override
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
@@ -64,8 +59,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	}
 
 	private void loadData() {
-		BerufserfahrungData beruferfahrung = new BerufserfahrungData(
-				getID());
+		BerufserfahrungData beruferfahrung = new BerufserfahrungData(getID());
 		if (getID() > 0) {
 			BerufserfahrungDB db = new BerufserfahrungDB(this);
 			db.open();
@@ -88,7 +82,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",
 				Locale.GERMANY);
 		String datum = dateFormat.format(new java.util.Date());
-		
+
 		btnBeruferfahrung = (Button) findViewById(R.id.sf_add_berufserfahrung);
 		btnBild = (Button) findViewById(R.id.buttonBild);
 		btnBildung = (Button) findViewById(R.id.buttonBildungActivity);
@@ -275,7 +269,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	private void setID(Long iD) {
 		ID = iD;
 	}
-	
+
 	private Button getBtnSelectDateBis() {
 		return btnSelectDateBis;
 	}
