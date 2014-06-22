@@ -59,7 +59,7 @@ public class BildActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bild);
-		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
+		this.persID = getIntent().getLongExtra(StringConst.PERSID, 0);
 
 		initActivityElemente();
 		initActivityListener();
@@ -94,8 +94,7 @@ public class BildActivity extends FragmentActivity {
 			@Override
 			public void onClick(View v) {
 				DialogFragment newFragment = new DatePickerFragment();
-				newFragment.show(getSupportFragmentManager(),
-						StringConst.DATEPICKERGEBURTSDATUM);
+				newFragment.show(getSupportFragmentManager(), StringConst.DATEPICKERGEBURTSDATUM);
 			}
 		});
 
@@ -141,7 +140,7 @@ public class BildActivity extends FragmentActivity {
 
 		final Intent intent = new Intent(this, BerufserfahrungActivity.class);
 
-		intent.putExtra(StringConst.getPesrid(), datenSpeichern());
+		intent.putExtra(StringConst.PERSID, datenSpeichern());
 		startActivity(intent);
 
 	}
@@ -186,13 +185,10 @@ public class BildActivity extends FragmentActivity {
 	@SuppressLint("UseValueOf")
 	private PersonalienData saveData(String saveDB) {
 
-		PersonalienData pers = new PersonalienData(getSpinnerAnrede()
-				.getSelectedItem().toString(), getTxt_name().getText()
-				.toString(), getTxt_vorname().getText().toString(),
-				getTxt_adresse().getText().toString(), getText_edit_plz()
-						.getText().toString(), getTxt_Edit_ort().getText()
-						.toString(), getBtnGeburtsdatum().getText().toString(),
-				"bild");
+		PersonalienData pers = new PersonalienData(getSpinnerAnrede().getSelectedItem().toString(), getTxt_name()
+				.getText().toString(), getTxt_vorname().getText().toString(), getTxt_adresse().getText().toString(),
+				getText_edit_plz().getText().toString(), getTxt_Edit_ort().getText().toString(), getBtnGeburtsdatum()
+						.getText().toString(), "bild");
 
 		// Datenbank
 		if (!pers.getName().equals("") || !pers.getVorname().equals("")) {
@@ -221,18 +217,14 @@ public class BildActivity extends FragmentActivity {
 			}
 
 			if (save) {
-				Toast toast = Toast.makeText(
-						this,
-						StringConst.getDatenWurdenGespeichert()
-								+ StringConst.getIhrePresid() + pers.getID(),
+				Toast toast = Toast.makeText(this,
+						StringConst.DATEN_WURDEN_GESPEICHERT + StringConst.IHRE_PRESID + pers.getID(),
 						Toast.LENGTH_LONG);
 				toast.show();
 			}
 		} else {
 			pers.setID(new Long(0));
-			Toast toast = Toast.makeText(this,
-					StringConst.getDatenWurdenNichtGespeichert(),
-					Toast.LENGTH_LONG);
+			Toast toast = Toast.makeText(this, StringConst.DATEN_WURDEN_NICHT_GESPEICHERT, Toast.LENGTH_LONG);
 			toast.show();
 		}
 		return pers;
@@ -252,8 +244,7 @@ public class BildActivity extends FragmentActivity {
 		// Wenn ein Foto neu geschossen wurde
 		if (requestCode == 1 && resultCode == RESULT_OK) {
 			image = (Bitmap) data.getExtras().get("data");
-			Toast toast = Toast.makeText(this, "Foto gespeichert",
-					Toast.LENGTH_LONG);
+			Toast toast = Toast.makeText(this, "Foto gespeichert", Toast.LENGTH_LONG);
 			toast.show();
 		}
 		// Wenn ein Foto aus der Galery ausgewählt wurde
@@ -261,8 +252,7 @@ public class BildActivity extends FragmentActivity {
 			Uri selectedImage = data.getData();
 			String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
-			Cursor cursor = getContentResolver().query(selectedImage,
-					filePathColumn, null, null, null);
+			Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
 			cursor.moveToFirst();
 
 			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -271,8 +261,7 @@ public class BildActivity extends FragmentActivity {
 
 			image = BitmapFactory.decodeFile(filePath);
 
-			Toast toast = Toast.makeText(this, "Foto gespeichert",
-					Toast.LENGTH_LONG);
+			Toast toast = Toast.makeText(this, "Foto gespeichert", Toast.LENGTH_LONG);
 			toast.show();
 		}
 	}

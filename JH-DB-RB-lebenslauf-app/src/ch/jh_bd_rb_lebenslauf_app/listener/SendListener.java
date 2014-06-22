@@ -7,6 +7,11 @@ import android.net.Uri;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+/**
+ * 
+ * @author jherzig
+ * 
+ */
 
 public class SendListener implements OnClickListener {
 	private Activity finishActivity;
@@ -18,9 +23,9 @@ public class SendListener implements OnClickListener {
 	}
 
 	@Override
-	public void onClick(View arg0) {		
+	public void onClick(View arg0) {
 		Intent sendIntent = new Intent(android.content.Intent.ACTION_SEND);
-		sendIntent.putExtra(android.content.Intent.EXTRA_STREAM,Uri.parse("file://"+sendItem.getPath()));
+		sendIntent.putExtra(android.content.Intent.EXTRA_STREAM, Uri.parse("file://" + sendItem.getPath()));
 		sendIntent.setType("*/*");
 		finishActivity.startActivity(sendIntent);
 	}

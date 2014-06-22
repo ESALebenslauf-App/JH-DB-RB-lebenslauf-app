@@ -12,6 +12,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * @author j.herzig
+ * 
+ */
 public class Berufserfahrung_beschreibungActivity extends Activity {
 
 	private long persID;
@@ -20,14 +24,12 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 	private TextView txtBeschreibung;
 	private String text;
 
-
-
 	@Override
 	protected void onCreate(Bundle icicle) {
 
 		super.onCreate(icicle);
 		setContentView(R.layout.activity_berufserfahrung_beschreibung);
-		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
+		this.persID = getIntent().getLongExtra(StringConst.PERSID, 0);
 		setText(getIntent().getStringExtra(StringConst.BESCHREIBUNG));
 		setID(getIntent().getLongExtra(StringConst.ID, 0));
 
@@ -35,10 +37,9 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 		initActivityListener();
 		loadData();
 	}
-	
+
 	private void loadData() {
-		BerufserfahrungData beruferfahrung = new BerufserfahrungData(
-				getID());
+		BerufserfahrungData beruferfahrung = new BerufserfahrungData(getID());
 		if (getID() > 0) {
 			BerufserfahrungDB db = new BerufserfahrungDB(this);
 			db.open();
@@ -50,18 +51,18 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 
 	private void initActivityListener() {
 		btnSave = (Button) findViewById(R.id.btn_berufserfahrung_beschreibung_save);
-		
-		
+
 		btnSave.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				setText(getTxtBeschreibung().getText().toString()); 
-				
-				final Intent intent = new Intent(Berufserfahrung_beschreibungActivity.this, BerufserfahrungActivity.class);
+				setText(getTxtBeschreibung().getText().toString());
 
-				intent.putExtra(StringConst.getPesrid(), persID);
-				intent.putExtra(StringConst.BESCHREIBUNG, getText() );
+				final Intent intent = new Intent(Berufserfahrung_beschreibungActivity.this,
+						BerufserfahrungActivity.class);
+
+				intent.putExtra(StringConst.PERSID, persID);
+				intent.putExtra(StringConst.BESCHREIBUNG, getText());
 				intent.putExtra(StringConst.ID, getID());
 				startActivity(intent);
 			}
@@ -72,6 +73,7 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 		txtBeschreibung = (TextView) findViewById(R.id.txt_Edit_berufserfahrung_beschreibung);
 		getTxtBeschreibung().setText(getText());
 	}
+
 	public TextView getTxtBeschreibung() {
 		return txtBeschreibung;
 	}
@@ -86,7 +88,8 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 
 	public void setText(String text) {
 		this.text = text;
-	}	
+	}
+
 	private Long getID() {
 		return ID;
 	}
@@ -94,5 +97,5 @@ public class Berufserfahrung_beschreibungActivity extends Activity {
 	private void setID(Long iD) {
 		ID = iD;
 	}
-	
+
 }

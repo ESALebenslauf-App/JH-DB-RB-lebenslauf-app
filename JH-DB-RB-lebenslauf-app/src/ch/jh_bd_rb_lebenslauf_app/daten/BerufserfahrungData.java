@@ -1,5 +1,11 @@
 package ch.jh_bd_rb_lebenslauf_app.daten;
 
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ * 
+ */
+
 public class BerufserfahrungData implements Cloneable {
 
 	private Long ID;
@@ -14,10 +20,8 @@ public class BerufserfahrungData implements Cloneable {
 	private String btnSelectDateBis;
 	private String txt_beschreibung;
 
-	public BerufserfahrungData(String txt_firma, String txt_titel,
-			String txt_taetigkeit, String txt_beschreibung, String txt_adresse,
-			String txt_plz, String txt_ort, String btnSelectDateVon,
-			String btnSelectDateBis) {
+	public BerufserfahrungData(String txt_firma, String txt_titel, String txt_taetigkeit, String txt_beschreibung,
+			String txt_adresse, String txt_plz, String txt_ort, String btnSelectDateVon, String btnSelectDateBis) {
 		super();
 		this.txt_firma = txt_firma;
 		this.txt_titel = txt_titel;
@@ -31,7 +35,7 @@ public class BerufserfahrungData implements Cloneable {
 	}
 
 	public BerufserfahrungData() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public BerufserfahrungData(Long id) {

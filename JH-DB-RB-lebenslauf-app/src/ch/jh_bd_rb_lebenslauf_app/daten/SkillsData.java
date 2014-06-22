@@ -1,6 +1,12 @@
 package ch.jh_bd_rb_lebenslauf_app.daten;
 
-public class SkillsData implements Cloneable{
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ * 
+ */
+
+public class SkillsData implements Cloneable {
 
 	private Long ID;
 	private Long pers_id;
@@ -14,9 +20,9 @@ public class SkillsData implements Cloneable{
 		this.ausmass = ausmass;
 		this.zertifikat = zertifikat;
 	}
-	
-	public SkillsData(){
-		
+
+	public SkillsData() {
+
 	}
 
 	public SkillsData(Long iD) {
@@ -32,7 +38,7 @@ public class SkillsData implements Cloneable{
 		}
 		return theClone;
 	}
-	
+
 	public Long getID() {
 		return ID;
 	}

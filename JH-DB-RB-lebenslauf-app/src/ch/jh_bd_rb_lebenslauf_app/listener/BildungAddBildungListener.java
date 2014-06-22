@@ -59,8 +59,6 @@ public class BildungAddBildungListener implements OnClickListener {
 		setRadioGroup((RadioGroup) bildungActivity.findViewById(R.id.edt_radiogroup_ausbildung));
 	}
 
-
-
 	@Override
 	public void onClick(View arg0) {
 		saveData();
@@ -224,7 +222,7 @@ public class BildungAddBildungListener implements OnClickListener {
 	private void setPersID(Long persID) {
 		this.persID = persID;
 	}
-	
+
 	private RadioGroup getRadioGroup() {
 		return radioGroup;
 	}

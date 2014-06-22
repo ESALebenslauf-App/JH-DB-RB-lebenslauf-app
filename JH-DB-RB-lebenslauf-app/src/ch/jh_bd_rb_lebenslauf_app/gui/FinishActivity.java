@@ -1,7 +1,5 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
-
-
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.SendItem;
 import ch.jh_bd_rb_lebenslauf_app.listener.CreatePdfListener;
@@ -30,12 +28,11 @@ public class FinishActivity extends Activity {
 	private SendItem sendItem;
 	private Long persID;
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_finish);
-		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
+		this.persID = getIntent().getLongExtra(StringConst.PERSID, 0);
 
 		initActivityElemente();
 		initActivityListener();
@@ -112,10 +109,9 @@ public class FinishActivity extends Activity {
 
 	public void clickZusammenfassung(View Button) {
 		final Intent intent = new Intent(this, ZusammenfassungActivity.class);
-		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.PERSID, getPersID());
 		startActivity(intent);
 	}
-	
 
 	public Long getPersID() {
 		return persID;
@@ -124,6 +120,5 @@ public class FinishActivity extends Activity {
 	public void setPersID(Long persID) {
 		this.persID = persID;
 	}
-
 
 }

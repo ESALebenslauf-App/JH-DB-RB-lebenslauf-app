@@ -7,6 +7,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ * 
+ */
+
 public class SkillsDB implements LebenslaufDB {
 
 	private final DBHelper dbHelper;
@@ -37,8 +43,8 @@ public class SkillsDB implements LebenslaufDB {
 		String[] dbID = new String[1];
 		dbID[0] = skills.getID().toString();
 
-		Cursor result = db.query(false, TABLE_SKILLS, PROJECTION_SKILLS,
-				SKILLS_ID + "=?", dbID, null, null, null, null);
+		Cursor result = db
+				.query(false, TABLE_SKILLS, PROJECTION_SKILLS, SKILLS_ID + "=?", dbID, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			return setSkills(skills, result);
@@ -93,8 +99,8 @@ public class SkillsDB implements LebenslaufDB {
 			break;
 		}
 
-		Cursor result = db.query(false, TABLE_SKILLS, PROJECTION_SKILLS,
-				dbColWhere + "=?", dbWhere, null, null, null, null);
+		Cursor result = db.query(false, TABLE_SKILLS, PROJECTION_SKILLS, dbColWhere + "=?", dbWhere, null, null, null,
+				null);
 
 		ArrayList<SkillsData> skillsArr = new ArrayList<SkillsData>();
 		if (result.moveToFirst()) {
@@ -115,8 +121,7 @@ public class SkillsDB implements LebenslaufDB {
 	public ArrayList<SkillsData> getAllSkills() {
 		ArrayList<SkillsData> skills = new ArrayList<SkillsData>();
 
-		Cursor result = db.query(false, TABLE_SKILLS, PROJECTION_SKILLS, null,
-				null, null, null, null, null);
+		Cursor result = db.query(false, TABLE_SKILLS, PROJECTION_SKILLS, null, null, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			while (!result.isAfterLast()) {
@@ -168,8 +173,7 @@ public class SkillsDB implements LebenslaufDB {
 		values = putContentValues(skills, values);
 
 		if (skills.getID() > 0) {
-			db.update(TABLE_SKILLS, values, "_id=?", new String[] { skills
-					.getID().toString() });
+			db.update(TABLE_SKILLS, values, "_id=?", new String[] { skills.getID().toString() });
 
 			return getSkill(skills);
 		} else {

@@ -7,6 +7,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ * 
+ */
+
 public class PersonalienDB implements LebenslaufDB {
 
 	private final DBHelper dbHelper;
@@ -87,8 +93,7 @@ public class PersonalienDB implements LebenslaufDB {
 		String[] dbID = new String[1];
 		dbID[0] = personalien.getID().toString();
 
-		Cursor result = db.query(false, TABLE_PERS, PROJECTION_PERS, PERS_ID
-				+ "=?", dbID, null, null, null, null);
+		Cursor result = db.query(false, TABLE_PERS, PROJECTION_PERS, PERS_ID + "=?", dbID, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			return setPersonalien(personalien, result);
@@ -106,13 +111,11 @@ public class PersonalienDB implements LebenslaufDB {
 	public ArrayList<PersonalienData> getAllPersonalien() {
 		ArrayList<PersonalienData> personalien = new ArrayList<PersonalienData>();
 
-		Cursor result = db.query(false, TABLE_PERS, PROJECTION_PERS, null,
-				null, null, null, null, null);
+		Cursor result = db.query(false, TABLE_PERS, PROJECTION_PERS, null, null, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			while (!result.isAfterLast()) {
-				PersonalienData personalie = new PersonalienData(
-						result.getLong(0));
+				PersonalienData personalie = new PersonalienData(result.getLong(0));
 				personalien.add(setPersonalien(personalie, result));
 				result.moveToNext();
 			}
@@ -131,8 +134,7 @@ public class PersonalienDB implements LebenslaufDB {
 	 *            Colum Name der where abfrage
 	 * @return ArrayList<Bildung> alle treffer
 	 */
-	public ArrayList<PersonalienData> getPersonalienRows(
-			PersonalienData personalie, String columWhere) {
+	public ArrayList<PersonalienData> getPersonalienRows(PersonalienData personalie, String columWhere) {
 		String[] dbWhere = new String[1];
 		String dbColWhere = PERS_ID;
 
@@ -180,8 +182,8 @@ public class PersonalienDB implements LebenslaufDB {
 
 		ArrayList<PersonalienData> personalien = new ArrayList<PersonalienData>();
 
-		Cursor result = db.query(false, TABLE_PERS, PROJECTION_PERS, dbColWhere
-				+ "=?", dbWhere, null, null, null, null);
+		Cursor result = db
+				.query(false, TABLE_PERS, PROJECTION_PERS, dbColWhere + "=?", dbWhere, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			while (!result.isAfterLast()) {
@@ -194,8 +196,7 @@ public class PersonalienDB implements LebenslaufDB {
 		return personalien;
 	}
 
-	private PersonalienData setPersonalien(PersonalienData personalien,
-			Cursor result) {
+	private PersonalienData setPersonalien(PersonalienData personalien, Cursor result) {
 
 		personalien.setAnrede(result.getString(1));
 		personalien.setName(result.getString(2));
@@ -209,8 +210,7 @@ public class PersonalienDB implements LebenslaufDB {
 		return personalien;
 	}
 
-	private ContentValues putContentValues(PersonalienData personalien,
-			ContentValues values) {
+	private ContentValues putContentValues(PersonalienData personalien, ContentValues values) {
 		values.put(PERS_ANREDE, personalien.getAnrede());
 		values.put(PERS_NAME, personalien.getName());
 		values.put(PERS_VORNAME, personalien.getVorname());

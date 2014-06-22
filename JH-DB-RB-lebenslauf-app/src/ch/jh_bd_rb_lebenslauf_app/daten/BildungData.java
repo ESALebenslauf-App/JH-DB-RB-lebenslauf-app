@@ -26,8 +26,8 @@ public class BildungData implements Cloneable {
 	 * @param datumVon
 	 * @param datumBis
 	 */
-	public BildungData(String ausbildungsart, String nameschule, String plz,
-			String adresseSchule, String datumVon, String datumBis) {
+	public BildungData(String ausbildungsart, String nameschule, String plz, String adresseSchule, String datumVon,
+			String datumBis) {
 		super();
 		this.ausbildungsart = ausbildungsart;
 		this.nameschule = nameschule;
@@ -36,9 +36,9 @@ public class BildungData implements Cloneable {
 		this.datumVon = datumVon;
 		this.datumBis = datumBis;
 	}
-	
-	public BildungData(){
-		
+
+	public BildungData() {
+
 	}
 
 	public BildungData clone() {

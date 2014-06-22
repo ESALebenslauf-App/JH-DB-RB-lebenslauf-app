@@ -19,11 +19,10 @@ import android.widget.DatePicker;
  * dieses ab. Die Fragmente muessen mit den Tags "datePickerVon" und
  * "datePickerBis" versehen sein.
  * 
- * @author bdervishi.jherzig.rbuess
+ * @author jherzig
  * 
  */
-public class DatePickerFragment extends DialogFragment implements
-		DatePickerDialog.OnDateSetListener {
+public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
 	private Calendar cal = Calendar.getInstance();
 	private static final String DATE_FORMAT = "dd.MM.yyyy";
@@ -85,8 +84,7 @@ public class DatePickerFragment extends DialogFragment implements
 	 * @param date
 	 */
 	private void updateBttonVon(String date) {
-		Button btnSelectDateVon = (Button) getActivity().findViewById(
-				R.id.btnSelectDateVon);
+		Button btnSelectDateVon = (Button) getActivity().findViewById(R.id.btnSelectDateVon);
 		btnSelectDateVon.setText(date);
 	}
 
@@ -96,8 +94,7 @@ public class DatePickerFragment extends DialogFragment implements
 	 * @param date
 	 */
 	private void updateBttonBis(String date) {
-		Button btnSelectDateBis = (Button) getActivity().findViewById(
-				R.id.btnSelectDateBis);
+		Button btnSelectDateBis = (Button) getActivity().findViewById(R.id.btnSelectDateBis);
 		btnSelectDateBis.setText(date);
 	}
 

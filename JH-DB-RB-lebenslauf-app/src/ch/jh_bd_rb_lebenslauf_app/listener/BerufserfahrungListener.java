@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 /**
  * @author j.herzig
- *
+ * 
  */
 public class BerufserfahrungListener implements OnClickListener {
 

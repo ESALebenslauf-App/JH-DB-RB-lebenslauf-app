@@ -7,6 +7,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ * 
+ */
+
 public class BerufserfahrungDB implements LebenslaufDB {
 
 	private final DBHelper dbHelper;
@@ -33,13 +39,11 @@ public class BerufserfahrungDB implements LebenslaufDB {
 	 * @param bildung
 	 * @return Bildung mit Daten aus DB
 	 */
-	public BerufserfahrungData getBerufserfahrung(
-			BerufserfahrungData berufserfahrung) {
+	public BerufserfahrungData getBerufserfahrung(BerufserfahrungData berufserfahrung) {
 		String[] dbID = new String[1];
 		dbID[0] = berufserfahrung.getID().toString();
 
-		Cursor result = db.query(false, TABLE_BERUF, PROJECTION_BERUF, BERUF_ID
-				+ "=?", dbID, null, null, null, null);
+		Cursor result = db.query(false, TABLE_BERUF, PROJECTION_BERUF, BERUF_ID + "=?", dbID, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			return setBerufserfahrung(berufserfahrung, result);
@@ -55,8 +59,7 @@ public class BerufserfahrungDB implements LebenslaufDB {
 	 * @param bildung
 	 * @return Bildung mit Daten aus DB abgefuehlt
 	 */
-	public BerufserfahrungData insertBerufserfahrung(
-			BerufserfahrungData berufserfahrung) {
+	public BerufserfahrungData insertBerufserfahrung(BerufserfahrungData berufserfahrung) {
 		ContentValues values = new ContentValues();
 
 		values = putContentValues(berufserfahrung, values);
@@ -85,15 +88,12 @@ public class BerufserfahrungDB implements LebenslaufDB {
 	public ArrayList<BerufserfahrungData> getAllBerufserfahrung() {
 		ArrayList<BerufserfahrungData> berufserfahrungen = new ArrayList<BerufserfahrungData>();
 
-		Cursor result = db.query(false, TABLE_BERUF, PROJECTION_BERUF, null,
-				null, null, null, null, null);
+		Cursor result = db.query(false, TABLE_BERUF, PROJECTION_BERUF, null, null, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			while (!result.isAfterLast()) {
-				BerufserfahrungData berufserfahrung = new BerufserfahrungData(
-						result.getLong(0));
-				berufserfahrungen.add(setBerufserfahrung(berufserfahrung,
-						result));
+				BerufserfahrungData berufserfahrung = new BerufserfahrungData(result.getLong(0));
+				berufserfahrungen.add(setBerufserfahrung(berufserfahrung, result));
 				result.moveToNext();
 			}
 		}
@@ -111,8 +111,7 @@ public class BerufserfahrungDB implements LebenslaufDB {
 	 *            Colum Name der where abfrage
 	 * @return ArrayList<Bildung> alle treffer
 	 */
-	public ArrayList<BerufserfahrungData> getBerufserfarungRows(
-			BerufserfahrungData berufserfarung, String columWhere) {
+	public ArrayList<BerufserfahrungData> getBerufserfarungRows(BerufserfahrungData berufserfarung, String columWhere) {
 		String[] dbWhere = new String[1];
 		String dbColWhere = BERUF_ID;
 
@@ -164,23 +163,22 @@ public class BerufserfahrungDB implements LebenslaufDB {
 
 		ArrayList<BerufserfahrungData> berufserfahrungen = new ArrayList<BerufserfahrungData>();
 
-		Cursor result = db.query(false, TABLE_BERUF, PROJECTION_BERUF,
-				dbColWhere + "=?", dbWhere, null, null, null, null);
+		Cursor result = db.query(false, TABLE_BERUF, PROJECTION_BERUF, dbColWhere + "=?", dbWhere, null, null, null,
+				null);
 
 		if (result.moveToFirst()) {
 			while (!result.isAfterLast()) {
-				BerufserfahrungData berufserfahrung = new BerufserfahrungData(
-						result.getLong(0));
-				berufserfahrungen.add(setBerufserfahrung(berufserfahrung,
-						result));
+				BerufserfahrungData berufserfahrung = new BerufserfahrungData(result.getLong(0));
+				berufserfahrungen.add(setBerufserfahrung(berufserfahrung, result));
 				result.moveToNext();
 			}
 		}
 		return berufserfahrungen;
 	}
+
 	/**
-	 * Das übergebene Berufserfahrung Objekt wird anhand der ID Aktualisiert es werden
-	 * alle einträge des Objekts Aktualisiert.
+	 * Das übergebene Berufserfahrung Objekt wird anhand der ID Aktualisiert es
+	 * werden alle einträge des Objekts Aktualisiert.
 	 * 
 	 * @param berufserfahrung
 	 * @return
@@ -191,18 +189,15 @@ public class BerufserfahrungDB implements LebenslaufDB {
 		values = putContentValues(berufserfahrung, values);
 
 		if (berufserfahrung.getID() > 0) {
-			db.update(TABLE_BERUF, values, "_id=?", new String[] { berufserfahrung
-					.getID().toString() });
+			db.update(TABLE_BERUF, values, "_id=?", new String[] { berufserfahrung.getID().toString() });
 
 			return getBerufserfahrung(berufserfahrung);
 		} else {
 			return berufserfahrung;
 		}
 	}
-	
 
-	private BerufserfahrungData setBerufserfahrung(
-			BerufserfahrungData berufserfahrung, Cursor result) {
+	private BerufserfahrungData setBerufserfahrung(BerufserfahrungData berufserfahrung, Cursor result) {
 		berufserfahrung.setID(result.getLong(0));
 
 		berufserfahrung.setTxt_firma(result.getString(1));
@@ -224,8 +219,7 @@ public class BerufserfahrungDB implements LebenslaufDB {
 	 * @param values
 	 * @return ContentValues mit Daten aus bildung
 	 */
-	private ContentValues putContentValues(BerufserfahrungData berufserfahrung,
-			ContentValues values) {
+	private ContentValues putContentValues(BerufserfahrungData berufserfahrung, ContentValues values) {
 
 		values.put(BERUF_FIRMA, berufserfahrung.getTxt_firma());
 		values.put(BERUF_TITEL, berufserfahrung.getTxt_titel());

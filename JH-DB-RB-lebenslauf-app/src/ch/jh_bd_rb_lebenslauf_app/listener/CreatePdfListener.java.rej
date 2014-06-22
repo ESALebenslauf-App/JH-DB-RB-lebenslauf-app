@@ -1,9 +1,0 @@
-diff a/JH-DB-RB-lebenslauf-app/src/ch/jh_bd_rb_lebenslauf_app/listener/CreatePdfListener.java b/JH-DB-RB-lebenslauf-app/src/ch/jh_bd_rb_lebenslauf_app/listener/CreatePdfListener.java	(rejected hunks)
-@@ -141,6 +141,7 @@
- 		document.add(preface);
- 
- 	}
-+
- 	// Methode f�r eine leere Zeile(Absatz)
- 	private static void addEmptyLine(Paragraph paragraph, int number) {
- 		for (int i = 0; i < number; i++) {

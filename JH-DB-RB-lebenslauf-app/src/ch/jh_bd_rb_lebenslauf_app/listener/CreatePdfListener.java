@@ -1,10 +1,8 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -27,7 +25,6 @@ import ch.jh_bd_rb_lebenslauf_app.resource.FileConst;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Image;
@@ -39,17 +36,20 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.pdf.PdfDocument.Page;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+/**
+ * 
+ * @author rbuess
+ * 
+ */
 public class CreatePdfListener implements OnClickListener {
 	private SendItem sendItem;
 	private Button btnSenden;
@@ -90,6 +90,7 @@ public class CreatePdfListener implements OnClickListener {
 	static FontFamily schrift = Font.FontFamily.TIMES_ROMAN;
 
 	// TEST-Konstruktor mit Aktivity und Directory
+	@SuppressWarnings("static-access")
 	public CreatePdfListener(Activity finishActivity, Long id, SendItem sendItem) {
 		this.persID = id;
 		this.finishActivity = finishActivity;
@@ -104,37 +105,33 @@ public class CreatePdfListener implements OnClickListener {
 		Spanned txtPersonalien;
 
 		PersonalienDB personalienDB = new PersonalienDB(finishActivity);
-		BerufserfahrungDB berufserfahrungDB = new BerufserfahrungDB(
-				finishActivity);
+		BerufserfahrungDB berufserfahrungDB = new BerufserfahrungDB(finishActivity);
 		BildungDB bildungDB = new BildungDB(finishActivity);
 		SkillsDB skillsDB = new SkillsDB(finishActivity);
 
 		personalienDB.open();
 		PersonalienData personalienData = new PersonalienData(getPersID());
-		ArrayList<PersonalienData> personalienArray = personalienDB
-				.getPersonalienRows(personalienData, LebenslaufDB.PERS_ID);
+		ArrayList<PersonalienData> personalienArray = personalienDB.getPersonalienRows(personalienData,
+				LebenslaufDB.PERS_ID);
 		personalienDB.close();
 
 		berufserfahrungDB.open();
 		BerufserfahrungData berufserfahrungData = new BerufserfahrungData();
 		berufserfahrungData.setPersID(getPersID());
-		ArrayList<BerufserfahrungData> berufserfahrungArray = berufserfahrungDB
-				.getBerufserfarungRows(berufserfahrungData,
-						LebenslaufDB.BERUF_PERS_ID);
+		ArrayList<BerufserfahrungData> berufserfahrungArray = berufserfahrungDB.getBerufserfarungRows(
+				berufserfahrungData, LebenslaufDB.BERUF_PERS_ID);
 		berufserfahrungDB.close();
 
 		bildungDB.open();
 		BildungData bildungData = new BildungData();
 		bildungData.setPersID(getPersID());
-		ArrayList<BildungData> bildungArray = bildungDB.getBildungRows(
-				bildungData, LebenslaufDB.BILDUNG_PERS_ID);
+		ArrayList<BildungData> bildungArray = bildungDB.getBildungRows(bildungData, LebenslaufDB.BILDUNG_PERS_ID);
 		bildungDB.close();
 
 		skillsDB.open();
 		SkillsData skillsData = new SkillsData();
 		skillsData.setPers_id(getPersID());
-		ArrayList<SkillsData> skillsArray = skillsDB.getSkillsRows(skillsData,
-				LebenslaufDB.SKILLS_PERS_ID);
+		ArrayList<SkillsData> skillsArray = skillsDB.getSkillsRows(skillsData, LebenslaufDB.SKILLS_PERS_ID);
 		skillsDB.close();
 
 		// ////////////////////// PERSONALIEN
@@ -153,9 +150,8 @@ public class CreatePdfListener implements OnClickListener {
 			// fotoName = personalien.getBild();
 
 			// Übergibt die Daten als Text an ein Spanned.
-			txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " "
-					+ name + "<br />" + strasse + "<br />" + plz + " " + ort
-					+ "<br />" + date);
+			txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " " + name + "<br />" + strasse + "<br />"
+					+ plz + " " + ort + "<br />" + date);
 			// Spanned www = Html.fromHtml("TEXT");
 			// CharSequence xxx = TextUtils.concat(txtPersonalien, www);
 			// Übergibt den Spanned an den TextView.
@@ -181,17 +177,13 @@ public class CreatePdfListener implements OnClickListener {
 			String beschreibung = berufserfahrung.getTxt_beschreibung();
 
 			// Schreibt die Berufserfahrung Daten mit HTML in ein Spanned.
-			Spanned addBerufserfahrungText = Html.fromHtml("<b>Firma: </b>"
-					+ firma + "<br />" + "<b>" + "Titel: " + "</b>" + titel
-					+ "<br />" + "<b>Adresse: </b><br />" + adresse + "<br />"
-					+ plzFirma + ortFirma + "<br />" + "<b>Tätigkeit: </b>"
-					+ taetigkeit + "<br />" + "<b>Dauer: </b>" + vonFirma
-					+ " bis " + bisFirma + "<br />" + "<b>Beschreibung: </b>"
-					+ beschreibung + "<br />----------------<br />");
+			Spanned addBerufserfahrungText = Html.fromHtml("<b>Firma: </b>" + firma + "<br />" + "<b>" + "Titel: "
+					+ "</b>" + titel + "<br />" + "<b>Adresse: </b><br />" + adresse + "<br />" + plzFirma + ortFirma
+					+ "<br />" + "<b>Tätigkeit: </b>" + taetigkeit + "<br />" + "<b>Dauer: </b>" + vonFirma + " bis "
+					+ bisFirma + "<br />" + "<b>Beschreibung: </b>" + beschreibung + "<br />----------------<br />");
 
 			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.
-			textBerufserfahrung = (Spanned) TextUtils.concat(
-					textBerufserfahrung, addBerufserfahrungText);
+			textBerufserfahrung = (Spanned) TextUtils.concat(textBerufserfahrung, addBerufserfahrungText);
 
 		}
 
@@ -214,16 +206,13 @@ public class CreatePdfListener implements OnClickListener {
 			String bisSchule = bildung.getDatumBis();
 
 			// Schreibt die Berufserfahrung Daten mit HTML in ein Spanned.
-			Spanned addBildungText = Html.fromHtml("<b>Ausbildungsart: </b>"
-					+ ausbildungsart + "<br />" + "<b>" + "Name der Schule: "
-					+ "</b>" + nameSchule + "<br />" + "<b>Adresse: </b><br />"
-					+ plzSchule + " " + adresse + "<br />" + "<b>Dauer: </b>"
-					+ vonSchule + " bis " + bisSchule
+			Spanned addBildungText = Html.fromHtml("<b>Ausbildungsart: </b>" + ausbildungsart + "<br />" + "<b>"
+					+ "Name der Schule: " + "</b>" + nameSchule + "<br />" + "<b>Adresse: </b><br />" + plzSchule + " "
+					+ adresse + "<br />" + "<b>Dauer: </b>" + vonSchule + " bis " + bisSchule
 					+ "<br />----------------<br />");
 
 			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.
-			textBildung = (Spanned) TextUtils.concat(textBildung,
-					addBildungText);
+			textBildung = (Spanned) TextUtils.concat(textBildung, addBildungText);
 
 		}
 
@@ -241,9 +230,8 @@ public class CreatePdfListener implements OnClickListener {
 			String zertifikat = skills.getZertifikat();
 
 			// Schreibt die Skills Daten mit HTML in ein Spanned.
-			Spanned addSkillsText = Html.fromHtml("<b>Was: </b>" + was
-					+ "<br />" + "<b>" + "Ausmass: " + "</b>" + ausmass
-					+ "<br />" + "<b>" + "Zertifikat: " + "</b>" + zertifikat
+			Spanned addSkillsText = Html.fromHtml("<b>Was: </b>" + was + "<br />" + "<b>" + "Ausmass: " + "</b>"
+					+ ausmass + "<br />" + "<b>" + "Zertifikat: " + "</b>" + zertifikat
 					+ "<br />----------------<br />");
 
 			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.
@@ -272,8 +260,7 @@ public class CreatePdfListener implements OnClickListener {
 			Date date = new Date();
 			String datum = formatDate.format(date).toString();
 			// Pfad und Bezeichnung des PDFs(MUSS NOCH ANGEPASST WERDEN)
-			String pfad = FileConst.getPdfPath() + "/Lebenslauf" + datum
-					+ ".pdf";
+			String pfad = FileConst.getPdfPath() + "/Lebenslauf" + datum + ".pdf";
 			sendItem.setPath(pfad);
 			FileOutputStream fos = new FileOutputStream(pfad);
 			// Übergabe des Dokument und Pfad an den PdfWriter
@@ -283,9 +270,8 @@ public class CreatePdfListener implements OnClickListener {
 			addTitel(document);
 
 			// Bild hinzufügen
-			
+
 			document.add(addImage());
-			
 
 			// Methode zum hinzufügen des Textes wird aufgerufen
 			addText(document);
@@ -357,8 +343,8 @@ public class CreatePdfListener implements OnClickListener {
 		createPdf();
 		// Toast dass ein PDF erstellt wurde und mit Angaben über Sprache,
 		// Schriftgrösse und Schriftart
-		Toast toast = Toast.makeText(finishActivity, toastText + toastEnglish
-				+ ", " + toastSize + ", " + toastArt + ")", Toast.LENGTH_LONG);
+		Toast toast = Toast.makeText(finishActivity, toastText + toastEnglish + ", " + toastSize + ", " + toastArt
+				+ ")", Toast.LENGTH_LONG);
 		toast.show();
 
 	}
@@ -410,11 +396,9 @@ public class CreatePdfListener implements OnClickListener {
 		return persID;
 	}
 
-	private static Image addImage() throws BadElementException,
-			MalformedURLException, IOException {
+	private static Image addImage() throws BadElementException, MalformedURLException, IOException {
 
-		String filePath = FileConst.getPdfPath() + "/" + persID.toString()
-				+ "Foto.jpg";
+		String filePath = FileConst.getPdfPath() + "/" + persID.toString() + "Foto.jpg";
 
 		bitmap = BitmapFactory.decodeFile(filePath);
 		bitmapResized = Bitmap.createScaledBitmap(bitmap, 190, 250, false);

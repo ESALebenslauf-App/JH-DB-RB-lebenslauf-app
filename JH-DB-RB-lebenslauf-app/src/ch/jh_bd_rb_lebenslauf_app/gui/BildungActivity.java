@@ -24,7 +24,7 @@ import android.widget.RadioGroup;
 /**
  * @author bdervishi.jherzig.rbuess
  * 
- *         In dieser Activity können mehrer Ausbildungen hinterlegt werden.
+ * 
  */
 public class BildungActivity extends FragmentActivity {
 
@@ -48,7 +48,7 @@ public class BildungActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bildung);
-		setPersID(getIntent().getLongExtra(StringConst.getPesrid(), 0));
+		setPersID(getIntent().getLongExtra(StringConst.PERSID, 0));
 		setID(getIntent().getLongExtra(StringConst.ID, 0));
 
 		// Initialisieren
@@ -165,7 +165,7 @@ public class BildungActivity extends FragmentActivity {
 	 */
 	private void clickBerufserfahrung() {
 		final Intent intent = new Intent(this, BerufserfahrungActivity.class);
-		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.PERSID, getPersID());
 
 		startActivity(intent);
 	}
@@ -176,7 +176,7 @@ public class BildungActivity extends FragmentActivity {
 	private void clickSkills() {
 
 		final Intent intent = new Intent(this, SkillsActivity.class);
-		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.PERSID, getPersID());
 
 		startActivity(intent);
 
@@ -193,7 +193,7 @@ public class BildungActivity extends FragmentActivity {
 		switch (item.getItemId()) {
 		case R.id.action_bildung_list:
 			final Intent intent = new Intent(this, ListBildungenActivity.class);
-			intent.putExtra(StringConst.getPesrid(), getPersID());
+			intent.putExtra(StringConst.PERSID, getPersID());
 			this.startActivity(intent);
 			break;
 

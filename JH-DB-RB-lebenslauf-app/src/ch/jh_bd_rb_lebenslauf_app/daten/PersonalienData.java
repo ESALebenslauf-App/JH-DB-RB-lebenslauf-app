@@ -1,5 +1,11 @@
 package ch.jh_bd_rb_lebenslauf_app.daten;
 
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ * 
+ */
+
 public class PersonalienData implements Cloneable {
 	private Long ID;
 	private String anrede;
@@ -11,8 +17,8 @@ public class PersonalienData implements Cloneable {
 	private String date;
 	private String bild;
 
-	public PersonalienData(String anrede, String name, String vorname,
-			String strasse, String plz, String ort, String date, String bild) {
+	public PersonalienData(String anrede, String name, String vorname, String strasse, String plz, String ort,
+			String date, String bild) {
 		super();
 		this.anrede = anrede;
 		this.name = name;
@@ -28,7 +34,7 @@ public class PersonalienData implements Cloneable {
 		super();
 		this.ID = ID;
 	}
-	
+
 	public PersonalienData clone() {
 		PersonalienData theClone = null;
 		try {

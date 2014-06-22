@@ -14,20 +14,24 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+/**
+ * @author j.herzig
+ * 
+ */
 public class ListPDFLebenslaufActivity extends ListActivity {
 	private File[] files;
 	private ListView lv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		//TODO èberabeiten
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_pdf_lebenslauf);
 
 		File file = new File(FileConst.getPdfPath());
 		files = file.listFiles();
 
-		ArrayAdapter<File> mPdfAdapter = new ArrayAdapter<>(this,
-				android.R.layout.simple_list_item_1, files);
+		ArrayAdapter<File> mPdfAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, files);
 		setListAdapter(mPdfAdapter);
 
 		lv = getListView();
@@ -35,8 +39,7 @@ public class ListPDFLebenslaufActivity extends ListActivity {
 		lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
 			@Override
-			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				toast(arg1, arg2, arg3);
 				return false;
 			}
@@ -44,8 +47,7 @@ public class ListPDFLebenslaufActivity extends ListActivity {
 	}
 
 	private void toast(View arg1, int arg2, long arg3) {
-		Toast toast = Toast.makeText(this, arg1.toString() + "//" + "//" + arg2
-				+ "//" + arg3, Toast.LENGTH_LONG);
+		Toast toast = Toast.makeText(this, arg1.toString() + "//" + "//" + arg2 + "//" + arg3, Toast.LENGTH_LONG);
 		toast.show();
 	}
 
@@ -60,8 +62,7 @@ public class ListPDFLebenslaufActivity extends ListActivity {
 		}
 		if (path != null) {
 			Intent sendIntent = new Intent(android.content.Intent.ACTION_SEND);
-			sendIntent.putExtra(android.content.Intent.EXTRA_STREAM,
-					Uri.parse("file://" + path));
+			sendIntent.putExtra(android.content.Intent.EXTRA_STREAM, Uri.parse("file://" + path));
 			sendIntent.setType("*/*");
 			startActivity(sendIntent);
 		}

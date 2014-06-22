@@ -40,12 +40,11 @@ public class SkillsActivity extends Activity {
 	private Long persID;
 	private Long ID;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_skills);
-		setPersID(getIntent().getLongExtra(StringConst.getPesrid(), 0));
+		setPersID(getIntent().getLongExtra(StringConst.PERSID, 0));
 		setID(getIntent().getLongExtra(StringConst.ID, 0));
 
 		initActivityElemente();
@@ -99,15 +98,15 @@ public class SkillsActivity extends Activity {
 			int selectet = 0;
 			String[] skillsName = res.getStringArray(R.array.skills_array);
 
-			 for (int i = 0; i < skillsName.length; i++) {
+			for (int i = 0; i < skillsName.length; i++) {
 				if (skillsName[i].equals(skill.getWas())) {
 					selectet = i;
 				}
 			}
-			 
+
 			getSkillSpinner().setSelection(selectet);
 			getSkillSeekBar().setProgress(Integer.parseInt(skill.getAusmass()));
-			
+
 		}
 
 	}
@@ -129,13 +128,13 @@ public class SkillsActivity extends Activity {
 		getMenuInflater().inflate(R.menu.skills, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_skills_list:
 			final Intent intent = new Intent(this, ListSkillsActivity.class);
-			intent.putExtra(StringConst.getPesrid(), getPersID());
+			intent.putExtra(StringConst.PERSID, getPersID());
 			this.startActivity(intent);
 			break;
 
@@ -152,7 +151,7 @@ public class SkillsActivity extends Activity {
 	 */
 	public void clickBildung(View Button) {
 		final Intent intent = new Intent(this, BildungActivity.class);
-		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.PERSID, getPersID());
 
 		startActivity(intent);
 	}
@@ -163,7 +162,7 @@ public class SkillsActivity extends Activity {
 	 */
 	public void clickZusammenfassung(View Button) {
 		final Intent intent = new Intent(this, ZusammenfassungActivity.class);
-		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.PERSID, getPersID());
 
 		startActivity(intent);
 	}

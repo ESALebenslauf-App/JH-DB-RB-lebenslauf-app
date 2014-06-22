@@ -15,11 +15,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-
 /**
  * @author j.herzig
- *
+ * 
  */
 
 public class ListPersonenActivity extends ListActivity {
@@ -40,7 +38,7 @@ public class ListPersonenActivity extends ListActivity {
 
 		setListAdapter();
 	}
-	
+
 	private void setListAdapter() {
 		ArrayList<String> namen = new ArrayList<String>();
 
@@ -66,7 +64,7 @@ public class ListPersonenActivity extends ListActivity {
 			public void onClick(DialogInterface dialog, int id) {
 
 				final Intent intent = new Intent(ListPersonenActivity.this, BildActivity.class);
-				intent.putExtra(StringConst.getPesrid(), listData.get(listID).getID());
+				intent.putExtra(StringConst.PERSID, listData.get(listID).getID());
 
 				startActivity(intent);
 
@@ -92,7 +90,5 @@ public class ListPersonenActivity extends ListActivity {
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		alertDialog.show();
 	}
-
-
 
 }

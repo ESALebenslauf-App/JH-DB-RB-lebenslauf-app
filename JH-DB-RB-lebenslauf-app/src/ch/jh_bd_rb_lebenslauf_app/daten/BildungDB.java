@@ -41,8 +41,8 @@ public class BildungDB implements LebenslaufDB {
 		String[] dbID = new String[1];
 		dbID[0] = bildung.getID().toString();
 
-		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG,
-				BILDUNG_ID + "=?", dbID, null, null, null, null);
+		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG, BILDUNG_ID + "=?", dbID, null, null, null,
+				null);
 
 		if (result.moveToFirst()) {
 			return setBildung(bildung, result);
@@ -100,13 +100,12 @@ public class BildungDB implements LebenslaufDB {
 			dbColWhere = BILDUNG_PERS_ID;
 			break;
 
-
 		default:
 			break;
 		}
 
-		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG,
-				dbColWhere + "=?", dbWhere, null, null, null, null);
+		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG, dbColWhere + "=?", dbWhere, null, null,
+				null, null);
 
 		ArrayList<BildungData> bildungen = new ArrayList<BildungData>();
 		if (result.moveToFirst()) {
@@ -131,8 +130,7 @@ public class BildungDB implements LebenslaufDB {
 	public ArrayList<BildungData> getAllBildungen() {
 		ArrayList<BildungData> bildungen = new ArrayList<BildungData>();
 
-		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG,
-				null, null, null, null, null, null);
+		Cursor result = db.query(false, TABLE_BILDUNG, PROJECTION_BILDUNG, null, null, null, null, null, null);
 
 		if (result.moveToFirst()) {
 			while (!result.isAfterLast()) {
@@ -185,8 +183,7 @@ public class BildungDB implements LebenslaufDB {
 		values = putContentValues(bildung, values);
 
 		if (bildung.getID() > 0) {
-			db.update(TABLE_BILDUNG, values, "_id=?", new String[] { bildung
-					.getID().toString() });
+			db.update(TABLE_BILDUNG, values, "_id=?", new String[] { bildung.getID().toString() });
 
 			return getBildung(bildung);
 		} else {

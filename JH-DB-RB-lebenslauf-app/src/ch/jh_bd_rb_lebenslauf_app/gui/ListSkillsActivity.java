@@ -33,7 +33,7 @@ public class ListSkillsActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_skills);
-		setPersID(getIntent().getLongExtra(StringConst.getPesrid(), 0));
+		setPersID(getIntent().getLongExtra(StringConst.PERSID, 0));
 		SkillsData skills = new SkillsData();
 		skills.setPers_id(getPersID());
 
@@ -72,7 +72,7 @@ public class ListSkillsActivity extends ListActivity {
 		alertDialogBuilder.setPositiveButton(StringConst.UEBRNEHMEN, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 				final Intent intent = new Intent(ListSkillsActivity.this, SkillsActivity.class);
-				intent.putExtra(StringConst.getPesrid(), getPersID());
+				intent.putExtra(StringConst.PERSID, getPersID());
 				intent.putExtra(StringConst.ID, listData.get(listID).getID());
 
 				startActivity(intent);
@@ -92,7 +92,7 @@ public class ListSkillsActivity extends ListActivity {
 				Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
 
 				final Intent intent = new Intent(ListSkillsActivity.this, SkillsActivity.class);
-				intent.putExtra(StringConst.getPesrid(), getPersID());
+				intent.putExtra(StringConst.PERSID, getPersID());
 
 				startActivity(intent);
 			}

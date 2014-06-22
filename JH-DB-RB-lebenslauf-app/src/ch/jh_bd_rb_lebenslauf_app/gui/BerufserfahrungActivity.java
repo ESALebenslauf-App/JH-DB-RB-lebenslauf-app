@@ -47,7 +47,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.activity_berufserfahrung);
-		setPersID(getIntent().getLongExtra(StringConst.getPesrid(), 0));
+		setPersID(getIntent().getLongExtra(StringConst.PERSID, 0));
 		setBeschreibungText(getIntent().getStringExtra(StringConst.BESCHREIBUNG));
 		setID(getIntent().getLongExtra(StringConst.ID, 0));
 
@@ -154,7 +154,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	private void clickBeschreibung(View butten) {
 		final Intent intent = new Intent(this, Berufserfahrung_beschreibungActivity.class);
 		datenSpeichern();
-		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.PERSID, getPersID());
 		intent.putExtra(StringConst.ID, berufserfahrungListener.getID());
 
 		startActivity(intent);
@@ -172,7 +172,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 		switch (item.getItemId()) {
 		case R.id.action_berufserfahrung_list:
 			final Intent intent = new Intent(this, ListBerufserfahrungenActivity.class);
-			intent.putExtra(StringConst.getPesrid(), getPersID());
+			intent.putExtra(StringConst.PERSID, getPersID());
 			this.startActivity(intent);
 			break;
 
@@ -189,7 +189,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	 */
 	public void clickBild(View Button) {
 		final Intent intent = new Intent(this, BildActivity.class);
-		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.PERSID, getPersID());
 
 		startActivity(intent);
 	}
@@ -200,7 +200,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	 */
 	public void clickBildung(View Button) {
 		final Intent intent = new Intent(this, BildungActivity.class);
-		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.PERSID, getPersID());
 
 		startActivity(intent);
 	}

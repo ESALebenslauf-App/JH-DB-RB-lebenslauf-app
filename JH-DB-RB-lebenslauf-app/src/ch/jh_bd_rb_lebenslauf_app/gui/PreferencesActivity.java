@@ -6,16 +6,16 @@ import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
 /**
- * @author kvg
+ * 
+ * @author rbuess
+ * 
  */
-//PreferencesActivity zeigt lediglich die Preferenzeneinstellungen
+// PreferencesActivity zeigt lediglich die Preferenzeneinstellungen
 public class PreferencesActivity extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getFragmentManager().beginTransaction()
-				.replace(android.R.id.content, new AppPreferencesFragment())
-				.commit();
+		getFragmentManager().beginTransaction().replace(android.R.id.content, new AppPreferencesFragment()).commit();
 	}
 
 	public static class AppPreferencesFragment extends PreferenceFragment {

@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 /**
  * @author j.herzig
- *
+ * 
  */
 public class AddSkillListener implements OnClickListener {
 

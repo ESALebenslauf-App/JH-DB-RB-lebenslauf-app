@@ -31,7 +31,7 @@ import android.widget.TextView;
 
 /**
  * 
- * @author bdervishi.jherzig.rbuess
+ * @author rbuess
  * 
  */
 public class ZusammenfassungActivity extends Activity {
@@ -52,7 +52,7 @@ public class ZusammenfassungActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zusammenfassung);
-		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
+		this.persID = getIntent().getLongExtra(StringConst.PERSID, 0);
 
 		initActivityElemente();
 		initActivityListener();
@@ -70,8 +70,7 @@ public class ZusammenfassungActivity extends Activity {
 
 		// Hier wird der Pfad auf das gespeicherte Foto zusammengestellt.
 		// und das Foto geladen.
-		String filePath = FileConst.getPdfPath() + "/" + persID.toString()
-				+ "Foto.jpg";
+		String filePath = FileConst.getPdfPath() + "/" + persID.toString() + "Foto.jpg";
 		image = BitmapFactory.decodeFile(filePath);
 		bild = (ImageView) findViewById(R.id.imageView1);
 		bild.setImageBitmap(image);
@@ -101,7 +100,7 @@ public class ZusammenfassungActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.zusammenfassung, menu);
-		
+
 		return true;
 	}
 
@@ -111,7 +110,7 @@ public class ZusammenfassungActivity extends Activity {
 	 */
 	public void clickSkills(View Button) {
 		final Intent intent = new Intent(this, SkillsActivity.class);
-		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.PERSID, getPersID());
 
 		startActivity(intent);
 
@@ -123,7 +122,7 @@ public class ZusammenfassungActivity extends Activity {
 	 */
 	public void clickFinish(View Button) {
 		final Intent intent = new Intent(this, FinishActivity.class);
-		intent.putExtra(StringConst.getPesrid(), getPersID());
+		intent.putExtra(StringConst.PERSID, getPersID());
 		startActivity(intent);
 	}
 
@@ -139,30 +138,27 @@ public class ZusammenfassungActivity extends Activity {
 
 		personalienDB.open();
 		PersonalienData personalienData = new PersonalienData(getPersID());
-		ArrayList<PersonalienData> personalienArray = personalienDB
-				.getPersonalienRows(personalienData, LebenslaufDB.PERS_ID);
+		ArrayList<PersonalienData> personalienArray = personalienDB.getPersonalienRows(personalienData,
+				LebenslaufDB.PERS_ID);
 		personalienDB.close();
 
 		berufserfahrungDB.open();
 		BerufserfahrungData berufserfahrungData = new BerufserfahrungData();
 		berufserfahrungData.setPersID(getPersID());
-		ArrayList<BerufserfahrungData> berufserfahrungArray = berufserfahrungDB
-				.getBerufserfarungRows(berufserfahrungData,
-						LebenslaufDB.BERUF_PERS_ID);
+		ArrayList<BerufserfahrungData> berufserfahrungArray = berufserfahrungDB.getBerufserfarungRows(
+				berufserfahrungData, LebenslaufDB.BERUF_PERS_ID);
 		berufserfahrungDB.close();
 
 		bildungDB.open();
 		BildungData bildungData = new BildungData();
 		bildungData.setPersID(getPersID());
-		ArrayList<BildungData> bildungArray = bildungDB.getBildungRows(
-				bildungData, LebenslaufDB.BILDUNG_PERS_ID);
+		ArrayList<BildungData> bildungArray = bildungDB.getBildungRows(bildungData, LebenslaufDB.BILDUNG_PERS_ID);
 		bildungDB.close();
 
 		skillsDB.open();
 		SkillsData skillsData = new SkillsData();
 		skillsData.setPers_id(getPersID());
-		ArrayList<SkillsData> skillsArray = skillsDB.getSkillsRows(skillsData,
-				LebenslaufDB.SKILLS_PERS_ID);
+		ArrayList<SkillsData> skillsArray = skillsDB.getSkillsRows(skillsData, LebenslaufDB.SKILLS_PERS_ID);
 		skillsDB.close();
 
 		// ////////////////////// PERSONALIEN
@@ -178,9 +174,8 @@ public class ZusammenfassungActivity extends Activity {
 			String date = personalien.getDate();
 
 			// Übergibt die Daten als Text an ein Spanned.
-			txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " "
-					+ name + "<br />" + strasse + "<br />" + plz + " " + ort
-					+ "<br />" + date);
+			txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " " + name + "<br />" + strasse + "<br />"
+					+ plz + " " + ort + "<br />" + date);
 
 			// Spanned www = Html.fromHtml("TEXT");
 			// CharSequence xxx = TextUtils.concat(txtPersonalien, www);
@@ -207,17 +202,13 @@ public class ZusammenfassungActivity extends Activity {
 			String beschreibung = berufserfahrung.getTxt_beschreibung();
 
 			// Schreibt die Berufserfahrung Daten mit HTML in ein Spanned.
-			Spanned addBerufserfahrungText = Html.fromHtml("<b>Firma: </b>"
-					+ firma + "<br />" + "<b>" + "Titel: " + "</b>" + titel
-					+ "<br />" + "<b>Adresse: </b><br />" + adresse + "<br />"
-					+ plzFirma + ortFirma + "<br />" + "<b>Tätigkeit: </b>"
-					+ taetigkeit + "<br />" + "<b>Dauer: </b>" + vonFirma
-					+ " bis " + bisFirma + "<br />" + "<b>Beschreibung: </b>"
-					+ beschreibung + "<br />----------------<br />");
+			Spanned addBerufserfahrungText = Html.fromHtml("<b>Firma: </b>" + firma + "<br />" + "<b>" + "Titel: "
+					+ "</b>" + titel + "<br />" + "<b>Adresse: </b><br />" + adresse + "<br />" + plzFirma + ortFirma
+					+ "<br />" + "<b>Tätigkeit: </b>" + taetigkeit + "<br />" + "<b>Dauer: </b>" + vonFirma + " bis "
+					+ bisFirma + "<br />" + "<b>Beschreibung: </b>" + beschreibung + "<br />----------------<br />");
 
 			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.
-			textBerufserfahrung = (Spanned) TextUtils.concat(
-					textBerufserfahrung, addBerufserfahrungText);
+			textBerufserfahrung = (Spanned) TextUtils.concat(textBerufserfahrung, addBerufserfahrungText);
 
 		}
 
@@ -240,16 +231,13 @@ public class ZusammenfassungActivity extends Activity {
 			String bisSchule = bildung.getDatumBis();
 
 			// Schreibt die Berufserfahrung Daten mit HTML in ein Spanned.
-			Spanned addBildungText = Html.fromHtml("<b>Ausbildungsart: </b>"
-					+ ausbildungsart + "<br />" + "<b>" + "Name der Schule: "
-					+ "</b>" + nameSchule + "<br />" + "<b>Adresse: </b><br />"
-					+ plzSchule + " " + adresse + "<br />" + "<b>Dauer: </b>"
-					+ vonSchule + " bis " + bisSchule
+			Spanned addBildungText = Html.fromHtml("<b>Ausbildungsart: </b>" + ausbildungsart + "<br />" + "<b>"
+					+ "Name der Schule: " + "</b>" + nameSchule + "<br />" + "<b>Adresse: </b><br />" + plzSchule + " "
+					+ adresse + "<br />" + "<b>Dauer: </b>" + vonSchule + " bis " + bisSchule
 					+ "<br />----------------<br />");
 
 			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.
-			textBildung = (Spanned) TextUtils.concat(textBildung,
-					addBildungText);
+			textBildung = (Spanned) TextUtils.concat(textBildung, addBildungText);
 
 		}
 
@@ -267,9 +255,8 @@ public class ZusammenfassungActivity extends Activity {
 			String zertifikat = skills.getZertifikat();
 
 			// Schreibt die Skills Daten mit HTML in ein Spanned.
-			Spanned addSkillsText = Html.fromHtml("<b>Was: </b>" + was
-					+ "<br />" + "<b>" + "Ausmass: " + "</b>" + ausmass
-					+ "<br />" + "<b>" + "Zertifikat: " + "</b>" + zertifikat
+			Spanned addSkillsText = Html.fromHtml("<b>Was: </b>" + was + "<br />" + "<b>" + "Ausmass: " + "</b>"
+					+ ausmass + "<br />" + "<b>" + "Zertifikat: " + "</b>" + zertifikat
 					+ "<br />----------------<br />");
 
 			// Fügt den bisherigen Text mit dem neuen Spanned zusammen.

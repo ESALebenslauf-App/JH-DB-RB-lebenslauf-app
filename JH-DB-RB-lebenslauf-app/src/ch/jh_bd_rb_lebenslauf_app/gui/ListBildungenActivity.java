@@ -32,7 +32,7 @@ public class ListBildungenActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_bildung);
-		setPersID(getIntent().getLongExtra(StringConst.getPesrid(), 0));
+		setPersID(getIntent().getLongExtra(StringConst.PERSID, 0));
 		BildungData bildung = new BildungData();
 		bildung.setPersID(getPersID());
 
@@ -71,7 +71,7 @@ public class ListBildungenActivity extends ListActivity {
 		alertDialogBuilder.setPositiveButton(StringConst.UEBRNEHMEN, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 				final Intent intent = new Intent(ListBildungenActivity.this, BildungActivity.class);
-				intent.putExtra(StringConst.getPesrid(), getPersID());
+				intent.putExtra(StringConst.PERSID, getPersID());
 				intent.putExtra(StringConst.ID, listData.get(listID).getID());
 
 				startActivity(intent);
@@ -91,7 +91,7 @@ public class ListBildungenActivity extends ListActivity {
 				Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
 
 				final Intent intent = new Intent(ListBildungenActivity.this, BerufserfahrungActivity.class);
-				intent.putExtra(StringConst.getPesrid(), getPersID());
+				intent.putExtra(StringConst.PERSID, getPersID());
 
 				startActivity(intent);
 			}
