@@ -3,7 +3,6 @@ package ch.jh_bd_rb_lebenslauf_app.gui;
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
-import ch.jh_bd_rb_lebenslauf_app.daten.Zertifikat;
 import ch.jh_bd_rb_lebenslauf_app.listener.AddSkillListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.AddZertifikatListener;
 import ch.jh_bd_rb_lebenslauf_app.resource.IntigerConst;
@@ -37,9 +36,9 @@ public class SkillsActivity extends Activity {
 	private ImageButton btnAddZertifikat;
 	private AddZertifikatListener zertifikatListener;
 	private AddSkillListener addSkillListener;
-	private Zertifikat zertifikat = new Zertifikat();
 	private Spinner skillSpinner;
 	private SeekBar skillSeekBar;
+	private Bitmap imageZertifikat;
 	private Long persID;
 	private Long ID;
 
@@ -130,14 +129,14 @@ public class SkillsActivity extends Activity {
 
 	}
 
-
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		// Wenn ein Foto neu geschossen wurde
 		if (requestCode == IntigerConst.PHOTO && resultCode == RESULT_OK) {
-			Bitmap image = (Bitmap) data.getExtras().get("data");
-			getZertifikat().setImage(image);
+
+			setImageZertifikat((Bitmap) data.getExtras().get("data"));
+
 		}
 	}
 
@@ -185,10 +184,6 @@ public class SkillsActivity extends Activity {
 		startActivity(intent);
 	}
 
-	public Zertifikat getZertifikat() {
-		return zertifikat;
-	}
-
 	public Long getPersID() {
 		return persID;
 	}
@@ -220,5 +215,14 @@ public class SkillsActivity extends Activity {
 	private void setSkillSeekBar(SeekBar skillSeekBar) {
 		this.skillSeekBar = skillSeekBar;
 	}
+
+	public Bitmap getImageZertifikat() {
+		return imageZertifikat;
+	}
+
+	public void setImageZertifikat(Bitmap imageZertifikat) {
+		this.imageZertifikat = imageZertifikat;
+	}
+	
 
 }

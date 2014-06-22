@@ -227,7 +227,7 @@ public class CreatePdfListener implements OnClickListener {
 
 			String was = skills.getWas();
 			String ausmass = skills.getAusmass();
-			String zertifikat = skills.getZertifikat().getName();
+			String zertifikat = skills.getZertifikat();
 
 			// Schreibt die Skills Daten mit HTML in ein Spanned.
 			Spanned addSkillsText = Html.fromHtml("<b>Was: </b>" + was + "<br />" + "<b>" + "Ausmass: " + "</b>"

@@ -31,7 +31,7 @@ public class AddSkillListener implements OnClickListener {
 		setPersID(persId);
 		setID(id);
 		init();
-		
+
 	}
 
 	private void init() {
@@ -46,10 +46,15 @@ public class AddSkillListener implements OnClickListener {
 	}
 
 	private SkillsData saveData() {
+		String zert = "Zertifikat_";
 
-		
+		if (skillsActivity.getImageZertifikat() != null) {
+			zert = zert + getSkillSpinner().getSelectedItem().toString();
+		}
+
+
 		SkillsData skillsData = new SkillsData(getSkillSpinner().getSelectedItem().toString(),
-				String.valueOf(getSkillSeekBar().getProgress()), skillsActivity.getZertifikat());
+				String.valueOf(getSkillSeekBar().getProgress()), zert);
 
 		skillsData.setID(getID());
 		skillsData.setPers_id(getPersID());
