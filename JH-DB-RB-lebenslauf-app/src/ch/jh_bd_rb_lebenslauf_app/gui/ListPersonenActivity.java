@@ -15,10 +15,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
+
 /**
- * 
- * @author bdervishi.jherzig.rbuess
- * 
+ * @author j.herzig
+ *
  */
 
 public class ListPersonenActivity extends ListActivity {
@@ -39,6 +40,16 @@ public class ListPersonenActivity extends ListActivity {
 
 		setListAdapter();
 	}
+	
+	private void setListAdapter() {
+		ArrayList<String> namen = new ArrayList<String>();
+
+		for (int i = 0; i < listData.size(); i++) {
+			namen.add(listData.get(i).getName() + " " + listData.get(i).getVorname());
+		}
+		mPdfAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, namen);
+		setListAdapter(mPdfAdapter);
+	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -46,61 +57,42 @@ public class ListPersonenActivity extends ListActivity {
 
 		super.onListItemClick(l, v, position, id);
 
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-				ListPersonenActivity.this);
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ListPersonenActivity.this);
 
 		alertDialogBuilder.setTitle(this.getTitle() + "Personen Daten");
 		alertDialogBuilder.setMessage("Bitte wählen Sie eine Option aus.");
 
-		alertDialogBuilder.setPositiveButton("Übernhemen",
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
+		alertDialogBuilder.setPositiveButton("Übernhemen", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
 
-						final Intent intent = new Intent(
-								ListPersonenActivity.this, BildActivity.class);
-						intent.putExtra(StringConst.getPesrid(),
-								listData.get(listID).getID());
+				final Intent intent = new Intent(ListPersonenActivity.this, BildActivity.class);
+				intent.putExtra(StringConst.getPesrid(), listData.get(listID).getID());
 
-						startActivity(intent);
+				startActivity(intent);
 
-						Toast.makeText(getApplicationContext(), "Übernhemen",
-								Toast.LENGTH_LONG).show();
-					}
-				});
+				Toast.makeText(getApplicationContext(), "Übernhemen", Toast.LENGTH_LONG).show();
+			}
+		});
 
-		alertDialogBuilder.setNegativeButton("Löschen",
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int idDialog) {
+		alertDialogBuilder.setNegativeButton("Löschen", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int idDialog) {
 
-						PersonalienData pers = listData.get(listID);
-						PersonalienDB persDB = new PersonalienDB(
-								ListPersonenActivity.this);
-						persDB.open();
-						persDB.deletePersonalien(pers);
+				PersonalienData pers = listData.get(listID);
+				PersonalienDB persDB = new PersonalienDB(ListPersonenActivity.this);
+				persDB.open();
+				persDB.deletePersonalien(pers);
 
-						setListAdapter();
-						Toast.makeText(getApplicationContext(),
-								"Löschen ID: " + listID, Toast.LENGTH_LONG)
-								.show();
+				setListAdapter();
+				Toast.makeText(getApplicationContext(), "Löschen ID: " + listID, Toast.LENGTH_LONG).show();
 
-						mPdfAdapter.notifyDataSetChanged();
-					}
-				});
+				mPdfAdapter.notifyDataSetChanged();
+			}
+		});
 
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		alertDialog.show();
 	}
 
-	private void setListAdapter() {
-		ArrayList<String> namen = new ArrayList<String>();
 
-		for (int i = 0; i < listData.size(); i++) {
-			namen.add(listData.get(i).getName() + " "
-					+ listData.get(i).getVorname());
-		}
-		mPdfAdapter = new ArrayAdapter<>(this,
-				android.R.layout.simple_list_item_1, namen);
-		setListAdapter(mPdfAdapter);
-	}
 
 }
