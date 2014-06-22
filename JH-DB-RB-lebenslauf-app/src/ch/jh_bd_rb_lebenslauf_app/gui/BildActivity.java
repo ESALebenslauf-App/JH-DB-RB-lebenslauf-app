@@ -10,8 +10,8 @@ import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienData;
 import ch.jh_bd_rb_lebenslauf_app.listener.BildListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.HochladenListener;
 import ch.jh_bd_rb_lebenslauf_app.resource.FileConst;
+import ch.jh_bd_rb_lebenslauf_app.resource.IntigerConst;
 import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -242,13 +242,13 @@ public class BildActivity extends FragmentActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		// Wenn ein Foto neu geschossen wurde
-		if (requestCode == 1 && resultCode == RESULT_OK) {
+		if (requestCode == IntigerConst.PHOTO && resultCode == RESULT_OK) {
 			image = (Bitmap) data.getExtras().get("data");
 			Toast toast = Toast.makeText(this, "Foto gespeichert", Toast.LENGTH_LONG);
 			toast.show();
 		}
 		// Wenn ein Foto aus der Galery ausgewählt wurde
-		if (requestCode == 2 && resultCode == RESULT_OK) {
+		if (requestCode == IntigerConst.GALERY && resultCode == RESULT_OK) {
 			Uri selectedImage = data.getData();
 			String[] filePathColumn = { MediaStore.Images.Media.DATA };
 

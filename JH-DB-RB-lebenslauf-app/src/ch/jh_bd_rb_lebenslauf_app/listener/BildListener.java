@@ -1,6 +1,7 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
 import ch.jh_bd_rb_lebenslauf_app.gui.BildActivity;
+import ch.jh_bd_rb_lebenslauf_app.resource.IntigerConst;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class BildListener extends Activity implements OnClickListener {
 	public void makePicture() {
 		final Intent cameraInt = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 
-		bildActivity.startActivityForResult(cameraInt, 1);
+		bildActivity.startActivityForResult(cameraInt, IntigerConst.PHOTO);
 	}
 
 }
