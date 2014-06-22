@@ -1,6 +1,5 @@
 package ch.jh_bd_rb_lebenslauf_app.resource;
 
-import java.text.SimpleDateFormat;
 
 public class StringConst {
 	
@@ -17,10 +16,14 @@ public class StringConst {
 	public static final String BESCHREIBUNG = "beschreibung";
 	public static final String ID = "id";
 	public static final String BERUFSERFARUNGDATEN = "Berufserfahrungen Daten";
+	public static final String BILDUNGDATEN = "Bildung Daten";
 	public static final String DIALOGOPTIONWAELEN = "Bitte wählen Sie eine Option aus.";
 	public static final String LOESCHEN = "Löschen";
 	public static final String DATEN_WURDEN_GELOESCHT = " Daten wurden gelöscht";
 	public static final String DATEFORMAT = "dd.MM.yyyy";
+	public static final String UEBRNEHMEN = "Übernhemen";
+	
+	
 	
 	
 	

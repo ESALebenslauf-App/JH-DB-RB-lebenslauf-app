@@ -1,23 +1,24 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Locale;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
+import ch.jh_bd_rb_lebenslauf_app.daten.BildungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BildungData;
+import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.app.Activity;
+import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 /**
- * Listener Klasse für den Butten Bildung hinzufügen die daten werden in eine
- * BidlungenDAO Objekt abgespeichert.
- * 
- * @author bdervishi.jherzig.rbuess
+ * @author j.herzig
  * 
  */
 public class BildungAddBildungListener implements OnClickListener {
@@ -28,60 +29,75 @@ public class BildungAddBildungListener implements OnClickListener {
 	private RadioButton edt_radio_grund;
 	private RadioButton edt_radio_ausb;
 	private RadioButton edt_radio_weiter;
+	private RadioGroup radioGroup;
 	private Button btnSelectDateVon;
 	private Button btnSelectDateBis;
-	private String ID;
-	private ArrayList<BildungData> bildungen;
+	private Long persID;
+	private Long ID;
 
 	/**
-	 * Konstruktor Klasse BildungAddBildungListener
-	 * 
 	 * @param myActivity
+	 * @param persId
+	 * @param id
 	 */
-	public BildungAddBildungListener(Activity myActivity) {
+	public BildungAddBildungListener(Activity myActivity, Long persId, Long id) {
 		this.bildungActivity = myActivity;
-		bildungen = new ArrayList<BildungData>();
+		setPersID(persId);
+		setID(id);
 		init();
 	}
 
-	/**
-	 * Initialisiert alle benötigen Ellemente aus der Activity damit mit diesen
-	 * gearbeitet werden kann.
-	 * 
-	 */
 	private void init() {
-		setEdt_bildung_schule((EditText) bildungActivity
-				.findViewById(R.id.edt_bildung_schule));
-		setEdt_bildung_adresse((EditText) bildungActivity
-				.findViewById(R.id.edt_bildung_ort));
-		setEdt_bildung_plz((EditText) bildungActivity
-				.findViewById(R.id.edt_bildung_plz));
-		setEdt_radio_ausb((RadioButton) bildungActivity
-				.findViewById(R.id.edt_radio_ausb));
-		setEdt_radio_grund((RadioButton) bildungActivity
-				.findViewById(R.id.edt_radio_grund));
-		setEdt_radio_weiter((RadioButton) bildungActivity
-				.findViewById(R.id.edt_radio_weiter));
-		setBtnSelectDateVon((Button) bildungActivity
-				.findViewById(R.id.btnSelectDateVon));
-		setBtnSelectDateBis((Button) bildungActivity
-				.findViewById(R.id.btnSelectDateBis));
+		setEdt_bildung_schule((EditText) bildungActivity.findViewById(R.id.edt_bildung_schule));
+		setEdt_bildung_adresse((EditText) bildungActivity.findViewById(R.id.edt_bildung_ort));
+		setEdt_bildung_plz((EditText) bildungActivity.findViewById(R.id.edt_bildung_plz));
+		setEdt_radio_ausb((RadioButton) bildungActivity.findViewById(R.id.edt_radio_ausb));
+		setEdt_radio_grund((RadioButton) bildungActivity.findViewById(R.id.edt_radio_grund));
+		setEdt_radio_weiter((RadioButton) bildungActivity.findViewById(R.id.edt_radio_weiter));
+		setBtnSelectDateVon((Button) bildungActivity.findViewById(R.id.btnSelectDateVon));
+		setBtnSelectDateBis((Button) bildungActivity.findViewById(R.id.btnSelectDateBis));
+		setRadioGroup((RadioGroup) bildungActivity.findViewById(R.id.edt_radiogroup_ausbildung));
 	}
+
+
 
 	@Override
 	public void onClick(View arg0) {
+		saveData();
+		//TODO wird das enötigt?
+		setID(new Long(0));
+	}
 
-		BildungData bildung = new BildungData(getRadioButten(),
-				getEdt_bildung_schule().getText().toString(),getEdt_bildung_plz().getText().toString(),
-				getEdt_bildung_adresse().getText().toString(), getDateVon(),
+	public BildungData saveData() {
+		BildungData bildung = new BildungData(getRadioButten(), getEdt_bildung_schule().getText().toString(),
+				getEdt_bildung_plz().getText().toString(), getEdt_bildung_adresse().getText().toString(), getDateVon(),
 				getDateBis());
 
-		// Bidlung wird in ein ArrayList Objekt abgespeichert das beim verlassen
-		// der Activity Persistent gespeichert werden kann.
-		bildungen.add(bildung);
+		bildung.setID(getID());
+		bildung.setPersID(getPersID());
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",
-				Locale.GERMANY);
+		// Datenbank
+		BildungDB db = new BildungDB(bildungActivity);
+		db.open();
+
+		if (bildung.getID() > 0) {
+			bildung = db.updateBildung(bildung);
+		} else {
+			bildung = db.insertBildung(bildung);
+		}
+		db.close();
+		setID(bildung.getID());
+
+		activityBereinigen();
+
+		shortToast(StringConst.DATEN_WURDEN_GESPEICHERT);
+
+		return bildung;
+	}
+
+	private void activityBereinigen() {
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat(StringConst.DATEFORMAT, Locale.GERMANY);
 		String datum = dateFormat.format(new java.util.Date());
 
 		getEdt_bildung_schule().setText("");
@@ -89,21 +105,10 @@ public class BildungAddBildungListener implements OnClickListener {
 		getEdt_bildung_plz().setText("");
 		getBtnSelectDateBis().setText(datum);
 		getBtnSelectDateVon().setText(datum);
-	}
-
-	public String getID() {
-		// TODO überarbeiten
-		ID = "ObjektID";
-		return ID;
+		getRadioGroup().check(getEdt_radio_grund().getId());
 
 	}
 
-	// TODO ID in den Konstruktor aufnehmen
-	public void setID(String iD) {
-		this.ID = iD;
-	}
-
-	// TODO überarbeiten und schönere lösung finden
 	private String getRadioButten() {
 		String text = "";
 		if (getEdt_radio_ausb().isChecked()) {
@@ -119,6 +124,18 @@ public class BildungAddBildungListener implements OnClickListener {
 		}
 
 		return text;
+	}
+
+	/**
+	 * 
+	 * @param text
+	 */
+	private void shortToast(String text) {
+		Context context = bildungActivity;
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
 	}
 
 	private EditText getEdt_bildung_schule() {
@@ -192,8 +209,28 @@ public class BildungAddBildungListener implements OnClickListener {
 	private void setEdt_bildung_plz(EditText edt_bildung_plz) {
 		this.edt_bildung_plz = edt_bildung_plz;
 	}
+
+	private Long getID() {
+		return ID;
+	}
+
+	private void setID(Long iD) {
+		ID = iD;
+	}
+
+	private Long getPersID() {
+		return persID;
+	}
+
+	private void setPersID(Long persID) {
+		this.persID = persID;
+	}
 	
-	public ArrayList<BildungData> getBildungen() {
-		return bildungen;
+	private RadioGroup getRadioGroup() {
+		return radioGroup;
+	}
+
+	private void setRadioGroup(RadioGroup radioGroup) {
+		this.radioGroup = radioGroup;
 	}
 }

@@ -26,7 +26,7 @@
     <string name="txt_logo">Hier kommt ein Bild hin</string>
     <string name="txt_anweisung">CV schnell und einfach erfassen</string>
     <string name="txt_erfassen">CV erfassen</string>
-    <string name="action_pers_list">Daten Anzeigen</string>
+    <string name="action_daten_anzeigen">Daten Anzeigen</string>
 
     <!-- Zweite Seite -->
     <string name="txt_bild">Personalien erfassen</string>
