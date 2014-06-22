@@ -64,7 +64,6 @@ public class BildungAddBildungListener implements OnClickListener {
 	@Override
 	public void onClick(View arg0) {
 		saveData();
-		//TODO wird das enötigt?
 		setID(new Long(0));
 	}
 
