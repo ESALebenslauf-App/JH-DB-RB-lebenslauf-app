@@ -71,22 +71,25 @@ public class BerufserfahrungListener implements OnClickListener {
 		berufserfahrungData.setID(getID());
 		berufserfahrungData.setPersID(getPersID());
 		// Datenbank
-		BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(berufserfahrungenActivity);
-		beruferfahrungDB.open();
-
-		if (berufserfahrungData.getID() > 0) {
-			berufserfahrungData = beruferfahrungDB.updateBerufserfarung(berufserfahrungData);
+		if (berufserfahrungData.getTxt_firma().equals("")) {
+			shortToast(StringConst.DATEN_WURDEN_GESPEICHERT_BERUFSERFARUNG);
 		} else {
-			berufserfahrungData.setTxt_beschreibung("");
-			berufserfahrungData = beruferfahrungDB.insertBerufserfahrung(berufserfahrungData);
+			BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(berufserfahrungenActivity);
+			beruferfahrungDB.open();
+
+			if (berufserfahrungData.getID() > 0) {
+				berufserfahrungData = beruferfahrungDB.updateBerufserfarung(berufserfahrungData);
+			} else {
+				berufserfahrungData.setTxt_beschreibung("");
+				berufserfahrungData = beruferfahrungDB.insertBerufserfahrung(berufserfahrungData);
+			}
+
+			beruferfahrungDB.close();
+			setID(berufserfahrungData.getID());
+
+			activityBereinigen();
+			shortToast(StringConst.DATEN_WURDEN_GESPEICHERT);
 		}
-
-		beruferfahrungDB.close();
-		setID(berufserfahrungData.getID());
-
-		activityBereinigen();
-
-		shortToast(StringConst.DATEN_WURDEN_GESPEICHERT);
 
 		return berufserfahrungData;
 	}
