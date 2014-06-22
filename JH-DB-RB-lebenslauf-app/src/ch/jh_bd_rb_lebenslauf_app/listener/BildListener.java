@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 public class BildListener extends Activity implements OnClickListener {
-	@SuppressWarnings("unused")
 	private Activity bildActivity;
 	private PersonalienDB db;
 
