@@ -72,7 +72,7 @@ public class BerufserfahrungListener implements OnClickListener {
 		berufserfahrungData.setPersID(getPersID());
 		// Datenbank
 		if (berufserfahrungData.getTxt_firma().equals("")) {
-			shortToast(StringConst.DATEN_WURDEN_GESPEICHERT_BERUFSERFARUNG);
+			shortToast(StringConst.DATEN_WURDEN_NICHT_GESPEICHERT_BERUFSERFARUNG);
 		} else {
 			BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(berufserfahrungenActivity);
 			beruferfahrungDB.open();

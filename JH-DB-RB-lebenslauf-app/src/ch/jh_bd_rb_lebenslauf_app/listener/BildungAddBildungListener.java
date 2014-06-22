@@ -74,20 +74,26 @@ public class BildungAddBildungListener implements OnClickListener {
 		bildung.setPersID(getPersID());
 
 		// Datenbank
-		BildungDB db = new BildungDB(bildungActivity);
-		db.open();
-
-		if (bildung.getID() > 0) {
-			bildung = db.updateBildung(bildung);
-		} else {
-			bildung = db.insertBildung(bildung);
+		if (bildung.getNameschule().equals("")) {
+			shortToast(StringConst.DATEN_WURDEN_NICHT_GESPEICHERT_BILDUNG);
 		}
-		db.close();
-		setID(bildung.getID());
+		else {
+			BildungDB db = new BildungDB(bildungActivity);
+			db.open();
 
-		activityBereinigen();
+			if (bildung.getID() > 0) {
+				bildung = db.updateBildung(bildung);
+			} else {
+				bildung = db.insertBildung(bildung);
+			}
+			db.close();
+			setID(bildung.getID());
 
-		shortToast(StringConst.DATEN_WURDEN_GESPEICHERT);
+			activityBereinigen();
+
+			shortToast(StringConst.DATEN_WURDEN_GESPEICHERT);
+		}
+		
 
 		return bildung;
 	}

@@ -60,20 +60,26 @@ public class AddSkillListener implements OnClickListener {
 		skillsData.setPers_id(getPersID());
 
 		// Datenbank
-		SkillsDB db = new SkillsDB(skillsActivity);
-		db.open();
-
-		if (skillsData.getID() > 0) {
-			skillsData = db.updateSkills(skillsData);
-		} else {
-			skillsData = db.insertSkills(skillsData);
+		if (skillsData.getWas().equals("")) {
+			shortToast(StringConst.DATEN_WURDEN_NICHT_GESPEICHERT_SKILLS);
 		}
-		db.close();
-		setID(skillsData.getID());
+		else {
+			SkillsDB db = new SkillsDB(skillsActivity);
+			db.open();
 
-		activityBereinigen();
+			if (skillsData.getID() > 0) {
+				skillsData = db.updateSkills(skillsData);
+			} else {
+				skillsData = db.insertSkills(skillsData);
+			}
+			db.close();
+			setID(skillsData.getID());
 
-		shortToast(StringConst.DATEN_WURDEN_GESPEICHERT);
+			activityBereinigen();
+
+			shortToast(StringConst.DATEN_WURDEN_GESPEICHERT);
+		}
+		
 
 		return skillsData;
 

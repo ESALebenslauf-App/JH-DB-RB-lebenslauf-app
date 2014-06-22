@@ -29,7 +29,9 @@ public class StringConst {
 	public static final String DATEFORMAT = "dd.MM.yyyy";
 	public static final String UEBRNEHMEN = "Übernhemen";
 	public static final String SENDEN = "Senden";
-	public static final String DATEN_WURDEN_GESPEICHERT_BERUFSERFARUNG = "Daten wurden nicht gespeichert eine Firma muss hinterlegt werden.";
+	public static final String DATEN_WURDEN_NICHT_GESPEICHERT_BERUFSERFARUNG = "Daten wurden nicht gespeichert eine Firma muss hinterlegt werden.";
+	public static final String DATEN_WURDEN_NICHT_GESPEICHERT_BILDUNG = "Daten wurden nicht gespeichert eine Name muss hinterlegt werden.";
+	public static final String DATEN_WURDEN_NICHT_GESPEICHERT_SKILLS = "Daten wurden nicht gespeichert eine Skills muss ausgewählt werden.";
 
 
 
