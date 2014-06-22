@@ -68,6 +68,8 @@
         <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListPersonenActivity"></activity>
         <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.Berufserfahrung_beschreibungActivity"></activity>
         <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListBerufserfahrungenActivity"></activity>
+        <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListBildungenActivity"></activity>
+        <activity android:name="ch.jh_bd_rb_lebenslauf_app.gui.ListSkillsActivity"></activity>
     </application>
 
 </manifest>

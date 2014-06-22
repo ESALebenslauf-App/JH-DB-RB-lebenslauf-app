@@ -33,7 +33,7 @@ public class SkillsDB implements LebenslaufDB {
 	 * @param skills
 	 * @return Skills mit Daten aus DB
 	 */
-	public SkillsData getBildung(SkillsData skills) {
+	public SkillsData getSkill(SkillsData skills) {
 		String[] dbID = new String[1];
 		dbID[0] = skills.getID().toString();
 
@@ -171,7 +171,7 @@ public class SkillsDB implements LebenslaufDB {
 			db.update(TABLE_SKILLS, values, "_id=?", new String[] { skills
 					.getID().toString() });
 
-			return getBildung(skills);
+			return getSkill(skills);
 		} else {
 			return skills;
 		}

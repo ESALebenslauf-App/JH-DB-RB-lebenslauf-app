@@ -1,7 +1,5 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
-import java.util.ArrayList;
-
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
@@ -9,15 +7,19 @@ import ch.jh_bd_rb_lebenslauf_app.daten.Zertifikat;
 import ch.jh_bd_rb_lebenslauf_app.listener.AddSkillListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.AddZertifikatListener;
 import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.SeekBar;
+import android.widget.Spinner;
 
 /**
  * 
@@ -30,22 +32,25 @@ public class SkillsActivity extends Activity {
 	private Button btnBildung;
 	private Button btnAddSkill;
 	private ImageButton btnAddZertifikat;
-
 	private AddZertifikatListener zertifikatListener;
 	private AddSkillListener addSkillListener;
 	private Zertifikat zertifikat = new Zertifikat();
+	private Spinner skillSpinner;
+	private SeekBar skillSeekBar;
 	private Long persID;
-	private boolean save = false;
+	private Long ID;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_skills);
-		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
+		setPersID(getIntent().getLongExtra(StringConst.getPesrid(), 0));
+		setID(getIntent().getLongExtra(StringConst.ID, 0));
 
 		initActivityElemente();
 		initActivityListener();
-
+		loadData();
 	}
 
 	private void initActivityElemente() {
@@ -53,6 +58,9 @@ public class SkillsActivity extends Activity {
 		btnBildung = (Button) findViewById(R.id.imageView7);
 		btnAddSkill = (Button) findViewById(R.id.btnAddSkill);
 		btnAddZertifikat = (ImageButton) findViewById(R.id.btnImageAddZertifikat);
+
+		setSkillSpinner((Spinner) findViewById(R.id.spinnersprachen));
+		setSkillSeekBar((SeekBar) findViewById(R.id.edt_skills_sprachen));
 	}
 
 	private void initActivityListener() {
@@ -71,11 +79,36 @@ public class SkillsActivity extends Activity {
 				clickBildung(button);
 			}
 		});
-
-		addSkillListener = new AddSkillListener(this);
+		addSkillListener = new AddSkillListener(this, getPersID(), getID());
 		btnAddSkill.setOnClickListener(addSkillListener);
 		zertifikatListener = new AddZertifikatListener(this);
 		btnAddZertifikat.setOnClickListener(zertifikatListener);
+
+	}
+
+	private void loadData() {
+		if (getID() > 0) {
+			SkillsData skill = new SkillsData(getID());
+
+			SkillsDB db = new SkillsDB(this);
+			db.open();
+			skill = db.getSkill(skill);
+			db.close();
+
+			Resources res = getResources();
+			int selectet = 0;
+			String[] skillsName = res.getStringArray(R.array.skills_array);
+
+			 for (int i = 0; i < skillsName.length; i++) {
+				if (skillsName[i].equals(skill.getWas())) {
+					selectet = i;
+				}
+			}
+			 
+			getSkillSpinner().setSelection(selectet);
+			getSkillSeekBar().setProgress(Integer.parseInt(skill.getAusmass()));
+			
+		}
 
 	}
 
@@ -93,9 +126,24 @@ public class SkillsActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.skills, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_skills_list:
+			final Intent intent = new Intent(this, ListSkillsActivity.class);
+			intent.putExtra(StringConst.getPesrid(), getPersID());
+			this.startActivity(intent);
+			break;
+
+		default:
+			break;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 
 	/**
@@ -120,68 +168,40 @@ public class SkillsActivity extends Activity {
 		startActivity(intent);
 	}
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		if (!save) {
-			datenSpeichern();
-		}
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		if (!save) {
-			datenSpeichern();
-		}
-	}
-
 	public Zertifikat getZertifikat() {
 		return zertifikat;
 	}
 
-	/**
-	 * Daten können Persistent gespeichert werden
-	 */
-	private void datenSpeichern() {
-
-		ArrayList<SkillsData> killsList = addSkillListener.getSkillsList();
-		boolean save = false;
-
-		if (getPersID() > 0) {
-			if (killsList.size() > 0) {
-				for (SkillsData current : killsList) {
-					SkillsData skills = (SkillsData) current;
-					skills.setPers_id(getPersID());
-
-					// Datenbank
-					SkillsDB skillsDB = new SkillsDB(this);
-					skillsDB.open();
-					skills = skillsDB.insertSkills(skills);
-					skillsDB.close();
-					if (skills.getID() > 1) {
-						save = true;
-					}
-				}
-
-				if (save) {
-					Toast toast = Toast.makeText(this,
-							"Daten wurden gespeichert.", Toast.LENGTH_LONG);
-					toast.show();
-
-				}
-
-			}
-		} else {
-			Toast toast = Toast.makeText(this,
-					StringConst.getDatenWurdenNichtGespeichert(),
-					Toast.LENGTH_LONG);
-			toast.show();
-		}
-	}
-
 	public Long getPersID() {
 		return persID;
+	}
+
+	private Long getID() {
+		return ID;
+	}
+
+	private void setID(Long iD) {
+		ID = iD;
+	}
+
+	private void setPersID(Long persID) {
+		this.persID = persID;
+	}
+
+	private Spinner getSkillSpinner() {
+		return skillSpinner;
+	}
+
+	private void setSkillSpinner(Spinner skillSpinner) {
+		this.skillSpinner = skillSpinner;
+	}
+
+	private SeekBar getSkillSeekBar() {
+		return skillSeekBar;
+	}
+
+	private void setSkillSeekBar(SeekBar skillSeekBar) {
+		this.skillSeekBar = skillSeekBar;
 	}
 
 }
