@@ -17,6 +17,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+/**
+ * @author j.herzig
+ * 
+ */
+
 public class ListBerufserfahrungenActivity extends ListActivity {
 	private int listID;
 	private ArrayList<BerufserfahrungData> listData;
@@ -39,85 +44,68 @@ public class ListBerufserfahrungenActivity extends ListActivity {
 		db.close();
 
 		setListAdapter();
+	}
+
+	private void setListAdapter() {
+		ArrayList<String> namen = new ArrayList<String>();
+
+		for (int i = 0; i < listData.size(); i++) {
+			namen.add(listData.get(i).getTxt_firma() + " " + listData.get(i).getTxt_ort());
+		}
+		mPdfAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, namen);
+		setListAdapter(mPdfAdapter);
 
 	}
 
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		listID = (int) id;
 
+		super.onListItemClick(l, v, position, id);
+
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ListBerufserfahrungenActivity.this);
+
+		alertDialogBuilder.setTitle(this.getTitle() + StringConst.BERUFSERFARUNGDATEN);
+		alertDialogBuilder.setMessage(StringConst.DIALOGOPTIONWAELEN);
+
+		alertDialogBuilder.setPositiveButton("Übernhemen", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				final Intent intent = new Intent(ListBerufserfahrungenActivity.this, BerufserfahrungActivity.class);
+				intent.putExtra(StringConst.getPesrid(), getPersID());
+				intent.putExtra(StringConst.ID, listData.get(listID).getID());
+
+				startActivity(intent);
+			}
+		});
+
+		alertDialogBuilder.setNegativeButton(StringConst.LOESCHEN, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int idDialog) {
+
+				BerufserfahrungData berfserfahrung = listData.get(listID);
+				BerufserfahrungDB db = new BerufserfahrungDB(ListBerufserfahrungenActivity.this);
+				db.open();
+				db.deleteBerufserfahrung(berfserfahrung);
+
+				String toast = listData.get(listID).getTxt_firma() + StringConst.DATEN_WURDEN_GELOESCHT;
+				Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG).show();
+
+				final Intent intent = new Intent(ListBerufserfahrungenActivity.this, BerufserfahrungActivity.class);
+				intent.putExtra(StringConst.getPesrid(), getPersID());
+
+				startActivity(intent);
+			}
+		});
+
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
+	}
 
 	private Long getPersID() {
 		return persID;
 	}
 
-
-
 	private void setPersID(Long persID) {
 		this.persID = persID;
-	}
-
-
-
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		listID = (int) id;
-		
-		super.onListItemClick(l, v, position, id);
-
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-				ListBerufserfahrungenActivity.this);
-
-		alertDialogBuilder.setTitle(this.getTitle() + "Berufserfahrungen Daten");
-		alertDialogBuilder.setMessage("Bitte wählen Sie eine Option aus.");
-
-		alertDialogBuilder.setPositiveButton("Übernhemen",
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						//TODO richtige Activity laden
-						final Intent intent = new Intent(ListBerufserfahrungenActivity.this, BerufserfahrungActivity.class);
-						intent.putExtra(StringConst.getPesrid(),getPersID());
-						intent.putExtra(StringConst.ID, listData.get(listID).getID());
-
-						startActivity(intent);
-						
-						
-						Toast.makeText(getApplicationContext(),
-								"Übernhemen",
-								Toast.LENGTH_LONG).show();
-					}
-				});
-
-		alertDialogBuilder.setNegativeButton("Löschen",
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int idDialog) {
-
-						BerufserfahrungData berfserfahrung =  listData.get(listID);
-						BerufserfahrungDB db = new BerufserfahrungDB(ListBerufserfahrungenActivity.this);
-						db.open();
-						db.deleteBerufserfahrung(berfserfahrung);
-						
-						setListAdapter();
-						Toast.makeText(getApplicationContext(),
-								"Löschen ID: "+ listID,
-								Toast.LENGTH_LONG).show();
-
-						mPdfAdapter.notifyDataSetChanged();
-					}
-				});
-
-		AlertDialog alertDialog = alertDialogBuilder.create();
-		alertDialog.show();
-	}
-	
-	private void setListAdapter() {
-		ArrayList<String> namen = new ArrayList<String>();
-
-		for (int i = 0; i < listData.size(); i++) {
-			namen.add(listData.get(i).getTxt_firma() + " "
-					+ listData.get(i).getTxt_ort());
-		}
-		mPdfAdapter = new ArrayAdapter<>(this,
-				android.R.layout.simple_list_item_1, namen);
-		setListAdapter(mPdfAdapter);
-
 	}
 
 }

@@ -47,9 +47,8 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.activity_berufserfahrung);
-		this.persID = getIntent().getLongExtra(StringConst.getPesrid(), 0);
-		setBeschreibungText(getIntent()
-				.getStringExtra(StringConst.BESCHREIBUNG));
+		setPersID(getIntent().getLongExtra(StringConst.getPesrid(), 0));
+		setBeschreibungText(getIntent().getStringExtra(StringConst.BESCHREIBUNG));
 		setID(getIntent().getLongExtra(StringConst.ID, 0));
 
 		// Initialisieren
@@ -76,17 +75,15 @@ public class BerufserfahrungActivity extends FragmentActivity {
 			getBtnSelectDateVon().setText(beruferfahrung.getBtnSelectDateVon());
 			if (getBeschreibungText() != null) {
 				beruferfahrung.setTxt_beschreibung(getBeschreibungText());
-			}
-			else {
+			} else {
 				setBeschreibungText(beruferfahrung.getTxt_beschreibung());
 			}
-			
+
 		}
 	}
 
 	private void initActivityElemente() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",
-				Locale.GERMANY);
+		SimpleDateFormat dateFormat = new SimpleDateFormat(StringConst.DATEFORMAT, Locale.GERMANY);
 		String datum = dateFormat.format(new java.util.Date());
 
 		btnBeruferfahrung = (Button) findViewById(R.id.sf_add_berufserfahrung);
@@ -107,8 +104,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	}
 
 	private void initActivityListener() {
-		berufserfahrungListener = new BerufserfahrungListener(this,
-				getPersID(), getID());
+		berufserfahrungListener = new BerufserfahrungListener(this, getPersID(), getID());
 		berufserfahrungListener.setBeschreibungText(beschreibungText);
 		btnBeruferfahrung.setOnClickListener(berufserfahrungListener);
 
@@ -133,8 +129,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 			@Override
 			public void onClick(View v) {
 				DialogFragment newFragment = new DatePickerFragment();
-				newFragment.show(getSupportFragmentManager(),
-						StringConst.DATEPICKERBIS);
+				newFragment.show(getSupportFragmentManager(), StringConst.DATEPICKERBIS);
 			}
 		});
 
@@ -142,8 +137,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 			@Override
 			public void onClick(View v) {
 				DialogFragment newFragment = new DatePickerFragment();
-				newFragment.show(getSupportFragmentManager(),
-						StringConst.DATEPICKERVON);
+				newFragment.show(getSupportFragmentManager(), StringConst.DATEPICKERVON);
 			}
 		});
 		// End DatePicker
@@ -153,15 +147,12 @@ public class BerufserfahrungActivity extends FragmentActivity {
 			@Override
 			public void onClick(View butten) {
 				clickBeschreibung(butten);
-
 			}
-
 		});
 	}
 
 	private void clickBeschreibung(View butten) {
-		final Intent intent = new Intent(this,
-				Berufserfahrung_beschreibungActivity.class);
+		final Intent intent = new Intent(this, Berufserfahrung_beschreibungActivity.class);
 		datenSpeichern();
 		intent.putExtra(StringConst.getPesrid(), getPersID());
 		intent.putExtra(StringConst.ID, berufserfahrungListener.getID());
@@ -172,7 +163,6 @@ public class BerufserfahrungActivity extends FragmentActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.berufserfahrung, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -181,8 +171,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_berufserfahrung_list:
-			final Intent intent = new Intent(this,
-					ListBerufserfahrungenActivity.class);
+			final Intent intent = new Intent(this, ListBerufserfahrungenActivity.class);
 			intent.putExtra(StringConst.getPesrid(), getPersID());
 			this.startActivity(intent);
 			break;
@@ -216,16 +205,16 @@ public class BerufserfahrungActivity extends FragmentActivity {
 		startActivity(intent);
 	}
 
-	/**
-	 * Daten können Persistent gespeichert werden
-	 */
 	private void datenSpeichern() {
 
 		berufserfahrungListener.setBeschreibungText(getBeschreibungText());
 		BerufserfahrungData data = berufserfahrungListener.saveData();
 		setID(data.getID());
 	}
-	
+
+	private void setPersID(Long persID) {
+		this.persID = persID;
+	}
 
 	private Long getPersID() {
 		return persID;
