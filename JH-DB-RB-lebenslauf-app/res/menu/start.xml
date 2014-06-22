@@ -4,6 +4,6 @@
         android:id="@+id/action_pers_list"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_pers_list"/>
+        android:title="@string/action_daten_anzeigen"/>
 
 </menu>
