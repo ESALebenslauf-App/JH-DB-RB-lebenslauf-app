@@ -36,6 +36,17 @@ public class BerufserfahrungListener implements OnClickListener {
 		init();
 	}
 
+	private void init() {
+		setTxt_firma((EditText) berufserfahrungenActivity.findViewById(R.id.txt_firma));
+		setTxt_titel((EditText) berufserfahrungenActivity.findViewById(R.id.txt_titel));
+		setTxt_adresse((EditText) berufserfahrungenActivity.findViewById(R.id.txt_adresse));
+		setTxt_plz((EditText) berufserfahrungenActivity.findViewById(R.id.txt_plz));
+		setTxt_ort((EditText) berufserfahrungenActivity.findViewById(R.id.txt_ort));
+		setTxt_taetigkeit((EditText) berufserfahrungenActivity.findViewById(R.id.txt_taetigkeit));
+		setBtnSelectDateVon((Button) berufserfahrungenActivity.findViewById(R.id.btnSelectDateVon));
+		setBtnSelectDateBis((Button) berufserfahrungenActivity.findViewById(R.id.btnSelectDateBis));
+	}
+
 	@SuppressLint("UseValueOf")
 	@Override
 	public void onClick(View arg0) {
@@ -45,29 +56,23 @@ public class BerufserfahrungListener implements OnClickListener {
 
 	public BerufserfahrungData saveData() {
 
-		BerufserfahrungData berufserfahrungData = new BerufserfahrungData(
-				getTxt_firma().getText().toString(), getTxt_titel().getText()
-						.toString(), getTxt_taetigkeit().getText().toString(),
-				getBeschreibungText(), getTxt_adresse().getText().toString(),
-				getTxt_plz().getText().toString(), getTxt_ort().getText()
-						.toString(),
-				getBtnSelectDateVon().getText().toString(),
-				getBtnSelectDateBis().getText().toString());
+		BerufserfahrungData berufserfahrungData = new BerufserfahrungData(getTxt_firma().getText().toString(),
+				getTxt_titel().getText().toString(), getTxt_taetigkeit().getText().toString(), getBeschreibungText(),
+				getTxt_adresse().getText().toString(), getTxt_plz().getText().toString(), getTxt_ort().getText()
+						.toString(), getBtnSelectDateVon().getText().toString(), getBtnSelectDateBis().getText()
+						.toString());
 
 		berufserfahrungData.setID(getID());
 		berufserfahrungData.setPersID(getPersID());
 		// Datenbank
-		BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(
-				berufserfahrungenActivity);
+		BerufserfahrungDB beruferfahrungDB = new BerufserfahrungDB(berufserfahrungenActivity);
 		beruferfahrungDB.open();
 
 		if (berufserfahrungData.getID() > 0) {
-			berufserfahrungData = beruferfahrungDB
-					.updateBerufserfarung(berufserfahrungData);
+			berufserfahrungData = beruferfahrungDB.updateBerufserfarung(berufserfahrungData);
 		} else {
 			berufserfahrungData.setTxt_beschreibung("");
-			berufserfahrungData = beruferfahrungDB
-					.insertBerufserfahrung(berufserfahrungData);
+			berufserfahrungData = beruferfahrungDB.insertBerufserfahrung(berufserfahrungData);
 		}
 
 		beruferfahrungDB.close();
@@ -90,31 +95,11 @@ public class BerufserfahrungListener implements OnClickListener {
 		getBtnSelectDateVon().setText("");
 		getBtnSelectDateBis().setText("");
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy",
-				Locale.GERMANY);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
 		String datum = dateFormat.format(new java.util.Date());
 		getBtnSelectDateBis().setText(datum);
-		
-		getBtnSelectDateVon().setText(datum);
-	}
 
-	private void init() {
-		setTxt_firma((EditText) berufserfahrungenActivity
-				.findViewById(R.id.txt_firma));
-		setTxt_titel((EditText) berufserfahrungenActivity
-				.findViewById(R.id.txt_titel));
-		setTxt_adresse((EditText) berufserfahrungenActivity
-				.findViewById(R.id.txt_adresse));
-		setTxt_plz((EditText) berufserfahrungenActivity
-				.findViewById(R.id.txt_plz));
-		setTxt_ort((EditText) berufserfahrungenActivity
-				.findViewById(R.id.txt_ort));
-		setTxt_taetigkeit((EditText) berufserfahrungenActivity
-				.findViewById(R.id.txt_taetigkeit));
-		setBtnSelectDateVon((Button) berufserfahrungenActivity
-				.findViewById(R.id.btnSelectDateVon));
-		setBtnSelectDateBis((Button) berufserfahrungenActivity
-				.findViewById(R.id.btnSelectDateBis));
+		getBtnSelectDateVon().setText(datum);
 	}
 
 	public EditText getTxt_firma() {

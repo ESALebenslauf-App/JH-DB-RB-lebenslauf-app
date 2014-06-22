@@ -33,7 +33,6 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	private Button btnSelectDateVon;
 	private Button btnBeschreibung;
 	private BerufserfahrungListener berufserfahrungListener;
-	private Long persID;
 	private EditText txt_firma;
 	private EditText txt_titel;
 	private EditText txt_adresse;
@@ -41,6 +40,7 @@ public class BerufserfahrungActivity extends FragmentActivity {
 	private EditText txt_ort;
 	private EditText txt_taetigkeit;
 	private String beschreibungText;
+	private Long persID;
 	private Long ID;
 
 	@Override
