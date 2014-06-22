@@ -12,9 +12,9 @@ public class SkillsData implements Cloneable {
 	private Long pers_id;
 	private String was;
 	private String ausmass;
-	private String zertifikat;
+	private Zertifikat zertifikat;
 
-	public SkillsData(String was, String ausmass, String zertifikat) {
+	public SkillsData(String was, String ausmass, Zertifikat zertifikat) {
 		super();
 		this.was = was;
 		this.ausmass = ausmass;
@@ -71,11 +71,11 @@ public class SkillsData implements Cloneable {
 		this.ausmass = ausmass;
 	}
 
-	public String getZertifikat() {
+	public Zertifikat getZertifikat() {
 		return zertifikat;
 	}
 
-	public void setZertifikat(String zertifikat) {
+	public void setZertifikat(Zertifikat zertifikat) {
 		this.zertifikat = zertifikat;
 	}
 

@@ -6,16 +6,19 @@ import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
 import ch.jh_bd_rb_lebenslauf_app.daten.Zertifikat;
 import ch.jh_bd_rb_lebenslauf_app.listener.AddSkillListener;
 import ch.jh_bd_rb_lebenslauf_app.listener.AddZertifikatListener;
+import ch.jh_bd_rb_lebenslauf_app.resource.IntigerConst;
 import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -57,6 +60,7 @@ public class SkillsActivity extends Activity {
 		btnBildung = (Button) findViewById(R.id.imageView7);
 		btnAddSkill = (Button) findViewById(R.id.btnAddSkill);
 		btnAddZertifikat = (ImageButton) findViewById(R.id.btnImageAddZertifikat);
+		btnAddZertifikat.setEnabled(false);
 
 		setSkillSpinner((Spinner) findViewById(R.id.spinnersprachen));
 		setSkillSeekBar((SeekBar) findViewById(R.id.edt_skills_sprachen));
@@ -78,11 +82,26 @@ public class SkillsActivity extends Activity {
 				clickBildung(button);
 			}
 		});
-		addSkillListener = new AddSkillListener(this, getPersID(), getID());
+		addSkillListener = new AddSkillListener(SkillsActivity.this, getPersID(), getID());
 		btnAddSkill.setOnClickListener(addSkillListener);
 		zertifikatListener = new AddZertifikatListener(this);
 		btnAddZertifikat.setOnClickListener(zertifikatListener);
 
+		skillSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				if (skillSpinner.getSelectedItemId() > 0) {
+					btnAddZertifikat.setEnabled(true);
+				}
+
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				btnAddZertifikat.setEnabled(false);
+			}
+		});
 	}
 
 	private void loadData() {
@@ -111,15 +130,14 @@ public class SkillsActivity extends Activity {
 
 	}
 
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		switch (requestCode) {
-
-		case 0: {
-			zertifikat.setPath(data.getDataString());
-			break;
-		}
+		// Wenn ein Foto neu geschossen wurde
+		if (requestCode == IntigerConst.PHOTO && resultCode == RESULT_OK) {
+			Bitmap image = (Bitmap) data.getExtras().get("data");
+			getZertifikat().setImage(image);
 		}
 	}
 

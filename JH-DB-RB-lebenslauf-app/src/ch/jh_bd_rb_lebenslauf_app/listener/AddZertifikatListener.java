@@ -1,6 +1,7 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
 import ch.jh_bd_rb_lebenslauf_app.gui.SkillsActivity;
+import ch.jh_bd_rb_lebenslauf_app.resource.IntigerConst;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
@@ -15,11 +16,15 @@ public class AddZertifikatListener implements OnClickListener {
 
 	@Override
 	public void onClick(View arg0) {
+		makePicture();
+	}
 
-		// Zertifikat Laden
-		Intent intent = new Intent();
-		intent.setAction(Intent.ACTION_PICK);
-		skillsActivity.startActivityForResult(intent, 0);
+	// Methode die die Kamera öffnet
+	// Das geschossene und ausgewählte Foto wird an die BildActivity gesendet.
+	public void makePicture() {
+		final Intent cameraInt = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
+		skillsActivity.startActivityForResult(cameraInt, IntigerConst.PHOTO);
 	}
 
 }

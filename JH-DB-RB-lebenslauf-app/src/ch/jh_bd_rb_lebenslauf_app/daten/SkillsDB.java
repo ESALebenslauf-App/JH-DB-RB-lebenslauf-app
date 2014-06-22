@@ -184,7 +184,7 @@ public class SkillsDB implements LebenslaufDB {
 	private ContentValues putContentValues(SkillsData skills, ContentValues values) {
 		values.put(SKILLS_WAS, skills.getWas());
 		values.put(SKILLS_AUSMASS, skills.getAusmass());
-		values.put(SKILLS_ZERTIFIKAT, skills.getZertifikat());
+		values.put(SKILLS_ZERTIFIKAT, skills.getZertifikat().getByteArrayImage());
 		values.put(SKILLS_PERS_ID, skills.getPers_id());
 
 		return values;
@@ -193,7 +193,7 @@ public class SkillsDB implements LebenslaufDB {
 	private SkillsData setSkills(SkillsData skills, Cursor result) {
 		skills.setWas(result.getString(1));
 		skills.setAusmass(result.getString(2));
-		skills.setZertifikat(result.getString(3));
+		skills.getZertifikat().setByteArrayImage((result.getBlob(3)));
 		skills.setPers_id(result.getLong(4));
 
 		return skills;

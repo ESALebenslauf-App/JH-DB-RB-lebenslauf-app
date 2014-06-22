@@ -3,10 +3,8 @@ package ch.jh_bd_rb_lebenslauf_app.listener;
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.SkillsData;
-import ch.jh_bd_rb_lebenslauf_app.daten.Zertifikat;
 import ch.jh_bd_rb_lebenslauf_app.gui.SkillsActivity;
 import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,8 +18,8 @@ import android.widget.Toast;
  */
 public class AddSkillListener implements OnClickListener {
 
-	private Activity skillsActivity;
-	private Zertifikat zert;
+	final int PHOTO = 1;
+	private SkillsActivity skillsActivity;
 	private String zertifikat;
 	private Spinner skillSpinner;
 	private SeekBar skillSeekBar;
@@ -30,10 +28,10 @@ public class AddSkillListener implements OnClickListener {
 
 	public AddSkillListener(SkillsActivity skills, Long persId, Long id) {
 		this.skillsActivity = skills;
-		this.zert = skills.getZertifikat();
 		setPersID(persId);
 		setID(id);
 		init();
+		
 	}
 
 	private void init() {
@@ -49,8 +47,9 @@ public class AddSkillListener implements OnClickListener {
 
 	private SkillsData saveData() {
 
+		
 		SkillsData skillsData = new SkillsData(getSkillSpinner().getSelectedItem().toString(),
-				String.valueOf(getSkillSeekBar().getProgress()), zert.getPath());
+				String.valueOf(getSkillSeekBar().getProgress()), skillsActivity.getZertifikat());
 
 		skillsData.setID(getID());
 		skillsData.setPers_id(getPersID());
