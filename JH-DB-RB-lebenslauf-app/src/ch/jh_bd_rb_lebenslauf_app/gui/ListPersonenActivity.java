@@ -67,8 +67,6 @@ public class ListPersonenActivity extends ListActivity {
 				intent.putExtra(StringConst.PERSID, listData.get(listID).getID());
 
 				startActivity(intent);
-
-				Toast.makeText(getApplicationContext(), "Übernhemen", Toast.LENGTH_LONG).show();
 			}
 		});
 

@@ -218,8 +218,8 @@ public class BildActivity extends FragmentActivity {
 
 			if (save) {
 				Toast toast = Toast.makeText(this,
-						StringConst.DATEN_WURDEN_GESPEICHERT + StringConst.IHRE_PRESID + pers.getID(),
-						Toast.LENGTH_LONG);
+						StringConst.DATEN_WURDEN_GESPEICHERT,
+						Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		} else {
