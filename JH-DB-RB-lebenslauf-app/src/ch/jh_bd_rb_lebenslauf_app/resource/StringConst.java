@@ -33,6 +33,4 @@ public class StringConst {
 	public static final String DATEN_WURDEN_NICHT_GESPEICHERT_BILDUNG = "Daten wurden nicht gespeichert eine Name muss hinterlegt werden.";
 	public static final String DATEN_WURDEN_NICHT_GESPEICHERT_SKILLS = "Daten wurden nicht gespeichert eine Skills muss ausgewählt werden.";
 
-
-
 }

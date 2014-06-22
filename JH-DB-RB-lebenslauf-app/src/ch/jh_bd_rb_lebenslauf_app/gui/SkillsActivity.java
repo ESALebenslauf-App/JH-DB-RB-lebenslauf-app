@@ -136,7 +136,6 @@ public class SkillsActivity extends Activity {
 		if (requestCode == IntigerConst.PHOTO && resultCode == RESULT_OK) {
 
 			setImageZertifikat((Bitmap) data.getExtras().get("data"));
-
 		}
 	}
 
