@@ -28,6 +28,7 @@ public class StringConst {
 	public static final String DATEN_WURDEN_GELOESCHT = " Daten wurden gelöscht";
 	public static final String DATEFORMAT = "dd.MM.yyyy";
 	public static final String UEBRNEHMEN = "Übernhemen";
+	public static final String SENDEN = "Senden";
 
 
 
