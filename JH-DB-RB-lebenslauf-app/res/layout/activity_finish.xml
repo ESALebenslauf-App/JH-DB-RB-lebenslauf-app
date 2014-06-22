@@ -148,13 +148,4 @@
         android:layout_centerVertical="true"
         android:text="PDF Veröffentlichen" />
 
-    <Button
-        android:id="@+id/btnPdfListAnzeigen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnSenden"
-        android:layout_below="@+id/btnSenden"
-        android:layout_marginTop="19dp"
-        android:text="PDFs Anzeigen" />
-
 </RelativeLayout>

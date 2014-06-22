@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,7 +24,6 @@ public class FinishActivity extends Activity {
 	private Button btnCreatePdf;
 	private Button btnPreferences;
 	private Button btnSenden;
-	private Button btnPdfList;
 	private CreatePdfListener createPdfListener;
 	private SendItem sendItem;
 	private Long persID;
@@ -44,7 +44,6 @@ public class FinishActivity extends Activity {
 		btnPreferences = (Button) findViewById(R.id.btnPreferences);
 		btnSenden = (Button) findViewById(R.id.btnSenden);
 		btnSenden.setEnabled(false);
-		btnPdfList = (Button) findViewById(R.id.btnPdfListAnzeigen);
 	}
 
 	private void initActivityListener() {
@@ -75,28 +74,30 @@ public class FinishActivity extends Activity {
 
 		});
 
-		btnPdfList.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				clickPdfList();
-			}
-
-		});
-
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.finish, menu);
 		return true;
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_finish_pdfliste:
+			final Intent intent = new Intent(this, ListPDFLebenslaufActivity.class);
+			intent.putExtra(StringConst.PERSID, getPersID());
+			this.startActivity(intent);
+			break;
 
-	private void clickPdfList() {
-		final Intent intent = new Intent(this, ListPDFLebenslaufActivity.class);
-		this.startActivity(intent);
+		default:
+			break;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
+
 
 	/**
 	 * 
