@@ -1,30 +1,25 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.PersonalienData;
-import ch.jh_bd_rb_lebenslauf_app.resource.FileConst;
 import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+/**
+ * 
+ * @author bdervishi.jherzig.rbuess
+ * 
+ */
 
 public class ListPersonenActivity extends ListActivity {
 	private int listID;
@@ -37,22 +32,18 @@ public class ListPersonenActivity extends ListActivity {
 		setContentView(R.layout.list_personen);
 
 		listData = new ArrayList<PersonalienData>();
-
 		PersonalienDB db = new PersonalienDB(this);
 		db.open();
 		listData = db.getAllPersonalien();
 		db.close();
 
 		setListAdapter();
-
 	}
-
-
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		listID = (int) id;
-		
+
 		super.onListItemClick(l, v, position, id);
 
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
@@ -64,15 +55,15 @@ public class ListPersonenActivity extends ListActivity {
 		alertDialogBuilder.setPositiveButton("Übernhemen",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
-						
-						final Intent intent = new Intent(ListPersonenActivity.this, BildActivity.class);
-						intent.putExtra(StringConst.getPesrid(), listData.get(listID).getID());
+
+						final Intent intent = new Intent(
+								ListPersonenActivity.this, BildActivity.class);
+						intent.putExtra(StringConst.getPesrid(),
+								listData.get(listID).getID());
 
 						startActivity(intent);
-						
-						
-						Toast.makeText(getApplicationContext(),
-								"Übernhemen",
+
+						Toast.makeText(getApplicationContext(), "Übernhemen",
 								Toast.LENGTH_LONG).show();
 					}
 				});
@@ -82,14 +73,15 @@ public class ListPersonenActivity extends ListActivity {
 					public void onClick(DialogInterface dialog, int idDialog) {
 
 						PersonalienData pers = listData.get(listID);
-						PersonalienDB persDB = new PersonalienDB(ListPersonenActivity.this);
+						PersonalienDB persDB = new PersonalienDB(
+								ListPersonenActivity.this);
 						persDB.open();
 						persDB.deletePersonalien(pers);
-						
+
 						setListAdapter();
 						Toast.makeText(getApplicationContext(),
-								"Löschen ID: "+ listID,
-								Toast.LENGTH_LONG).show();
+								"Löschen ID: " + listID, Toast.LENGTH_LONG)
+								.show();
 
 						mPdfAdapter.notifyDataSetChanged();
 					}
@@ -98,7 +90,7 @@ public class ListPersonenActivity extends ListActivity {
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		alertDialog.show();
 	}
-	
+
 	private void setListAdapter() {
 		ArrayList<String> namen = new ArrayList<String>();
 
@@ -109,7 +101,6 @@ public class ListPersonenActivity extends ListActivity {
 		mPdfAdapter = new ArrayAdapter<>(this,
 				android.R.layout.simple_list_item_1, namen);
 		setListAdapter(mPdfAdapter);
-
 	}
 
 }
