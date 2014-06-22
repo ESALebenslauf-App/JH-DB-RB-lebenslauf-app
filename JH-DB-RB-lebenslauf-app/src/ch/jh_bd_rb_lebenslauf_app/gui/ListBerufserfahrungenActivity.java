@@ -68,7 +68,7 @@ public class ListBerufserfahrungenActivity extends ListActivity {
 		alertDialogBuilder.setTitle(this.getTitle() + StringConst.BERUFSERFARUNGDATEN);
 		alertDialogBuilder.setMessage(StringConst.DIALOGOPTIONWAELEN);
 
-		alertDialogBuilder.setPositiveButton("Übernhemen", new DialogInterface.OnClickListener() {
+		alertDialogBuilder.setPositiveButton(StringConst.UEBRNEHMEN, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 				final Intent intent = new Intent(ListBerufserfahrungenActivity.this, BerufserfahrungActivity.class);
 				intent.putExtra(StringConst.getPesrid(), getPersID());
