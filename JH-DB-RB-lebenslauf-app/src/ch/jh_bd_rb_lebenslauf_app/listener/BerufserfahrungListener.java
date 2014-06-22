@@ -2,9 +2,11 @@ package ch.jh_bd_rb_lebenslauf_app.listener;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
 import ch.jh_bd_rb_lebenslauf_app.R;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungDB;
 import ch.jh_bd_rb_lebenslauf_app.daten.BerufserfahrungData;
+import ch.jh_bd_rb_lebenslauf_app.resource.StringConst;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * @author j.herzig
+ *
+ */
 public class BerufserfahrungListener implements OnClickListener {
 
 	private Activity berufserfahrungenActivity;
@@ -80,12 +86,13 @@ public class BerufserfahrungListener implements OnClickListener {
 
 		activityBereinigen();
 
-		shortToast("Eine Berufserfahrung hinzufügen");
+		shortToast(StringConst.DATEN_WURDEN_GESPEICHERT);
 
 		return berufserfahrungData;
 	}
 
 	public void activityBereinigen() {
+
 		getTxt_firma().setText("");
 		getTxt_titel().setText("");
 		getTxt_adresse().setText("");
@@ -95,11 +102,23 @@ public class BerufserfahrungListener implements OnClickListener {
 		getBtnSelectDateVon().setText("");
 		getBtnSelectDateBis().setText("");
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+		SimpleDateFormat dateFormat = new SimpleDateFormat(StringConst.DATEFORMAT, Locale.GERMANY);
 		String datum = dateFormat.format(new java.util.Date());
 		getBtnSelectDateBis().setText(datum);
 
 		getBtnSelectDateVon().setText(datum);
+	}
+
+	/**
+	 * 
+	 * @param text
+	 */
+	private void shortToast(String text) {
+		Context context = berufserfahrungenActivity;
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
 	}
 
 	public EditText getTxt_firma() {
@@ -164,18 +183,6 @@ public class BerufserfahrungListener implements OnClickListener {
 
 	public void setBtnSelectDateBis(Button btnSelectDateBis) {
 		this.btnSelectDateBis = btnSelectDateBis;
-	}
-
-	/**
-	 * 
-	 * @param text
-	 */
-	private void shortToast(String text) {
-		Context context = berufserfahrungenActivity;
-		int duration = Toast.LENGTH_SHORT;
-
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
 	}
 
 	public String getBeschreibungText() {
