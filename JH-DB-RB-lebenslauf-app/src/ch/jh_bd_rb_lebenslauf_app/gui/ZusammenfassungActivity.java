@@ -1,5 +1,6 @@
 package ch.jh_bd_rb_lebenslauf_app.gui;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import ch.jh_bd_rb_lebenslauf_app.R;
@@ -71,7 +72,15 @@ public class ZusammenfassungActivity extends Activity {
 		// Hier wird der Pfad auf das gespeicherte Foto zusammengestellt.
 		// und das Foto geladen.
 		String filePath = FileConst.getPdfPath() + "/" + persID.toString() + "Foto.jpg";
+		//Prüfen ob Foto existiert
+		File f = new File(filePath);
+		if(f.exists()){
 		image = BitmapFactory.decodeFile(filePath);
+		}
+		else{
+			image = BitmapFactory.decodeResource(getResources(), R.drawable.ico_pic);
+		}
+		
 		bild = (ImageView) findViewById(R.id.imageView1);
 		bild.setImageBitmap(image);
 

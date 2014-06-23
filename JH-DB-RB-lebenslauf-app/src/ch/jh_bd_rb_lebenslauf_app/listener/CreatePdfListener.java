@@ -1,6 +1,7 @@
 package ch.jh_bd_rb_lebenslauf_app.listener;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -75,7 +76,7 @@ public class CreatePdfListener implements OnClickListener {
 	static Image image = null;
 
 	String dir;
-	Activity finishActivity;
+	static Activity finishActivity;
 	SharedPreferences prefs;
 
 	String toastText = "PDF erstellt: (";
@@ -152,8 +153,6 @@ public class CreatePdfListener implements OnClickListener {
 			// Übergibt die Daten als Text an ein Spanned.
 			txtPersonalien = Html.fromHtml(anrede + "<br />" + vorname + " " + name + "<br />" + strasse + "<br />"
 					+ plz + " " + ort + "<br />" + date);
-			// Spanned www = Html.fromHtml("TEXT");
-			// CharSequence xxx = TextUtils.concat(txtPersonalien, www);
 			// Übergibt den Spanned an den TextView.
 			personalienText = txtPersonalien.toString();
 		}
@@ -270,7 +269,6 @@ public class CreatePdfListener implements OnClickListener {
 			addTitel(document);
 
 			// Bild hinzufügen
-
 			document.add(addImage());
 
 			// Methode zum hinzufügen des Textes wird aufgerufen
@@ -399,14 +397,22 @@ public class CreatePdfListener implements OnClickListener {
 	private static Image addImage() throws BadElementException, MalformedURLException, IOException {
 
 		String filePath = FileConst.getPdfPath() + "/" + persID.toString() + "Foto.jpg";
-
+		//Prüfen ob Foto existiert
+		File f = new File(filePath);
+		if(f.exists()){
 		bitmap = BitmapFactory.decodeFile(filePath);
+		}
+		else{
+			bitmap = BitmapFactory.decodeResource(finishActivity.getResources(), R.drawable.ico_pic);
+		}
 		bitmapResized = Bitmap.createScaledBitmap(bitmap, 190, 250, false);
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		bitmapResized.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 		byte[] byteArray = stream.toByteArray();
 		image = Image.getInstance(byteArray);
+		
 		return image;
+		
 
 	}
 
