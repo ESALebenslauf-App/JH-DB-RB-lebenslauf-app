@@ -197,18 +197,6 @@ public class SkillsDB implements LebenslaufDB {
 		skills.setWas(result.getString(1));
 		skills.setAusmass(result.getString(2));
 		skills.setZertifikat(result.getString(3));
-		
-		/*
-		if (result.getBlob(3) != null) {
-			//TODO überarbeiten
-			ByteArrayInputStream inputStream = new ByteArrayInputStream(result.getBlob(3));
-			Zertifikat zertTest = skills.getZertifikat();
-			if (zertTest == null) {
-				skills.setZertifikat(new Zertifikat());
-			}
-			skills.getZertifikat().setInputStream(inputStream);
-		}
-		*/
 		skills.setPers_id(result.getLong(4));
 
 		return skills;

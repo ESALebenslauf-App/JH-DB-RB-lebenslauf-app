@@ -3,7 +3,6 @@ package ch.jh_bd_rb_lebenslauf_app.daten;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * 
@@ -27,10 +26,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// transform db from old to new version
-		Log.w(DBHelper.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion
-				+ ", which will destroy all old data");
-		db.execSQL("DROP TABLE IF EXISTS SCANITEM");
+	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+		// TODO Die Methode onUpgrade wurde in der ersten version noch nicht implemtiert.		
 	}
+
 }
