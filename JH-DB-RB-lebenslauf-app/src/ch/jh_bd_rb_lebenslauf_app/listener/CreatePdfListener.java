@@ -163,7 +163,6 @@ public class CreatePdfListener implements OnClickListener {
 		for (BerufserfahrungData current : berufserfahrungArray) {
 			BerufserfahrungData berufserfahrung = (BerufserfahrungData) current;
 
-			// TODO Test Daten können gelöscht werden.
 
 			String firma = berufserfahrung.getTxt_firma();
 			String titel = berufserfahrung.getTxt_titel();
@@ -194,8 +193,6 @@ public class CreatePdfListener implements OnClickListener {
 		Spanned textBildung = Html.fromHtml("");
 		for (BildungData current : bildungArray) {
 			BildungData bildung = (BildungData) current;
-
-			// TODO Test Daten können gelöscht werden.
 
 			String ausbildungsart = bildung.getAusbildungsart();
 			String nameSchule = bildung.getNameschule();
@@ -290,7 +287,7 @@ public class CreatePdfListener implements OnClickListener {
 		try {
 			document.add(preface);
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

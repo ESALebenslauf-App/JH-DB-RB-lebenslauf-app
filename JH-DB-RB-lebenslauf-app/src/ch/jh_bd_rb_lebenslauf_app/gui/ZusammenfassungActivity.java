@@ -198,8 +198,6 @@ public class ZusammenfassungActivity extends Activity {
 		for (BerufserfahrungData current : berufserfahrungArray) {
 			BerufserfahrungData berufserfahrung = (BerufserfahrungData) current;
 
-			// TODO Test Daten können gelöscht werden.
-
 			String firma = berufserfahrung.getTxt_firma();
 			String titel = berufserfahrung.getTxt_titel();
 			String adresse = berufserfahrung.getTxt_adresse();
@@ -229,8 +227,6 @@ public class ZusammenfassungActivity extends Activity {
 		Spanned textBildung = Html.fromHtml("");
 		for (BildungData current : bildungArray) {
 			BildungData bildung = (BildungData) current;
-
-			// TODO Test Daten können gelöscht werden.
 
 			String ausbildungsart = bildung.getAusbildungsart();
 			String nameSchule = bildung.getNameschule();
